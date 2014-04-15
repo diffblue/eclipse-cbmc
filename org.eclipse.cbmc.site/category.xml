@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.eclipse.cbmc.feature_1.0.0.qualifier.jar" id="org.eclipse.cbmc.feature" version="1.0.0.qualifier">
+      <category name="org.eclipse.cbmc.category"/>
+   </feature>
+   <category-def name="org.eclipse.cbmc.category" label="CBMC"/>
+</site>
