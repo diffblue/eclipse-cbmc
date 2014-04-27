@@ -196,13 +196,13 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 	public void initializeFrom(ILaunchConfiguration configuration) {
 		final String NO_VALUE = ""; //$NON-NLS-1$
 		try {
-			String exec = configuration.getAttribute(ExecutionDescriptor.LC_CBMC_EXECUTABLE, NO_VALUE);
+			String exec = configuration.getAttribute(CBMCCliHelper.LC_CBMC_EXECUTABLE, NO_VALUE);
 			executableText.setText(exec);
 
-			String file = configuration.getAttribute(ExecutionDescriptor.LC_CBMC_FILE, NO_VALUE);
+			String file = configuration.getAttribute(CBMCCliHelper.LC_CBMC_FILE, NO_VALUE);
 			fileText.setText(file);
 
-			String function = configuration.getAttribute(ExecutionDescriptor.LC_CBMC_FUNCTION, NO_VALUE);
+			String function = configuration.getAttribute(CBMCCliHelper.LC_CBMC_FUNCTION, NO_VALUE);
 			functionText.setText(function);
 
 			for (int i = 0; i < CommandOption.values().length; i++) {
@@ -227,18 +227,18 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
 		if (isDirty()) {
 			String exec = executableText.getText().trim();
-			configuration.setAttribute(ExecutionDescriptor.LC_CBMC_EXECUTABLE, exec.length() == 0 ? null : exec);
+			configuration.setAttribute(CBMCCliHelper.LC_CBMC_EXECUTABLE, exec.length() == 0 ? null : exec);
 			String file = fileText.getText().trim();
-			configuration.setAttribute(ExecutionDescriptor.LC_CBMC_FILE, file.length() == 0 ? null : file);
+			configuration.setAttribute(CBMCCliHelper.LC_CBMC_FILE, file.length() == 0 ? null : file);
 			String function = functionText.getText().trim();
-			configuration.setAttribute(ExecutionDescriptor.LC_CBMC_FUNCTION, function.length() == 0 ? null : function);
+			configuration.setAttribute(CBMCCliHelper.LC_CBMC_FUNCTION, function.length() == 0 ? null : function);
 			for (int i = 0; i < CommandOption.values().length; i++) {
 				CommandOption option = CommandOption.get(i);
 				for (Iterator<Button> iterator = optionButtons.iterator(); iterator.hasNext();) {
 					Button btn = iterator.next();
 					if (((CommandOption) btn.getData()).getName() == option.getName()) {
 						boolean checked = btn.getSelection();
-						configuration.setAttribute(ExecutionDescriptor.LC_CBMC_OPTIONPREFIX + option.getLiteral(), checked);
+						configuration.setAttribute(CBMCCliHelper.LC_CBMC_OPTIONPREFIX + option.getLiteral(), checked);
 						break;
 					}
 				}

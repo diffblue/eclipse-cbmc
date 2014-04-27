@@ -2,6 +2,7 @@
  */
 package org.eclipse.cbmc;
 
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -28,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Property extends EObject {
+
 	/**
 	 * Returns the value of the '<em><b>Category</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.cbmc.PropertyCategory#getProperties <em>Properties</em>}'.
@@ -304,5 +306,9 @@ public interface Property extends EObject {
 	 * @generated
 	 */
 	void setDetailsFile(String value);
+
+	void setJob(Job job);
+
+	Job getJob();
 
 } // Property

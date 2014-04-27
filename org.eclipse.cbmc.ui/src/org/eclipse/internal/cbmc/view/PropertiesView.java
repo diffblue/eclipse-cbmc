@@ -1,23 +1,30 @@
 package org.eclipse.internal.cbmc.view;
 
-import org.eclipse.cbmc.*;
+import org.eclipse.cbmc.Property;
+import org.eclipse.cbmc.PropertyStatus;
 import org.eclipse.cbmc.provider.CbmcItemProviderAdapterFactory;
 import org.eclipse.core.filesystem.EFS;
 import org.eclipse.core.filesystem.IFileStore;
 import org.eclipse.core.resources.*;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.*;
+import org.eclipse.core.runtime.jobs.*;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.internal.cbmc.launcher.CBMCCliHelper;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.text.*;
 import org.eclipse.jface.viewers.*;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.*;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.texteditor.ITextEditor;
+import org.osgi.framework.FrameworkUtil;
 
 /**
  * This sample class demonstrates how to plug-in a new workbench view. The view
@@ -39,13 +46,17 @@ public class PropertiesView extends ViewPart {
 	/**
 	 * The ID of the view as specified by the extension.
 	 */
-	public static final String ID = "org.eclipse.cbmc.ui.view.properties";
+	public static final String ID = "org.eclipse.cbmc.ui.view.properties"; //$NON-NLS-1$
 
 	private TreeViewer viewer;
 
-	public TreeViewer getViewer() {
-		return viewer;
-	}
+	private Action fStopAction;
+
+	private Action fResumeAction;
+
+	private Job checkerJob;
+
+	private CBMCCliHelper cbmcHelper;
 
 	/**
 	 * The constructor.
@@ -58,6 +69,7 @@ public class PropertiesView extends ViewPart {
 	 * it.
 	 */
 	public void createPartControl(Composite parent) {
+		configureToolBar();
 		viewer = new TreeViewer(parent, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL);
 		CbmcItemProviderAdapterFactory factory = new CbmcItemProviderAdapterFactory();
 		viewer.setContentProvider(new AdapterFactoryContentProvider(factory));
@@ -129,16 +141,139 @@ public class PropertiesView extends ViewPart {
 		viewer.getControl().setFocus();
 	}
 
-	public TreeViewer getTreeViewer() {
-		return viewer;
+	//	public void launch() {
+	//		if (launchHelper == null)
+	//			return;
+	//		Job mainJob = new Job("CBMC : get all properties") {
+	//
+	//			@Override
+	//			protected IStatus run(IProgressMonitor monitor) {
+	//				try {
+	//					final Results results = launchHelper.getAllProperties();
+	//					Display.getDefault().asyncExec(new Runnable() {
+	//						@Override
+	//						public void run() {
+	//							viewer.setInput(results);
+	//							viewer.expandAll();
+	//						}
+	//					});
+	//				} catch (IOException | InterruptedException | TransformerFactoryConfigurationError | TransformerException e) {
+	//					// TODO Auto-generated catch block
+	//					e.printStackTrace();
+	//				}
+	//
+	//				return Status.OK_STATUS;
+	//			}
+	//		};
+	//		mainJob.schedule();
+	//		try {
+	//			mainJob.join();
+	//		} catch (InterruptedException e) {
+	//			// TODO Auto-generated catch block
+	//			e.printStackTrace();
+	//		}
+	//		runPropertiesCheck();
+	//	}
+	//
+	//	private void runPropertiesCheck() {
+	//		for (Iterator<Property> iterator = ((Results) viewer.getInput()).getProperties().iterator(); iterator.hasNext();) {
+	//			Property property = iterator.next();
+	//			runPropertyJob(property);
+	//		}
+	//	}
+
+	//	private void createPropertyJob(final Property property){
+	//		Job job = property.getJob();
+	//		if (job == null) {
+	//			job = new Job("check " + property.getNumber()) {
+	//
+	//				@Override
+	//				protected IStatus run(IProgressMonitor monitor) {
+	//					String propertyDetailPath;
+	//					try {
+	//						property.setStatus(PropertyStatus.RUNNING);
+	//						propertyDetailPath = launchHelper.resolveProperty(property);
+	//						property.setDetailsFile(propertyDetailPath);
+	//						property.setStatus(propertyDetailPath == null ? PropertyStatus.SUCCEEDED : PropertyStatus.FAILED);
+	//					} catch (IOException | InterruptedException e) {
+	//						e.printStackTrace();
+	//					}
+	//					return Status.OK_STATUS;
+	//				}
+	//			};
+	//			property.setJob(job);
+	//		}
+	//		return 
+	//	}
+	//
+	//	private void runPropertyJob(final Property property) {
+	//		createPropertyJob(property);
+	//		if (property.getStatus() == PropertyStatus.PENDING) {
+	//			property.getJob().schedule();
+	//			try {
+	//				job.join();
+	//			} catch (InterruptedException e) {
+	//				e.printStackTrace();
+	//			}
+	//		}
+	//		
+	//	}
+
+	//	private void stopPropertyCheck(Property property)
+
+	private void configureToolBar() {
+		IActionBars actionBars = getViewSite().getActionBars();
+		IToolBarManager toolBar = actionBars.getToolBarManager();
+		fStopAction = new org.eclipse.jface.action.Action() {
+			@Override
+			public void run() {
+				checkerJob.cancel();
+				setDisabledImageDescriptor(getDisabledImageDescriptor());
+
+			}
+		};
+		fStopAction.setImageDescriptor(ImageDescriptor.createFromURL(FileLocator.find(FrameworkUtil.getBundle(this.getClass()), new Path("icons/stop.gif"), null)));
+		fStopAction.setDisabledImageDescriptor(ImageDescriptor.createFromURL(FileLocator.find(FrameworkUtil.getBundle(this.getClass()), new Path("icons/stop_disabled.gif"), null)));
+		fStopAction.setText("Stop");
+
+		fResumeAction = new Action() {
+			@Override
+			public void run() {
+				switch (checkerJob.getState()) {
+					case Job.RUNNING :
+						checkerJob.sleep();
+						break;
+					case Job.SLEEPING :
+						checkerJob.wakeUp();
+						break;
+				}
+			}
+		};
+		fResumeAction.setImageDescriptor(ImageDescriptor.createFromURL(FileLocator.find(FrameworkUtil.getBundle(this.getClass()), new Path("icons/resume.gif"), null)));
+		fResumeAction.setDisabledImageDescriptor(ImageDescriptor.createFromURL(FileLocator.find(FrameworkUtil.getBundle(this.getClass()), new Path("icons/resume_disabled.gif"), null)));
+		fResumeAction.setText("Resume");
+
+		toolBar.add(fStopAction);
+		toolBar.add(fResumeAction);
 	}
 
-	public void refreshTree(Results input) {
-		showBusy(true);
-		viewer.setInput(input);
-		viewer.refresh();
-		viewer.expandAll();
-		showBusy(false);
-	}
+	public void startVerification(CBMCCliHelper cbmcHelper) {
+		this.cbmcHelper = cbmcHelper;
+		AllPropertiesJob job = new AllPropertiesJob("CBMC generate properties", cbmcHelper);
+		job.addJobChangeListener(new JobChangeAdapter() {
+			@Override
+			public void done(final IJobChangeEvent event) {
+				if (!event.getResult().isOK())
+					return;
 
+				Display.getDefault().asyncExec(new Runnable() {
+					public void run() {
+						viewer.setInput(((AllPropertiesJob) event.getJob()).getCBMCResults());
+					}
+				});
+				new CheckAllPropertiesJob("Checking all properties", ((AllPropertiesJob) event.getJob()).getCBMCResults(), PropertiesView.this.cbmcHelper).schedule();
+			}
+		});
+		job.schedule();
+	}
 }
