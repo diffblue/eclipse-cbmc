@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated trace -->
+      <package
+            uri="http://www.eclipse.org/cbmc/debug/trace"
+            class="org.eclipse.cbmc.debug.trace.TracePackage"
+            genModel="model/trace.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated trace -->
+      <parser
+            type="trace"
+            class="org.eclipse.cbmc.debug.trace.util.TraceResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated process -->
+      <package
+            uri="http://www.eclipse.org/cbmc/debug/process"
+            class="process.ProcessPackage"
+            genModel="model/process.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated process -->
+      <parser
+            type="process"
+            class="process.util.ProcessResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated process -->
+      <package
+            uri="http://www.eclipse.org/cbmc/debug/trace"
+            class="trace.TracePackage"
+            genModel="model/process.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated process -->
+      <parser
+            type="trace"
+            class="trace.util.TraceResourceFactoryImpl"/>
+   </extension>
+</plugin>

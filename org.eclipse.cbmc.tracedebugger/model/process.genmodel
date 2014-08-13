@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/CBMCTrace/src" modelPluginID="CBMCTrace" modelName="Process"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>process.ecore</foreignModel>
+  <genPackages prefix="Process" resource="XML" disposableProviderFactory="true" ecorePackage="process.ecore#/">
+    <genClasses ecoreClass="process.ecore#//Process">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference process.ecore#//Process/threads"/>
+      <genOperations ecoreOperation="process.ecore#//Process/getActiveThreads"/>
+      <genOperations ecoreOperation="process.ecore#//Process/step"/>
+    </genClasses>
+    <genClasses ecoreClass="process.ecore#//Thread">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute process.ecore#//Thread/id"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//Thread/currentStep"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference process.ecore#//Thread/allSteps"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Trace" resource="XML" disposableProviderFactory="true" ecorePackage="trace.ecore#/">
+    <genClasses ecoreClass="trace.ecore#//Assignment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Assignment/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Assignment/displayName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Assignment/baseName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Assignment/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Assignment/fullLhs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Assignment/fullLhsValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Assignment/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Assignment/valueExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="trace.ecore#//FunctionCall">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//FunctionCall/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//FunctionCall/displayName"/>
+    </genClasses>
+    <genClasses ecoreClass="trace.ecore#//FunctionReturn">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//FunctionReturn/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//FunctionReturn/displayName"/>
+    </genClasses>
+    <genClasses ecoreClass="trace.ecore#//Location">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Location/file"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Location/function"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Location/line"/>
+    </genClasses>
+    <genClasses ecoreClass="trace.ecore#//LocationOnly"/>
+    <genClasses ecoreClass="trace.ecore#//Step">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Step/number"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference trace.ecore#//Step/location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Step/thread"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

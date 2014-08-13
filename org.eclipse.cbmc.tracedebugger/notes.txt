@@ -1,0 +1,105 @@
+IGDBTraceControl
+IGDBHardwareAndOS
+IDisassembly
+IMemory
+IModules
+IRegisters
+ISignals
+
+
+288,820 45-var-set-format var3 octal
+288,821 45^done,format="octal",value="02"
+288,822 (gdb) 
+288,822 46-var-set-format var3 natural
+288,823 46^done,format="natural",value="2"
+288,823 (gdb) 
+288,824 47-var-set-format var3 decimal
+288,824 47^done,format="decimal",value="2"
+288,824 (gdb) 
+288,825 48-var-set-format var3 natural
+288,825 48^done,format="natural",value="2"
+288,826 (gdb) 
+288,826 49-var-set-format var3 binary
+288,827 49^done,format="binary",value="10"
+288,827 (gdb) 
+288,827 50-var-set-format var3 natural
+288,828 50^done,format="natural",value="2"
+288,828 (gdb) 
+288,828 51-var-set-format var3 hexadecimal
+288,829 51^done,format="hexadecimal",value="0x2"
+288,829 (gdb) 
+288,829 52-var-set-format var3 natural
+288,830 52^done,format="natural",value="2"
+288,830 (gdb) 
+
+
+326,268 69-var-list-children var2
+326,337 69^done,numchild="1",children=[child={name="var2.*argv",exp="*argv",numchild="1",type="char \
+*",thread-id="1"}],has_more="0"
+326,339 (gdb) 
+326,341 70-var-info-path-expression var2.*argv
+326,342 70^done,path_expr="*(argv)"
+326,342 (gdb) 
+326,580 71-var-evaluate-expression var2.*argv
+326,580 71^done,value="0x7fff5fbff8d0 \"/Users/estelle/dev/Oxford/target/wokspace/H/Debug/H\""
+326,581 (gdb) 
+329,538 72-data-evaluate-expression --thread 1 --frame 0 *(argv)
+329,538 73-var-set-format var2.*argv octal
+329,542 72^done,value="0x7fff5fbff8d0 \"/Users/estelle/dev/Oxford/target/wokspace/H/Debug/H\""
+329,543 (gdb) 
+329,544 73^done,format="octal",value="03777753757774320"
+329,544 (gdb) 
+329,545 74-var-set-format var2.*argv natural
+329,546 74^done,format="natural",value="0x7fff5fbff8d0 \"/Users/estelle/dev/Oxford/target/wokspace/H\
+/Debug/H\""
+329,547 (gdb) 
+329,547 75-var-set-format var2.*argv decimal
+329,548 75^done,format="decimal",value="140734799804624"
+329,548 (gdb) 
+329,549 76-var-set-format var2.*argv natural
+329,550 76^done,format="natural",value="0x7fff5fbff8d0 \"/Users/estelle/dev/Oxford/target/wokspace/H\
+/Debug/H\""
+329,550 (gdb) 
+329,551 77-var-set-format var2.*argv binary
+329,552 77^done,format="binary",value="11111111111111101011111101111111111100011010000"
+329,552 (gdb) 
+329,554 78-var-set-format var2.*argv natural
+329,555 78^done,format="natural",value="0x7fff5fbff8d0 \"/Users/estelle/dev/Oxford/target/wokspace/H\
+/Debug/H\""
+329,555 (gdb) 
+329,557 79-var-set-format var2.*argv hexadecimal
+329,558 79^done,format="hexadecimal",value="0x7fff5fbff8d0"
+329,558 (gdb) 
+329,559 80-var-set-format var2.*argv natural
+329,561 80^done,format="natural",value="0x7fff5fbff8d0 \"/Users/estelle/dev/Oxford/target/wokspace/H\
+/Debug/H\""
+329,561 (gdb) 
+
+
+737,677 2-environment-cd /Users/estelle/dev/Oxford/target/wokspace/H
+737,678 2^done
+738,142 20-interpreter-exec --thread-group i1 console "p/x (char)-1"
+738,144 ~"$1 = 0xff\n"
+738,145 20^done
+738,145 (gdb) 
+738,163 21-data-evaluate-expression --thread-group i1 "sizeof (void*)"
+738,164 21^done,value="8"
+738,165 (gdb) 
+
+
+198,622 45-var-set-format var1 octal
+
+break-insert  file=“<relativepath>” thread-groups=["i1"],times="0",original-location="main"
+
+=breakpoint-deleted,id="1"
+
+=breakpoint-modified,bkpt={number="1",type="breakpoint",disp="del",enabled="y",addr="0x00000\
+00100000f76",func="main",file="../src/H.c",fullname="/Users/estelle/dev/Oxford/target/wokspace/H/src\
+/H.c",line="7",thread-groups=["i1"],times="1",original-location="main"}
+
+
+41-var-create --thread 0 --frame 0 - * i
+44-var-evaluate-expression var1
+53-data-evaluate-expression --thread 0 --frame 0 varA
+
+54-var-set-format var3 octal

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="process" nsURI="http://www.eclipse.org/cbmc/debug/process" nsPrefix="process">
+  <eClassifiers xsi:type="ecore:EClass" name="Process">
+    <eOperations name="start" eType="#//StepResult"/>
+    <eOperations name="getThread" eType="#//Thread">
+      <eParameters name="threadId" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="threads" upperBound="-1"
+        eType="#//Thread" containment="true" eOpposite="#//Thread/process"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="started" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="groupThreadId" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="processNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activeThreads" upperBound="-1"
+        eType="#//Thread"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pid" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variableManager" lowerBound="1"
+        eType="#//VariableManager"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="breakpointManager" lowerBound="1"
+        eType="#//BreakpointManager"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="executableName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Thread">
+    <eOperations name="step" eType="#//StepResult">
+      <eParameters name="goal" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    </eOperations>
+    <eOperations name="getStackDepth" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    <eOperations name="getFrame" eType="#//FunctionExecution">
+      <eParameters name="depth" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="allSteps" upperBound="-1"
+        eType="ecore:EClass trace.ecore#//Step"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="started" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stack" eType="#//FunctionExecution"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="running" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="process" eType="#//Process"
+        eOpposite="#//Process/threads"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionExecution">
+    <eOperations name="getVariable" eType="ecore:EClass trace.ecore#//Assignment">
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    </eOperations>
+    <eOperations name="getFunctionName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eOperations name="step" eType="#//StepResult">
+      <eParameters name="goal" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+      <eParameters name="enableBreakpoint" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
+    </eOperations>
+    <eOperations name="getFileName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="child" eType="#//FunctionExecution"
+        eOpposite="#//FunctionExecution/parent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entryStep" eType="ecore:EClass trace.ecore#//FunctionCall"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containingThread" eType="#//Thread"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//FunctionExecution"
+        eOpposite="#//FunctionExecution/child"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" ordered="false"
+        upperBound="-1" eType="ecore:EClass trace.ecore#//Assignment" containment="true"
+        eKeys="trace.ecore#//Assignment/baseName"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currentStep" eType="ecore:EClass trace.ecore#//Step"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="currentStepNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableManager">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
+        eType="#//StringToAssignmentMap" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="previousValues" upperBound="-1"
+        eType="#//StringToAssignmentMap" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringToAssignmentMap" instanceClassName="java.util.Map$Entry">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass trace.ecore#//Assignment"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BreakpointManager">
+    <eOperations name="hasBreakpoint" eType="#//Breakpoint">
+      <eParameters name="function" eType="#//FunctionExecution"/>
+      <eParameters name="step" eType="ecore:EClass trace.ecore#//Step"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="breakpointsByLocation"
+        lowerBound="1" upperBound="-1" eType="#//StringToBreakpointMap" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="breakpointsById" lowerBound="1"
+        upperBound="-1" eType="#//StringToBreakpointMap" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringToBreakpointMap" instanceClassName="java.util.Map$Entry">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Breakpoint"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Breakpoint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="file" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="line" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="functionName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="StepGoal">
+    <eLiterals name="FirstInstruction"/>
+    <eLiterals name="FunctionEnter" value="1"/>
+    <eLiterals name="FunctionExit" value="2"/>
+    <eLiterals name="NextLine" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SteppingResult">
+    <eLiterals name="BreakpointHit"/>
+    <eLiterals name="StepComplete" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StepResult">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="object" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" eType="#//SteppingResult"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stepDone" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+  </eClassifiers>
+</ecore:EPackage>
