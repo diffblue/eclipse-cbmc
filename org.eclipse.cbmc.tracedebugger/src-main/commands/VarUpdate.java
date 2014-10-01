@@ -39,8 +39,6 @@ public class VarUpdate extends MICommand {
 			process.getVariableManager().getVariables().put(requestedVar, newAssignement);
 		}
 		return new Done(this, "changelist", changes);
-		
-		
 	}
 
 }
