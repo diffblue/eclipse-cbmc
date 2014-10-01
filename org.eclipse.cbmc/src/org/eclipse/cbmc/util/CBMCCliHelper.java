@@ -75,6 +75,7 @@ public class CBMCCliHelper {
 		ArrayList<String> result = new ArrayList<String>(baseCli);
 		result.add(CBMC_ARG_PROPERTY);
 		result.add(property.getNumber());
+		result.add(CBMC_ARG_XML_UI);
 		return result;
 	}
 
