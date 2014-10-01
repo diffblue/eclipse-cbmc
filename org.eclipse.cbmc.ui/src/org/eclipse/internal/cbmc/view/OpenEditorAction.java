@@ -18,6 +18,8 @@ public class OpenEditorAction implements IDoubleClickListener {
 			Property selectedProperty = (Property) selection.getFirstElement();
 			Path path = new Path(selectedProperty.getFile().getName());
 			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(path);
+			if (file == null)
+				return;
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put(IMarker.LINE_NUMBER, selectedProperty.getLine());
 			IMarker marker;
