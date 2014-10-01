@@ -19,8 +19,7 @@ public class PropertyCheckerHelper {
 				propertyJob.join();
 				property.setJob(null);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//Nothing to do
 			}
 		}
 		return Status.OK_STATUS;
