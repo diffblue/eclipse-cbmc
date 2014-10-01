@@ -13,4 +13,5 @@ public class Vars {
 	public String in_scope;
 	public String type_changed;
 	public String has_more;
+	public String format;
 }
