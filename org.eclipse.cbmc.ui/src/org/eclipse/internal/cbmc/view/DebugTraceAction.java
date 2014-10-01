@@ -1,6 +1,5 @@
 package org.eclipse.internal.cbmc.view;
 
-import java.io.File;
 import org.eclipse.cbmc.Property;
 import org.eclipse.cbmc.PropertyStatus;
 import org.eclipse.core.runtime.*;
@@ -36,7 +35,7 @@ public class DebugTraceAction extends SelectionListenerAction {
 			if (selected instanceof Property) {
 				Property property = (Property) selected;
 				try {
-					new CBMCDebug().launchDebugger(property.getDetailsFile(), property.getFunction(), property.getDescription(), new File(property.getFile().getName()).getName());
+					new CBMCDebug(property).launchDebugger();
 				} catch (CoreException e) {
 					ErrorDialog.openError(null, "Counter example analysis", "A problem occurred while launching the analysis of the counter example. Nothing can be done.", new Status(IStatus.ERROR, org.eclipse.internal.cbmc.Activator.PLUGIN_ID, "Problem launching counter example analysis", e));
 					return;
