@@ -3,10 +3,9 @@ package org.eclipse.internal.cbmc.view;
 import java.io.File;
 import org.eclipse.cbmc.Property;
 import org.eclipse.cbmc.PropertyStatus;
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.FileLocator;
-import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.*;
 import org.eclipse.internal.cbmc.tracedebugger.launcher.CBMCDebug;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.actions.SelectionListenerAction;
@@ -37,10 +36,10 @@ public class DebugTraceAction extends SelectionListenerAction {
 			if (selected instanceof Property) {
 				Property property = (Property) selected;
 				try {
-					new CBMCDebug().launchDebugger("H", property.getDetailsFile(), property.getFunction(), property.getDescription(), new File(property.getFile().getName()).getName());
-				} catch (ExecutionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					new CBMCDebug().launchDebugger(property.getDetailsFile(), property.getFunction(), property.getDescription(), new File(property.getFile().getName()).getName());
+				} catch (CoreException e) {
+					ErrorDialog.openError(null, "Counter example analysis", "A problem occurred while launching the analysis of the counter example. Nothing can be done.", new Status(IStatus.ERROR, org.eclipse.internal.cbmc.Activator.PLUGIN_ID, "Problem launching counter example analysis", e));
+					return;
 				}
 
 			}

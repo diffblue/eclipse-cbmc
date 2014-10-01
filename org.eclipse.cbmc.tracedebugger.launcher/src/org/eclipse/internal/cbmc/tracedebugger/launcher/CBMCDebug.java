@@ -3,8 +3,6 @@ package org.eclipse.internal.cbmc.tracedebugger.launcher;
 import org.eclipse.cdt.debug.core.ICDTLaunchConfigurationConstants;
 import org.eclipse.cdt.debug.mi.core.IMILaunchConfigurationConstants;
 import org.eclipse.cdt.dsf.gdb.IGDBLaunchConfigurationConstants;
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunchConfigurationType;
@@ -13,25 +11,17 @@ import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.ui.DebugUITools;
 
 public class CBMCDebug {
-	/**
-	 * the command has been executed, so extract extract the needed information
-	 * from the application context.
-	 */
-	public void launchDebugger(String projectName, String traceLocation, String functionToStopAt, String cause, String sourceFile) throws ExecutionException {
+
+	public void launchDebugger(String traceLocation, String functionToStopAt, String cause, String sourceFile) throws CoreException {
 		ILaunchManager launchMgr = DebugPlugin.getDefault().getLaunchManager();
-		try {
-			ILaunchConfigurationType lct = launchMgr.getLaunchConfigurationType("org.eclipse.cbmc.debug.CBMCDebugLaunchConfiguration");
-			String lcName = "Analyze " + cause + " in " + sourceFile;
-			ILaunchConfigurationWorkingCopy newLC = lct.newInstance(ResourcesPlugin.getWorkspace().getRoot().getProject(projectName), "Debug counterexample");
-			configureLaunchConfiguration(newLC, functionToStopAt, traceLocation, projectName);
-			DebugUITools.launch(newLC, ILaunchManager.DEBUG_MODE);
-		} catch (CoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ILaunchConfigurationType lct = launchMgr.getLaunchConfigurationType("org.eclipse.cbmc.debug.CBMCDebugLaunchConfiguration");
+		ILaunchConfigurationWorkingCopy newLC = lct.newInstance(null, "Debug counterexample");
+		configureLaunchConfiguration(newLC, functionToStopAt, traceLocation);
+		DebugUITools.launch(newLC, ILaunchManager.DEBUG_MODE);
+		newLC.delete();
 	}
 	
-	private void configureLaunchConfiguration(ILaunchConfigurationWorkingCopy launch, String functionToStopAt, String traceLocation, String projectName) {
+	private void configureLaunchConfiguration(ILaunchConfigurationWorkingCopy launch, String functionToStopAt, String traceLocation) {
 		launch.setAttribute(IMILaunchConfigurationConstants.ATTR_DEBUG_NAME,"cbmc-mi");
 		launch.setAttribute(IMILaunchConfigurationConstants.ATTR_GDB_INIT, ".gdbinit");
 		launch.setAttribute(IMILaunchConfigurationConstants.ATTR_DEBUGGER_COMMAND_FACTORY, "org.eclipse.cdt.debug.mi.core.standardCommandFactory");
@@ -48,7 +38,6 @@ public class CBMCDebug {
 		launch.setAttribute(ICDTLaunchConfigurationConstants.ATTR_DEBUGGER_STOP_AT_MAIN, true);
 		launch.setAttribute(ICDTLaunchConfigurationConstants.ATTR_DEBUGGER_STOP_AT_MAIN_SYMBOL, functionToStopAt != null? functionToStopAt : null);
 		launch.setAttribute(ICDTLaunchConfigurationConstants.ATTR_PROGRAM_NAME, traceLocation);
-		launch.setAttribute(ICDTLaunchConfigurationConstants.ATTR_PROJECT_NAME, projectName);
 		launch.setAttribute(ICDTLaunchConfigurationConstants.ATTR_USE_TERMINAL,false);
 	}
 }
