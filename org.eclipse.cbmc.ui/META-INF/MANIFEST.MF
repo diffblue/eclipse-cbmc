@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Ui
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.cbmc.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.internal.cbmc.Activator
@@ -26,3 +26,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.jface.text,
  org.eclipse.ui.texteditor
+Bundle-Vendor: %providerName

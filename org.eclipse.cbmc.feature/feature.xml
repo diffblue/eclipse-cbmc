@@ -3,13 +3,13 @@
       id="org.eclipse.cbmc.feature"
       label="CBMC Feature"
       version="1.0.0.qualifier"
+      provider-name="http://www.cprover.org/cbmc/"
       license-feature="org.eclipse.license"
-      license-feature-version="1.0.0.qualifier">       
+      license-feature-version="1.0.0.qualifier">
 
    <copyright url="http://www.example.com/copyright">
       Copyright Oxford University
    </copyright>
-
 
    <plugin
          id="org.eclipse.cbmc"
@@ -32,17 +32,18 @@
          version="0.0.0"
          unpack="false"/>
 
-	<plugin
+   <plugin
          id="org.eclipse.cbmc.tracedebugger"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-	
-	<plugin
+
+   <plugin
          id="org.eclipse.cbmc.tracedebugger.launcher"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
 </feature>
