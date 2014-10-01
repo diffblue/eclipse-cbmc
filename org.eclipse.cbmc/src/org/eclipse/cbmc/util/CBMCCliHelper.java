@@ -52,7 +52,7 @@ public class CBMCCliHelper {
 					baseCli.add(CBMC_ARG_PREFIX + option.getLiteral());
 				}
 			}
-			baseCli = (List<String>) Collections.unmodifiableList(baseCli);
+			baseCli = Collections.unmodifiableList(baseCli);
 		} catch (CoreException e) {
 			//Ignore those for now
 		}
