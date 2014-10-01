@@ -5,24 +5,21 @@ package org.eclipse.cbmc.provider;
 
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.cbmc.CbmcFactory;
 import org.eclipse.cbmc.CbmcPackage;
 import org.eclipse.cbmc.Results;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -61,8 +58,100 @@ public class ResultsItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addSucceededCountPropertyDescriptor(object);
+			addFailedCountPropertyDescriptor(object);
+			addErrorCountPropertyDescriptor(object);
+			addRunCountPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Succeeded Count feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSucceededCountPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Results_succeededCount_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Results_succeededCount_feature", "_UI_Results_type"),
+				 CbmcPackage.Literals.RESULTS__SUCCEEDED_COUNT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Failed Count feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFailedCountPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Results_failedCount_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Results_failedCount_feature", "_UI_Results_type"),
+				 CbmcPackage.Literals.RESULTS__FAILED_COUNT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Error Count feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addErrorCountPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Results_errorCount_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Results_errorCount_feature", "_UI_Results_type"),
+				 CbmcPackage.Literals.RESULTS__ERROR_COUNT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Run Count feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRunCountPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Results_runCount_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Results_runCount_feature", "_UI_Results_type"),
+				 CbmcPackage.Literals.RESULTS__RUN_COUNT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -116,7 +205,8 @@ public class ResultsItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Results_type");
+		Results results = (Results)object;
+		return getString("_UI_Results_type") + " " + results.getSucceededCount();
 	}
 
 	/**
@@ -131,6 +221,12 @@ public class ResultsItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Results.class)) {
+			case CbmcPackage.RESULTS__SUCCEEDED_COUNT:
+			case CbmcPackage.RESULTS__FAILED_COUNT:
+			case CbmcPackage.RESULTS__ERROR_COUNT:
+			case CbmcPackage.RESULTS__RUN_COUNT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case CbmcPackage.RESULTS__PROPERTIES:
 			case CbmcPackage.RESULTS__FILES:
 			case CbmcPackage.RESULTS__CATEGORIES:

@@ -1,5 +1,7 @@
 package org.eclipse.internal.cbmc.launcher;
 
+import org.eclipse.cbmc.util.CBMCCliHelper;
+
 import java.io.File;
 import java.util.*;
 import java.util.List;
@@ -26,6 +28,7 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 	private Text fileText;
 	private Text functionText;
 	private Button fileButton;
+	private Button autorunBtn;
 
 	@Override
 	public boolean canSave() {
@@ -77,14 +80,7 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 
 	SelectionListener listener = new SelectionAdapter() {
 		public void widgetSelected(SelectionEvent e) {
-			if (e.getSource() instanceof Button) {
-				Button button = (Button) e.getSource();
-				if (button.getSelection()) {
-					updateLaunchConfigurationDialog();
-				}
-			} else {
-				updateLaunchConfigurationDialog();
-			}
+			scheduleUpdateJob();
 		}
 	};
 
@@ -124,33 +120,31 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 
 		createVerticalSpacer(comp, 3);
 
-		new Label(comp, SWT.NONE).setText(Messages.MainLaunchingTab_8);
-
+		new Label(comp, SWT.NONE).setText(Messages.MainLaunchingTab_labelExecutable);
 		executableText = new Text(comp, SWT.SINGLE | SWT.BORDER);
 		GridData gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
 		executableText.setLayoutData(gridData);
 		executableText.addModifyListener(modifyListener);
-		executableButton = createPushButton(comp, Messages.MainLaunchingTab_5, null);
+		executableButton = createPushButton(comp, Messages.MainLaunchingTab_browse, null);
 		executableButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent evt) {
 				handleCBMCExecutableButtonSelected();
 			}
 		});
 
-		new Label(comp, SWT.NONE).setText(Messages.MainLaunchingTab_9);
-
+		new Label(comp, SWT.NONE).setText(Messages.MainLaunchingTab_labelFile);
 		fileText = new Text(comp, SWT.SINGLE | SWT.BORDER);
 		fileText.setLayoutData(gridData);
 		fileText.setFont(font);
 		fileText.addModifyListener(modifyListener);
-		fileButton = createPushButton(comp, Messages.MainLaunchingTab_12, null);
+		fileButton = createPushButton(comp, Messages.MainLaunchingTab_browse, null);
 		fileButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				handleCFileButtonSelected();
 			}
 		});
 
-		new Label(comp, SWT.NONE).setText(Messages.MainLaunchingTab_10);
+		new Label(comp, SWT.NONE).setText(Messages.MainLaunchingTab_labelFunction);
 
 		functionText = new Text(comp, SWT.SINGLE | SWT.BORDER);
 		gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
@@ -159,8 +153,13 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 		functionText.setFont(font);
 		functionText.addModifyListener(modifyListener);
 
+		new Label(comp, SWT.NONE).setText(Messages.MainLaunchingTab_labelAutorun);
+		autorunBtn = new Button(comp, SWT.CHECK);
+		autorunBtn.addSelectionListener(listener);
+		autorunBtn.setLayoutData(gridData);
+
 		Group optionGroup = new Group(comp, SWT.NONE);
-		optionGroup.setText(Messages.MainLaunchingTab_11);
+		optionGroup.setText(Messages.MainLaunchingTab_labelOptions);
 		GridLayout optionLayout = new GridLayout();
 		optionLayout.verticalSpacing = 0;
 		optionLayout.numColumns = 3;
@@ -205,6 +204,8 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 			String function = configuration.getAttribute(CBMCCliHelper.LC_CBMC_FUNCTION, NO_VALUE);
 			functionText.setText(function);
 
+			autorunBtn.setSelection(configuration.getAttribute(CBMCCliHelper.LC_CBMC_AUTORUN, true));
+
 			for (int i = 0; i < CommandOption.values().length; i++) {
 				CommandOption option = CommandOption.get(i);
 				boolean checked = configuration.getAttribute("cbmc." + option.getLiteral(), false); //$NON-NLS-1$
@@ -226,6 +227,7 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 	@Override
 	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
 		if (isDirty()) {
+			configuration.setAttribute(CBMCCliHelper.LC_CBMC_AUTORUN, autorunBtn.getSelection());
 			String exec = executableText.getText().trim();
 			configuration.setAttribute(CBMCCliHelper.LC_CBMC_EXECUTABLE, exec.length() == 0 ? null : exec);
 			String file = fileText.getText().trim();

@@ -22,7 +22,7 @@ public class CBMCDebug {
 		try {
 			ILaunchConfigurationType lct = launchMgr.getLaunchConfigurationType("org.eclipse.cbmc.debug.CBMCDebugLaunchConfiguration");
 			String lcName = "Analyze " + cause + " in " + sourceFile;
-			ILaunchConfigurationWorkingCopy newLC = lct.newInstance(ResourcesPlugin.getWorkspace().getRoot().getProject(projectName), lcName.replaceAll(":", ""));
+			ILaunchConfigurationWorkingCopy newLC = lct.newInstance(ResourcesPlugin.getWorkspace().getRoot().getProject(projectName), "Debug counterexample");
 			configureLaunchConfiguration(newLC, functionToStopAt, traceLocation, projectName);
 			DebugUITools.launch(newLC, ILaunchManager.DEBUG_MODE);
 		} catch (CoreException e) {

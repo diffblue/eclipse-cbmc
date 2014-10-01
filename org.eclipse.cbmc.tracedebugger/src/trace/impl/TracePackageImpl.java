@@ -8,8 +8,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
-import process.ProcessPackage;
-import process.impl.ProcessPackageImpl;
 import trace.Assignment;
 import trace.Failure;
 import trace.FunctionCall;
@@ -133,16 +131,11 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		// Initialize simple dependencies
 		XMLTypePackage.eINSTANCE.eClass();
 
-		// Obtain or create and register interdependencies
-		ProcessPackageImpl theProcessPackage = (ProcessPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI) instanceof ProcessPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI) : ProcessPackage.eINSTANCE);
-
 		// Create package meta-data objects
 		theTracePackage.createPackageContents();
-		theProcessPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theTracePackage.initializePackageContents();
-		theProcessPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theTracePackage.freeze();
@@ -284,6 +277,15 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getFunctionCall_FunctionLocation() {
+		return (EReference)functionCallEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFunctionReturn() {
 		return functionReturnEClass;
 	}
@@ -304,6 +306,15 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 */
 	public EAttribute getFunctionReturn_DisplayName() {
 		return (EAttribute)functionReturnEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFunctionReturn_FunctionLocation() {
+		return (EReference)functionReturnEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -449,10 +460,12 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		functionCallEClass = createEClass(FUNCTION_CALL);
 		createEAttribute(functionCallEClass, FUNCTION_CALL__ID);
 		createEAttribute(functionCallEClass, FUNCTION_CALL__DISPLAY_NAME);
+		createEReference(functionCallEClass, FUNCTION_CALL__FUNCTION_LOCATION);
 
 		functionReturnEClass = createEClass(FUNCTION_RETURN);
 		createEAttribute(functionReturnEClass, FUNCTION_RETURN__ID);
 		createEAttribute(functionReturnEClass, FUNCTION_RETURN__DISPLAY_NAME);
+		createEReference(functionReturnEClass, FUNCTION_RETURN__FUNCTION_LOCATION);
 
 		locationEClass = createEClass(LOCATION);
 		createEAttribute(locationEClass, LOCATION__FILE);
@@ -524,10 +537,12 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		initEClass(functionCallEClass, FunctionCall.class, "FunctionCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFunctionCall_Id(), theXMLTypePackage.getString(), "id", null, 1, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFunctionCall_DisplayName(), theXMLTypePackage.getString(), "displayName", null, 1, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionCall_FunctionLocation(), this.getLocation(), null, "functionLocation", null, 1, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(functionReturnEClass, FunctionReturn.class, "FunctionReturn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFunctionReturn_Id(), theXMLTypePackage.getString(), "id", null, 1, 1, FunctionReturn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFunctionReturn_DisplayName(), theXMLTypePackage.getString(), "displayName", null, 1, 1, FunctionReturn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionReturn_FunctionLocation(), this.getLocation(), null, "functionLocation", null, 1, 1, FunctionReturn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(locationEClass, Location.class, "Location", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLocation_File(), theXMLTypePackage.getString(), "file", null, 1, 1, Location.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -659,6 +674,13 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 			 "name", "displayName"
 		   });	
 		addAnnotation
+		  (getFunctionCall_FunctionLocation(), 
+		   source, 
+		   new String[] {
+			 "kind", "element",
+			 "name", "location"
+		   });	
+		addAnnotation
 		  (functionReturnEClass, 
 		   source, 
 		   new String[] {
@@ -678,6 +700,13 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		   new String[] {
 			 "kind", "element",
 			 "name", "displayName"
+		   });	
+		addAnnotation
+		  (getFunctionReturn_FunctionLocation(), 
+		   source, 
+		   new String[] {
+			 "kind", "element",
+			 "name", "location"
 		   });	
 		addAnnotation
 		  (locationEClass, 

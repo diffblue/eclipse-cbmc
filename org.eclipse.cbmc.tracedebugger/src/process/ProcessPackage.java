@@ -369,13 +369,22 @@ public interface ProcessPackage extends EPackage {
 	int FUNCTION_EXECUTION__CURRENT_STEP_NUMBER = 6;
 
 	/**
+	 * The feature id for the '<em><b>Current Goal</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_EXECUTION__CURRENT_GOAL = 7;
+
+	/**
 	 * The number of structural features of the '<em>Function Execution</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_EXECUTION_FEATURE_COUNT = 7;
+	int FUNCTION_EXECUTION_FEATURE_COUNT = 8;
 
 	/**
 	 * The operation id for the '<em>Get Variable</em>' operation.
@@ -1066,6 +1075,17 @@ public interface ProcessPackage extends EPackage {
 	EAttribute getFunctionExecution_CurrentStepNumber();
 
 	/**
+	 * Returns the meta object for the attribute '{@link process.FunctionExecution#getCurrentGoal <em>Current Goal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Current Goal</em>'.
+	 * @see process.FunctionExecution#getCurrentGoal()
+	 * @see #getFunctionExecution()
+	 * @generated
+	 */
+	EAttribute getFunctionExecution_CurrentGoal();
+
+	/**
 	 * Returns the meta object for the '{@link process.FunctionExecution#getVariable(java.lang.String) <em>Get Variable</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1086,11 +1106,11 @@ public interface ProcessPackage extends EPackage {
 	EOperation getFunctionExecution__GetFunctionName();
 
 	/**
-	 * Returns the meta object for the '{@link process.FunctionExecution#step(int, boolean) <em>Step</em>}' operation.
+	 * Returns the meta object for the '{@link process.FunctionExecution#step(boolean) <em>Step</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Step</em>' operation.
-	 * @see process.FunctionExecution#step(int, boolean)
+	 * @see process.FunctionExecution#step(boolean)
 	 * @generated
 	 */
 	EOperation getFunctionExecution__Step__int_boolean();
@@ -1649,6 +1669,14 @@ public interface ProcessPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FUNCTION_EXECUTION__CURRENT_STEP_NUMBER = eINSTANCE.getFunctionExecution_CurrentStepNumber();
+
+		/**
+		 * The meta object literal for the '<em><b>Current Goal</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FUNCTION_EXECUTION__CURRENT_GOAL = eINSTANCE.getFunctionExecution_CurrentGoal();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Variable</b></em>' operation.

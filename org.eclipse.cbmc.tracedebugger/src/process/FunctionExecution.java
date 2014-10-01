@@ -23,6 +23,7 @@ import trace.Step;
  *   <li>{@link process.FunctionExecution#getVariables <em>Variables</em>}</li>
  *   <li>{@link process.FunctionExecution#getCurrentStep <em>Current Step</em>}</li>
  *   <li>{@link process.FunctionExecution#getCurrentStepNumber <em>Current Step Number</em>}</li>
+ *   <li>{@link process.FunctionExecution#getCurrentGoal <em>Current Goal</em>}</li>
  * </ul>
  * </p>
  *
@@ -156,6 +157,32 @@ public interface FunctionExecution extends EObject {
 	void setCurrentStepNumber(int value);
 
 	/**
+	 * Returns the value of the '<em><b>Current Goal</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Current Goal</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Current Goal</em>' attribute.
+	 * @see #setCurrentGoal(int)
+	 * @see process.ProcessPackage#getFunctionExecution_CurrentGoal()
+	 * @model dataType="org.eclipse.emf.ecore.xml.type.Int"
+	 * @generated
+	 */
+	int getCurrentGoal();
+
+	/**
+	 * Sets the value of the '{@link process.FunctionExecution#getCurrentGoal <em>Current Goal</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Current Goal</em>' attribute.
+	 * @see #getCurrentGoal()
+	 * @generated
+	 */
+	void setCurrentGoal(int value);
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model nameDataType="org.eclipse.emf.ecore.xml.type.String"
@@ -174,10 +201,11 @@ public interface FunctionExecution extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model goalDataType="org.eclipse.emf.ecore.xml.type.Int" enableBreakpointDataType="org.eclipse.emf.ecore.xml.type.Boolean"
+	 * @model enableBreakpointDataType="org.eclipse.emf.ecore.xml.type.Boolean"
 	 * @generated
 	 */
-	StepResult step(int goal, boolean enableBreakpoint);
+	StepResult step(boolean enableBreakpoint);
+	StepResult step(boolean enableBreakpoint, int lineBeingProcessed);
 
 	/**
 	 * <!-- begin-user-doc -->

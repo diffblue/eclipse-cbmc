@@ -190,8 +190,6 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	 */
 	protected String detailsFile = DETAILS_FILE_EDEFAULT;
 
-	private Job job;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -714,9 +712,10 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 		return result.toString();
 	}
 
-	public void setJob(Job job) {
-		this.job = job;
+	private Job job;
 
+	public void setJob(Job value) {
+		job = value;
 	}
 
 	public Job getJob() {

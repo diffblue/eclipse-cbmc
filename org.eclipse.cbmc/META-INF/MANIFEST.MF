@@ -12,5 +12,6 @@ Export-Package: org.eclipse.cbmc,
  org.eclipse.cbmc.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.emf.ecore.xmi;visibility:=reexport
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ org.eclipse.debug.core;bundle-version="3.8.0"
 Bundle-ActivationPolicy: lazy

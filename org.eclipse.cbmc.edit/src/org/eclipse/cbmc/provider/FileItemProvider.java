@@ -53,7 +53,19 @@ public class FileItemProvider extends ItemProviderAdapter implements IEditingDom
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_File_name_feature"), getString("_UI_PropertyDescriptor_description", "_UI_File_name_feature", "_UI_File_type"), CbmcPackage.Literals.FILE__NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_File_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_File_name_feature", "_UI_File_type"),
+				 CbmcPackage.Literals.FILE__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -63,7 +75,19 @@ public class FileItemProvider extends ItemProviderAdapter implements IEditingDom
 	 * @generated
 	 */
 	protected void addPropertiesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_File_properties_feature"), getString("_UI_PropertyDescriptor_description", "_UI_File_properties_feature", "_UI_File_type"), CbmcPackage.Literals.FILE__PROPERTIES, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_File_properties_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_File_properties_feature", "_UI_File_type"),
+				 CbmcPackage.Literals.FILE__PROPERTIES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -131,7 +155,7 @@ public class FileItemProvider extends ItemProviderAdapter implements IEditingDom
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(File.class)) {
-			case CbmcPackage.FILE__NAME :
+			case CbmcPackage.FILE__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -10,6 +10,11 @@ import results.sync.Done;
 public class BreakInsert extends MICommand {
 
 	public MIOutput perform(Process process) {
+		/* 34-break-insert -f /Users/estelle/dev/Oxford/target/wokspace/H/src/variables.c:28
+		34^done,bkpt={number="2",type="breakpoint",disp="keep",enabled="y",addr="0x0000000100000f34"\
+		,func="main",file="../src/variables.c",fullname="/Users/estelle/dev/Oxford/target/wokspace/H/src/var\
+		iables.c",line="28",thread-groups=["i1"],times="0",original-location="/Users/estelle/dev/Oxford/targ\
+		et/wokspace/H/src/variables.c:28"}*/
 		//	break-insert -f /Users/estelle/dev/Oxford/target/wokspace/AAA/test6.c:7
 		String[] tokens = parameters.split(" ");
 		process.Breakpoint bkpt = ProcessFactory.eINSTANCE.createBreakpoint();
@@ -30,11 +35,11 @@ public class BreakInsert extends MICommand {
 		}
 		bkpt.setId(String.valueOf(process.getBreakpointManager().getBreakpointsById().size() + 1));
 		bkpt.setEnabled(true);
-		process.getBreakpointManager().getBreakpointsById().put(tokens[idxLocation], bkpt);
+		process.getBreakpointManager().getBreakpointsByLocation().put(tokens[idxLocation], bkpt);
 		process.getBreakpointManager().getBreakpointsById().put(bkpt.getId(), bkpt);
 		
-		bkpt.setFile("/Users/estelle/dev/Oxford/target/wokspace/H/src/H.c");
 		return new Done(this, "bkpt", new Breakpoint(bkpt));
 	}
 
 }
+

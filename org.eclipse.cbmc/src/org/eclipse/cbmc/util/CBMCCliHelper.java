@@ -1,4 +1,4 @@
-package org.eclipse.internal.cbmc.launcher;
+package org.eclipse.cbmc.util;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,10 +20,11 @@ public class CBMCCliHelper {
 	private static final String CBMC_ARG_FUNCTION = "--function"; //$NON-NLS-1$
 	private static final String CBMC_ARG_XML_UI = "--xml-ui"; //$NON-NLS-1$
 
-	static final String LC_CBMC_OPTIONPREFIX = "cbmc."; //$NON-NLS-1$
-	static final String LC_CBMC_FUNCTION = "cbmc.function"; //$NON-NLS-1$
-	static final String LC_CBMC_FILE = "cbmc.file"; //$NON-NLS-1$
-	static final String LC_CBMC_EXECUTABLE = "cbmc.executable"; //$NON-NLS-1$
+	public static final String LC_CBMC_OPTIONPREFIX = "cbmc."; //$NON-NLS-1$
+	public static final String LC_CBMC_FUNCTION = "cbmc.function"; //$NON-NLS-1$
+	public static final String LC_CBMC_FILE = "cbmc.file"; //$NON-NLS-1$
+	public static final String LC_CBMC_EXECUTABLE = "cbmc.executable"; //$NON-NLS-1$
+	public static final String LC_CBMC_AUTORUN = "cbmc.autorun"; //$NON-NLS-1$
 
 	private ILaunchConfiguration configuration;
 	private File workingDirectory;
@@ -79,5 +80,14 @@ public class CBMCCliHelper {
 
 	public File getWorkingDirectory() {
 		return workingDirectory;
+	}
+
+	public boolean isAutoRun() {
+		try {
+			return configuration.getAttribute(LC_CBMC_AUTORUN, true);
+		} catch (CoreException e) {
+			//Ignore those for now
+		}
+		return true;
 	}
 }

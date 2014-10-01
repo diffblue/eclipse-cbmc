@@ -2,26 +2,13 @@
  */
 package org.eclipse.cbmc.provider;
 
-
 import java.util.Collection;
 import java.util.List;
-
-import org.eclipse.cbmc.CbmcPackage;
-import org.eclipse.cbmc.Property;
-import org.eclipse.cbmc.PropertyStatus;
+import org.eclipse.cbmc.*;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
-import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.emf.edit.provider.*;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.cbmc.Property} object.
@@ -29,14 +16,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PropertyItemProvider
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class PropertyItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -254,20 +234,22 @@ public class PropertyItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		PropertyStatus status = ((Property)object).getStatus();
-	
-		if(status == PropertyStatus.SUCCEEDED)
-			return overlayImage(object, getResourceLocator().getImage("full/obj16/SucceededProperty.png"));
+		PropertyStatus status = ((Property) object).getStatus();
 
-		if(status == PropertyStatus.FAILED)
-			return overlayImage(object, getResourceLocator().getImage("full/obj16/FailedProperty.png"));
+		if (status == PropertyStatus.SUCCEEDED)
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/propertysucceeded.gif"));
 
-		if(status == PropertyStatus.RUNNING)
-			return overlayImage(object, getResourceLocator().getImage("full/obj16/RunningProperty.png"));
+		if (status == PropertyStatus.ERROR)
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/propertyerror.gif"));
 
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/PendingProperty.png"));
+		if (status == PropertyStatus.FAILED)
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/propertyfailed.gif"));
+
+		if (status == PropertyStatus.RUNNING)
+			return overlayImage(object, getResourceLocator().getImage("full/obj16/propertyrunning.gif"));
+
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/property.gif"));
 	}
-		
 
 	/**
 	 * This returns the label text for the adapted class.
@@ -277,11 +259,9 @@ public class PropertyItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String function = ((Property)object).getFunction();
-		String description = ((Property)object).getDescription();
-		return function == null || function.length() == 0 ?
-			getString("_UI_Property_type") :
-			function + (description == null || description.length() == 0 ? " " : ": " + description);
+		String function = ((Property) object).getFunction();
+		String description = ((Property) object).getDescription();
+		return function == null || function.length() == 0 ? getString("_UI_Property_type") : function + (description == null || description.length() == 0 ? " " : ": " + description);
 	}
 
 	/**

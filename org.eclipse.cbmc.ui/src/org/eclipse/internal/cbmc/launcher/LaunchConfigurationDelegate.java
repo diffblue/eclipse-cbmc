@@ -1,5 +1,7 @@
 package org.eclipse.internal.cbmc.launcher;
 
+import org.eclipse.cbmc.util.CBMCCliHelper;
+
 import java.io.IOException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;

@@ -6,6 +6,7 @@ import javax.xml.transform.*;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import org.eclipse.cbmc.Results;
+import org.eclipse.cbmc.util.CBMCCliHelper;
 import org.eclipse.core.runtime.*;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.util.URI;
@@ -13,9 +14,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.internal.cbmc.Activator;
-import org.eclipse.internal.cbmc.launcher.CBMCCliHelper;
 
-public class AllPropertiesJob extends Job {
+public class GeneratePropertiesJob extends Job {
 	private static final String CLAIMS_OUTPUT_CBMC = "claims.output.cbmc"; //$NON-NLS-1$
 	private static final String CLAIMS_INPUT_XML = "claims.input.xml"; //$NON-NLS-1$
 	private static final String TRANSFORM_XSL = "cbmcTransform.xsl"; //$NON-NLS-1$
@@ -24,7 +24,7 @@ public class AllPropertiesJob extends Job {
 
 	private Results results;
 
-	public AllPropertiesJob(String name, CBMCCliHelper cliHelper) {
+	public GeneratePropertiesJob(String name, CBMCCliHelper cliHelper) {
 		super(name);
 		this.cliHelper = cliHelper;
 	}
@@ -55,6 +55,7 @@ public class AllPropertiesJob extends Job {
 			ResourceSet resSet = new ResourceSetImpl();
 			Resource resource = resSet.getResource(uri, true);
 			results = (Results) resource.getContents().get(0);
+			results.setCBMCHelper(cliHelper);
 		} catch (IOException | TransformerException | InterruptedException e) {
 			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.CBMC_execution_error, e);
 		}

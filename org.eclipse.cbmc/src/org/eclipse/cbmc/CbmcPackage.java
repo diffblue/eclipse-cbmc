@@ -261,13 +261,49 @@ public interface CbmcPackage extends EPackage {
 	int RESULTS = 3;
 
 	/**
+	 * The feature id for the '<em><b>Succeeded Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULTS__SUCCEEDED_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Failed Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULTS__FAILED_COUNT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Error Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULTS__ERROR_COUNT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Run Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULTS__RUN_COUNT = 3;
+
+	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESULTS__PROPERTIES = 0;
+	int RESULTS__PROPERTIES = 4;
 
 	/**
 	 * The feature id for the '<em><b>Files</b></em>' containment reference list.
@@ -276,7 +312,7 @@ public interface CbmcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESULTS__FILES = 1;
+	int RESULTS__FILES = 5;
 
 	/**
 	 * The feature id for the '<em><b>Categories</b></em>' containment reference list.
@@ -285,7 +321,7 @@ public interface CbmcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESULTS__CATEGORIES = 2;
+	int RESULTS__CATEGORIES = 6;
 
 	/**
 	 * The number of structural features of the '<em>Results</em>' class.
@@ -294,7 +330,7 @@ public interface CbmcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESULTS_FEATURE_COUNT = 3;
+	int RESULTS_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Results</em>' class.
@@ -517,6 +553,50 @@ public interface CbmcPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getResults();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.cbmc.Results#getSucceededCount <em>Succeeded Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Succeeded Count</em>'.
+	 * @see org.eclipse.cbmc.Results#getSucceededCount()
+	 * @see #getResults()
+	 * @generated
+	 */
+	EAttribute getResults_SucceededCount();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.cbmc.Results#getFailedCount <em>Failed Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Failed Count</em>'.
+	 * @see org.eclipse.cbmc.Results#getFailedCount()
+	 * @see #getResults()
+	 * @generated
+	 */
+	EAttribute getResults_FailedCount();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.cbmc.Results#getErrorCount <em>Error Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Error Count</em>'.
+	 * @see org.eclipse.cbmc.Results#getErrorCount()
+	 * @see #getResults()
+	 * @generated
+	 */
+	EAttribute getResults_ErrorCount();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.cbmc.Results#getRunCount <em>Run Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Run Count</em>'.
+	 * @see org.eclipse.cbmc.Results#getRunCount()
+	 * @see #getResults()
+	 * @generated
+	 */
+	EAttribute getResults_RunCount();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.cbmc.Results#getProperties <em>Properties</em>}'.
@@ -753,6 +833,38 @@ public interface CbmcPackage extends EPackage {
 		 * @generated
 		 */
 		EClass RESULTS = eINSTANCE.getResults();
+
+		/**
+		 * The meta object literal for the '<em><b>Succeeded Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RESULTS__SUCCEEDED_COUNT = eINSTANCE.getResults_SucceededCount();
+
+		/**
+		 * The meta object literal for the '<em><b>Failed Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RESULTS__FAILED_COUNT = eINSTANCE.getResults_FailedCount();
+
+		/**
+		 * The meta object literal for the '<em><b>Error Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RESULTS__ERROR_COUNT = eINSTANCE.getResults_ErrorCount();
+
+		/**
+		 * The meta object literal for the '<em><b>Run Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RESULTS__RUN_COUNT = eINSTANCE.getResults_RunCount();
 
 		/**
 		 * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.

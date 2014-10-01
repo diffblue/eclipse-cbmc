@@ -2,8 +2,8 @@
  */
 package org.eclipse.cbmc;
 
+import org.eclipse.cbmc.util.CBMCCliHelper;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -14,6 +14,10 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.cbmc.Results#getSucceededCount <em>Succeeded Count</em>}</li>
+ *   <li>{@link org.eclipse.cbmc.Results#getFailedCount <em>Failed Count</em>}</li>
+ *   <li>{@link org.eclipse.cbmc.Results#getErrorCount <em>Error Count</em>}</li>
+ *   <li>{@link org.eclipse.cbmc.Results#getRunCount <em>Run Count</em>}</li>
  *   <li>{@link org.eclipse.cbmc.Results#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.eclipse.cbmc.Results#getFiles <em>Files</em>}</li>
  *   <li>{@link org.eclipse.cbmc.Results#getCategories <em>Categories</em>}</li>
@@ -25,6 +29,222 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Results extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Succeeded Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Succeeded Count</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Succeeded Count</em>' attribute.
+	 * @see #isSetSucceededCount()
+	 * @see #unsetSucceededCount()
+	 * @see #setSucceededCount(int)
+	 * @see org.eclipse.cbmc.CbmcPackage#getResults_SucceededCount()
+	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int" required="true"
+	 *        extendedMetaData="kind='element' name='succeededCount'"
+	 * @generated
+	 */
+	int getSucceededCount();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.cbmc.Results#getSucceededCount <em>Succeeded Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Succeeded Count</em>' attribute.
+	 * @see #isSetSucceededCount()
+	 * @see #unsetSucceededCount()
+	 * @see #getSucceededCount()
+	 * @generated
+	 */
+	void setSucceededCount(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.eclipse.cbmc.Results#getSucceededCount <em>Succeeded Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSucceededCount()
+	 * @see #getSucceededCount()
+	 * @see #setSucceededCount(int)
+	 * @generated
+	 */
+	void unsetSucceededCount();
+
+	/**
+	 * Returns whether the value of the '{@link org.eclipse.cbmc.Results#getSucceededCount <em>Succeeded Count</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Succeeded Count</em>' attribute is set.
+	 * @see #unsetSucceededCount()
+	 * @see #getSucceededCount()
+	 * @see #setSucceededCount(int)
+	 * @generated
+	 */
+	boolean isSetSucceededCount();
+
+	/**
+	 * Returns the value of the '<em><b>Failed Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Failed Count</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Failed Count</em>' attribute.
+	 * @see #isSetFailedCount()
+	 * @see #unsetFailedCount()
+	 * @see #setFailedCount(int)
+	 * @see org.eclipse.cbmc.CbmcPackage#getResults_FailedCount()
+	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int" required="true"
+	 *        extendedMetaData="kind='element' name='failedCount'"
+	 * @generated
+	 */
+	int getFailedCount();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.cbmc.Results#getFailedCount <em>Failed Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Failed Count</em>' attribute.
+	 * @see #isSetFailedCount()
+	 * @see #unsetFailedCount()
+	 * @see #getFailedCount()
+	 * @generated
+	 */
+	void setFailedCount(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.eclipse.cbmc.Results#getFailedCount <em>Failed Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetFailedCount()
+	 * @see #getFailedCount()
+	 * @see #setFailedCount(int)
+	 * @generated
+	 */
+	void unsetFailedCount();
+
+	/**
+	 * Returns whether the value of the '{@link org.eclipse.cbmc.Results#getFailedCount <em>Failed Count</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Failed Count</em>' attribute is set.
+	 * @see #unsetFailedCount()
+	 * @see #getFailedCount()
+	 * @see #setFailedCount(int)
+	 * @generated
+	 */
+	boolean isSetFailedCount();
+
+	/**
+	 * Returns the value of the '<em><b>Error Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Error Count</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Error Count</em>' attribute.
+	 * @see #isSetErrorCount()
+	 * @see #unsetErrorCount()
+	 * @see #setErrorCount(int)
+	 * @see org.eclipse.cbmc.CbmcPackage#getResults_ErrorCount()
+	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int" required="true"
+	 *        extendedMetaData="kind='element' name='errorCount'"
+	 * @generated
+	 */
+	int getErrorCount();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.cbmc.Results#getErrorCount <em>Error Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Error Count</em>' attribute.
+	 * @see #isSetErrorCount()
+	 * @see #unsetErrorCount()
+	 * @see #getErrorCount()
+	 * @generated
+	 */
+	void setErrorCount(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.eclipse.cbmc.Results#getErrorCount <em>Error Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetErrorCount()
+	 * @see #getErrorCount()
+	 * @see #setErrorCount(int)
+	 * @generated
+	 */
+	void unsetErrorCount();
+
+	/**
+	 * Returns whether the value of the '{@link org.eclipse.cbmc.Results#getErrorCount <em>Error Count</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Error Count</em>' attribute is set.
+	 * @see #unsetErrorCount()
+	 * @see #getErrorCount()
+	 * @see #setErrorCount(int)
+	 * @generated
+	 */
+	boolean isSetErrorCount();
+
+	/**
+	 * Returns the value of the '<em><b>Run Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Run Count</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Run Count</em>' attribute.
+	 * @see #isSetRunCount()
+	 * @see #unsetRunCount()
+	 * @see #setRunCount(int)
+	 * @see org.eclipse.cbmc.CbmcPackage#getResults_RunCount()
+	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int" required="true"
+	 *        extendedMetaData="kind='element' name='runCount'"
+	 * @generated
+	 */
+	int getRunCount();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.cbmc.Results#getRunCount <em>Run Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Run Count</em>' attribute.
+	 * @see #isSetRunCount()
+	 * @see #unsetRunCount()
+	 * @see #getRunCount()
+	 * @generated
+	 */
+	void setRunCount(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.eclipse.cbmc.Results#getRunCount <em>Run Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetRunCount()
+	 * @see #getRunCount()
+	 * @see #setRunCount(int)
+	 * @generated
+	 */
+	void unsetRunCount();
+
+	/**
+	 * Returns whether the value of the '{@link org.eclipse.cbmc.Results#getRunCount <em>Run Count</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Run Count</em>' attribute is set.
+	 * @see #unsetRunCount()
+	 * @see #getRunCount()
+	 * @see #setRunCount(int)
+	 * @generated
+	 */
+	boolean isSetRunCount();
+
 	/**
 	 * Returns the value of the '<em><b>Properties</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.cbmc.Property}.
@@ -75,5 +295,9 @@ public interface Results extends EObject {
 	 * @generated
 	 */
 	EList<PropertyCategory> getCategories();
+
+	public CBMCCliHelper getCBMCHelper();
+
+	public void setCBMCHelper(CBMCCliHelper helper);
 
 } // Results

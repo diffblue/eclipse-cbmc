@@ -26,6 +26,7 @@
       <genEnumLiterals ecoreEnumLiteral="cbmc.ecore#//PropertyStatus/running"/>
       <genEnumLiterals ecoreEnumLiteral="cbmc.ecore#//PropertyStatus/succeeded"/>
       <genEnumLiterals ecoreEnumLiteral="cbmc.ecore#//PropertyStatus/failed"/>
+      <genEnumLiterals ecoreEnumLiteral="cbmc.ecore#//PropertyStatus/error"/>
     </genEnums>
     <genDataTypes ecoreDataType="cbmc.ecore#//CommandOptionObject"/>
     <genDataTypes ecoreDataType="cbmc.ecore#//PropertyStatusObject"/>
@@ -49,7 +50,12 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cbmc.ecore#//PropertyCategory/properties"/>
     </genClasses>
     <genClasses ecoreClass="cbmc.ecore#//Results">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cbmc.ecore#//Results/properties"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Results/succeededCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Results/failedCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Results/errorCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Results/runCount"/>
+      <genFeatures property="None" children="true" createChild="true" propertyCategory=""
+          ecoreFeature="ecore:EReference cbmc.ecore#//Results/properties"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cbmc.ecore#//Results/files"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cbmc.ecore#//Results/categories"/>
     </genClasses>

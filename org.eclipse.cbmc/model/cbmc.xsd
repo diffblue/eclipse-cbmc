@@ -35,6 +35,7 @@
       <xsd:enumeration value="running"/>
       <xsd:enumeration value="succeeded"/>
       <xsd:enumeration value="failed"/>
+      <xsd:enumeration value="error"/>
     </xsd:restriction>
   </xsd:simpleType>
     
@@ -60,6 +61,10 @@
   
     <xsd:complexType name="Results">
         <xsd:sequence>
+        	<xsd:element name="succeededCount" type="xsd:int"/>
+        	<xsd:element name="failedCount" type="xsd:int"/>
+        	<xsd:element name="errorCount" type="xsd:int"/>
+        	<xsd:element name="runCount" type="xsd:int"/>
             <xsd:element maxOccurs="unbounded" minOccurs="0"
                 name="properties" type="lib:Property"/>
             <xsd:element maxOccurs="unbounded" minOccurs="0"

@@ -44,7 +44,6 @@
     </eOperations>
     <eOperations name="getFunctionName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
     <eOperations name="step" eType="#//StepResult">
-      <eParameters name="goal" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
       <eParameters name="enableBreakpoint" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
     </eOperations>
     <eOperations name="getFileName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
@@ -59,6 +58,7 @@
         eKeys="trace.ecore#//Assignment/baseName"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="currentStep" eType="ecore:EClass trace.ecore#//Step"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="currentStepNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="currentGoal" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableManager">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"

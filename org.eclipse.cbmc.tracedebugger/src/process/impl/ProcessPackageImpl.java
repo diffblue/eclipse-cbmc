@@ -433,6 +433,15 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getFunctionExecution_CurrentGoal() {
+		return (EAttribute)functionExecutionEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getFunctionExecution__GetVariable__String() {
 		return functionExecutionEClass.getEOperations().get(0);
 	}
@@ -767,6 +776,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 		createEReference(functionExecutionEClass, FUNCTION_EXECUTION__VARIABLES);
 		createEReference(functionExecutionEClass, FUNCTION_EXECUTION__CURRENT_STEP);
 		createEAttribute(functionExecutionEClass, FUNCTION_EXECUTION__CURRENT_STEP_NUMBER);
+		createEAttribute(functionExecutionEClass, FUNCTION_EXECUTION__CURRENT_GOAL);
 		createEOperation(functionExecutionEClass, FUNCTION_EXECUTION___GET_VARIABLE__STRING);
 		createEOperation(functionExecutionEClass, FUNCTION_EXECUTION___GET_FUNCTION_NAME);
 		createEOperation(functionExecutionEClass, FUNCTION_EXECUTION___STEP__INT_BOOLEAN);
@@ -881,6 +891,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 		getFunctionExecution_Variables().getEKeys().add(theTracePackage.getAssignment_BaseName());
 		initEReference(getFunctionExecution_CurrentStep(), theTracePackage.getStep(), null, "currentStep", null, 0, 1, FunctionExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFunctionExecution_CurrentStepNumber(), theXMLTypePackage.getInt(), "currentStepNumber", null, 0, 1, FunctionExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFunctionExecution_CurrentGoal(), theXMLTypePackage.getInt(), "currentGoal", null, 0, 1, FunctionExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getFunctionExecution__GetVariable__String(), theTracePackage.getAssignment(), "getVariable", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theXMLTypePackage.getString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -888,7 +899,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 		initEOperation(getFunctionExecution__GetFunctionName(), theXMLTypePackage.getString(), "getFunctionName", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getFunctionExecution__Step__int_boolean(), this.getStepResult(), "step", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theXMLTypePackage.getInt(), "goal", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theXMLTypePackage.getBoolean(), "enableBreakpoint", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getFunctionExecution__GetFileName(), theXMLTypePackage.getString(), "getFileName", 0, 1, IS_UNIQUE, IS_ORDERED);

@@ -358,13 +358,22 @@ public interface TracePackage extends EPackage {
 	int FUNCTION_CALL__DISPLAY_NAME = STEP_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Function Location</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL__FUNCTION_LOCATION = STEP_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Function Call</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_CALL_FEATURE_COUNT = STEP_FEATURE_COUNT + 2;
+	int FUNCTION_CALL_FEATURE_COUNT = STEP_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Function Call</em>' class.
@@ -431,13 +440,22 @@ public interface TracePackage extends EPackage {
 	int FUNCTION_RETURN__DISPLAY_NAME = STEP_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Function Location</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_RETURN__FUNCTION_LOCATION = STEP_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Function Return</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_RETURN_FEATURE_COUNT = STEP_FEATURE_COUNT + 2;
+	int FUNCTION_RETURN_FEATURE_COUNT = STEP_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Function Return</em>' class.
@@ -749,6 +767,17 @@ public interface TracePackage extends EPackage {
 	EAttribute getFunctionCall_DisplayName();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link trace.FunctionCall#getFunctionLocation <em>Function Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Function Location</em>'.
+	 * @see trace.FunctionCall#getFunctionLocation()
+	 * @see #getFunctionCall()
+	 * @generated
+	 */
+	EReference getFunctionCall_FunctionLocation();
+
+	/**
 	 * Returns the meta object for class '{@link trace.FunctionReturn <em>Function Return</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -779,6 +808,17 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFunctionReturn_DisplayName();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link trace.FunctionReturn#getFunctionLocation <em>Function Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Function Location</em>'.
+	 * @see trace.FunctionReturn#getFunctionLocation()
+	 * @see #getFunctionReturn()
+	 * @generated
+	 */
+	EReference getFunctionReturn_FunctionLocation();
 
 	/**
 	 * Returns the meta object for class '{@link trace.Location <em>Location</em>}'.
@@ -1039,6 +1079,14 @@ public interface TracePackage extends EPackage {
 		EAttribute FUNCTION_CALL__DISPLAY_NAME = eINSTANCE.getFunctionCall_DisplayName();
 
 		/**
+		 * The meta object literal for the '<em><b>Function Location</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCTION_CALL__FUNCTION_LOCATION = eINSTANCE.getFunctionCall_FunctionLocation();
+
+		/**
 		 * The meta object literal for the '{@link trace.impl.FunctionReturnImpl <em>Function Return</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1063,6 +1111,14 @@ public interface TracePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FUNCTION_RETURN__DISPLAY_NAME = eINSTANCE.getFunctionReturn_DisplayName();
+
+		/**
+		 * The meta object literal for the '<em><b>Function Location</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCTION_RETURN__FUNCTION_LOCATION = eINSTANCE.getFunctionReturn_FunctionLocation();
 
 		/**
 		 * The meta object literal for the '{@link trace.impl.LocationImpl <em>Location</em>}' class.

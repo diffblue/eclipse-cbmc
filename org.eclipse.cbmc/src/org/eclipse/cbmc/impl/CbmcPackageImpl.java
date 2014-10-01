@@ -298,8 +298,44 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getResults_SucceededCount() {
+		return (EAttribute)resultsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getResults_FailedCount() {
+		return (EAttribute)resultsEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getResults_ErrorCount() {
+		return (EAttribute)resultsEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getResults_RunCount() {
+		return (EAttribute)resultsEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getResults_Properties() {
-		return (EReference)resultsEClass.getEStructuralFeatures().get(0);
+		return (EReference)resultsEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -308,7 +344,7 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 	 * @generated
 	 */
 	public EReference getResults_Files() {
-		return (EReference)resultsEClass.getEStructuralFeatures().get(1);
+		return (EReference)resultsEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -317,7 +353,7 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 	 * @generated
 	 */
 	public EReference getResults_Categories() {
-		return (EReference)resultsEClass.getEStructuralFeatures().get(2);
+		return (EReference)resultsEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -403,6 +439,10 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 		createEReference(propertyCategoryEClass, PROPERTY_CATEGORY__PROPERTIES);
 
 		resultsEClass = createEClass(RESULTS);
+		createEAttribute(resultsEClass, RESULTS__SUCCEEDED_COUNT);
+		createEAttribute(resultsEClass, RESULTS__FAILED_COUNT);
+		createEAttribute(resultsEClass, RESULTS__ERROR_COUNT);
+		createEAttribute(resultsEClass, RESULTS__RUN_COUNT);
 		createEReference(resultsEClass, RESULTS__PROPERTIES);
 		createEReference(resultsEClass, RESULTS__FILES);
 		createEReference(resultsEClass, RESULTS__CATEGORIES);
@@ -468,6 +508,10 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 		initEReference(getPropertyCategory_Properties(), this.getProperty(), this.getProperty_Category(), "properties", null, 0, -1, PropertyCategory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(resultsEClass, Results.class, "Results", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getResults_SucceededCount(), theXMLTypePackage.getInt(), "succeededCount", null, 1, 1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getResults_FailedCount(), theXMLTypePackage.getInt(), "failedCount", null, 1, 1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getResults_ErrorCount(), theXMLTypePackage.getInt(), "errorCount", null, 1, 1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getResults_RunCount(), theXMLTypePackage.getInt(), "runCount", null, 1, 1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getResults_Properties(), this.getProperty(), null, "properties", null, 0, -1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getResults_Files(), this.getFile(), null, "files", null, 0, -1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getResults_Categories(), this.getPropertyCategory(), null, "categories", null, 0, -1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -492,6 +536,7 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 		addEEnumLiteral(propertyStatusEEnum, PropertyStatus.RUNNING);
 		addEEnumLiteral(propertyStatusEEnum, PropertyStatus.SUCCEEDED);
 		addEEnumLiteral(propertyStatusEEnum, PropertyStatus.FAILED);
+		addEEnumLiteral(propertyStatusEEnum, PropertyStatus.ERROR);
 
 		// Initialize data types
 		initEDataType(commandOptionObjectEDataType, CommandOption.class, "CommandOptionObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
@@ -650,6 +695,34 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 		   new String[] {
 			 "name", "Results",
 			 "kind", "elementOnly"
+		   });		
+		addAnnotation
+		  (getResults_SucceededCount(), 
+		   source, 
+		   new String[] {
+			 "kind", "element",
+			 "name", "succeededCount"
+		   });		
+		addAnnotation
+		  (getResults_FailedCount(), 
+		   source, 
+		   new String[] {
+			 "kind", "element",
+			 "name", "failedCount"
+		   });		
+		addAnnotation
+		  (getResults_ErrorCount(), 
+		   source, 
+		   new String[] {
+			 "kind", "element",
+			 "name", "errorCount"
+		   });		
+		addAnnotation
+		  (getResults_RunCount(), 
+		   source, 
+		   new String[] {
+			 "kind", "element",
+			 "name", "runCount"
 		   });		
 		addAnnotation
 		  (getResults_Properties(), 

@@ -3,7 +3,9 @@
 package process.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.ListIterator;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -41,6 +43,7 @@ import trace.Step;
  *   <li>{@link process.impl.FunctionExecutionImpl#getVariables <em>Variables</em>}</li>
  *   <li>{@link process.impl.FunctionExecutionImpl#getCurrentStep <em>Current Step</em>}</li>
  *   <li>{@link process.impl.FunctionExecutionImpl#getCurrentStepNumber <em>Current Step Number</em>}</li>
+ *   <li>{@link process.impl.FunctionExecutionImpl#getCurrentGoal <em>Current Goal</em>}</li>
  * </ul>
  * </p>
  *
@@ -128,6 +131,26 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 	 * @ordered
 	 */
 	protected int currentStepNumber = CURRENT_STEP_NUMBER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getCurrentGoal() <em>Current Goal</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCurrentGoal()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int CURRENT_GOAL_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getCurrentGoal() <em>Current Goal</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCurrentGoal()
+	 * @generated
+	 * @ordered
+	 */
+	protected int currentGoal = CURRENT_GOAL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -342,6 +365,27 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getCurrentGoal() {
+		return currentGoal;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCurrentGoal(int newCurrentGoal) {
+		int oldCurrentGoal = currentGoal;
+		currentGoal = newCurrentGoal;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.FUNCTION_EXECUTION__CURRENT_GOAL, oldCurrentGoal, currentGoal));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Assignment getVariable(String name) {
@@ -361,8 +405,119 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 	public static int FUNCTION_EXIT = 1;
 	public static int FUNCTION_ENTER = 2;
 	public static int NEXT_LINE = 4;
+	public static int CONTINUE = 8;
+	
+	public StepResult step(boolean detectBreakpoint) {
+		return step(detectBreakpoint, -1); 
+	}
+	public StepResult step(boolean detectBreakpoint, int lineBeingProcessed) {
+		//Check the bound to see if we have more steps
+		if (getContainingThread().getAllSteps().size() -1 == currentStepNumber) {
+			StepResult result = ProcessFactory.eINSTANCE.createStepResult();
+			result.setCode(SteppingResult.STEP_COMPLETE);
+			result.setStepDone(currentGoal);
+			return result;
+		}
+		int currentLine;
+		boolean isCurrentlyOnBreakpoint = (getContainingThread().getProcess().getBreakpointManager().hasBreakpoint(this, currentStep) != null);
+		ListIterator<Step> it;
+		if((currentStep instanceof FunctionReturn || currentStep instanceof FunctionCall) && lineBeingProcessed != -1){
+			currentLine = lineBeingProcessed;
+			it = getContainingThread().getAllSteps().listIterator(currentStepNumber+1);
+			lineBeingProcessed = -1;
+		}else{
+			it = getContainingThread().getAllSteps().listIterator(currentStepNumber);
+			currentLine = currentStep.getLineNumber();
+		}
+		while(it.hasNext()) {
+			currentStepNumber = it.nextIndex();			
+			currentStep = it.next();
+			int justDone = 0;
+			
+			// Handle breakpoints
+			if (detectBreakpoint && !isCurrentlyOnBreakpoint) {
+				Breakpoint breakOnLine = getContainingThread().getProcess().getBreakpointManager().hasBreakpoint(this, currentStep);
+				if (breakOnLine != null) {
+					StepResult result = ProcessFactory.eINSTANCE.createStepResult();
+					result.setCode(SteppingResult.BREAKPOINT_HIT);
+					result.setObject(breakOnLine);
+					result.setStepDone(justDone);
+					return result;
+				}
+			}
+			
+			
+			if (currentStep.getLineNumber() != currentLine && currentStep.getLineNumber() != -1) {
+				justDone |= NEXT_LINE;
+			}
+			
+			if ((justDone & currentGoal) == currentGoal) {
+				StepResult result = ProcessFactory.eINSTANCE.createStepResult();
+				result.setCode(SteppingResult.STEP_COMPLETE);
+				result.setStepDone(justDone);
+				return result;
+			}
 
-	public StepResult step(int goal, boolean detectBreakpoint) {
+			if (currentStep instanceof Assignment) {
+				ListIterator<Assignment> iter = getVariables().listIterator();
+				List<Assignment> assignementToRemove = new ArrayList<Assignment>();
+				while(iter.hasNext()){
+					Assignment currentAssignment = iter.next();
+					if(currentAssignment.getBaseName().equals(((Assignment)currentStep).getBaseName()))
+						assignementToRemove.add(currentAssignment);
+				}
+				getVariables().removeAll(assignementToRemove);
+				getVariables().add((Assignment) currentStep);
+			}
+			else if (currentStep instanceof FunctionCall) {
+				FunctionExecution newExecution = functionFromStep((FunctionCall) currentStep, currentStepNumber, currentGoal == FUNCTION_ENTER ? NEXT_LINE : FUNCTION_EXIT, this, getContainingThread());
+				getContainingThread().setStack(newExecution);
+				StepResult nextLineResult = newExecution.step(detectBreakpoint, currentStep.getLineNumber()); //enable breakpoint if no bp have been found
+				if(nextLineResult.getCode() == SteppingResult.BREAKPOINT_HIT)
+					return nextLineResult;
+				
+				justDone |= FUNCTION_ENTER | nextLineResult.getStepDone();
+				if ((justDone & currentGoal) == currentGoal){
+					StepResult result = ProcessFactory.eINSTANCE.createStepResult();
+					result.setCode(SteppingResult.STEP_COMPLETE);
+					result.setStepDone(currentGoal);
+					return result;
+				}
+				
+			}
+			else if (currentStep instanceof FunctionReturn) {
+				if (getContainingThread().getStack() == null)
+					continue;
+				//We exit from the current function
+				FunctionExecution previousFunction = getParent();
+				if (previousFunction != null) {
+					previousFunction.setChild(null);
+					previousFunction.setCurrentStepNumber(currentStepNumber);
+					previousFunction.setCurrentStep(currentStep);
+				}
+				containingThread.setStack(previousFunction);
+				previousFunction.setCurrentGoal(NEXT_LINE);
+				StepResult nextLineResult = previousFunction.step(detectBreakpoint, getEntryStep().getLineNumber());				
+				if(nextLineResult.getCode() == SteppingResult.BREAKPOINT_HIT)
+					return nextLineResult;
+				
+				justDone |= FUNCTION_EXIT | nextLineResult.getStepDone();
+				if ((justDone & currentGoal) == currentGoal) {
+					StepResult result = ProcessFactory.eINSTANCE.createStepResult();
+					result.setCode(SteppingResult.STEP_COMPLETE);
+					result.setStepDone(justDone);
+					return result;
+				}
+			}
+			
+		}
+		//TOO No step found
+		StepResult result = ProcessFactory.eINSTANCE.createStepResult();
+		result.setCode(SteppingResult.STEP_COMPLETE);
+		return result;
+	}
+
+	public StepResult step2(int goal, boolean detectBreakpoint) {
 		//Check the bound to see if we have more steps
 		if (getContainingThread().getAllSteps().size() -1 == currentStepNumber) {
 			StepResult result = ProcessFactory.eINSTANCE.createStepResult();
@@ -370,7 +525,7 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 			result.setStepDone(goal);
 			return result;
 		}
-		ListIterator<Step> it = getContainingThread().getAllSteps().listIterator(currentStepNumber + 1);
+		ListIterator<Step> it = getContainingThread().getAllSteps().listIterator(currentStepNumber);
 		int currentLine = currentStep.getLineNumber();
 		while(it.hasNext()) {
 			currentStepNumber = it.nextIndex();			
@@ -379,7 +534,7 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 			if (currentStep instanceof Assignment) {
 				getVariables().add((Assignment) currentStep);
 			}
-			if (currentStep instanceof FunctionReturn) {
+			else if (currentStep instanceof FunctionReturn) {
 				if (getContainingThread().getStack() == null)
 					continue;
 				//We exit from the current function
@@ -392,7 +547,8 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 				containingThread.setStack(previousFunction);
 				
 				//Now move to the next line in the function we return to
-				StepResult nextLineResult = previousFunction.step(NEXT_LINE, true);
+				
+				StepResult nextLineResult = previousFunction.step(true);
 				justDone |= FUNCTION_EXIT | nextLineResult.getStepDone();
 				if (nextLineResult.getCode() == SteppingResult.BREAKPOINT_HIT) {
 					StepResult result = ProcessFactory.eINSTANCE.createStepResult();
@@ -402,16 +558,19 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 					return result;
 				}
 			}
-			if (currentStep instanceof FunctionCall) {
+			else if (currentStep instanceof FunctionCall) {
 				if (((FunctionCall) currentStep).getDisplayName().startsWith("__CPROVER"))
 					continue;
-				FunctionExecution newExecution = functionFromStep((FunctionCall) currentStep, currentStepNumber, this, getContainingThread());
+				FunctionCall functionCall = (FunctionCall) currentStep;
+				currentStepNumber = it.nextIndex();
+				currentStep = it.next();
+				FunctionExecution newExecution = functionFromStep((FunctionCall) currentStep, currentStepNumber, goal == FUNCTION_ENTER ? NEXT_LINE : FUNCTION_ENTER, this, getContainingThread());
 				getContainingThread().setStack(newExecution);
 				//Check if we hit a breakpoint on the function call
 				Breakpoint breakOnEntry = getContainingThread().getProcess().getBreakpointManager().hasBreakpoint(newExecution, currentStep);
 				
 				//Go to the first instruction of the function
-				StepResult nextLineResult = newExecution.step(NEXT_LINE, breakOnEntry == null); //enable breakpoint if no bp have been found
+				StepResult nextLineResult = newExecution.step(breakOnEntry == null); //enable breakpoint if no bp have been found
 				//check if breakpoint has been reached while stepping
 				//set the flag properly... make sure to add the result of what has been done so far (pass the result back and OR)
 				//When returning from function, do we need to move the counters?
@@ -471,8 +630,9 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 		return getEntryStep().getDisplayName();
 	}
 
-	public static FunctionExecution functionFromStep(FunctionCall step, int stepIdx, FunctionExecution parent, process.Thread thread) {
+	public static FunctionExecution functionFromStep(FunctionCall step, int stepIdx, int goal, FunctionExecution parent, process.Thread thread) {
 		FunctionExecution newFunction = ProcessFactory.eINSTANCE.createFunctionExecution();
+		newFunction.setCurrentGoal(goal);
 		newFunction.setCurrentStep(step);
 		newFunction.setCurrentStepNumber(stepIdx);
 		newFunction.setEntryStep(step);
@@ -622,6 +782,8 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 				return basicGetCurrentStep();
 			case ProcessPackage.FUNCTION_EXECUTION__CURRENT_STEP_NUMBER:
 				return getCurrentStepNumber();
+			case ProcessPackage.FUNCTION_EXECUTION__CURRENT_GOAL:
+				return getCurrentGoal();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -657,6 +819,9 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 			case ProcessPackage.FUNCTION_EXECUTION__CURRENT_STEP_NUMBER:
 				setCurrentStepNumber((Integer)newValue);
 				return;
+			case ProcessPackage.FUNCTION_EXECUTION__CURRENT_GOAL:
+				setCurrentGoal((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -690,6 +855,9 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 			case ProcessPackage.FUNCTION_EXECUTION__CURRENT_STEP_NUMBER:
 				setCurrentStepNumber(CURRENT_STEP_NUMBER_EDEFAULT);
 				return;
+			case ProcessPackage.FUNCTION_EXECUTION__CURRENT_GOAL:
+				setCurrentGoal(CURRENT_GOAL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -716,6 +884,8 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 				return currentStep != null;
 			case ProcessPackage.FUNCTION_EXECUTION__CURRENT_STEP_NUMBER:
 				return currentStepNumber != CURRENT_STEP_NUMBER_EDEFAULT;
+			case ProcessPackage.FUNCTION_EXECUTION__CURRENT_GOAL:
+				return currentGoal != CURRENT_GOAL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -733,7 +903,7 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 			case ProcessPackage.FUNCTION_EXECUTION___GET_FUNCTION_NAME:
 				return getFunctionName();
 			case ProcessPackage.FUNCTION_EXECUTION___STEP__INT_BOOLEAN:
-				return step((Integer)arguments.get(0), (Boolean)arguments.get(1));
+				return step((Boolean)arguments.get(0));
 			case ProcessPackage.FUNCTION_EXECUTION___GET_FILE_NAME:
 				return getFileName();
 		}
@@ -752,6 +922,8 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (currentStepNumber: ");
 		result.append(currentStepNumber);
+		result.append(", currentGoal: ");
+		result.append(currentGoal);
 		result.append(')');
 		return result.toString();
 	}

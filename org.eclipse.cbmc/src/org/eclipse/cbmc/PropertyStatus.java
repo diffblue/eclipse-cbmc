@@ -56,7 +56,15 @@ public enum PropertyStatus implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FAILED(3, "failed", "failed");
+	FAILED(3, "failed", "failed"), /**
+	 * The '<em><b>Error</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ERROR_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ERROR(4, "error", "error");
 
 	/**
 	 * The '<em><b>Pending</b></em>' literal value.
@@ -119,6 +127,21 @@ public enum PropertyStatus implements Enumerator {
 	public static final int FAILED_VALUE = 3;
 
 	/**
+	 * The '<em><b>Error</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Error</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ERROR
+	 * @model name="error"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ERROR_VALUE = 4;
+
+	/**
 	 * An array of all the '<em><b>Property Status</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,6 +153,7 @@ public enum PropertyStatus implements Enumerator {
 			RUNNING,
 			SUCCEEDED,
 			FAILED,
+			ERROR,
 		};
 
 	/**
@@ -184,6 +208,7 @@ public enum PropertyStatus implements Enumerator {
 			case RUNNING_VALUE: return RUNNING;
 			case SUCCEEDED_VALUE: return SUCCEEDED;
 			case FAILED_VALUE: return FAILED;
+			case ERROR_VALUE: return ERROR;
 		}
 		return null;
 	}

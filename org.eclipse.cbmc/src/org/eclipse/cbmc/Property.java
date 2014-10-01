@@ -307,7 +307,7 @@ public interface Property extends EObject {
 	 */
 	void setDetailsFile(String value);
 
-	void setJob(Job job);
+	void setJob(Job value);
 
 	Job getJob();
 

@@ -4,7 +4,6 @@ package process.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -14,13 +13,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import process.FunctionExecution;
 import process.ProcessFactory;
 import process.ProcessPackage;
 import process.StepResult;
 import trace.Step;
-import trace.TraceFactory;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -285,15 +282,17 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements
 			
 			FunctionExecution bootstrapFunction = ProcessFactory.eINSTANCE.createFunctionExecution();
 			bootstrapFunction.setContainingThread(this);
-			bootstrapFunction.setCurrentStep(TraceFactory.eINSTANCE.createStep());
-			StepResult initialInvocation = bootstrapFunction.step(goal, true);
+			bootstrapFunction.setCurrentGoal(goal);
+			bootstrapFunction.setCurrentStep(allSteps.get(0));//TraceFactory.eINSTANCE.createStep());
+			StepResult initialInvocation = bootstrapFunction.step(true);
 
 			if (stack == null)
 				throw new RuntimeException("No function found");
 			else 
 				return initialInvocation;
 		}
-		return stack.step(goal, true);
+		stack.setCurrentGoal(goal);
+		return stack.step(true);
 	}
 
 	private void initialize() {

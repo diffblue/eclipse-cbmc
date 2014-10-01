@@ -1,3 +1,17 @@
+- Retirer les services dont on a pas besoin
+- Supprimer la launch configuration a la fin (ou alors juste avant de la lancer)?
+- ouvrir la debug perspective?
+- Gerer les variables
+- changer le nom du app_name de maniere a ne pas montrer le fichier de contre exemple
+- rajouter un breakpoint automatiquement sur la ligne ou l'erreur se produit de maniere a forcer le debugger a s'arreter?
+- step in, step out
+- StepGoal in the model is not used (iirc)
+- s'assurer que le "stop" button marche car en ce moment c'est pas cas
+
+=-=
+- liste des fonctions d'un fichier C
+
+
 IGDBTraceControl
 IGDBHardwareAndOS
 IDisassembly

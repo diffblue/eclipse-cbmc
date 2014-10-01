@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Export-Package: org.eclipse.internal.cbmc.tracedebugger.launcher
+Require-Bundle: org.eclipse.cdt.dsf.gdb;bundle-version="4.4.0",org.ecl
+ ipse.debug.core;bundle-version="3.9.0",org.eclipse.cdt.launch;bundle-
+ version="7.1.0",org.eclipse.cdt.dsf;bundle-version="2.5.0",org.eclips
+ e.osgi;bundle-version="3.10.0",org.eclipse.core.runtime;bundle-versio
+ n="3.10.0",org.eclipse.ui;bundle-version="3.106.0",org.eclipse.cdt.co
+ re;bundle-version="5.7.0",org.eclipse.cdt.debug.core;bundle-version="
+ 7.5.0",org.eclipse.debug.ui;bundle-version="3.10.0",org.eclipse.cdt.d
+ ebug.mi.core;bundle-version="7.3.0"
+Bundle-Version: 1.0.0.201410010148
+Bundle-Name: Debug
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.cbmc.tracedebugger.launcher;singleton
+ :=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+

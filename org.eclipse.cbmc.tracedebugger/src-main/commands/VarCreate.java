@@ -3,6 +3,7 @@ package commands;
 import infra.MICommand;
 import infra.MIOutput;
 import process.Process;
+import results.data.VarHelper;
 import results.data.Vars;
 import results.sync.Done;
 import results.sync.Error;
@@ -44,7 +45,7 @@ public class VarCreate extends MICommand {
 		Vars v = new Vars();
 		v.name = name;
 		v.value = match.getFullLhsValue();
-		v.type = match.getType();	//TODO voir si il ne faut pas convertir
+		v.type = VarHelper.getMIType(match.getType());	//TODO voir si il ne faut pas convertir
 		v.numchild = "0"; //TODO A revoir qd on aura des vraies variables
 		v.has_more = "0";	//A revoir avec des vraies variables
 		v.threadId = Integer.toString(threadId);

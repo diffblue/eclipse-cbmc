@@ -2,16 +2,16 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	extension-element-prefixes="exsl" xmlns:exsl="http://exslt.org/common">
 	<xsl:output method="xml" indent="yes" />
-	<xsl:key name="kUniqueCategory" match="property" use="." />
+	<xsl:key name="kUniqueCategory" match="property" use="@class" />
 	<xsl:variable name="categories">
 
 		<xsl:for-each
 			select="//property[
-              generate-id() = generate-id(key('kUniqueCategory', .)[1])
+              generate-id() = generate-id(key('kUniqueCategory', @class)[1])
                ]">
 			<categories>
 				<name>
-					<xsl:value-of select="." />
+					<xsl:value-of select="@class" />
 				</name>
 			</categories>
 		</xsl:for-each>
@@ -34,14 +34,17 @@
 
 	<xsl:template match="/">
 		<cbmc:Results xmlns:cbmc="http://www.eclipse.org/cbmc">
+			<failedCount>0</failedCount>
+			<errorCount>0</errorCount>
+			<succeededCount>0</succeededCount>
 			<xsl:copy-of select="$categories" />
 			<xsl:copy-of select="$files" />
-			<xsl:for-each select="/cprover/claim">
-				<xsl:variable name="property" select="./property" />
-				<xsl:variable name="file" select="./location/file/text()" />
+			<xsl:for-each select="/cprover/property">
+				<xsl:variable name="category" select="@class" />
+				<xsl:variable name="file" select="./location/@file" />
 				<properties>
 					<xsl:for-each select="exsl:node-set($categories)/*">
-						<xsl:if test=".=$property">
+						<xsl:if test=".=$category">
 							<category>
 								<xsl:value-of select="concat('#//@categories.', position()-1)" />
 							</category>
@@ -58,13 +61,13 @@
 						</xsl:if>
 					</xsl:for-each>
 					<function>
-						<xsl:value-of select="location/function" />
+						<xsl:value-of select="location/@function" />
 					</function>
 					<line>
-						<xsl:value-of select="location/line" />
+						<xsl:value-of select="location/@line" />
 					</line>
 					<number>
-						<xsl:value-of select="number" />
+						<xsl:value-of select="@name" />
 					</number>
 					<detailsFile></detailsFile>
 					<status>pending</status>
