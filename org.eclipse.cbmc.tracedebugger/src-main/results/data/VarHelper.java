@@ -1,7 +1,5 @@
 package results.data;
 
-import com.google.gson.Gson;
-
 public class VarHelper {
 
 	public static String getMIType(String cbmcType) {
