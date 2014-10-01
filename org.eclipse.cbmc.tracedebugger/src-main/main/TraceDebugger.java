@@ -1,9 +1,11 @@
 package main;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.util.Scanner;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -57,7 +59,15 @@ public class TraceDebugger {
 
 		//Start the real work
 		Scanner scan = new Scanner(new InputStreamReader(System.in));
-		new InterpreterLoop(process, scan, System.out, logger).run();
+		try {
+			new InterpreterLoop(process, scan, System.out, logger).run();
+		} catch(Exception e) {
+			logger.severe(e.getMessage());
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			PrintStream ps = new PrintStream(baos);
+			e.printStackTrace(ps);
+			logger.severe(baos.toString());
+		}
 		System.exit(0);
 	}
 
@@ -103,7 +113,7 @@ public class TraceDebugger {
 		logger.setUseParentHandlers(false);
 		FileHandler fh;
 		try {
-			fh = new FileHandler(loggingFolder + "traceDebugger.log", true);
+			fh = new FileHandler(loggingFolder + "/traceDebugger.log", true);
 			logger.addHandler(fh);
 			logger.setLevel(Level.OFF);
 			SimpleFormatter formatter = new SimpleFormatter();
