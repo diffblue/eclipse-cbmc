@@ -41,13 +41,14 @@ public class TraceDebugger {
 			System.exit(1);
 		}
 
-		initializeLog();
+		
 		String filename = args[0];
-		if (!new File(filename).exists()) {
+		File inputFile = new File(filename);
+		if (!inputFile.exists()) {
 			System.out.println("File " + filename + " not found.");
 			System.exit(-1);
 		}
-		
+		initializeLog(inputFile.getParentFile());
 		//Transform the counter example trace then load it as a Process
 		File traceFile = transformCounterExample(filename);
 		if (traceFile == null)
@@ -98,12 +99,13 @@ public class TraceDebugger {
 		return (Trace) resource.getContents().get(0);
 	}
 
-	private static void initializeLog() {
+	private static void initializeLog(File loggingFolder) {
 		logger.setUseParentHandlers(false);
 		FileHandler fh;
 		try {
-			fh = new FileHandler("/Users/estelle/Desktop/tmp/fakegdblog.txt", true);
+			fh = new FileHandler(loggingFolder + "traceDebugger.log", true);
 			logger.addHandler(fh);
+			logger.setLevel(Level.OFF);
 			SimpleFormatter formatter = new SimpleFormatter();
 			fh.setFormatter(formatter);
 		} catch (SecurityException e) {
