@@ -35,7 +35,11 @@ public class CBMCDebugBackend extends GDBBackend {
 		} catch (CoreException e) {
 			//Can't happen
 		}
-		String command = "java -classpath " + classpath + " main.TraceDebugger " + traceLocation;
+		String javaHome = System.getProperty("java.home");
+		String command = null;
+		if (javaHome != null)
+			command = javaHome + "/bin/";
+		command += "java -classpath " + classpath + " main.TraceDebugger " + traceLocation;
 		return command;
 	}
 
