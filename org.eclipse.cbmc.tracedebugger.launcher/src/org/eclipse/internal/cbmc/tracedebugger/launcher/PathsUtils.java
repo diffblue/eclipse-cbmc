@@ -2,18 +2,16 @@ package org.eclipse.internal.cbmc.tracedebugger.launcher;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
-import org.osgi.framework.Bundle;
 
 public class PathsUtils {
 
-	public String getClasspath(Bundle b) {
+	public String getClasspath() {
 		ArrayList<String> paths = new ArrayList<String>();
 		for (String dep : getDependentBundles()) {
 			paths.add(getURLStringOf(dep));
@@ -43,8 +41,8 @@ public class PathsUtils {
 		URL url = FileLocator.find(Platform.getBundle(bundle), new org.eclipse.core.runtime.Path("/"), null);
 		if (url != null) {
 			try {
-				location = FileLocator.resolve(url).toURI().toString();
-			} catch (URISyntaxException | IOException e) {
+				location = FileLocator.resolve(url).toExternalForm();
+			} catch (IOException e) {
 				return null;
 			}
 		}

@@ -1,6 +1,9 @@
 package org.eclipse.internal.cbmc.tracedebugger.launcher;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.cdt.debug.core.ICDTLaunchConfigurationConstants;
 import org.eclipse.cdt.dsf.concurrent.RequestMonitor;
@@ -19,28 +22,13 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.ILaunchConfiguration;
 
 public class CBMCDebugBackend extends GDBBackend {
+	private static final Logger logger = Logger.getLogger(CBMCDebugBackend.class.getName());
 	ILaunchConfiguration launchConfig;
 	IMarker marker;
 	
 	public CBMCDebugBackend(DsfSession session, ILaunchConfiguration lc) {
 		super(session, lc);
 		launchConfig = lc;
-	}
-
-	protected String getGDBCommandLine() {
-		String classpath = new PathsUtils().getClasspath(Platform.getBundle("org.eclipse.cbmc.tracedebugger"));
-		String traceLocation = null;
-		try {
-			traceLocation = launchConfig.getAttribute(ICDTLaunchConfigurationConstants.ATTR_PROGRAM_NAME, (String) null);
-		} catch (CoreException e) {
-			//Can't happen
-		}
-		String javaHome = System.getProperty("java.home");
-		String command = null;
-		if (javaHome != null)
-			command = javaHome + "/bin/";
-		command += "java -classpath " + classpath + " main.TraceDebugger " + traceLocation;
-		return command;
 	}
 
 	private void createErrorMarker() throws CoreException {
@@ -67,11 +55,37 @@ public class CBMCDebugBackend extends GDBBackend {
 		}
 	}
 	
+	private String getJavaLocation() {
+		String javaHome = System.getProperty("java.home");
+		String javaLocation = null;
+		if (javaHome != null)
+			javaLocation = javaHome + "/bin/java";
+		else 
+			javaLocation = "java";
+		return javaLocation;
+	}
+	
+	private String[] getCommandLine() {
+		ArrayList<String> cli = new ArrayList<>();
+		cli.add(getJavaLocation());
+		cli.add("-classpath");
+		cli.add(new PathsUtils().getClasspath());
+		cli.add("main.TraceDebugger");
+		try {
+			cli.add(launchConfig.getAttribute(ICDTLaunchConfigurationConstants.ATTR_PROGRAM_NAME, (String) null));
+		} catch (CoreException e) {
+			//Can't happen
+		}
+		
+		logger.log(Level.INFO, "Backend CLI: " + cli);
+		return cli.toArray(new String[cli.size()]);
+	}
+	
 	protected Process launchGDBProcess(String commandLine) throws CoreException {
 		createErrorMarker();
         Process proc = null;
 		try {
-			proc = ProcessFactory.getFactory().exec(commandLine);
+			proc = ProcessFactory.getFactory().exec(getCommandLine());
 		} catch (IOException e) {
             String message = "Error while launching command " + commandLine;   //$NON-NLS-1$
             clearErrorMarker();
