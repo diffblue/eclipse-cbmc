@@ -11,6 +11,8 @@ import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -36,34 +38,23 @@ public class CounterPanel extends Composite {
 	public CounterPanel(Composite parent) {
 		super(parent, SWT.WRAP);
 		GridLayout gridLayout = new GridLayout();
-		gridLayout.numColumns = 2;
-		gridLayout.makeColumnsEqualWidth = true;
+		gridLayout.numColumns = 12;
+		gridLayout.makeColumnsEqualWidth = false;
 		gridLayout.marginWidth = 0;
 		setLayout(gridLayout);
 
-		Composite leftComposite = new Composite(this, SWT.NONE);
-		GridLayout leftLayout = new GridLayout();
-		leftLayout.numColumns = 3;
-		leftLayout.makeColumnsEqualWidth = false;
-		leftLayout.marginWidth = 0;
-		leftComposite.setLayout(leftLayout);
-		leftComposite.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.HORIZONTAL_ALIGN_FILL));
 		runsCount = 0;
 		totalCount = 0;
-		fNumberOfRuns = createLabel(leftComposite, Messages.CounterPanel_label_runs, null, " 0/0  "); //$NON-NLS-1$
+		fNumberOfRuns = createLabel(Messages.CounterPanel_0, null, " 0/0  "); //$NON-NLS-1$
+		fNumberOfSuccess = createLabel(Messages.CounterPanel_1, fSuccessIcon, " 0 "); //$NON-NLS-1$
+		fNumberOfFailures = createLabel(Messages.CounterPanel_2, fFailureIcon, " 0 "); //$NON-NLS-1$
+		fNumberOfErrors = createLabel(Messages.CounterPanel_3, fErrorIcon, " 0 "); //$NON-NLS-1$
 
-		Composite rightComposite = new Composite(this, SWT.NONE);
-		GridLayout rightLayout = new GridLayout();
-		rightLayout.numColumns = 3;
-		rightLayout.makeColumnsEqualWidth = false;
-		rightLayout.marginWidth = 0;
-		rightComposite.setLayout(rightLayout);
-		rightComposite.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.HORIZONTAL_ALIGN_FILL));
-		rightComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL | GridData.HORIZONTAL_ALIGN_BEGINNING));
-
-		fNumberOfSuccess = createLabel(rightComposite, Messages.CounterPanel_label_success, fSuccessIcon, " 0 "); //$NON-NLS-1$
-		fNumberOfFailures = createLabel(rightComposite, Messages.CounterPanel_label_failures, fFailureIcon, " 0 "); //$NON-NLS-1$
-		fNumberOfErrors = createLabel(rightComposite, Messages.CounterPanel_label_errors, fErrorIcon, " 0 "); //$NON-NLS-1$
+		addDisposeListener(new DisposeListener() {
+			public void widgetDisposed(DisposeEvent e) {
+				disposeIcons();
+			}
+		});
 	}
 
 	private void disposeIcons() {
@@ -77,19 +68,19 @@ public class CounterPanel extends Composite {
 			fErrorIcon.dispose();
 	}
 
-	private Text createLabel(Composite composite, String name, Image image, String init) {
-		Label label = new Label(composite, SWT.NONE);
+	private Text createLabel(String name, Image image, String init) {
+		Label label = new Label(this, SWT.NONE);
 		if (image != null) {
 			image.setBackground(label.getBackground());
 			label.setImage(image);
 		}
 		label.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING));
 
-		label = new Label(composite, SWT.NONE);
+		label = new Label(this, SWT.NONE);
 		label.setText(name);
 		label.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING));
 
-		Text value = new Text(composite, SWT.READ_ONLY);
+		Text value = new Text(this, SWT.READ_ONLY);
 		value.setText(init);
 		value.setBackground(getDisplay().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND));
 		value.setLayoutData(new GridData(GridData.FILL_HORIZONTAL | GridData.HORIZONTAL_ALIGN_BEGINNING));
@@ -97,7 +88,7 @@ public class CounterPanel extends Composite {
 	}
 
 	public void setRunValue() {
-		String runString = Messages.format(Messages.CounterPanel_runcount, new String[] {Integer.toString(runsCount), Integer.toString(totalCount)});
+		String runString = Messages.format(Messages.CounterPanel_4, new String[] {Integer.toString(runsCount), Integer.toString(totalCount)});
 		fNumberOfRuns.setText(runString);
 	}
 
@@ -142,7 +133,7 @@ public class CounterPanel extends Composite {
 
 			@Override
 			public Object convert(Object fromObject) {
-				return Messages.format(Messages.CounterPanel_runcount, new String[] {Integer.toString(((Integer) fromObject)), Integer.toString(results.getProperties().size())});
+				return Messages.format(Messages.CounterPanel_4, new String[] {Integer.toString(((Integer) fromObject)), Integer.toString(results.getProperties().size())});
 			}
 		});
 		bindingContext.bindValue(WidgetProperties.text(SWT.Modify).observe(fNumberOfRuns), EMFProperties.value(CbmcPackage.Literals.RESULTS__RUN_COUNT).observe(results), null, strategy2);

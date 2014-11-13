@@ -31,6 +31,15 @@ public interface CbmcFactory extends EFactory {
 	File createFile();
 
 	/**
+	 * Returns a new object of class '<em>Loop</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Loop</em>'.
+	 * @generated
+	 */
+	Loop createLoop();
+
+	/**
 	 * Returns a new object of class '<em>Property</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

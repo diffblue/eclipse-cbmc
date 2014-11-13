@@ -7,7 +7,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
-import org.eclipse.internal.cbmc.view.PropertiesView;
+import org.eclipse.internal.cbmc.view.CbmcView;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.*;
 
@@ -18,12 +18,12 @@ public class LaunchConfigurationDelegate extends org.eclipse.debug.core.model.La
 			@Override
 			public void run() {
 				IWorkbenchPage page = null;
-				PropertiesView view = null;
+				CbmcView view = null;
 				try {
 					page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-					view = (PropertiesView) page.findView(PropertiesView.ID);
+					view = (CbmcView) page.findView(CbmcView.ID);
 					if (view == null) {
-						view = (PropertiesView) page.showView(PropertiesView.ID, null, IWorkbenchPage.VIEW_VISIBLE);
+						view = (CbmcView) page.showView(CbmcView.ID, null, IWorkbenchPage.VIEW_VISIBLE);
 					}
 					view.startVerification(CBMCCliHelper.create(configuration));
 				} catch (PartInitException e) {

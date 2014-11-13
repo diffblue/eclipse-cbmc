@@ -7,20 +7,6 @@
   <foreignModel>cbmc.xsd</foreignModel>
   <genPackages prefix="Cbmc" basePackage="org.eclipse" resource="XML" disposableProviderFactory="true"
       ecorePackage="cbmc.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="cbmc.ecore#//CommandOption">
-      <genEnumLiterals ecoreEnumLiteral="cbmc.ecore#//CommandOption/noAssertions"/>
-      <genEnumLiterals ecoreEnumLiteral="cbmc.ecore#//CommandOption/noAssumptions"/>
-      <genEnumLiterals ecoreEnumLiteral="cbmc.ecore#//CommandOption/divByZeroCheck"/>
-      <genEnumLiterals ecoreEnumLiteral="cbmc.ecore#//CommandOption/pointerCheck"/>
-      <genEnumLiterals ecoreEnumLiteral="cbmc.ecore#//CommandOption/signedOverflowCheck"/>
-      <genEnumLiterals ecoreEnumLiteral="cbmc.ecore#//CommandOption/unsignedOverflowCheck"/>
-      <genEnumLiterals ecoreEnumLiteral="cbmc.ecore#//CommandOption/nanCheck"/>
-      <genEnumLiterals ecoreEnumLiteral="cbmc.ecore#//CommandOption/boundsCheck"/>
-      <genEnumLiterals ecoreEnumLiteral="cbmc.ecore#//CommandOption/undefinedShiftCheck"/>
-      <genEnumLiterals ecoreEnumLiteral="cbmc.ecore#//CommandOption/memoryLeakCheck"/>
-      <genEnumLiterals ecoreEnumLiteral="cbmc.ecore#//CommandOption/floatOverflowCheck"/>
-      <genEnumLiterals ecoreEnumLiteral="cbmc.ecore#//CommandOption/coverAssertions"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="cbmc.ecore#//PropertyStatus">
       <genEnumLiterals ecoreEnumLiteral="cbmc.ecore#//PropertyStatus/pending"/>
       <genEnumLiterals ecoreEnumLiteral="cbmc.ecore#//PropertyStatus/running"/>
@@ -28,12 +14,19 @@
       <genEnumLiterals ecoreEnumLiteral="cbmc.ecore#//PropertyStatus/failed"/>
       <genEnumLiterals ecoreEnumLiteral="cbmc.ecore#//PropertyStatus/error"/>
     </genEnums>
-    <genDataTypes ecoreDataType="cbmc.ecore#//CommandOptionObject"/>
     <genDataTypes ecoreDataType="cbmc.ecore#//PropertyStatusObject"/>
     <genClasses ecoreClass="cbmc.ecore#//File">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//File/name"/>
       <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
           ecoreFeature="ecore:EReference cbmc.ecore#//File/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="cbmc.ecore#//Loop">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Loop/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Loop/unwind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Loop/path"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Loop/filename"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Loop/function"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Loop/line"/>
     </genClasses>
     <genClasses ecoreClass="cbmc.ecore#//Property">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cbmc.ecore#//Property/category"/>
@@ -54,6 +47,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Results/failedCount"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Results/errorCount"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Results/runCount"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cbmc.ecore#//Results/loops"/>
       <genFeatures property="None" children="true" createChild="true" propertyCategory=""
           ecoreFeature="ecore:EReference cbmc.ecore#//Results/properties"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cbmc.ecore#//Results/files"/>

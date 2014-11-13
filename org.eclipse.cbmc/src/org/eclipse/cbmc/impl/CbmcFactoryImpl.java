@@ -58,6 +58,7 @@ public class CbmcFactoryImpl extends EFactoryImpl implements CbmcFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case CbmcPackage.FILE: return createFile();
+			case CbmcPackage.LOOP: return createLoop();
 			case CbmcPackage.PROPERTY: return createProperty();
 			case CbmcPackage.PROPERTY_CATEGORY: return createPropertyCategory();
 			case CbmcPackage.RESULTS: return createResults();
@@ -74,12 +75,8 @@ public class CbmcFactoryImpl extends EFactoryImpl implements CbmcFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case CbmcPackage.COMMAND_OPTION:
-				return createCommandOptionFromString(eDataType, initialValue);
 			case CbmcPackage.PROPERTY_STATUS:
 				return createPropertyStatusFromString(eDataType, initialValue);
-			case CbmcPackage.COMMAND_OPTION_OBJECT:
-				return createCommandOptionObjectFromString(eDataType, initialValue);
 			case CbmcPackage.PROPERTY_STATUS_OBJECT:
 				return createPropertyStatusObjectFromString(eDataType, initialValue);
 			default:
@@ -95,12 +92,8 @@ public class CbmcFactoryImpl extends EFactoryImpl implements CbmcFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case CbmcPackage.COMMAND_OPTION:
-				return convertCommandOptionToString(eDataType, instanceValue);
 			case CbmcPackage.PROPERTY_STATUS:
 				return convertPropertyStatusToString(eDataType, instanceValue);
-			case CbmcPackage.COMMAND_OPTION_OBJECT:
-				return convertCommandOptionObjectToString(eDataType, instanceValue);
 			case CbmcPackage.PROPERTY_STATUS_OBJECT:
 				return convertPropertyStatusObjectToString(eDataType, instanceValue);
 			default:
@@ -116,6 +109,16 @@ public class CbmcFactoryImpl extends EFactoryImpl implements CbmcFactory {
 	public File createFile() {
 		FileImpl file = new FileImpl();
 		return file;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Loop createLoop() {
+		LoopImpl loop = new LoopImpl();
+		return loop;
 	}
 
 	/**
@@ -153,26 +156,6 @@ public class CbmcFactoryImpl extends EFactoryImpl implements CbmcFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CommandOption createCommandOptionFromString(EDataType eDataType, String initialValue) {
-		CommandOption result = CommandOption.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertCommandOptionToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public PropertyStatus createPropertyStatusFromString(EDataType eDataType, String initialValue) {
 		PropertyStatus result = PropertyStatus.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -186,24 +169,6 @@ public class CbmcFactoryImpl extends EFactoryImpl implements CbmcFactory {
 	 */
 	public String convertPropertyStatusToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CommandOption createCommandOptionObjectFromString(EDataType eDataType, String initialValue) {
-		return createCommandOptionFromString(CbmcPackage.Literals.COMMAND_OPTION, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertCommandOptionObjectToString(EDataType eDataType, Object instanceValue) {
-		return convertCommandOptionToString(CbmcPackage.Literals.COMMAND_OPTION, instanceValue);
 	}
 
 	/**

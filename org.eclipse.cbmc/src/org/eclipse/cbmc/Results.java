@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.cbmc.Results#getFailedCount <em>Failed Count</em>}</li>
  *   <li>{@link org.eclipse.cbmc.Results#getErrorCount <em>Error Count</em>}</li>
  *   <li>{@link org.eclipse.cbmc.Results#getRunCount <em>Run Count</em>}</li>
+ *   <li>{@link org.eclipse.cbmc.Results#getLoops <em>Loops</em>}</li>
  *   <li>{@link org.eclipse.cbmc.Results#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.eclipse.cbmc.Results#getFiles <em>Files</em>}</li>
  *   <li>{@link org.eclipse.cbmc.Results#getCategories <em>Categories</em>}</li>
@@ -244,6 +245,23 @@ public interface Results extends EObject {
 	 * @generated
 	 */
 	boolean isSetRunCount();
+
+	/**
+	 * Returns the value of the '<em><b>Loops</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.cbmc.Loop}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Loops</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Loops</em>' containment reference list.
+	 * @see org.eclipse.cbmc.CbmcPackage#getResults_Loops()
+	 * @model containment="true"
+	 *        extendedMetaData="kind='element' name='loops'"
+	 * @generated
+	 */
+	EList<Loop> getLoops();
 
 	/**
 	 * Returns the value of the '<em><b>Properties</b></em>' containment reference list.

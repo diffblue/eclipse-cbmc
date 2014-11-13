@@ -23,6 +23,10 @@ public class CheckAllPropertiesJob extends Job {
 		return PropertyCheckerHelper.checkProperties(properties, monitor);
 	}
 
+	public void resetProperties() {
+		PropertyCheckerHelper.resetPropertyStatus(results);
+	}
+
 	public void stop() {
 		cancel();
 	}

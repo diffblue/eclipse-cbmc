@@ -1,6 +1,7 @@
 package org.eclipse.internal.cbmc.view;
 
 import java.util.HashMap;
+import org.eclipse.cbmc.Loop;
 import org.eclipse.cbmc.Property;
 import org.eclipse.core.resources.*;
 import org.eclipse.core.runtime.*;
@@ -11,17 +12,28 @@ import org.eclipse.ui.ide.IDE;
 
 public class OpenEditorAction implements IDoubleClickListener {
 
+	private IFile file;
+
 	@Override
 	public void doubleClick(DoubleClickEvent event) {
+		file = null;
+		int line = 0;
 		final IStructuredSelection selection = (IStructuredSelection) event.getSelection();
 		if (selection != null && !selection.isEmpty() && selection.getFirstElement() instanceof Property) {
 			Property selectedProperty = (Property) selection.getFirstElement();
 			Path path = new Path(selectedProperty.getFile().getName());
-			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(path);
-			if (file == null)
-				return;
+			file = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(path);
+			line = selectedProperty.getLine();
+		} else if (selection != null && !selection.isEmpty() && selection.getFirstElement() instanceof Loop) {
+			Loop selectedLoop = (Loop) selection.getFirstElement();
+			Path path = new Path(selectedLoop.getPath());
+			file = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(path);
+			line = selectedLoop.getLine();
+		}
+
+		if (file != null) {
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put(IMarker.LINE_NUMBER, selectedProperty.getLine());
+			map.put(IMarker.LINE_NUMBER, line);
 			IMarker marker;
 			try {
 				marker = file.createMarker(IMarker.TEXT);

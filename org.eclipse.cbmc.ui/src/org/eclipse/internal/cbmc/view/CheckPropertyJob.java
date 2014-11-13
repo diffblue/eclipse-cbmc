@@ -37,7 +37,7 @@ public class CheckPropertyJob extends Job {
 			CBMCCliHelper cliHelper = ((Results) property.eContainer()).getCBMCHelper();
 			counterExampleFile = new File(cliHelper.getWorkingDirectory(), FILE_COUNTEREXAMPLE_PREFIX + property.getNumber() + COUTEREXAMPLE_EXT);
 			ArrayList<String> cli = cliHelper.getCommandLineForPropertyCheck(property);
-			logger.log(Level.INFO, "Checking property " + cli);
+			logger.log(Level.INFO, "Check Property - Command: " + cliHelper.cliStringify(cli)); //$NON-NLS-1$
 			ProcessBuilder pb = new ProcessBuilder(cli);
 			pb.redirectErrorStream(true);
 			pb.redirectOutput(counterExampleFile);
@@ -60,11 +60,12 @@ public class CheckPropertyJob extends Job {
 			//CBMC found a counter example
 			property.setStatus(PropertyStatus.FAILED);
 			property.setDetailsFile(getCounterExample().getAbsolutePath());
+			logger.log(Level.INFO, "Check Property - Counter Example: " + getCounterExample().getAbsolutePath()); //$NON-NLS-1$
 
 			//TODO CBMC had a problem (e.g. incorrect CLI or problem parsing, etc.)
 
 		} catch (IOException | InterruptedException e) {
-			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.CBMC_execution_error, e);
+			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.CheckPropertyJob_0, e);
 		}
 		return Status.OK_STATUS;
 	}

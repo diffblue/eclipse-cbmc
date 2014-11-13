@@ -3,6 +3,12 @@
 package org.eclipse.cbmc.impl;
 
 import java.util.Collection;
+import org.eclipse.cbmc.CbmcPackage;
+import org.eclipse.cbmc.File;
+import org.eclipse.cbmc.Loop;
+import org.eclipse.cbmc.Property;
+import org.eclipse.cbmc.PropertyCategory;
+import org.eclipse.cbmc.Results;
 import org.eclipse.cbmc.*;
 import org.eclipse.cbmc.util.CBMCCliHelper;
 import org.eclipse.emf.common.notify.Notification;
@@ -12,6 +18,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.util.*;
 
 /**
@@ -25,6 +33,7 @@ import org.eclipse.emf.ecore.util.*;
  *   <li>{@link org.eclipse.cbmc.impl.ResultsImpl#getFailedCount <em>Failed Count</em>}</li>
  *   <li>{@link org.eclipse.cbmc.impl.ResultsImpl#getErrorCount <em>Error Count</em>}</li>
  *   <li>{@link org.eclipse.cbmc.impl.ResultsImpl#getRunCount <em>Run Count</em>}</li>
+ *   <li>{@link org.eclipse.cbmc.impl.ResultsImpl#getLoops <em>Loops</em>}</li>
  *   <li>{@link org.eclipse.cbmc.impl.ResultsImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.eclipse.cbmc.impl.ResultsImpl#getFiles <em>Files</em>}</li>
  *   <li>{@link org.eclipse.cbmc.impl.ResultsImpl#getCategories <em>Categories</em>}</li>
@@ -149,6 +158,16 @@ public class ResultsImpl extends MinimalEObjectImpl.Container implements Results
 	 * @ordered
 	 */
 	protected boolean runCountESet;
+
+	/**
+	 * The cached value of the '{@link #getLoops() <em>Loops</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLoops()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Loop> loops;
 
 	/**
 	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
@@ -389,6 +408,18 @@ public class ResultsImpl extends MinimalEObjectImpl.Container implements Results
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Loop> getLoops() {
+		if (loops == null) {
+			loops = new EObjectContainmentEList<Loop>(Loop.class, this, CbmcPackage.RESULTS__LOOPS);
+		}
+		return loops;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<Property> getProperties() {
 		if (properties == null) {
 			properties = new EObjectContainmentEList<Property>(Property.class, this, CbmcPackage.RESULTS__PROPERTIES);
@@ -428,12 +459,14 @@ public class ResultsImpl extends MinimalEObjectImpl.Container implements Results
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CbmcPackage.RESULTS__PROPERTIES :
-				return ((InternalEList<?>) getProperties()).basicRemove(otherEnd, msgs);
-			case CbmcPackage.RESULTS__FILES :
-				return ((InternalEList<?>) getFiles()).basicRemove(otherEnd, msgs);
-			case CbmcPackage.RESULTS__CATEGORIES :
-				return ((InternalEList<?>) getCategories()).basicRemove(otherEnd, msgs);
+			case CbmcPackage.RESULTS__LOOPS:
+				return ((InternalEList<?>)getLoops()).basicRemove(otherEnd, msgs);
+			case CbmcPackage.RESULTS__PROPERTIES:
+				return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
+			case CbmcPackage.RESULTS__FILES:
+				return ((InternalEList<?>)getFiles()).basicRemove(otherEnd, msgs);
+			case CbmcPackage.RESULTS__CATEGORIES:
+				return ((InternalEList<?>)getCategories()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -446,19 +479,21 @@ public class ResultsImpl extends MinimalEObjectImpl.Container implements Results
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CbmcPackage.RESULTS__SUCCEEDED_COUNT :
+			case CbmcPackage.RESULTS__SUCCEEDED_COUNT:
 				return getSucceededCount();
-			case CbmcPackage.RESULTS__FAILED_COUNT :
+			case CbmcPackage.RESULTS__FAILED_COUNT:
 				return getFailedCount();
-			case CbmcPackage.RESULTS__ERROR_COUNT :
+			case CbmcPackage.RESULTS__ERROR_COUNT:
 				return getErrorCount();
-			case CbmcPackage.RESULTS__RUN_COUNT :
+			case CbmcPackage.RESULTS__RUN_COUNT:
 				return getRunCount();
-			case CbmcPackage.RESULTS__PROPERTIES :
+			case CbmcPackage.RESULTS__LOOPS:
+				return getLoops();
+			case CbmcPackage.RESULTS__PROPERTIES:
 				return getProperties();
-			case CbmcPackage.RESULTS__FILES :
+			case CbmcPackage.RESULTS__FILES:
 				return getFiles();
-			case CbmcPackage.RESULTS__CATEGORIES :
+			case CbmcPackage.RESULTS__CATEGORIES:
 				return getCategories();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -473,29 +508,33 @@ public class ResultsImpl extends MinimalEObjectImpl.Container implements Results
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CbmcPackage.RESULTS__SUCCEEDED_COUNT :
-				setSucceededCount((Integer) newValue);
+			case CbmcPackage.RESULTS__SUCCEEDED_COUNT:
+				setSucceededCount((Integer)newValue);
 				return;
-			case CbmcPackage.RESULTS__FAILED_COUNT :
-				setFailedCount((Integer) newValue);
+			case CbmcPackage.RESULTS__FAILED_COUNT:
+				setFailedCount((Integer)newValue);
 				return;
-			case CbmcPackage.RESULTS__ERROR_COUNT :
-				setErrorCount((Integer) newValue);
+			case CbmcPackage.RESULTS__ERROR_COUNT:
+				setErrorCount((Integer)newValue);
 				return;
-			case CbmcPackage.RESULTS__RUN_COUNT :
-				setRunCount((Integer) newValue);
+			case CbmcPackage.RESULTS__RUN_COUNT:
+				setRunCount((Integer)newValue);
 				return;
-			case CbmcPackage.RESULTS__PROPERTIES :
+			case CbmcPackage.RESULTS__LOOPS:
+				getLoops().clear();
+				getLoops().addAll((Collection<? extends Loop>)newValue);
+				return;
+			case CbmcPackage.RESULTS__PROPERTIES:
 				getProperties().clear();
-				getProperties().addAll((Collection<? extends Property>) newValue);
+				getProperties().addAll((Collection<? extends Property>)newValue);
 				return;
-			case CbmcPackage.RESULTS__FILES :
+			case CbmcPackage.RESULTS__FILES:
 				getFiles().clear();
-				getFiles().addAll((Collection<? extends File>) newValue);
+				getFiles().addAll((Collection<? extends File>)newValue);
 				return;
-			case CbmcPackage.RESULTS__CATEGORIES :
+			case CbmcPackage.RESULTS__CATEGORIES:
 				getCategories().clear();
-				getCategories().addAll((Collection<? extends PropertyCategory>) newValue);
+				getCategories().addAll((Collection<? extends PropertyCategory>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -509,25 +548,28 @@ public class ResultsImpl extends MinimalEObjectImpl.Container implements Results
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CbmcPackage.RESULTS__SUCCEEDED_COUNT :
+			case CbmcPackage.RESULTS__SUCCEEDED_COUNT:
 				unsetSucceededCount();
 				return;
-			case CbmcPackage.RESULTS__FAILED_COUNT :
+			case CbmcPackage.RESULTS__FAILED_COUNT:
 				unsetFailedCount();
 				return;
-			case CbmcPackage.RESULTS__ERROR_COUNT :
+			case CbmcPackage.RESULTS__ERROR_COUNT:
 				unsetErrorCount();
 				return;
-			case CbmcPackage.RESULTS__RUN_COUNT :
+			case CbmcPackage.RESULTS__RUN_COUNT:
 				unsetRunCount();
 				return;
-			case CbmcPackage.RESULTS__PROPERTIES :
+			case CbmcPackage.RESULTS__LOOPS:
+				getLoops().clear();
+				return;
+			case CbmcPackage.RESULTS__PROPERTIES:
 				getProperties().clear();
 				return;
-			case CbmcPackage.RESULTS__FILES :
+			case CbmcPackage.RESULTS__FILES:
 				getFiles().clear();
 				return;
-			case CbmcPackage.RESULTS__CATEGORIES :
+			case CbmcPackage.RESULTS__CATEGORIES:
 				getCategories().clear();
 				return;
 		}
@@ -542,19 +584,21 @@ public class ResultsImpl extends MinimalEObjectImpl.Container implements Results
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CbmcPackage.RESULTS__SUCCEEDED_COUNT :
+			case CbmcPackage.RESULTS__SUCCEEDED_COUNT:
 				return isSetSucceededCount();
-			case CbmcPackage.RESULTS__FAILED_COUNT :
+			case CbmcPackage.RESULTS__FAILED_COUNT:
 				return isSetFailedCount();
-			case CbmcPackage.RESULTS__ERROR_COUNT :
+			case CbmcPackage.RESULTS__ERROR_COUNT:
 				return isSetErrorCount();
-			case CbmcPackage.RESULTS__RUN_COUNT :
+			case CbmcPackage.RESULTS__RUN_COUNT:
 				return isSetRunCount();
-			case CbmcPackage.RESULTS__PROPERTIES :
+			case CbmcPackage.RESULTS__LOOPS:
+				return loops != null && !loops.isEmpty();
+			case CbmcPackage.RESULTS__PROPERTIES:
 				return properties != null && !properties.isEmpty();
-			case CbmcPackage.RESULTS__FILES :
+			case CbmcPackage.RESULTS__FILES:
 				return files != null && !files.isEmpty();
-			case CbmcPackage.RESULTS__CATEGORIES :
+			case CbmcPackage.RESULTS__CATEGORIES:
 				return categories != null && !categories.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -567,30 +611,17 @@ public class ResultsImpl extends MinimalEObjectImpl.Container implements Results
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (succeededCount: ");
-		if (succeededCountESet)
-			result.append(succeededCount);
-		else
-			result.append("<unset>");
+		if (succeededCountESet) result.append(succeededCount); else result.append("<unset>");
 		result.append(", failedCount: ");
-		if (failedCountESet)
-			result.append(failedCount);
-		else
-			result.append("<unset>");
+		if (failedCountESet) result.append(failedCount); else result.append("<unset>");
 		result.append(", errorCount: ");
-		if (errorCountESet)
-			result.append(errorCount);
-		else
-			result.append("<unset>");
+		if (errorCountESet) result.append(errorCount); else result.append("<unset>");
 		result.append(", runCount: ");
-		if (runCountESet)
-			result.append(runCount);
-		else
-			result.append("<unset>");
+		if (runCountESet) result.append(runCount); else result.append("<unset>");
 		result.append(')');
 		return result.toString();
 	}

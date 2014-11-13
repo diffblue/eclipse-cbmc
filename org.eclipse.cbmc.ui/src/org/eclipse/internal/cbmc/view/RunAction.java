@@ -29,7 +29,7 @@ public class RunAction extends JobAction {
 
 	@Override
 	public String getText() {
-		return "Run";
+		return Messages.RunAction_0;
 	}
 
 	@Override
@@ -39,8 +39,12 @@ public class RunAction extends JobAction {
 
 	@Override
 	public void run() {
-		Job job = getJob();
-		if (job != null)
+		CheckAllPropertiesJob job = (CheckAllPropertiesJob) getJob();
+		if (job != null) {
+			if (job.getResult() != null) {
+				job.resetProperties();
+			}
 			job.schedule();
+		}
 	}
 }

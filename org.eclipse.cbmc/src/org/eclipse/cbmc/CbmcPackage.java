@@ -105,6 +105,88 @@ public interface CbmcPackage extends EPackage {
 	int FILE_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.cbmc.impl.LoopImpl <em>Loop</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.cbmc.impl.LoopImpl
+	 * @see org.eclipse.cbmc.impl.CbmcPackageImpl#getLoop()
+	 * @generated
+	 */
+	int LOOP = 1;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP__ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Unwind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP__UNWIND = 1;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP__PATH = 2;
+
+	/**
+	 * The feature id for the '<em><b>Filename</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP__FILENAME = 3;
+
+	/**
+	 * The feature id for the '<em><b>Function</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP__FUNCTION = 4;
+
+	/**
+	 * The feature id for the '<em><b>Line</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP__LINE = 5;
+
+	/**
+	 * The number of structural features of the '<em>Loop</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_FEATURE_COUNT = 6;
+
+	/**
+	 * The number of operations of the '<em>Loop</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.cbmc.impl.PropertyImpl <em>Property</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -112,7 +194,7 @@ public interface CbmcPackage extends EPackage {
 	 * @see org.eclipse.cbmc.impl.CbmcPackageImpl#getProperty()
 	 * @generated
 	 */
-	int PROPERTY = 1;
+	int PROPERTY = 2;
 
 	/**
 	 * The feature id for the '<em><b>Category</b></em>' reference.
@@ -212,7 +294,7 @@ public interface CbmcPackage extends EPackage {
 	 * @see org.eclipse.cbmc.impl.CbmcPackageImpl#getPropertyCategory()
 	 * @generated
 	 */
-	int PROPERTY_CATEGORY = 2;
+	int PROPERTY_CATEGORY = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -258,7 +340,7 @@ public interface CbmcPackage extends EPackage {
 	 * @see org.eclipse.cbmc.impl.CbmcPackageImpl#getResults()
 	 * @generated
 	 */
-	int RESULTS = 3;
+	int RESULTS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Succeeded Count</b></em>' attribute.
@@ -297,13 +379,22 @@ public interface CbmcPackage extends EPackage {
 	int RESULTS__RUN_COUNT = 3;
 
 	/**
+	 * The feature id for the '<em><b>Loops</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULTS__LOOPS = 4;
+
+	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESULTS__PROPERTIES = 4;
+	int RESULTS__PROPERTIES = 5;
 
 	/**
 	 * The feature id for the '<em><b>Files</b></em>' containment reference list.
@@ -312,7 +403,7 @@ public interface CbmcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESULTS__FILES = 5;
+	int RESULTS__FILES = 6;
 
 	/**
 	 * The feature id for the '<em><b>Categories</b></em>' containment reference list.
@@ -321,7 +412,7 @@ public interface CbmcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESULTS__CATEGORIES = 6;
+	int RESULTS__CATEGORIES = 7;
 
 	/**
 	 * The number of structural features of the '<em>Results</em>' class.
@@ -330,7 +421,7 @@ public interface CbmcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESULTS_FEATURE_COUNT = 7;
+	int RESULTS_FEATURE_COUNT = 8;
 
 	/**
 	 * The number of operations of the '<em>Results</em>' class.
@@ -340,16 +431,6 @@ public interface CbmcPackage extends EPackage {
 	 * @ordered
 	 */
 	int RESULTS_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.cbmc.CommandOption <em>Command Option</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.cbmc.CommandOption
-	 * @see org.eclipse.cbmc.impl.CbmcPackageImpl#getCommandOption()
-	 * @generated
-	 */
-	int COMMAND_OPTION = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.cbmc.PropertyStatus <em>Property Status</em>}' enum.
@@ -362,16 +443,6 @@ public interface CbmcPackage extends EPackage {
 	int PROPERTY_STATUS = 5;
 
 	/**
-	 * The meta object id for the '<em>Command Option Object</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.cbmc.CommandOption
-	 * @see org.eclipse.cbmc.impl.CbmcPackageImpl#getCommandOptionObject()
-	 * @generated
-	 */
-	int COMMAND_OPTION_OBJECT = 6;
-
-	/**
 	 * The meta object id for the '<em>Property Status Object</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -379,7 +450,7 @@ public interface CbmcPackage extends EPackage {
 	 * @see org.eclipse.cbmc.impl.CbmcPackageImpl#getPropertyStatusObject()
 	 * @generated
 	 */
-	int PROPERTY_STATUS_OBJECT = 7;
+	int PROPERTY_STATUS_OBJECT = 6;
 
 
 	/**
@@ -413,6 +484,82 @@ public interface CbmcPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFile_Properties();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.cbmc.Loop <em>Loop</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Loop</em>'.
+	 * @see org.eclipse.cbmc.Loop
+	 * @generated
+	 */
+	EClass getLoop();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.cbmc.Loop#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see org.eclipse.cbmc.Loop#getId()
+	 * @see #getLoop()
+	 * @generated
+	 */
+	EAttribute getLoop_Id();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.cbmc.Loop#getUnwind <em>Unwind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Unwind</em>'.
+	 * @see org.eclipse.cbmc.Loop#getUnwind()
+	 * @see #getLoop()
+	 * @generated
+	 */
+	EAttribute getLoop_Unwind();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.cbmc.Loop#getPath <em>Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Path</em>'.
+	 * @see org.eclipse.cbmc.Loop#getPath()
+	 * @see #getLoop()
+	 * @generated
+	 */
+	EAttribute getLoop_Path();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.cbmc.Loop#getFilename <em>Filename</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Filename</em>'.
+	 * @see org.eclipse.cbmc.Loop#getFilename()
+	 * @see #getLoop()
+	 * @generated
+	 */
+	EAttribute getLoop_Filename();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.cbmc.Loop#getFunction <em>Function</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Function</em>'.
+	 * @see org.eclipse.cbmc.Loop#getFunction()
+	 * @see #getLoop()
+	 * @generated
+	 */
+	EAttribute getLoop_Function();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.cbmc.Loop#getLine <em>Line</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Line</em>'.
+	 * @see org.eclipse.cbmc.Loop#getLine()
+	 * @see #getLoop()
+	 * @generated
+	 */
+	EAttribute getLoop_Line();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.cbmc.Property <em>Property</em>}'.
@@ -599,6 +746,17 @@ public interface CbmcPackage extends EPackage {
 	EAttribute getResults_RunCount();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.cbmc.Results#getLoops <em>Loops</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Loops</em>'.
+	 * @see org.eclipse.cbmc.Results#getLoops()
+	 * @see #getResults()
+	 * @generated
+	 */
+	EReference getResults_Loops();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.cbmc.Results#getProperties <em>Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -632,16 +790,6 @@ public interface CbmcPackage extends EPackage {
 	EReference getResults_Categories();
 
 	/**
-	 * Returns the meta object for enum '{@link org.eclipse.cbmc.CommandOption <em>Command Option</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Command Option</em>'.
-	 * @see org.eclipse.cbmc.CommandOption
-	 * @generated
-	 */
-	EEnum getCommandOption();
-
-	/**
 	 * Returns the meta object for enum '{@link org.eclipse.cbmc.PropertyStatus <em>Property Status</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -650,18 +798,6 @@ public interface CbmcPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getPropertyStatus();
-
-	/**
-	 * Returns the meta object for data type '{@link org.eclipse.cbmc.CommandOption <em>Command Option Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Command Option Object</em>'.
-	 * @see org.eclipse.cbmc.CommandOption
-	 * @model instanceClass="org.eclipse.cbmc.CommandOption"
-	 *        extendedMetaData="name='CommandOption:Object' baseType='CommandOption'"
-	 * @generated
-	 */
-	EDataType getCommandOptionObject();
 
 	/**
 	 * Returns the meta object for data type '{@link org.eclipse.cbmc.PropertyStatus <em>Property Status Object</em>}'.
@@ -723,6 +859,64 @@ public interface CbmcPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FILE__PROPERTIES = eINSTANCE.getFile_Properties();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.cbmc.impl.LoopImpl <em>Loop</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.cbmc.impl.LoopImpl
+		 * @see org.eclipse.cbmc.impl.CbmcPackageImpl#getLoop()
+		 * @generated
+		 */
+		EClass LOOP = eINSTANCE.getLoop();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LOOP__ID = eINSTANCE.getLoop_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Unwind</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LOOP__UNWIND = eINSTANCE.getLoop_Unwind();
+
+		/**
+		 * The meta object literal for the '<em><b>Path</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LOOP__PATH = eINSTANCE.getLoop_Path();
+
+		/**
+		 * The meta object literal for the '<em><b>Filename</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LOOP__FILENAME = eINSTANCE.getLoop_Filename();
+
+		/**
+		 * The meta object literal for the '<em><b>Function</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LOOP__FUNCTION = eINSTANCE.getLoop_Function();
+
+		/**
+		 * The meta object literal for the '<em><b>Line</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LOOP__LINE = eINSTANCE.getLoop_Line();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.cbmc.impl.PropertyImpl <em>Property</em>}' class.
@@ -867,6 +1061,14 @@ public interface CbmcPackage extends EPackage {
 		EAttribute RESULTS__RUN_COUNT = eINSTANCE.getResults_RunCount();
 
 		/**
+		 * The meta object literal for the '<em><b>Loops</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RESULTS__LOOPS = eINSTANCE.getResults_Loops();
+
+		/**
 		 * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -891,16 +1093,6 @@ public interface CbmcPackage extends EPackage {
 		EReference RESULTS__CATEGORIES = eINSTANCE.getResults_Categories();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.cbmc.CommandOption <em>Command Option</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.cbmc.CommandOption
-		 * @see org.eclipse.cbmc.impl.CbmcPackageImpl#getCommandOption()
-		 * @generated
-		 */
-		EEnum COMMAND_OPTION = eINSTANCE.getCommandOption();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.cbmc.PropertyStatus <em>Property Status</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -909,16 +1101,6 @@ public interface CbmcPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum PROPERTY_STATUS = eINSTANCE.getPropertyStatus();
-
-		/**
-		 * The meta object literal for the '<em>Command Option Object</em>' data type.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.cbmc.CommandOption
-		 * @see org.eclipse.cbmc.impl.CbmcPackageImpl#getCommandOptionObject()
-		 * @generated
-		 */
-		EDataType COMMAND_OPTION_OBJECT = eINSTANCE.getCommandOptionObject();
 
 		/**
 		 * The meta object literal for the '<em>Property Status Object</em>' data type.

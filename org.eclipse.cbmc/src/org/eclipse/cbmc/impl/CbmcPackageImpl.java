@@ -4,22 +4,19 @@ package org.eclipse.cbmc.impl;
 
 import org.eclipse.cbmc.CbmcFactory;
 import org.eclipse.cbmc.CbmcPackage;
-import org.eclipse.cbmc.CommandOption;
 import org.eclipse.cbmc.File;
+import org.eclipse.cbmc.Loop;
 import org.eclipse.cbmc.Property;
 import org.eclipse.cbmc.PropertyCategory;
 import org.eclipse.cbmc.PropertyStatus;
 import org.eclipse.cbmc.Results;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
 /**
@@ -35,6 +32,13 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 	 * @generated
 	 */
 	private EClass fileEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass loopEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -62,21 +66,7 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum commandOptionEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EEnum propertyStatusEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EDataType commandOptionObjectEDataType = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -174,6 +164,69 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 	 */
 	public EReference getFile_Properties() {
 		return (EReference)fileEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLoop() {
+		return loopEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLoop_Id() {
+		return (EAttribute)loopEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLoop_Unwind() {
+		return (EAttribute)loopEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLoop_Path() {
+		return (EAttribute)loopEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLoop_Filename() {
+		return (EAttribute)loopEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLoop_Function() {
+		return (EAttribute)loopEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLoop_Line() {
+		return (EAttribute)loopEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -334,7 +387,7 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getResults_Properties() {
+	public EReference getResults_Loops() {
 		return (EReference)resultsEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -343,7 +396,7 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getResults_Files() {
+	public EReference getResults_Properties() {
 		return (EReference)resultsEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -352,7 +405,7 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getResults_Categories() {
+	public EReference getResults_Files() {
 		return (EReference)resultsEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -361,8 +414,8 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getCommandOption() {
-		return commandOptionEEnum;
+	public EReference getResults_Categories() {
+		return (EReference)resultsEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -372,15 +425,6 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 	 */
 	public EEnum getPropertyStatus() {
 		return propertyStatusEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EDataType getCommandOptionObject() {
-		return commandOptionObjectEDataType;
 	}
 
 	/**
@@ -424,6 +468,14 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 		createEAttribute(fileEClass, FILE__NAME);
 		createEReference(fileEClass, FILE__PROPERTIES);
 
+		loopEClass = createEClass(LOOP);
+		createEAttribute(loopEClass, LOOP__ID);
+		createEAttribute(loopEClass, LOOP__UNWIND);
+		createEAttribute(loopEClass, LOOP__PATH);
+		createEAttribute(loopEClass, LOOP__FILENAME);
+		createEAttribute(loopEClass, LOOP__FUNCTION);
+		createEAttribute(loopEClass, LOOP__LINE);
+
 		propertyEClass = createEClass(PROPERTY);
 		createEReference(propertyEClass, PROPERTY__CATEGORY);
 		createEAttribute(propertyEClass, PROPERTY__NUMBER);
@@ -443,16 +495,15 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 		createEAttribute(resultsEClass, RESULTS__FAILED_COUNT);
 		createEAttribute(resultsEClass, RESULTS__ERROR_COUNT);
 		createEAttribute(resultsEClass, RESULTS__RUN_COUNT);
+		createEReference(resultsEClass, RESULTS__LOOPS);
 		createEReference(resultsEClass, RESULTS__PROPERTIES);
 		createEReference(resultsEClass, RESULTS__FILES);
 		createEReference(resultsEClass, RESULTS__CATEGORIES);
 
 		// Create enums
-		commandOptionEEnum = createEEnum(COMMAND_OPTION);
 		propertyStatusEEnum = createEEnum(PROPERTY_STATUS);
 
 		// Create data types
-		commandOptionObjectEDataType = createEDataType(COMMAND_OPTION_OBJECT);
 		propertyStatusObjectEDataType = createEDataType(PROPERTY_STATUS_OBJECT);
 	}
 
@@ -493,6 +544,14 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 		initEAttribute(getFile_Name(), theXMLTypePackage.getString(), "name", null, 1, 1, File.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFile_Properties(), this.getProperty(), this.getProperty_File(), "properties", null, 0, -1, File.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(loopEClass, Loop.class, "Loop", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLoop_Id(), theXMLTypePackage.getString(), "id", null, 1, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLoop_Unwind(), theXMLTypePackage.getString(), "unwind", null, 1, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLoop_Path(), theXMLTypePackage.getString(), "path", null, 1, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLoop_Filename(), theXMLTypePackage.getString(), "filename", null, 1, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLoop_Function(), theXMLTypePackage.getString(), "function", null, 1, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLoop_Line(), theXMLTypePackage.getInt(), "line", null, 1, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProperty_Category(), this.getPropertyCategory(), this.getPropertyCategory_Properties(), "category", null, 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProperty_Number(), theXMLTypePackage.getString(), "number", null, 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -512,25 +571,12 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 		initEAttribute(getResults_FailedCount(), theXMLTypePackage.getInt(), "failedCount", null, 1, 1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getResults_ErrorCount(), theXMLTypePackage.getInt(), "errorCount", null, 1, 1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getResults_RunCount(), theXMLTypePackage.getInt(), "runCount", null, 1, 1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getResults_Loops(), this.getLoop(), null, "loops", null, 0, -1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getResults_Properties(), this.getProperty(), null, "properties", null, 0, -1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getResults_Files(), this.getFile(), null, "files", null, 0, -1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getResults_Categories(), this.getPropertyCategory(), null, "categories", null, 0, -1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
-		initEEnum(commandOptionEEnum, CommandOption.class, "CommandOption");
-		addEEnumLiteral(commandOptionEEnum, CommandOption.NO_ASSERTIONS);
-		addEEnumLiteral(commandOptionEEnum, CommandOption.NO_ASSUMPTIONS);
-		addEEnumLiteral(commandOptionEEnum, CommandOption.DIV_BY_ZERO_CHECK);
-		addEEnumLiteral(commandOptionEEnum, CommandOption.POINTER_CHECK);
-		addEEnumLiteral(commandOptionEEnum, CommandOption.SIGNED_OVERFLOW_CHECK);
-		addEEnumLiteral(commandOptionEEnum, CommandOption.UNSIGNED_OVERFLOW_CHECK);
-		addEEnumLiteral(commandOptionEEnum, CommandOption.NAN_CHECK);
-		addEEnumLiteral(commandOptionEEnum, CommandOption.BOUNDS_CHECK);
-		addEEnumLiteral(commandOptionEEnum, CommandOption.UNDEFINED_SHIFT_CHECK);
-		addEEnumLiteral(commandOptionEEnum, CommandOption.MEMORY_LEAK_CHECK);
-		addEEnumLiteral(commandOptionEEnum, CommandOption.FLOAT_OVERFLOW_CHECK);
-		addEEnumLiteral(commandOptionEEnum, CommandOption.COVER_ASSERTIONS);
-
 		initEEnum(propertyStatusEEnum, PropertyStatus.class, "PropertyStatus");
 		addEEnumLiteral(propertyStatusEEnum, PropertyStatus.PENDING);
 		addEEnumLiteral(propertyStatusEEnum, PropertyStatus.RUNNING);
@@ -539,7 +585,6 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 		addEEnumLiteral(propertyStatusEEnum, PropertyStatus.ERROR);
 
 		// Initialize data types
-		initEDataType(commandOptionObjectEDataType, CommandOption.class, "CommandOptionObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(propertyStatusObjectEDataType, PropertyStatus.class, "PropertyStatusObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
@@ -557,187 +602,230 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 	 * @generated
 	 */
 	protected void createExtendedMetaDataAnnotations() {
-		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";		
-		addAnnotation
-		  (commandOptionEEnum, 
-		   source, 
-		   new String[] {
-			 "name", "CommandOption"
-		   });		
-		addAnnotation
-		  (commandOptionObjectEDataType, 
-		   source, 
-		   new String[] {
-			 "name", "CommandOption:Object",
-			 "baseType", "CommandOption"
-		   });		
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";	
 		addAnnotation
 		  (fileEClass, 
 		   source, 
 		   new String[] {
 			 "name", "File",
 			 "kind", "elementOnly"
-		   });		
+		   });	
 		addAnnotation
 		  (getFile_Name(), 
 		   source, 
 		   new String[] {
 			 "kind", "element",
 			 "name", "name"
-		   });		
+		   });	
 		addAnnotation
 		  (getFile_Properties(), 
 		   source, 
 		   new String[] {
 			 "kind", "element",
 			 "name", "properties"
-		   });		
+		   });	
+		addAnnotation
+		  (loopEClass, 
+		   source, 
+		   new String[] {
+			 "name", "Loop",
+			 "kind", "elementOnly"
+		   });	
+		addAnnotation
+		  (getLoop_Id(), 
+		   source, 
+		   new String[] {
+			 "kind", "element",
+			 "name", "id"
+		   });	
+		addAnnotation
+		  (getLoop_Unwind(), 
+		   source, 
+		   new String[] {
+			 "kind", "element",
+			 "name", "unwind"
+		   });	
+		addAnnotation
+		  (getLoop_Path(), 
+		   source, 
+		   new String[] {
+			 "kind", "element",
+			 "name", "path"
+		   });	
+		addAnnotation
+		  (getLoop_Filename(), 
+		   source, 
+		   new String[] {
+			 "kind", "element",
+			 "name", "filename"
+		   });	
+		addAnnotation
+		  (getLoop_Function(), 
+		   source, 
+		   new String[] {
+			 "kind", "element",
+			 "name", "function"
+		   });	
+		addAnnotation
+		  (getLoop_Line(), 
+		   source, 
+		   new String[] {
+			 "kind", "element",
+			 "name", "line"
+		   });	
 		addAnnotation
 		  (propertyEClass, 
 		   source, 
 		   new String[] {
 			 "name", "Property",
 			 "kind", "elementOnly"
-		   });		
+		   });	
 		addAnnotation
 		  (getProperty_Category(), 
 		   source, 
 		   new String[] {
 			 "kind", "element",
 			 "name", "category"
-		   });		
+		   });	
 		addAnnotation
 		  (getProperty_Number(), 
 		   source, 
 		   new String[] {
 			 "kind", "element",
 			 "name", "number"
-		   });		
+		   });	
 		addAnnotation
 		  (getProperty_Description(), 
 		   source, 
 		   new String[] {
 			 "kind", "element",
 			 "name", "description"
-		   });		
+		   });	
 		addAnnotation
 		  (getProperty_File(), 
 		   source, 
 		   new String[] {
 			 "kind", "element",
 			 "name", "file"
-		   });		
+		   });	
 		addAnnotation
 		  (getProperty_Function(), 
 		   source, 
 		   new String[] {
 			 "kind", "element",
 			 "name", "function"
-		   });		
+		   });	
 		addAnnotation
 		  (getProperty_Line(), 
 		   source, 
 		   new String[] {
 			 "kind", "element",
 			 "name", "line"
-		   });		
+		   });	
 		addAnnotation
 		  (getProperty_Status(), 
 		   source, 
 		   new String[] {
 			 "kind", "element",
 			 "name", "status"
-		   });		
+		   });	
 		addAnnotation
 		  (getProperty_DetailsFile(), 
 		   source, 
 		   new String[] {
 			 "kind", "element",
 			 "name", "detailsFile"
-		   });		
+		   });	
 		addAnnotation
 		  (propertyCategoryEClass, 
 		   source, 
 		   new String[] {
 			 "name", "PropertyCategory",
 			 "kind", "elementOnly"
-		   });		
+		   });	
 		addAnnotation
 		  (getPropertyCategory_Name(), 
 		   source, 
 		   new String[] {
 			 "kind", "element",
 			 "name", "name"
-		   });		
+		   });	
 		addAnnotation
 		  (getPropertyCategory_Properties(), 
 		   source, 
 		   new String[] {
 			 "kind", "element",
 			 "name", "properties"
-		   });		
+		   });	
 		addAnnotation
 		  (propertyStatusEEnum, 
 		   source, 
 		   new String[] {
 			 "name", "PropertyStatus"
-		   });		
+		   });	
 		addAnnotation
 		  (propertyStatusObjectEDataType, 
 		   source, 
 		   new String[] {
 			 "name", "PropertyStatus:Object",
 			 "baseType", "PropertyStatus"
-		   });		
+		   });	
 		addAnnotation
 		  (resultsEClass, 
 		   source, 
 		   new String[] {
 			 "name", "Results",
 			 "kind", "elementOnly"
-		   });		
+		   });	
 		addAnnotation
 		  (getResults_SucceededCount(), 
 		   source, 
 		   new String[] {
 			 "kind", "element",
 			 "name", "succeededCount"
-		   });		
+		   });	
 		addAnnotation
 		  (getResults_FailedCount(), 
 		   source, 
 		   new String[] {
 			 "kind", "element",
 			 "name", "failedCount"
-		   });		
+		   });	
 		addAnnotation
 		  (getResults_ErrorCount(), 
 		   source, 
 		   new String[] {
 			 "kind", "element",
 			 "name", "errorCount"
-		   });		
+		   });	
 		addAnnotation
 		  (getResults_RunCount(), 
 		   source, 
 		   new String[] {
 			 "kind", "element",
 			 "name", "runCount"
-		   });		
+		   });	
+		addAnnotation
+		  (getResults_Loops(), 
+		   source, 
+		   new String[] {
+			 "kind", "element",
+			 "name", "loops"
+		   });	
 		addAnnotation
 		  (getResults_Properties(), 
 		   source, 
 		   new String[] {
 			 "kind", "element",
 			 "name", "properties"
-		   });		
+		   });	
 		addAnnotation
 		  (getResults_Files(), 
 		   source, 
 		   new String[] {
 			 "kind", "element",
 			 "name", "files"
-		   });		
+		   });	
 		addAnnotation
 		  (getResults_Categories(), 
 		   source, 

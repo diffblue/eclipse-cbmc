@@ -2,7 +2,11 @@
  */
 package org.eclipse.cbmc.impl;
 
-import org.eclipse.cbmc.*;
+import org.eclipse.cbmc.CbmcPackage;
+import org.eclipse.cbmc.File;
+import org.eclipse.cbmc.Property;
+import org.eclipse.cbmc.PropertyCategory;
+import org.eclipse.cbmc.PropertyStatus;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -216,8 +220,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	 */
 	public PropertyCategory getCategory() {
 		if (category != null && category.eIsProxy()) {
-			InternalEObject oldCategory = (InternalEObject) category;
-			category = (PropertyCategory) eResolveProxy(oldCategory);
+			InternalEObject oldCategory = (InternalEObject)category;
+			category = (PropertyCategory)eResolveProxy(oldCategory);
 			if (category != oldCategory) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CbmcPackage.PROPERTY__CATEGORY, oldCategory, category));
@@ -245,10 +249,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 		category = newCategory;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CbmcPackage.PROPERTY__CATEGORY, oldCategory, newCategory);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -262,13 +263,13 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 		if (newCategory != category) {
 			NotificationChain msgs = null;
 			if (category != null)
-				msgs = ((InternalEObject) category).eInverseRemove(this, CbmcPackage.PROPERTY_CATEGORY__PROPERTIES, PropertyCategory.class, msgs);
+				msgs = ((InternalEObject)category).eInverseRemove(this, CbmcPackage.PROPERTY_CATEGORY__PROPERTIES, PropertyCategory.class, msgs);
 			if (newCategory != null)
-				msgs = ((InternalEObject) newCategory).eInverseAdd(this, CbmcPackage.PROPERTY_CATEGORY__PROPERTIES, PropertyCategory.class, msgs);
+				msgs = ((InternalEObject)newCategory).eInverseAdd(this, CbmcPackage.PROPERTY_CATEGORY__PROPERTIES, PropertyCategory.class, msgs);
 			msgs = basicSetCategory(newCategory, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CbmcPackage.PROPERTY__CATEGORY, newCategory, newCategory));
 	}
 
@@ -321,8 +322,8 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	 */
 	public File getFile() {
 		if (file != null && file.eIsProxy()) {
-			InternalEObject oldFile = (InternalEObject) file;
-			file = (File) eResolveProxy(oldFile);
+			InternalEObject oldFile = (InternalEObject)file;
+			file = (File)eResolveProxy(oldFile);
 			if (file != oldFile) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CbmcPackage.PROPERTY__FILE, oldFile, file));
@@ -350,10 +351,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 		file = newFile;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CbmcPackage.PROPERTY__FILE, oldFile, newFile);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -367,13 +365,13 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 		if (newFile != file) {
 			NotificationChain msgs = null;
 			if (file != null)
-				msgs = ((InternalEObject) file).eInverseRemove(this, CbmcPackage.FILE__PROPERTIES, File.class, msgs);
+				msgs = ((InternalEObject)file).eInverseRemove(this, CbmcPackage.FILE__PROPERTIES, File.class, msgs);
 			if (newFile != null)
-				msgs = ((InternalEObject) newFile).eInverseAdd(this, CbmcPackage.FILE__PROPERTIES, File.class, msgs);
+				msgs = ((InternalEObject)newFile).eInverseAdd(this, CbmcPackage.FILE__PROPERTIES, File.class, msgs);
 			msgs = basicSetFile(newFile, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CbmcPackage.PROPERTY__FILE, newFile, newFile));
 	}
 
@@ -519,14 +517,14 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CbmcPackage.PROPERTY__CATEGORY :
+			case CbmcPackage.PROPERTY__CATEGORY:
 				if (category != null)
-					msgs = ((InternalEObject) category).eInverseRemove(this, CbmcPackage.PROPERTY_CATEGORY__PROPERTIES, PropertyCategory.class, msgs);
-				return basicSetCategory((PropertyCategory) otherEnd, msgs);
-			case CbmcPackage.PROPERTY__FILE :
+					msgs = ((InternalEObject)category).eInverseRemove(this, CbmcPackage.PROPERTY_CATEGORY__PROPERTIES, PropertyCategory.class, msgs);
+				return basicSetCategory((PropertyCategory)otherEnd, msgs);
+			case CbmcPackage.PROPERTY__FILE:
 				if (file != null)
-					msgs = ((InternalEObject) file).eInverseRemove(this, CbmcPackage.FILE__PROPERTIES, File.class, msgs);
-				return basicSetFile((File) otherEnd, msgs);
+					msgs = ((InternalEObject)file).eInverseRemove(this, CbmcPackage.FILE__PROPERTIES, File.class, msgs);
+				return basicSetFile((File)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -539,9 +537,9 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CbmcPackage.PROPERTY__CATEGORY :
+			case CbmcPackage.PROPERTY__CATEGORY:
 				return basicSetCategory(null, msgs);
-			case CbmcPackage.PROPERTY__FILE :
+			case CbmcPackage.PROPERTY__FILE:
 				return basicSetFile(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -555,25 +553,23 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CbmcPackage.PROPERTY__CATEGORY :
-				if (resolve)
-					return getCategory();
+			case CbmcPackage.PROPERTY__CATEGORY:
+				if (resolve) return getCategory();
 				return basicGetCategory();
-			case CbmcPackage.PROPERTY__NUMBER :
+			case CbmcPackage.PROPERTY__NUMBER:
 				return getNumber();
-			case CbmcPackage.PROPERTY__DESCRIPTION :
+			case CbmcPackage.PROPERTY__DESCRIPTION:
 				return getDescription();
-			case CbmcPackage.PROPERTY__FILE :
-				if (resolve)
-					return getFile();
+			case CbmcPackage.PROPERTY__FILE:
+				if (resolve) return getFile();
 				return basicGetFile();
-			case CbmcPackage.PROPERTY__FUNCTION :
+			case CbmcPackage.PROPERTY__FUNCTION:
 				return getFunction();
-			case CbmcPackage.PROPERTY__LINE :
+			case CbmcPackage.PROPERTY__LINE:
 				return getLine();
-			case CbmcPackage.PROPERTY__STATUS :
+			case CbmcPackage.PROPERTY__STATUS:
 				return getStatus();
-			case CbmcPackage.PROPERTY__DETAILS_FILE :
+			case CbmcPackage.PROPERTY__DETAILS_FILE:
 				return getDetailsFile();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -587,29 +583,29 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CbmcPackage.PROPERTY__CATEGORY :
-				setCategory((PropertyCategory) newValue);
+			case CbmcPackage.PROPERTY__CATEGORY:
+				setCategory((PropertyCategory)newValue);
 				return;
-			case CbmcPackage.PROPERTY__NUMBER :
-				setNumber((String) newValue);
+			case CbmcPackage.PROPERTY__NUMBER:
+				setNumber((String)newValue);
 				return;
-			case CbmcPackage.PROPERTY__DESCRIPTION :
-				setDescription((String) newValue);
+			case CbmcPackage.PROPERTY__DESCRIPTION:
+				setDescription((String)newValue);
 				return;
-			case CbmcPackage.PROPERTY__FILE :
-				setFile((File) newValue);
+			case CbmcPackage.PROPERTY__FILE:
+				setFile((File)newValue);
 				return;
-			case CbmcPackage.PROPERTY__FUNCTION :
-				setFunction((String) newValue);
+			case CbmcPackage.PROPERTY__FUNCTION:
+				setFunction((String)newValue);
 				return;
-			case CbmcPackage.PROPERTY__LINE :
-				setLine((Integer) newValue);
+			case CbmcPackage.PROPERTY__LINE:
+				setLine((Integer)newValue);
 				return;
-			case CbmcPackage.PROPERTY__STATUS :
-				setStatus((PropertyStatus) newValue);
+			case CbmcPackage.PROPERTY__STATUS:
+				setStatus((PropertyStatus)newValue);
 				return;
-			case CbmcPackage.PROPERTY__DETAILS_FILE :
-				setDetailsFile((String) newValue);
+			case CbmcPackage.PROPERTY__DETAILS_FILE:
+				setDetailsFile((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -623,28 +619,28 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CbmcPackage.PROPERTY__CATEGORY :
-				setCategory((PropertyCategory) null);
+			case CbmcPackage.PROPERTY__CATEGORY:
+				setCategory((PropertyCategory)null);
 				return;
-			case CbmcPackage.PROPERTY__NUMBER :
+			case CbmcPackage.PROPERTY__NUMBER:
 				setNumber(NUMBER_EDEFAULT);
 				return;
-			case CbmcPackage.PROPERTY__DESCRIPTION :
+			case CbmcPackage.PROPERTY__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case CbmcPackage.PROPERTY__FILE :
-				setFile((File) null);
+			case CbmcPackage.PROPERTY__FILE:
+				setFile((File)null);
 				return;
-			case CbmcPackage.PROPERTY__FUNCTION :
+			case CbmcPackage.PROPERTY__FUNCTION:
 				setFunction(FUNCTION_EDEFAULT);
 				return;
-			case CbmcPackage.PROPERTY__LINE :
+			case CbmcPackage.PROPERTY__LINE:
 				unsetLine();
 				return;
-			case CbmcPackage.PROPERTY__STATUS :
+			case CbmcPackage.PROPERTY__STATUS:
 				unsetStatus();
 				return;
-			case CbmcPackage.PROPERTY__DETAILS_FILE :
+			case CbmcPackage.PROPERTY__DETAILS_FILE:
 				setDetailsFile(DETAILS_FILE_EDEFAULT);
 				return;
 		}
@@ -659,21 +655,21 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CbmcPackage.PROPERTY__CATEGORY :
+			case CbmcPackage.PROPERTY__CATEGORY:
 				return category != null;
-			case CbmcPackage.PROPERTY__NUMBER :
+			case CbmcPackage.PROPERTY__NUMBER:
 				return NUMBER_EDEFAULT == null ? number != null : !NUMBER_EDEFAULT.equals(number);
-			case CbmcPackage.PROPERTY__DESCRIPTION :
+			case CbmcPackage.PROPERTY__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case CbmcPackage.PROPERTY__FILE :
+			case CbmcPackage.PROPERTY__FILE:
 				return file != null;
-			case CbmcPackage.PROPERTY__FUNCTION :
+			case CbmcPackage.PROPERTY__FUNCTION:
 				return FUNCTION_EDEFAULT == null ? function != null : !FUNCTION_EDEFAULT.equals(function);
-			case CbmcPackage.PROPERTY__LINE :
+			case CbmcPackage.PROPERTY__LINE:
 				return isSetLine();
-			case CbmcPackage.PROPERTY__STATUS :
+			case CbmcPackage.PROPERTY__STATUS:
 				return isSetStatus();
-			case CbmcPackage.PROPERTY__DETAILS_FILE :
+			case CbmcPackage.PROPERTY__DETAILS_FILE:
 				return DETAILS_FILE_EDEFAULT == null ? detailsFile != null : !DETAILS_FILE_EDEFAULT.equals(detailsFile);
 		}
 		return super.eIsSet(featureID);
@@ -686,8 +682,7 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (number: ");
@@ -697,15 +692,9 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
 		result.append(", function: ");
 		result.append(function);
 		result.append(", line: ");
-		if (lineESet)
-			result.append(line);
-		else
-			result.append("<unset>");
+		if (lineESet) result.append(line); else result.append("<unset>");
 		result.append(", status: ");
-		if (statusESet)
-			result.append(status);
-		else
-			result.append("<unset>");
+		if (statusESet) result.append(status); else result.append("<unset>");
 		result.append(", detailsFile: ");
 		result.append(detailsFile);
 		result.append(')');

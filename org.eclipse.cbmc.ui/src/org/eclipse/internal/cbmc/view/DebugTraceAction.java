@@ -37,7 +37,7 @@ public class DebugTraceAction extends SelectionListenerAction {
 				try {
 					new CBMCDebug(property).launchDebugger();
 				} catch (CoreException e) {
-					ErrorDialog.openError(null, "Counter example analysis", "A problem occurred while launching the analysis of the counter example. Nothing can be done.", new Status(IStatus.ERROR, org.eclipse.internal.cbmc.Activator.PLUGIN_ID, "Problem launching counter example analysis", e));
+					ErrorDialog.openError(null, "Counter example analysis", "A problem occurred while launching the analysis of the counter example. Nothing can be done.", new Status(IStatus.ERROR, org.eclipse.internal.cbmc.Activator.PLUGIN_ID, "Problem launching counter example analysis", e)); //$NON-NLS-1$ //$NON-NLS-3$
 					return;
 				}
 

@@ -9,7 +9,7 @@
       </category>
       <view
             category="org.eclipse.cbmc.ui.view.category"
-            class="org.eclipse.internal.cbmc.view.PropertiesView"
+            class="org.eclipse.internal.cbmc.view.CbmcView"
             icon="icons/sample.gif"
             id="org.eclipse.cbmc.ui.view.properties"
             name="CBMC">
