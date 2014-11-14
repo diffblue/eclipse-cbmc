@@ -2,14 +2,18 @@
  */
 package org.eclipse.cbmc.provider;
 
+
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.cbmc.CbmcPackage;
-import org.eclipse.cbmc.Property;
-import org.eclipse.cbmc.*;
+import org.eclipse.cbmc.Loop;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -22,19 +26,26 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.cbmc.Property} object.
+ * This is the item provider adapter for a {@link org.eclipse.cbmc.Loop} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PropertyItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class LoopItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PropertyItemProvider(AdapterFactory adapterFactory) {
+	public LoopItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -49,54 +60,30 @@ public class PropertyItemProvider extends ItemProviderAdapter implements IEditin
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addCategoryPropertyDescriptor(object);
-			addNumberPropertyDescriptor(object);
-			addDescriptionPropertyDescriptor(object);
-			addFilePropertyDescriptor(object);
+			addIdPropertyDescriptor(object);
+			addUnwindPropertyDescriptor(object);
+			addPathPropertyDescriptor(object);
+			addFilenamePropertyDescriptor(object);
 			addFunctionPropertyDescriptor(object);
 			addLinePropertyDescriptor(object);
-			addStatusPropertyDescriptor(object);
-			addDetailsFilePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Category feature.
+	 * This adds a property descriptor for the Id feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addCategoryPropertyDescriptor(Object object) {
+	protected void addIdPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Property_category_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Property_category_feature", "_UI_Property_type"),
-				 CbmcPackage.Literals.PROPERTY__CATEGORY,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Number feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNumberPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Property_number_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Property_number_feature", "_UI_Property_type"),
-				 CbmcPackage.Literals.PROPERTY__NUMBER,
+				 getString("_UI_Loop_id_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Loop_id_feature", "_UI_Loop_type"),
+				 CbmcPackage.Literals.LOOP__ID,
 				 true,
 				 false,
 				 false,
@@ -106,19 +93,19 @@ public class PropertyItemProvider extends ItemProviderAdapter implements IEditin
 	}
 
 	/**
-	 * This adds a property descriptor for the Description feature.
+	 * This adds a property descriptor for the Unwind feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDescriptionPropertyDescriptor(Object object) {
+	protected void addUnwindPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Property_description_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Property_description_feature", "_UI_Property_type"),
-				 CbmcPackage.Literals.PROPERTY__DESCRIPTION,
+				 getString("_UI_Loop_unwind_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Loop_unwind_feature", "_UI_Loop_type"),
+				 CbmcPackage.Literals.LOOP__UNWIND,
 				 true,
 				 false,
 				 false,
@@ -128,23 +115,45 @@ public class PropertyItemProvider extends ItemProviderAdapter implements IEditin
 	}
 
 	/**
-	 * This adds a property descriptor for the File feature.
+	 * This adds a property descriptor for the Path feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFilePropertyDescriptor(Object object) {
+	protected void addPathPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Property_file_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Property_file_feature", "_UI_Property_type"),
-				 CbmcPackage.Literals.PROPERTY__FILE,
+				 getString("_UI_Loop_path_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Loop_path_feature", "_UI_Loop_type"),
+				 CbmcPackage.Literals.LOOP__PATH,
 				 true,
 				 false,
-				 true,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Filename feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFilenamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Loop_filename_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Loop_filename_feature", "_UI_Loop_type"),
+				 CbmcPackage.Literals.LOOP__FILENAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -160,9 +169,9 @@ public class PropertyItemProvider extends ItemProviderAdapter implements IEditin
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Property_function_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Property_function_feature", "_UI_Property_type"),
-				 CbmcPackage.Literals.PROPERTY__FUNCTION,
+				 getString("_UI_Loop_function_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Loop_function_feature", "_UI_Loop_type"),
+				 CbmcPackage.Literals.LOOP__FUNCTION,
 				 true,
 				 false,
 				 false,
@@ -182,9 +191,9 @@ public class PropertyItemProvider extends ItemProviderAdapter implements IEditin
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Property_line_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Property_line_feature", "_UI_Property_type"),
-				 CbmcPackage.Literals.PROPERTY__LINE,
+				 getString("_UI_Loop_line_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Loop_line_feature", "_UI_Loop_type"),
+				 CbmcPackage.Literals.LOOP__LINE,
 				 true,
 				 false,
 				 false,
@@ -194,86 +203,30 @@ public class PropertyItemProvider extends ItemProviderAdapter implements IEditin
 	}
 
 	/**
-	 * This adds a property descriptor for the Status feature.
+	 * This returns Loop.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 */
-	protected void addStatusPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Property_status_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Property_status_feature", "_UI_Property_type"),
-				 CbmcPackage.Literals.PROPERTY__STATUS,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Details File feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDetailsFilePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Property_detailsFile_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Property_detailsFile_feature", "_UI_Property_type"),
-				 CbmcPackage.Literals.PROPERTY__DETAILS_FILE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns Property.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		PropertyStatus status = ((Property) object).getStatus();
-
-		if (status == PropertyStatus.SUCCEEDED)
-			return overlayImage(object, getResourceLocator().getImage("full/obj16/propertysucceeded.gif"));
-
-		if (status == PropertyStatus.ERROR)
-			return overlayImage(object, getResourceLocator().getImage("full/obj16/propertyerror.gif"));
-
-		if (status == PropertyStatus.FAILED)
-			return overlayImage(object, getResourceLocator().getImage("full/obj16/propertyfailed.gif"));
-
-		if (status == PropertyStatus.RUNNING)
-			return overlayImage(object, getResourceLocator().getImage("full/obj16/propertyrunning.gif"));
-
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/property.gif"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Loop"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String function = ((Property) object).getFunction();
-		String description = ((Property) object).getDescription();
-		return function == null || function.length() == 0 ? getString("_UI_Property_type") : function + (description == null || description.length() == 0 ? " " : ": " + description);
+		String label = ((Loop)object).getId();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Loop_type") :
+			getString("_UI_Loop_type") + " " + label;
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -286,13 +239,13 @@ public class PropertyItemProvider extends ItemProviderAdapter implements IEditin
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Property.class)) {
-			case CbmcPackage.PROPERTY__NUMBER:
-			case CbmcPackage.PROPERTY__DESCRIPTION:
-			case CbmcPackage.PROPERTY__FUNCTION:
-			case CbmcPackage.PROPERTY__LINE:
-			case CbmcPackage.PROPERTY__STATUS:
-			case CbmcPackage.PROPERTY__DETAILS_FILE:
+		switch (notification.getFeatureID(Loop.class)) {
+			case CbmcPackage.LOOP__ID:
+			case CbmcPackage.LOOP__UNWIND:
+			case CbmcPackage.LOOP__PATH:
+			case CbmcPackage.LOOP__FILENAME:
+			case CbmcPackage.LOOP__FUNCTION:
+			case CbmcPackage.LOOP__LINE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

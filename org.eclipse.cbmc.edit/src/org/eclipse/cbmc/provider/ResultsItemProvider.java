@@ -2,7 +2,6 @@
  */
 package org.eclipse.cbmc.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 import org.eclipse.cbmc.CbmcFactory;
@@ -29,14 +28,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ResultsItemProvider
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class ResultsItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -227,6 +219,7 @@ public class ResultsItemProvider
 			case CbmcPackage.RESULTS__RUN_COUNT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case CbmcPackage.RESULTS__LOOPS:
 			case CbmcPackage.RESULTS__PROPERTIES:
 			case CbmcPackage.RESULTS__FILES:
 			case CbmcPackage.RESULTS__CATEGORIES:
@@ -246,6 +239,11 @@ public class ResultsItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(CbmcPackage.Literals.RESULTS__LOOPS,
+				 CbmcFactory.eINSTANCE.createLoop()));
 
 		newChildDescriptors.add
 			(createChildParameter

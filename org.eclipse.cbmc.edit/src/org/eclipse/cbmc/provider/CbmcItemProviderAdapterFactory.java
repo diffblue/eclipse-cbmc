@@ -95,6 +95,29 @@ public class CbmcItemProviderAdapterFactory extends CbmcAdapterFactory implement
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.cbmc.Loop} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LoopItemProvider loopItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.cbmc.Loop}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLoopAdapter() {
+		if (loopItemProvider == null) {
+			loopItemProvider = new LoopItemProvider(this);
+		}
+
+		return loopItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.cbmc.Property} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -263,6 +286,7 @@ public class CbmcItemProviderAdapterFactory extends CbmcAdapterFactory implement
 	 */
 	public void dispose() {
 		if (fileItemProvider != null) fileItemProvider.dispose();
+		if (loopItemProvider != null) loopItemProvider.dispose();
 		if (propertyItemProvider != null) propertyItemProvider.dispose();
 		if (propertyCategoryItemProvider != null) propertyCategoryItemProvider.dispose();
 		if (resultsItemProvider != null) resultsItemProvider.dispose();
