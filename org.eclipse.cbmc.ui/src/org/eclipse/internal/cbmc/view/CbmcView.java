@@ -126,8 +126,8 @@ public class CbmcView extends ViewPart {
 		viewer.getControl().setFocus();
 	}
 
-	protected Composite createProgressCountPanel(Composite parent) {
-		Composite composite = new Composite(parent, SWT.NONE);
+	protected Composite createProgressCountPanel(Composite p) {
+		Composite composite = new Composite(p, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		composite.setLayout(layout);
 		setCounterColumns(layout);
@@ -174,7 +174,6 @@ public class CbmcView extends ViewPart {
 			}
 		});
 		generatePropertiesJob.schedule();
-		System.out.println("terminé");
 	}
 
 	void changeInput(Results newResults) {
@@ -200,6 +199,7 @@ public class CbmcView extends ViewPart {
 	private void addResizeListener(Composite parent1) {
 		parent1.addControlListener(new ControlListener() {
 			public void controlMoved(ControlEvent e) {
+				//Nothing to do
 			}
 
 			public void controlResized(ControlEvent e) {
