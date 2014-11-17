@@ -14,5 +14,14 @@
             sourcePathComputerId="org.eclipse.cdt.debug.core.sourcePathComputer">
       </launchConfigurationType>
    </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+      		class=""
+            id="org.eclipse.cbmc.tracedebugger.launcher.launchConfigurationTabGroup1"
+            type="org.eclipse.cbmc.debug.CBMCDebugLaunchConfiguration">
+            <launchMode mode="debug" perspective="org.eclipse.debug.ui.DebugPerspective"/>
+      </launchConfigurationTabGroup>
+   </extension>
    
 </plugin>

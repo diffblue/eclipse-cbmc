@@ -10,6 +10,7 @@ import org.eclipse.debug.core.ILaunchConfigurationType;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.ui.DebugUITools;
+import org.eclipse.debug.ui.IDebugUIConstants;
 
 public class CBMCDebug {
 	//Constants for the launch configuration
@@ -26,6 +27,7 @@ public class CBMCDebug {
 	public void launchDebugger()  throws CoreException  {
 		ILaunchManager launchMgr = DebugPlugin.getDefault().getLaunchManager();
 		ILaunchConfigurationType lct = launchMgr.getLaunchConfigurationType("org.eclipse.cbmc.debug.CBMCDebugLaunchConfiguration");
+		DebugUITools.setLaunchPerspective(lct, ILaunchManager.DEBUG_MODE, IDebugUIConstants.PERSPECTIVE_DEFAULT);
 		ILaunchConfigurationWorkingCopy newLC = lct.newInstance(null, "Debug counterexample");
 		configureLaunchConfiguration(newLC);
 		DebugUITools.launch(newLC, ILaunchManager.DEBUG_MODE);
