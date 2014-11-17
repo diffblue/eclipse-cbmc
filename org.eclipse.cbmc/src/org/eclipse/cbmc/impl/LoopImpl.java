@@ -213,7 +213,6 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop {
 	 */
 	public void setUnwind(String newUnwind) {
 		try {
-
 			if (newUnwind.isEmpty() || Integer.parseInt(newUnwind) >= 0) {
 				String oldUnwind = unwind;
 				unwind = newUnwind;

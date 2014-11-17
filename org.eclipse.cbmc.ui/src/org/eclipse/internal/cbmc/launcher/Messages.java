@@ -1,5 +1,6 @@
 package org.eclipse.internal.cbmc.launcher;
 
+import java.text.MessageFormat;
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
@@ -9,6 +10,8 @@ public class Messages extends NLS {
 	public static String MainLaunchingTab_error_2;
 	public static String MainLaunchingTab_error_3;
 	public static String MainLaunchingTab_error_4;
+	public static String MainLaunchingTab_error_5;
+	public static String MainLaunchingTab_error_6;
 
 	public static String MainLaunchingTab_labelUnwind = null;
 	public static String MainLaunchingTab_labelAutorun = null;
@@ -28,11 +31,16 @@ public class Messages extends NLS {
 	public static String MainLaunchingTab_7;
 	public static String MainLaunchingTab_labelExecutable;
 	public static String MainLaunchingTab_labelFile;
+	public static String MainLaunchingTab_showloops;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
 	}
 
 	private Messages() {
+	}
+
+	public static String format(String message, Object[] objects) {
+		return MessageFormat.format(message, objects);
 	}
 }

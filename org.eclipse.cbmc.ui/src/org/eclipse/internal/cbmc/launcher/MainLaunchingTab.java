@@ -1,6 +1,11 @@
 package org.eclipse.internal.cbmc.launcher;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.attribute.FileAttribute;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 import org.eclipse.cbmc.util.CBMCCliHelper;
@@ -21,6 +26,8 @@ import org.eclipse.ui.dialogs.ResourceListSelectionDialog;
 
 public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 
+	private static final String FILE_EXTENSIONS[] = {".c", ".cpp"}; //$NON-NLS-1$//$NON-NLS-2$
+	private static final String GOTO_INSTRUMENT = "goto-instrument"; //$NON-NLS-1$
 	private List<Button> optionButtons;
 	private Text executableText;
 	private Button executableButton;
@@ -30,19 +37,20 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 	private Button autorunBtn;
 	private Button showLoopsBtn;
 	private Text unwindText;
-
 	final String NO_VALUE = ""; //$NON-NLS-1$
+
+	//private FieldStatus isExecutableDirty;
 
 	@Override
 	public boolean canSave() {
-		return validateExecutable() && validateCFile() && validateUnwind();
+		return validateExecutable() && validateFile() && validateUnwind();
 	}
 
 	@Override
 	public boolean isValid(ILaunchConfiguration launchConfig) {
 		setMessage(null);
 		setErrorMessage(null);
-		return validateExecutable() && validateCFile() && validateUnwind();
+		return validateExecutable() && validateFile() && validateUnwind();
 	}
 
 	private boolean validateExecutable() {
@@ -60,18 +68,65 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 		return true;
 	}
 
-	private boolean validateCFile() {
-		int len = fileText.getText().trim().length();
-		if (len == 0) {
+	private boolean validateFile() {
+		String filePath = fileText.getText().trim();
+		if (filePath.length() == 0) {
 			setErrorMessage(Messages.MainLaunchingTab_error_2);
 			return false;
 		}
-		String path = fileText.getText().trim();
-		File f = new File(path);
+		File f = new File(filePath);
 		if (!f.exists()) {
 			setErrorMessage(Messages.MainLaunchingTab_error_3);
+			return false;
 		}
-		return true;
+		return validateSourceFile() || validateBinaryFile();
+	}
+
+	private boolean validateSourceFile() {
+		String filePath = fileText.getText().trim();
+		String extension = filePath.substring(filePath.lastIndexOf("."), filePath.length()); //$NON-NLS-1$
+		for (int i = 0; i < FILE_EXTENSIONS.length; i++) {
+			if (extension.equals(FILE_EXTENSIONS[i]))
+				return true;
+		}
+		return false;
+	}
+
+	private boolean validateBinaryFile() {
+		String filePath = fileText.getText().trim();
+		String cbmcCommand = executableText.getText().trim();
+		String gotoInstrumentPath = cbmcCommand.substring(0, cbmcCommand.lastIndexOf("/") + 1) + GOTO_INSTRUMENT; //$NON-NLS-1$
+		File f = new File(gotoInstrumentPath);
+		if (!f.exists()) {
+			setErrorMessage(Messages.format(Messages.MainLaunchingTab_error_6, new String[] {gotoInstrumentPath}));
+			return false;
+		}
+		Path tmpDir;
+		try {
+
+			tmpDir = Files.createTempDirectory("goto-instrument", new FileAttribute[0]);
+			File workingDirectory = new File(tmpDir.toFile(), new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())); //$NON-NLS-1$
+			workingDirectory.mkdirs();
+			List<String> baseCli = new ArrayList<String>();
+			baseCli.add(gotoInstrumentPath);
+			baseCli.add(filePath);
+			baseCli.add(workingDirectory.getAbsolutePath().concat("/temp.out")); //$NON-NLS-1$
+			ProcessBuilder pb = new ProcessBuilder(baseCli);
+
+			pb.redirectErrorStream(true);
+			Process process;
+			process = pb.start();
+			process.waitFor();
+			if (process.exitValue() == 0) {
+				return true;
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		setErrorMessage(Messages.MainLaunchingTab_error_5);
+		return false;
 	}
 
 	private boolean validateUnwind() {
@@ -106,7 +161,11 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 		dialog.setFilterNames(new String[] {"cbmc*"}); //$NON-NLS-1$
 		String file = dialog.open();
 		if (file != null) {
-			executableText.setText(file);
+			if (!executableText.getText().equals(file)) {
+				//isExecutableDirty = FieldStatus.PENDING;
+				executableText.setText(file);
+			}
+
 		}
 	}
 
@@ -117,7 +176,11 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 		if (dialog.open() == Window.OK) {
 			Object[] files = dialog.getResult();
 			IFile file = (IFile) files[0];
-			fileText.setText(file.getRawLocation().makeAbsolute().toString());
+			if (!fileText.getText().equals(file.getRawLocation().makeAbsolute().toString())) {
+				fileText.setText(file.getRawLocation().makeAbsolute().toString());
+				//fileFieldStatus = FieldStatus.PENDING;
+
+			}
 		}
 	}
 
@@ -169,7 +232,7 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 		functionText.setFont(font);
 		functionText.addModifyListener(modifyListener);
 
-		new Label(comp, SWT.NONE).setText("show the loops"); //$NON-NLS-1$
+		new Label(comp, SWT.NONE).setText(Messages.MainLaunchingTab_showloops);
 		showLoopsBtn = new Button(comp, SWT.CHECK);
 		showLoopsBtn.setData("--show-loops"); //$NON-NLS-1$
 		showLoopsBtn.setLayoutData(gridData);
