@@ -40,6 +40,7 @@ public class LoopsViewerComparator extends ViewerComparator {
 					int i2 = (l2.getUnwind().isEmpty() ? 0 : Integer.parseInt(l2.getUnwind()));
 					rc = (i1 < i2 ? -1 : 1);
 				} catch (NumberFormatException e) {
+					//Impossible because the setter forces the string to be an int
 				}
 				break;
 			case 1 :
