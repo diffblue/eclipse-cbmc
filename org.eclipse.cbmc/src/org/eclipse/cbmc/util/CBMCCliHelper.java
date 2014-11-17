@@ -122,16 +122,16 @@ public class CBMCCliHelper {
 			}
 			Results model = (Results) (property.eContainer());
 			if (model.getLoops() != null && !model.getLoops().isEmpty()) {
-				ArrayList<String> unwindsets = new ArrayList();
+				ArrayList<String> unwindsets = new ArrayList<String>();
 				for (Loop loop : model.getLoops()) {
 					if (!loop.getUnwind().isEmpty()) {
-						unwindsets.add(loop.getId().concat(":").concat(loop.getUnwind()));
+						unwindsets.add(loop.getId().concat(":").concat(loop.getUnwind())); //$NON-NLS-1$
 					}
 				}
 				if (!unwindsets.isEmpty()) {
-					String unwindstring = "";
+					String unwindstring = ""; //$NON-NLS-1$
 					for (String s : unwindsets) {
-						unwindstring += (unwindstring.length() == 0 ? "" : ",") + s;
+						unwindstring += (unwindstring.length() == 0 ? "" : ",") + s; //$NON-NLS-1$ //$NON-NLS-2$
 					}
 					result.add(CBMC_ARG_UNWINDSET);
 					result.add(unwindstring);
@@ -170,10 +170,10 @@ public class CBMCCliHelper {
 	}
 
 	public String cliStringify(ArrayList<String> cli) {
-		String cliString = "";
-		for (Iterator iterator = cli.iterator(); iterator.hasNext();) {
-			String string = (String) iterator.next();
-			cliString += " " + string;
+		String cliString = ""; //$NON-NLS-1$
+		for (Iterator<String> iterator = cli.iterator(); iterator.hasNext();) {
+			String string = iterator.next();
+			cliString += " " + string; //$NON-NLS-1$
 		}
 		return cliString;
 	}
