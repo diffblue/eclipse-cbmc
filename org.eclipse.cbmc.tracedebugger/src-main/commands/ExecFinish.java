@@ -9,7 +9,6 @@ import process.StepResult;
 import process.SteppingResult;
 import process.impl.FunctionExecutionImpl;
 import results.async.BreakpointHit;
-import results.async.EndSteppingRange;
 import results.async.FunctionFinished;
 import results.async.Running;
 import results.data.Frame;
