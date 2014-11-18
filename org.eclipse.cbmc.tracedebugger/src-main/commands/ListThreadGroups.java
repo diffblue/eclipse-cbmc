@@ -1,6 +1,7 @@
 package commands;
 
 import org.eclipse.emf.common.util.EList;
+import org.kohsuke.args4j.Option;
 
 import infra.MICommand;
 import infra.MIOutput;
@@ -12,11 +13,12 @@ import results.sync.Done;
 import results.sync.Error;
 
 public class ListThreadGroups extends MICommand {
-
+	@Option(name="--available")
+	boolean available;
+	
 	@Override
 	public MIOutput perform(Process process) {
-		
-		if (parameters.length() == 0 || parameters.equals("--available")) {
+		if (arguments.size() == 0 || available) {
 			MIThreadGroup threadGroup = new MIThreadGroup();
 			threadGroup.id = process.getGroupThreadId();  
 			threadGroup.pid = process.getProcessNumber();
@@ -28,7 +30,7 @@ public class ListThreadGroups extends MICommand {
 		if (!process.isStarted())
 			return new Error(this, "Application not started. Can't fetch data now");
 		
-		if (parameters.equals(process.getGroupThreadId())) {
+		if (process.getGroupThreadId().equals(arguments.get(0))) {
 			EList<Thread> activeThreads = process.getActiveThreads();
 			MIThread[] activeThreadsResponse = new MIThread[activeThreads.size()];
 			int i = 0;
@@ -37,6 +39,6 @@ public class ListThreadGroups extends MICommand {
 			}
 			return new Done(this, "threads", activeThreadsResponse);
 		}
-		return new Error(this, "Unsupported command option or unmatched parameter " + parameters);
+		return new Error(this, "Unsupported command option or unmatched parameter ");
 	}
 }

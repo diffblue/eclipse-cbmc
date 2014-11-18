@@ -3,6 +3,9 @@ package commands;
 import infra.CompositeOutput;
 import infra.MICommand;
 import infra.MIOutput;
+
+import org.kohsuke.args4j.Option;
+
 import process.Breakpoint;
 import process.Process;
 import process.StepResult;
@@ -12,21 +15,13 @@ import results.async.BreakpointHit;
 import results.async.EndSteppingRange;
 import results.async.Running;
 import results.data.Frame;
-import results.sync.Error;
 
 public class ExecStep extends MICommand {
-
+	@Option(name = "--thread", required = true)
+	int threadId = 0;
+	
 	@Override
 	public MIOutput perform(Process process) {
-		int threadId = 0;
-		
-		String[] tokens = parameters.split(" ");
-		if (tokens.length < 2)
-			return new Error(this, "Missing arguments");
-		
-		if (tokens[0].equals("--thread"))
-			threadId = Integer.valueOf(tokens[1]);
-		
 		//TODO we don't deal with the last argument
 		
 		//Step in the model
@@ -56,5 +51,4 @@ public class ExecStep extends MICommand {
 		
 		return new CompositeOutput(new results.sync.Running(this), running, result); 
 	}
-	
 }

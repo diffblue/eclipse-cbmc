@@ -6,14 +6,17 @@ import process.Process;
 import results.data.MIThread;
 import results.sync.Done;
 
+//32-thread-info 1
 public class ThreadInfo extends MICommand {
-
+	
 	@Override
 	public MIOutput perform(Process process) {
-		//32-thread-info 1
-		process.Thread currentThread = process.getThread(Integer.valueOf(parameters));
+		process.Thread currentThread = process.getThread(Integer.valueOf(arguments.get(0)));
 		MIThread mi = new MIThread(currentThread);
 		return new Done(this, "threads", new MIThread[] {mi});
 	}
 
+	protected int getMinimalNumberOfArguments() {
+		return 1;
+	}
 }

@@ -2,26 +2,24 @@ package commands;
 
 import infra.MICommand;
 import infra.MIOutput;
+
+import org.kohsuke.args4j.Option;
+
 import process.Process;
 import results.sync.Done;
-import results.sync.Error;
 
 public class FileExecAndSymbols extends MICommand {
-
+	@Option(name="--thread-group")
+	String groupId = null;
+	
 	@Override
 	public MIOutput perform(Process process) {
-		String groupId = null;
-
-		String[] tokens = parameters.split(" ");
-		if (tokens.length < 3)
-			return new Error(this, "Missing arguments");
-		
-		if (tokens[0].equals("--thread-group"))
-			groupId = tokens[1];
-
 		process.setGroupThreadId(groupId);
-		process.setExecutableName(tokens[2]);
+		process.setExecutableName(arguments.get(0));
 		return new Done(this);
 	}
 
+	protected int getMinimalNumberOfArguments() {
+		return 1;
+	}
 }

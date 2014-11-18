@@ -1,5 +1,7 @@
 package commands;
 
+import org.kohsuke.args4j.Option;
+
 import infra.CompositeOutput;
 import infra.MICommand;
 import infra.MIOutput;
@@ -13,19 +15,13 @@ import results.async.EndSteppingRange;
 import results.async.Running;
 import results.data.Frame;
 
+// 645,360 25-exec-run --thread-group i1
+// 645,362 =thread-group-started,id="i1",pid="7234"
+// 645,363 =thread-created,id="1",group-id="i1
+// 645,483 25^running
 public class ExecRun extends MICommand {
+	@Option(name="--thread-group", required = true)
 	private String threadGroup = null;
-
-	@Override
-	public void initialize(String id, String parameters) {
-		super.initialize(id, parameters);
-		if (parameters.length() > 0) {
-			String[] segments = parameters.split("\\s");
-			if (segments.length == 2 && segments[0].equals("--thread-group")) {
-				threadGroup = segments[1];
-			}
-		}
-	}
 
 	@Override
 	public MIOutput perform(Process process) {
@@ -57,14 +53,5 @@ public class ExecRun extends MICommand {
 		running.threadId = "all";
 		
 		return new CompositeOutput(result, new results.sync.Running(this), running, startReturnCodeAsMIOuput); 
-		// 645,360 25-exec-run --thread-group i1
-		// 645,362 =thread-group-started,id="i1",pid="7234"
-		// 645,363 =thread-created,id="1",group-id="i1
-		// 645,483 25^running
 	}
-
-	public String getThreadGroup() {
-		return threadGroup;
-	}
-
 }

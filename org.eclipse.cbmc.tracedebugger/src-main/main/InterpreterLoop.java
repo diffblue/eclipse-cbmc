@@ -52,8 +52,9 @@ public class InterpreterLoop {
 			String parameters = matcher.group(3);
 			
 			MICommand command = MICmdFactory.createCommand(commandName);
-			command.initialize(commandNumber, parameters.trim());
-			MIOutput result = command.perform(process);
+			MIOutput result = command.initialize(commandNumber, parameters.trim());
+			if (result == null)
+				result = command.perform(process);
 			List<String> entries = result.serialize();
 			for (String entry : entries) {
 				logger.info(entry);

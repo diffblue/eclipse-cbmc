@@ -33,6 +33,7 @@ public class PathsUtils {
 		allDependencies.add("org.eclipse.emf.ecore");
 		allDependencies.add("org.eclipse.emf.common");
 		allDependencies.add("org.eclipse.emf.ecore.xmi");
+		allDependencies.add("org.kohsuke.args4j");
 		return allDependencies;
 	}
 

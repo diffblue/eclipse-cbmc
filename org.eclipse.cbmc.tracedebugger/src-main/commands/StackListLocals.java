@@ -4,32 +4,24 @@ import infra.MICommand;
 import infra.MIOutput;
 
 import org.eclipse.emf.common.util.EList;
+import org.kohsuke.args4j.Option;
 
 import process.Process;
 import results.data.Vars;
 import results.sync.Done;
-import results.sync.Error;
 import trace.Assignment;
 
+//stack-list-locals --thread 1 --frame 0 1
+//locals=[{name="tmpOne",value="0"},{name="retOne",value="0"}]
 public class StackListLocals extends MICommand {
-//	stack-list-locals --thread 1 --frame 0 1
-	//locals=[{name="tmpOne",value="0"},{name="retOne",value="0"}]
+	@Option(name="--thread", required=true)
+	int threadId;
+	
+	@Option(name="--frame", required=false)
+	int frameId;
+	
 	@Override
-	public MIOutput perform(Process process) {
-		//stack-list-frames
-		int threadId = 0;
-		int frameId = 0;
-		
-		String[] tokens = parameters.split(" ");
-		if (tokens.length < 2)
-			return new Error(this, "Missing arguments");
-		
-		if (tokens[0].equals("--thread"))
-			threadId = Integer.valueOf(tokens[1]);
-
-		if (tokens[2].equals("--frame"))
-			frameId = Integer.valueOf(tokens[3]);
-
+	public MIOutput perform(Process process) {		
 		EList<Assignment> localVariables = process.getThread(threadId).getFrame(frameId).getVariables();
 		Vars[] results = new Vars[localVariables.size()];
 		int i = 0;

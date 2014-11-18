@@ -2,27 +2,28 @@ package commands;
 
 import infra.MICommand;
 import infra.MIOutput;
+
+import org.kohsuke.args4j.Option;
+
 import process.Process;
 import results.data.VarHelper;
 import results.data.Vars;
 import results.sync.Done;
-import results.sync.Error;
 import trace.Assignment;
 
+// 41-var-create --thread 1 --frame 0 - * tmpOne
 public class VarCreate extends MICommand {
+	@Option(name="--thread", required=true)
+	int threadId = 0;
+	
+	@Option(name="--frame", required=false)
+	int frameId;
+	
 
-	// 41-var-create --thread 1 --frame 0 - * tmpOne
-
-	@Override
-	public MIOutput perform(Process process) {
-		int threadId = 0;
-		int frameId = -1;
-		String name = null;
-		String localVarName = null;
-		
-		String[] tokens = parameters.split(" ");
+	//Here we are not using the default parsing capabilities of MICommand because the '-' passsed as an argument trips args4j
+	public results.sync.Error parseParameters(String[] tokens) {
 		if (tokens.length < 2)
-			return new Error(this, "Missing arguments");
+			return new results.sync.Error(this, "Missing arguments");
 
 		if (tokens[0].equals("--thread"))
 			threadId = Integer.valueOf(tokens[1]);
@@ -30,20 +31,35 @@ public class VarCreate extends MICommand {
 		if (tokens[2].equals("--frame"))
 			frameId = Integer.valueOf(tokens[3]);
 		
-		if (!tokens[4].equals("-")) {
-			name = tokens[4];
+		if (tokens.length > 4) {
+			for (int i = 4; i < tokens.length; i++) {
+				arguments.add(tokens[i]);
+			}
+		}
+			
+			
+		return null;
+	}
+	
+	@Override
+	public MIOutput perform(Process process) {
+		String internalVarName = null;
+		String programVarName = null;
+		
+		if (!arguments.get(0).equals("-")) {
+			internalVarName = arguments.get(0);
 		} else {
-			name = "var" + (process.getVariableManager().getVariables().size() + 1);
+			internalVarName = "var" + (process.getVariableManager().getVariables().size() + 1);
 		}
 		
-		localVarName = tokens[6];
+		programVarName = arguments.get(2);
 		
-		Assignment match = process.getThread(threadId).getFrame(frameId).getVariable(localVarName);
-		process.getVariableManager().getVariables().put(name, match);
-		process.getVariableManager().getPreviousValues().put(name, match);
+		Assignment match = process.getThread(threadId).getFrame(frameId).getVariable(programVarName);
+		process.getVariableManager().getVariables().put(internalVarName, match);
+		process.getVariableManager().getPreviousValues().put(internalVarName, match);
 		
 		Vars v = new Vars();
-		v.name = name;
+		v.name = internalVarName;
 		v.value = match.getFullLhsValue();
 		v.type = VarHelper.getMIType(match.getType());	//TODO voir si il ne faut pas convertir
 		v.numchild = "0"; //TODO A revoir qd on aura des vraies variables
