@@ -22,6 +22,7 @@ public class GenerateLoopsJob extends Job {
 	private static final String LOOPS_OUTPUT_CBMC = "loops.output.cbmc"; //$NON-NLS-1$
 	private static final String LOOPS_INPUT_XML = "loops.input.xml"; //$NON-NLS-1$
 	private static final String TRANSFORM_XSL = "loopsTransform.xsl"; //$NON-NLS-1$
+	private static final int SUCCESS_EXITVALUE = 6;
 
 	private CBMCCliHelper cliHelper;
 	private EList<Loop> loops;
@@ -36,20 +37,22 @@ public class GenerateLoopsJob extends Job {
 		try {
 			File inputfile = new File(cliHelper.getWorkingDirectory(), LOOPS_INPUT_XML);
 			File outputfile = new File(cliHelper.getWorkingDirectory(), LOOPS_OUTPUT_CBMC);
-			boolean success = ProcessHelper.executeCommandWithRedirectOutput(cliHelper.getCommandLineForAllLoops(), inputfile);
-			//Transform CBMC XML output into something EMF can read
-			Source xmlInput = new StreamSource(inputfile);
-			Source xsl = new StreamSource(FileLocator.openStream(Platform.getBundle(Activator.PLUGIN_ID), new Path(TRANSFORM_XSL), false));
-			Result xmlOutput = new StreamResult(outputfile);
-			Transformer transformer = TransformerFactory.newInstance().newTransformer(xsl);
-			transformer.transform(xmlInput, xmlOutput);
+			int exitValue = ProcessHelper.executeCommandWithRedirectOutput(cliHelper.getCommandLineForAllLoops(), inputfile);
+			if (exitValue == SUCCESS_EXITVALUE) {
+				//Transform CBMC XML output into something EMF can read
+				Source xmlInput = new StreamSource(inputfile);
+				Source xsl = new StreamSource(FileLocator.openStream(Platform.getBundle(Activator.PLUGIN_ID), new Path(TRANSFORM_XSL), false));
+				Result xmlOutput = new StreamResult(outputfile);
+				Transformer transformer = TransformerFactory.newInstance().newTransformer(xsl);
+				transformer.transform(xmlInput, xmlOutput);
 
-			//Load newly created file
-			URI uri = URI.createFileURI(outputfile.getAbsolutePath());
-			ResourceSet resSet = new ResourceSetImpl();
-			Resource resource = resSet.getResource(uri, true);
-			Results results = (Results) resource.getContents().get(0);
-			loops = results.getLoops();
+				//Load newly created file
+				URI uri = URI.createFileURI(outputfile.getAbsolutePath());
+				ResourceSet resSet = new ResourceSetImpl();
+				Resource resource = resSet.getResource(uri, true);
+				Results results = (Results) resource.getContents().get(0);
+				loops = results.getLoops();
+			}
 		} catch (IOException e) {
 			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Cannot open the XSLT file for loops: " + TRANSFORM_XSL, e); //$NON-NLS-1$
 		} catch (TransformerException e) {

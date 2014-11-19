@@ -7,6 +7,8 @@ import org.eclipse.internal.cbmc.Activator;
 
 public class ProcessHelper {
 
+	private static final int SUCCESS_EXITVALUE = 0;
+
 	public static boolean executeCommand(String... cli) {
 		return (Boolean) executeCommand(cli, false, null, null)[0];
 	}
@@ -14,21 +16,22 @@ public class ProcessHelper {
 	public static String executeCommandWithOutput(String... cli) {
 		Object[] result = executeCommand(cli, true, null, null);
 		if (result[0].equals(Boolean.TRUE))
-			return (String) result[1];
+			return (String) result[2];
 		return null;
 	}
 
-	public static boolean executeCommandWithRedirectOutput(String[] cli, File redirectOutput) {
+	public static int executeCommandWithRedirectOutput(String[] cli, File redirectOutput) {
 		return executeCommandWithRedirectOutput(cli, redirectOutput, null);
 	}
 
-	public static boolean executeCommandWithRedirectOutput(String[] cli, File redirectOutput, IProgressMonitor monitor) {
-		return (Boolean) executeCommand(cli, false, redirectOutput, monitor)[0];
+	public static int executeCommandWithRedirectOutput(String[] cli, File redirectOutput, IProgressMonitor monitor) {
+		return (int) executeCommand(cli, false, redirectOutput, monitor)[1];
 	}
 
 	private static Object[] executeCommand(String[] cli, boolean returnOutput, File redirectOutput, IProgressMonitor monitor) {
 		String output = null;
 		boolean success = false;
+		int exitValue = -1;
 		try {
 			ProcessBuilder pb = new ProcessBuilder(cli);
 			pb.redirectErrorStream(true);
@@ -50,7 +53,8 @@ public class ProcessHelper {
 				output = buffer.readLine();
 				buffer.close();
 			}
-			success = (process.exitValue() == 0);
+			exitValue = process.exitValue();
+			success = (exitValue == SUCCESS_EXITVALUE);
 			//			if (!success) {
 			//				log(IStatus.ERROR, "Command execution failed (" + cliToString(cli) + "): exitValue=" + process.exitValue(), null); //$NON-NLS-1$//$NON-NLS-2$
 			//			}
@@ -58,7 +62,7 @@ public class ProcessHelper {
 		} catch (IOException | InterruptedException e) {
 			logError("Cannot execute the command: " + cliToString(cli), e); //$NON-NLS-1$
 		}
-		return new Object[] {success, output};
+		return new Object[] {success, exitValue, output};
 	}
 
 	private static String cliToString(String... cli) {
