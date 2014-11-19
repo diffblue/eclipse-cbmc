@@ -6,8 +6,6 @@ import org.eclipse.osgi.util.NLS;
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.internal.cbmc.view.messages"; //$NON-NLS-1$
 
-	public static String CheckPropertyJob_0;
-
 	public static String CounterPanel_0;
 	public static String CounterPanel_1;
 	public static String CounterPanel_2;

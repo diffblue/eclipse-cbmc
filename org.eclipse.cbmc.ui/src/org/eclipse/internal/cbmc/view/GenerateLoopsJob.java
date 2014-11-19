@@ -2,9 +2,6 @@ package org.eclipse.internal.cbmc.view;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.transform.*;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
@@ -19,12 +16,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.internal.cbmc.Activator;
+import org.eclipse.internal.cbmc.launcher.ProcessHelper;
 
 public class GenerateLoopsJob extends Job {
 	private static final String LOOPS_OUTPUT_CBMC = "loops.output.cbmc"; //$NON-NLS-1$
 	private static final String LOOPS_INPUT_XML = "loops.input.xml"; //$NON-NLS-1$
 	private static final String TRANSFORM_XSL = "loopsTransform.xsl"; //$NON-NLS-1$
-	private static final Logger logger = Logger.getLogger(GenerateLoopsJob.class.getName());
 
 	private CBMCCliHelper cliHelper;
 	private EList<Loop> loops;
@@ -39,16 +36,7 @@ public class GenerateLoopsJob extends Job {
 		try {
 			File inputfile = new File(cliHelper.getWorkingDirectory(), LOOPS_INPUT_XML);
 			File outputfile = new File(cliHelper.getWorkingDirectory(), LOOPS_OUTPUT_CBMC);
-
-			ArrayList<String> cli = cliHelper.getCommandLineForAllLoops();
-			logger.log(Level.INFO, "Generate loops - Command: " + cliHelper.cliStringify(cli)); //$NON-NLS-1$
-			ProcessBuilder pb = new ProcessBuilder(cli);
-			pb.redirectErrorStream(true);
-			pb.redirectOutput(inputfile);
-			Process process = pb.start();
-			process.waitFor();
-
-			logger.log(Level.INFO, "Generate Loops - CBMC Output: " + inputfile.getAbsolutePath()); //$NON-NLS-1$
+			boolean success = ProcessHelper.executeCommandWithRedirectOutput(cliHelper.getCommandLineForAllLoops(), inputfile);
 			//Transform CBMC XML output into something EMF can read
 			Source xmlInput = new StreamSource(inputfile);
 			Source xsl = new StreamSource(FileLocator.openStream(Platform.getBundle(Activator.PLUGIN_ID), new Path(TRANSFORM_XSL), false));
@@ -62,8 +50,10 @@ public class GenerateLoopsJob extends Job {
 			Resource resource = resSet.getResource(uri, true);
 			Results results = (Results) resource.getContents().get(0);
 			loops = results.getLoops();
-		} catch (IOException | TransformerException | InterruptedException e) {
-			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.CheckPropertyJob_0, e);
+		} catch (IOException e) {
+			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Cannot open the XSLT file for loops: " + TRANSFORM_XSL, e); //$NON-NLS-1$
+		} catch (TransformerException e) {
+			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Cannot transform CBMC loops into the ecore model", e); //$NON-NLS-1$
 		}
 		return Status.OK_STATUS;
 	}

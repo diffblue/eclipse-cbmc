@@ -154,9 +154,11 @@ public class CbmcView extends ViewPart {
 					generateLoopsJob.addJobChangeListener(new JobChangeAdapter() {
 						@Override
 						public void done(IJobChangeEvent event1) {
-							results.getLoops().addAll(((GenerateLoopsJob) event1.getJob()).getLoops());
-							if (results.getCBMCHelper().isAutoRun()) {
-								checkAllPropertiesJob.schedule();
+							if (event1.getJob().getResult().isOK()) {
+								results.getLoops().addAll(((GenerateLoopsJob) event1.getJob()).getLoops());
+								if (results.getCBMCHelper().isAutoRun()) {
+									checkAllPropertiesJob.schedule();
+								}
 							}
 						}
 					});

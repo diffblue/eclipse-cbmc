@@ -1,22 +1,16 @@
 package org.eclipse.internal.cbmc.view;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.eclipse.cbmc.*;
 import org.eclipse.cbmc.util.CBMCCliHelper;
 import org.eclipse.core.runtime.*;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.internal.cbmc.Activator;
+import org.eclipse.internal.cbmc.launcher.ProcessHelper;
 
 public class CheckPropertyJob extends Job {
 
 	private static final String COUTEREXAMPLE_EXT = ".xml"; //$NON-NLS-1$
 	private static final String FILE_COUNTEREXAMPLE_PREFIX = "counterexample."; //$NON-NLS-1$
-	private static final Logger logger = Logger.getLogger(CheckPropertyJob.class.getName());
 
 	private Property property;
 	private File counterExampleFile;
@@ -28,45 +22,28 @@ public class CheckPropertyJob extends Job {
 
 	@Override
 	protected IStatus run(IProgressMonitor monitor) {
-		try {
-			//TODO  we want to synchronize on property 
-			if (property.getStatus() != PropertyStatus.PENDING)
-				return Status.OK_STATUS;
+		//TODO  we want to synchronize on property 
+		if (property.getStatus() != PropertyStatus.PENDING)
+			return Status.OK_STATUS;
 
-			property.setStatus(PropertyStatus.RUNNING);
-			CBMCCliHelper cliHelper = ((Results) property.eContainer()).getCBMCHelper();
-			counterExampleFile = new File(cliHelper.getWorkingDirectory(), FILE_COUNTEREXAMPLE_PREFIX + property.getNumber() + COUTEREXAMPLE_EXT);
-			ArrayList<String> cli = cliHelper.getCommandLineForPropertyCheck(property);
-			logger.log(Level.INFO, "Check Property - Command: " + cliHelper.cliStringify(cli)); //$NON-NLS-1$
-			ProcessBuilder pb = new ProcessBuilder(cli);
-			pb.redirectErrorStream(true);
-			pb.redirectOutput(counterExampleFile);
-			Process process = pb.start();
-			while (!process.waitFor(1, TimeUnit.SECONDS)) {
-				if (monitor.isCanceled()) {
-					process.destroy();
-					property.setStatus(PropertyStatus.PENDING);
-					return Status.CANCEL_STATUS;
-				}
-			}
-
-			//CBMC validated the property
-			if (process.exitValue() == 0) {
-				counterExampleFile = null;
-				property.setStatus(PropertyStatus.SUCCEEDED);
-				return Status.OK_STATUS;
-			}
-
-			//CBMC found a counter example
-			property.setStatus(PropertyStatus.FAILED);
-			property.setDetailsFile(getCounterExample().getAbsolutePath());
-			logger.log(Level.INFO, "Check Property - Counter Example: " + getCounterExample().getAbsolutePath()); //$NON-NLS-1$
-
-			//TODO CBMC had a problem (e.g. incorrect CLI or problem parsing, etc.)
-
-		} catch (IOException | InterruptedException e) {
-			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.CheckPropertyJob_0, e);
+		property.setStatus(PropertyStatus.RUNNING);
+		CBMCCliHelper cliHelper = ((Results) property.eContainer()).getCBMCHelper();
+		counterExampleFile = new File(cliHelper.getWorkingDirectory(), FILE_COUNTEREXAMPLE_PREFIX + property.getNumber() + COUTEREXAMPLE_EXT);
+		boolean success = ProcessHelper.executeCommandWithRedirectOutput(cliHelper.getCommandLineForPropertyCheck(property), counterExampleFile, monitor);
+		if (monitor.isCanceled()) {
+			property.setStatus(PropertyStatus.PENDING);
+			return Status.CANCEL_STATUS;
 		}
+		//CBMC validated the property
+		if (success) {
+			counterExampleFile = null;
+			property.setStatus(PropertyStatus.SUCCEEDED);
+			return Status.OK_STATUS;
+		}
+
+		//CBMC found a counter example
+		property.setStatus(PropertyStatus.FAILED);
+		property.setDetailsFile(getCounterExample().getAbsolutePath());
 		return Status.OK_STATUS;
 	}
 

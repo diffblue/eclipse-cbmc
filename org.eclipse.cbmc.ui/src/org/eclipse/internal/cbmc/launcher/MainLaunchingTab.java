@@ -1,11 +1,6 @@
 package org.eclipse.internal.cbmc.launcher;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.attribute.FileAttribute;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 import org.eclipse.cbmc.util.CBMCCliHelper;
@@ -23,11 +18,15 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.*;
 import org.eclipse.ui.dialogs.ResourceListSelectionDialog;
+import org.osgi.framework.Version;
 
 public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 
 	private static final String FILE_EXTENSIONS[] = {".c", ".cpp"}; //$NON-NLS-1$//$NON-NLS-2$
-	private static final String GOTO_INSTRUMENT = "goto-instrument"; //$NON-NLS-1$
+	private static final String CBMC_GOTO_INSTRUMENT = "goto-instrument"; //$NON-NLS-1$
+	private static final String CBMC_ARG_VERSION = "--version"; //$NON-NLS-1$
+	private static final String MINIMAL_VERSION_NUMBER = "4.9"; //$NON-NLS-1$
+	final String NO_VALUE = ""; //$NON-NLS-1$
 	private List<Button> optionButtons;
 	private Text executableText;
 	private Button executableButton;
@@ -37,54 +36,31 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 	private Button autorunBtn;
 	private Button showLoopsBtn;
 	private Text unwindText;
-	final String NO_VALUE = ""; //$NON-NLS-1$
-
-	//private FieldStatus isExecutableDirty;
 
 	@Override
 	public boolean canSave() {
-		return validateExecutable() && validateFile() && validateUnwind();
+		return isValidCBMC() && isValidFileToCheck() && isValidUnwind();
 	}
 
 	@Override
 	public boolean isValid(ILaunchConfiguration launchConfig) {
 		setMessage(null);
 		setErrorMessage(null);
-		return validateExecutable() && validateFile() && validateUnwind();
+		return isValidCBMC() && isValidFileToCheck() && isValidUnwind();
 	}
 
-	private boolean validateExecutable() {
-		int len = executableText.getText().trim().length();
-		if (len == 0) {
-			setErrorMessage(Messages.MainLaunchingTab_error_0);
-			return false;
-		}
-		String path = executableText.getText().trim();
-		File f = new File(path);
-		if (!f.exists()) {
-			setErrorMessage(Messages.MainLaunchingTab_error_1);
-			return false;
-		}
-		return true;
+	private boolean isValidCBMC() {
+		String executable = executableText.getText().trim();
+		return isValidLength(executable, Messages.MainLaunchingTab_error_cbmc_isEmpty) && isValidFile(executable, Messages.MainLaunchingTab_error_cbmc_notExist) && isValidVersion(executable);
 	}
 
-	private boolean validateFile() {
-		String filePath = fileText.getText().trim();
-		if (filePath.length() == 0) {
-			setErrorMessage(Messages.MainLaunchingTab_error_2);
-			return false;
-		}
-		File f = new File(filePath);
-		if (!f.exists()) {
-			setErrorMessage(Messages.MainLaunchingTab_error_3);
-			return false;
-		}
-		return validateSourceFile() || validateBinaryFile();
+	private boolean isValidFileToCheck() {
+		String file = fileText.getText().trim();
+		return isValidLength(file, Messages.MainLaunchingTab_error_file_isEmpty) && isValidFile(file, Messages.MainLaunchingTab_error_file_notExists) && (isValidSourceFile(file) || isValidBinaryFile(file));
 	}
 
-	private boolean validateSourceFile() {
-		String filePath = fileText.getText().trim();
-		String extension = filePath.substring(filePath.lastIndexOf("."), filePath.length()); //$NON-NLS-1$
+	private boolean isValidSourceFile(String file) {
+		String extension = file.substring(file.lastIndexOf("."), file.length()); //$NON-NLS-1$
 		for (int i = 0; i < FILE_EXTENSIONS.length; i++) {
 			if (extension.equals(FILE_EXTENSIONS[i]))
 				return true;
@@ -92,53 +68,68 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 		return false;
 	}
 
-	private boolean validateBinaryFile() {
-		String filePath = fileText.getText().trim();
+	private boolean isValidBinaryFile(String file) {
 		String cbmcCommand = executableText.getText().trim();
-		String gotoInstrumentPath = cbmcCommand.substring(0, cbmcCommand.lastIndexOf("/") + 1) + GOTO_INSTRUMENT; //$NON-NLS-1$
-		File f = new File(gotoInstrumentPath);
-		if (!f.exists()) {
-			setErrorMessage(Messages.format(Messages.MainLaunchingTab_error_6, new String[] {gotoInstrumentPath}));
-			return false;
-		}
-		Path tmpDir;
-		try {
-
-			tmpDir = Files.createTempDirectory("goto-instrument", new FileAttribute[0]);
-			File workingDirectory = new File(tmpDir.toFile(), new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())); //$NON-NLS-1$
-			workingDirectory.mkdirs();
-			List<String> baseCli = new ArrayList<String>();
-			baseCli.add(gotoInstrumentPath);
-			baseCli.add(filePath);
-			baseCli.add(workingDirectory.getAbsolutePath().concat("/temp.out")); //$NON-NLS-1$
-			ProcessBuilder pb = new ProcessBuilder(baseCli);
-
-			pb.redirectErrorStream(true);
-			Process process;
-			process = pb.start();
-			process.waitFor();
-			if (process.exitValue() == 0) {
-				return true;
-			}
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		setErrorMessage(Messages.MainLaunchingTab_error_5);
-		return false;
+		String gotoCommand = cbmcCommand.substring(0, cbmcCommand.lastIndexOf("/") + 1) + CBMC_GOTO_INSTRUMENT; //$NON-NLS-1$
+		return isValidGotoCommand(gotoCommand) && isValidGotoFile(gotoCommand, file);
 	}
 
-	private boolean validateUnwind() {
+	private boolean isValidLength(String str, String errorMessage) {
+		int len = str.length();
+		if (len == 0) {
+			setErrorMessage(errorMessage);
+			return false;
+		}
+		return true;
+	}
+
+	private boolean isValidFile(String str, String errorMessage) {
+		File f = new File(str);
+		if (!f.exists()) {
+			setErrorMessage(errorMessage);
+			return false;
+		}
+		return true;
+	}
+
+	private boolean isValidVersion(String executable) {
+		String currentVersionNumber = ProcessHelper.executeCommandWithOutput(executable, CBMC_ARG_VERSION);
+		if (currentVersionNumber == null) {
+			setErrorMessage(Messages.MainLaunchingTab_error_cbmc_versionNotFound);
+			return false;
+		}
+		Version currentVersion = new Version(currentVersionNumber);
+		Version minimumVersion = new Version(MINIMAL_VERSION_NUMBER);
+		if (currentVersion.compareTo(minimumVersion) < 0) {
+			setErrorMessage(Messages.format(Messages.MainLaunchingTab_error_cbmc_isOldVersion, new String[] {MINIMAL_VERSION_NUMBER, currentVersionNumber}));
+			return false;
+		}
+		return true;
+	}
+
+	private boolean isValidGotoCommand(String gotoCommand) {
+		return isValidFile(gotoCommand, Messages.format(Messages.MainLaunchingTab_error_file_gotoNotFound, new String[] {gotoCommand}));
+	}
+
+	private boolean isValidGotoFile(String gotoCommand, String file) {
+		boolean success = ProcessHelper.executeCommand(gotoCommand, file);
+		if (!success) {
+			setErrorMessage(Messages.MainLaunchingTab_error_file_isNotSourceOrBinary);
+			return false;
+		}
+		return true;
+	}
+
+	private boolean isValidUnwind() {
+		String unwind = unwindText.getText().trim();
 		try {
-			if (unwindText.getText().isEmpty() || Integer.parseInt(unwindText.getText()) >= 0) {
+			if (unwind.isEmpty() || Integer.parseInt(unwind) >= 0) {
 				return true;
 			}
 		} catch (NumberFormatException e) {
-			setErrorMessage(Messages.MainLaunchingTab_error_4);
-			return false;
+			// nothing to do
 		}
-		setErrorMessage(Messages.MainLaunchingTab_error_4);
+		setErrorMessage(Messages.MainLaunchingTab_error_unwind);
 		return false;
 	}
 
@@ -157,22 +148,18 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 
 	private void handleCBMCExecutableButtonSelected() {
 		FileDialog dialog = new FileDialog(getShell(), SWT.OPEN);
-		dialog.setText(Messages.MainLaunchingTab_4);
+		dialog.setText(Messages.MainLaunchingTab_dialogCbmc);
 		dialog.setFilterNames(new String[] {"cbmc*"}); //$NON-NLS-1$
 		String file = dialog.open();
 		if (file != null) {
-			if (!executableText.getText().equals(file)) {
-				//isExecutableDirty = FieldStatus.PENDING;
-				executableText.setText(file);
-			}
-
+			executableText.setText(file);
 		}
 	}
 
 	void handleCFileButtonSelected() {
 		ResourceListSelectionDialog dialog = new ResourceListSelectionDialog(getShell(), ResourcesPlugin.getWorkspace().getRoot(), IResource.FILE);
-		dialog.setTitle(Messages.MainLaunchingTab_6);
-		dialog.setMessage(Messages.MainLaunchingTab_7);
+		dialog.setTitle(Messages.MainLaunchingTab_dialogFileTitle);
+		dialog.setMessage(Messages.MainLaunchingTab_dialogFileMesssage);
 		if (dialog.open() == Window.OK) {
 			Object[] files = dialog.getResult();
 			IFile file = (IFile) files[0];
@@ -199,12 +186,12 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 
 		createVerticalSpacer(comp, 3);
 
-		new Label(comp, SWT.NONE).setText(Messages.MainLaunchingTab_labelExecutable);
+		new Label(comp, SWT.NONE).setText(Messages.MainLaunchingTab_labelCBMC);
 		executableText = new Text(comp, SWT.SINGLE | SWT.BORDER);
 		GridData gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
 		executableText.setLayoutData(gridData);
 		executableText.addModifyListener(modifyListener);
-		executableButton = createPushButton(comp, Messages.MainLaunchingTab_browse, null);
+		executableButton = createPushButton(comp, Messages.MainLaunchingTab_labelBrowse, null);
 		executableButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent evt) {
 				handleCBMCExecutableButtonSelected();
@@ -216,7 +203,7 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 		fileText.setLayoutData(gridData);
 		fileText.setFont(font);
 		fileText.addModifyListener(modifyListener);
-		fileButton = createPushButton(comp, Messages.MainLaunchingTab_browse, null);
+		fileButton = createPushButton(comp, Messages.MainLaunchingTab_labelBrowse, null);
 		fileButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				handleCFileButtonSelected();
@@ -354,6 +341,6 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 
 	@Override
 	public String getName() {
-		return Messages.MainLaunchingTab_20;
+		return Messages.MainLaunchingTab_name;
 	}
 }

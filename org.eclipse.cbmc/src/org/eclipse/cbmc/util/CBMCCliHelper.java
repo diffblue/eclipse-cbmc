@@ -8,7 +8,7 @@ import java.nio.file.attribute.FileAttribute;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import org.eclipse.cbmc.*;
-import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.*;
 import org.eclipse.debug.core.ILaunchConfiguration;
 
 public class CBMCCliHelper {
@@ -29,9 +29,17 @@ public class CBMCCliHelper {
 	public static final String LC_CBMC_SHOW_LOOPS = "cbmc.show-loops"; //$NON-NLS-1$
 	public static final String LC_CBMC_UNWIND = "cbmc.unwind"; //$NON-NLS-1$
 
-	private ILaunchConfiguration configuration;
 	private File workingDirectory;
 	private List<String> baseCli = new ArrayList<String>();
+	private static final String PLUGIN_ID = "org.eclipse.cbmc"; //$NON-NLS-1$
+	private ILog logger = Platform.getPlugin(PLUGIN_ID).getLog();
+	private String lcCBMCFileToCheck;
+	private String lcCBMCExecutable;
+	private String lcCBMCFunction;
+	private boolean lcCBMCShowLoops;
+	private List<String> lcCBMCOptions;
+	private String lcCBMCUnwind;
+	private boolean lcCBMCAutoRun;
 
 	public enum CheckAllPropertiesOption {
 		NO_ASSERTIONS("--no-assertions", "ignore user assertions"), //$NON-NLS-1$//$NON-NLS-2$
@@ -65,86 +73,95 @@ public class CBMCCliHelper {
 		}
 	}
 
-	private CBMCCliHelper(ILaunchConfiguration config) throws IOException {
-		configuration = config;
-		Path tmpDir = Files.createTempDirectory("cbmc", new FileAttribute[0]); //$NON-NLS-1$
-		workingDirectory = new File(tmpDir.toFile(), new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())); //$NON-NLS-1$
-		workingDirectory.mkdirs();
-	}
-
-	private void initializeBaseCommandLine() {
+	private CBMCCliHelper(ILaunchConfiguration config) {
 		try {
-			baseCli.add(configuration.getAttribute(LC_CBMC_EXECUTABLE, NO_VALUE));
-			baseCli.add(configuration.getAttribute(LC_CBMC_FILE, NO_VALUE));
-			if (configuration.getAttribute(LC_CBMC_FUNCTION, NO_VALUE).length() > 0) {
-				baseCli.add(CBMC_ARG_FUNCTION);
-				baseCli.add(configuration.getAttribute(LC_CBMC_FUNCTION, NO_VALUE));
-			}
+			lcCBMCExecutable = config.getAttribute(LC_CBMC_EXECUTABLE, NO_VALUE);
+			lcCBMCFileToCheck = config.getAttribute(LC_CBMC_FILE, NO_VALUE);
+			lcCBMCFunction = config.getAttribute(LC_CBMC_FUNCTION, NO_VALUE);
+			lcCBMCShowLoops = config.getAttribute(LC_CBMC_SHOW_LOOPS, true);
+			lcCBMCUnwind = config.getAttribute(LC_CBMC_UNWIND, NO_VALUE);
+			lcCBMCAutoRun = config.getAttribute(LC_CBMC_AUTORUN, true);
+			lcCBMCOptions = new ArrayList<String>();
 			CheckAllPropertiesOption[] options = CheckAllPropertiesOption.values();
 			for (int i = 0; i < options.length; i++) {
 				CheckAllPropertiesOption option = options[i];
-				if (configuration.getAttribute(LC_CBMC_OPTIONPREFIX + option.getName(), false)) {
-					baseCli.add(option.getName());
+				if (config.getAttribute(LC_CBMC_OPTIONPREFIX + option.getName(), false)) {
+					lcCBMCOptions.add(option.getName());
 				}
 			}
-			baseCli = Collections.unmodifiableList(baseCli);
 		} catch (CoreException e) {
-			//Ignore those for now
+			logger.log(new Status(IStatus.ERROR, PLUGIN_ID, "Error retrieving attributes from the launch configuration", e)); //$NON-NLS-1$
+		}
+		try {
+			Path tmpDir = Files.createTempDirectory("cbmc", new FileAttribute[0]); //$NON-NLS-1$
+			workingDirectory = new File(tmpDir.toFile(), new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())); //$NON-NLS-1$
+			workingDirectory.mkdirs();
+		} catch (IOException e) {
+			logger.log(new Status(IStatus.ERROR, PLUGIN_ID, "Cannot create a temporary directory", e)); //$NON-NLS-1$
 		}
 	}
 
-	public static CBMCCliHelper create(ILaunchConfiguration config) throws IOException {
+	private void initializeBaseCommandLine() {
+		baseCli.add(lcCBMCExecutable);
+		baseCli.add(lcCBMCFileToCheck);
+		if (lcCBMCFunction.length() > 0) {
+			baseCli.add(CBMC_ARG_FUNCTION);
+			baseCli.add(lcCBMCFunction);
+		}
+		baseCli.addAll(lcCBMCOptions);
+		baseCli = Collections.unmodifiableList(baseCli);
+	}
+
+	public static CBMCCliHelper create(ILaunchConfiguration config) {
 		CBMCCliHelper bridge = new CBMCCliHelper(config);
 		bridge.initializeBaseCommandLine();
 		return bridge;
 	}
 
-	public ArrayList<String> getCommandLineForAllProperties() {
+	public String[] getCommandLineForAllProperties() {
 		ArrayList<String> result = new ArrayList<String>(baseCli);
 		result.add(CBMC_ARG_SHOW_PROPERTIES);
 		result.add(CBMC_ARG_XML_UI);
-		return result;
+		return result.toArray(new String[result.size()]);
 	}
 
-	public ArrayList<String> getCommandLineForAllLoops() {
-		ArrayList<String> result = new ArrayList<String>(baseCli);
+	public String[] getCommandLineForAllLoops() {
+		ArrayList<String> result = new ArrayList<String>();
+		result.add(lcCBMCExecutable);
+		result.add(lcCBMCFileToCheck);
 		result.add(CBMC_ARG_SHOW_LOOPS);
 		result.add(CBMC_ARG_XML_UI);
-		return result;
+		return result.toArray(new String[result.size()]);
 	}
 
-	public ArrayList<String> getCommandLineForPropertyCheck(Property property) {
+	public String[] getCommandLineForPropertyCheck(Property property) {
 		ArrayList<String> result = new ArrayList<String>(baseCli);
-		try {
-			if (configuration.getAttribute(LC_CBMC_UNWIND, NO_VALUE) != NO_VALUE) {
-				result.add(CBMC_ARG_UNWIND);
-				result.add(String.valueOf(configuration.getAttribute(LC_CBMC_UNWIND, NO_VALUE)));
-			}
-			Results model = (Results) (property.eContainer());
-			if (model.getLoops() != null && !model.getLoops().isEmpty()) {
-				ArrayList<String> unwindsets = new ArrayList<String>();
-				for (Loop loop : model.getLoops()) {
-					if (!loop.getUnwind().isEmpty()) {
-						unwindsets.add(loop.getId().concat(":").concat(loop.getUnwind())); //$NON-NLS-1$
-					}
-				}
-				if (!unwindsets.isEmpty()) {
-					String unwindstring = ""; //$NON-NLS-1$
-					for (String s : unwindsets) {
-						unwindstring += (unwindstring.length() == 0 ? "" : ",") + s; //$NON-NLS-1$ //$NON-NLS-2$
-					}
-					result.add(CBMC_ARG_UNWINDSET);
-					result.add(unwindstring);
-				}
-			}
-		} catch (CoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (lcCBMCUnwind != NO_VALUE) {
+			result.add(CBMC_ARG_UNWIND);
+			result.add(String.valueOf(lcCBMCUnwind));
 		}
+		Results model = (Results) (property.eContainer());
+		if (model.getLoops() != null && !model.getLoops().isEmpty()) {
+			ArrayList<String> unwindsets = new ArrayList<String>();
+			for (Loop loop : model.getLoops()) {
+				if (!loop.getUnwind().isEmpty()) {
+					unwindsets.add(loop.getId().concat(":").concat(loop.getUnwind())); //$NON-NLS-1$
+				}
+			}
+			if (!unwindsets.isEmpty()) {
+				String unwindstring = ""; //$NON-NLS-1$
+				for (String s : unwindsets) {
+					unwindstring += (unwindstring.length() == 0 ? "" : ",") + s; //$NON-NLS-1$ //$NON-NLS-2$
+				}
+				result.add(CBMC_ARG_UNWINDSET);
+				result.add(unwindstring);
+			}
+		}
+
 		result.add(CBMC_ARG_PROPERTY);
 		result.add(property.getNumber());
 		result.add(CBMC_ARG_XML_UI);
-		return result;
+		return result.toArray(new String[result.size()]);
 	}
 
 	public File getWorkingDirectory() {
@@ -152,29 +169,10 @@ public class CBMCCliHelper {
 	}
 
 	public boolean isAutoRun() {
-		try {
-			return configuration.getAttribute(LC_CBMC_AUTORUN, true);
-		} catch (CoreException e) {
-			//Ignore those for now
-		}
-		return true;
+		return lcCBMCAutoRun;
 	}
 
 	public boolean showLoops() {
-		try {
-			return configuration.getAttribute(LC_CBMC_SHOW_LOOPS, true);
-		} catch (CoreException e) {
-			//Ignore those for now
-		}
-		return true;
-	}
-
-	public String cliStringify(ArrayList<String> cli) {
-		String cliString = ""; //$NON-NLS-1$
-		for (Iterator<String> iterator = cli.iterator(); iterator.hasNext();) {
-			String string = iterator.next();
-			cliString += " " + string; //$NON-NLS-1$
-		}
-		return cliString;
+		return lcCBMCShowLoops;
 	}
 }
