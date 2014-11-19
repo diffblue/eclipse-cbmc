@@ -11,6 +11,7 @@ public class Messages extends NLS {
 	public static String MainLaunchingTab_error_cbmc_notExist;
 	public static String MainLaunchingTab_error_cbmc_isOldVersion;
 	public static String MainLaunchingTab_error_cbmc_versionNotFound;
+	public static String MainLaunchingTab_error_cbmc_compilerNotFound;
 	public static String MainLaunchingTab_error_file_isEmpty;
 	public static String MainLaunchingTab_error_file_notExists;
 	public static String MainLaunchingTab_error_file_isNotSourceOrBinary;

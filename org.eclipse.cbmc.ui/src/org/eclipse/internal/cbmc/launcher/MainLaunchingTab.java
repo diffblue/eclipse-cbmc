@@ -25,7 +25,9 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 	private static final String FILE_EXTENSIONS[] = {".c", ".cpp"}; //$NON-NLS-1$//$NON-NLS-2$
 	private static final String CBMC_GOTO_INSTRUMENT = "goto-instrument"; //$NON-NLS-1$
 	private static final String CBMC_ARG_VERSION = "--version"; //$NON-NLS-1$
+	private static final String CBMC_ARG_TEST_PREPROCESSOR = "--test-preprocessor"; //$NON-NLS-1$
 	private static final String MINIMAL_VERSION_NUMBER = "4.9"; //$NON-NLS-1$
+
 	final String NO_VALUE = ""; //$NON-NLS-1$
 	private List<Button> optionButtons;
 	private Text executableText;
@@ -51,7 +53,7 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 
 	private boolean isValidCBMC() {
 		String executable = executableText.getText().trim();
-		return isValidLength(executable, Messages.MainLaunchingTab_error_cbmc_isEmpty) && isValidFile(executable, Messages.MainLaunchingTab_error_cbmc_notExist) && isValidVersion(executable);
+		return isValidLength(executable, Messages.MainLaunchingTab_error_cbmc_isEmpty) && isValidFile(executable, Messages.MainLaunchingTab_error_cbmc_notExist) && isValidCompiler(executable) && isValidVersion(executable);
 	}
 
 	private boolean isValidFileToCheck() {
@@ -87,6 +89,15 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 		File f = new File(str);
 		if (!f.exists()) {
 			setErrorMessage(errorMessage);
+			return false;
+		}
+		return true;
+	}
+
+	private boolean isValidCompiler(String executable) {
+		Object[] result = ProcessHelper.executeCommandWithSuccessFlagAndOutput(executable, CBMC_ARG_TEST_PREPROCESSOR);
+		if (!(boolean) result[0]) {
+			setErrorMessage(Messages.format(Messages.MainLaunchingTab_error_cbmc_compilerNotFound, new String[] {(String) result[1]}));
 			return false;
 		}
 		return true;

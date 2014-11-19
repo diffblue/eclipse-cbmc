@@ -20,6 +20,11 @@ public class ProcessHelper {
 		return null;
 	}
 
+	public static Object[] executeCommandWithSuccessFlagAndOutput(String... cli) {
+		Object[] result = executeCommand(cli, true, null, null);
+		return new Object[] {result[0], result[2]};
+	}
+
 	public static int executeCommandWithRedirectOutput(String[] cli, File redirectOutput) {
 		return executeCommandWithRedirectOutput(cli, redirectOutput, null);
 	}
@@ -50,7 +55,10 @@ public class ProcessHelper {
 			}
 			if (returnOutput) {
 				BufferedReader buffer = new BufferedReader(new InputStreamReader(process.getInputStream()));
-				output = buffer.readLine();
+				String currentline;
+				while ((currentline = buffer.readLine()) != null) {
+					output = (output == null ? "" : output) + currentline; //$NON-NLS-1$
+				}
 				buffer.close();
 			}
 			exitValue = process.exitValue();
