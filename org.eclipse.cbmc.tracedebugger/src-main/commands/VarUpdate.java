@@ -19,7 +19,7 @@ public class VarUpdate extends MICommand {
 		
 		String[] segments = AssignmentImpl.splitInTwo(expression);
 		Assignment previousAssignment = process.getVariableManager().getVariables().get(segments[0]);
-		Assignment newAssignement = process.getThread(previousAssignment.getThread()).getFrame(0).getVariable(segments[0]);
+		Assignment newAssignement = process.getThread(previousAssignment.getThread()).getFrame(0).getVariable(previousAssignment.getBaseName());
 		Vars[] changes = null;
 		if (previousAssignment == newAssignement) {
 			changes = new Vars[0];
