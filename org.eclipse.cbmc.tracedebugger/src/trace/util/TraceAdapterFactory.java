@@ -2,6 +2,7 @@
  */
 package trace.util;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
@@ -98,6 +99,26 @@ public class TraceAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseTrace(Trace object) {
 				return createTraceAdapter();
+			}
+			@Override
+			public Adapter caseValue(Value object) {
+				return createValueAdapter();
+			}
+			@Override
+			public Adapter caseStructValue(StructValue object) {
+				return createStructValueAdapter();
+			}
+			@Override
+			public Adapter caseArrayValue(ArrayValue object) {
+				return createArrayValueAdapter();
+			}
+			@Override
+			public Adapter caseSimpleValue(SimpleValue object) {
+				return createSimpleValueAdapter();
+			}
+			@Override
+			public Adapter caseNameToValueMap(Map.Entry<String, Value> object) {
+				return createNameToValueMapAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -228,6 +249,76 @@ public class TraceAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTraceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link trace.Value <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see trace.Value
+	 * @generated
+	 */
+	public Adapter createValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link trace.StructValue <em>Struct Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see trace.StructValue
+	 * @generated
+	 */
+	public Adapter createStructValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link trace.ArrayValue <em>Array Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see trace.ArrayValue
+	 * @generated
+	 */
+	public Adapter createArrayValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link trace.SimpleValue <em>Simple Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see trace.SimpleValue
+	 * @generated
+	 */
+	public Adapter createSimpleValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Name To Value Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see java.util.Map.Entry
+	 * @generated
+	 */
+	public Adapter createNameToValueMapAdapter() {
 		return null;
 	}
 

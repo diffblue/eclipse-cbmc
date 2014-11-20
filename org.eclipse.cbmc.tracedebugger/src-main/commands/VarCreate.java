@@ -10,6 +10,7 @@ import results.data.VarHelper;
 import results.data.Vars;
 import results.sync.Done;
 import trace.Assignment;
+import trace.Value;
 
 // 41-var-create --thread 1 --frame 0 - * tmpOne
 public class VarCreate extends MICommand {
@@ -19,8 +20,7 @@ public class VarCreate extends MICommand {
 	@Option(name="--frame", required=false)
 	int frameId;
 	
-
-	//Here we are not using the default parsing capabilities of MICommand because the '-' passsed as an argument trips args4j
+	//Here we are not using the default parsing capabilities of MICommand because the '-' passed as an argument trips args4j
 	public results.sync.Error parseParameters(String[] tokens) {
 		if (tokens.length < 2)
 			return new results.sync.Error(this, "Missing arguments");
@@ -36,8 +36,6 @@ public class VarCreate extends MICommand {
 				arguments.add(tokens[i]);
 			}
 		}
-			
-			
 		return null;
 	}
 	
@@ -51,18 +49,19 @@ public class VarCreate extends MICommand {
 		} else {
 			internalVarName = "var" + (process.getVariableManager().getVariables().size() + 1);
 		}
-		
 		programVarName = arguments.get(2);
 		
 		Assignment match = process.getThread(threadId).getFrame(frameId).getVariable(programVarName);
 		process.getVariableManager().getVariables().put(internalVarName, match);
 		process.getVariableManager().getPreviousValues().put(internalVarName, match);
 		
+		Value value = match.getValue(programVarName);
+		
 		Vars v = new Vars();
 		v.name = internalVarName;
-		v.value = match.getFullLhsValue();
-		v.type = VarHelper.getMIType(match.getType());	//TODO voir si il ne faut pas convertir
-		v.numchild = "0"; //TODO A revoir qd on aura des vraies variables
+		v.value = value.getUserFriendlyRepresentation();
+		v.type = VarHelper.getMIType(match.getType());
+		v.numchild = String.valueOf(value.getChildrenCount());
 		v.has_more = "0";	//A revoir avec des vraies variables
 		v.threadId = Integer.toString(threadId);
 		return new Done(this, v);

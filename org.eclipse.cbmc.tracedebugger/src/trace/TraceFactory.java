@@ -94,6 +94,42 @@ public interface TraceFactory extends EFactory {
 	Trace createTrace();
 
 	/**
+	 * Returns a new object of class '<em>Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Value</em>'.
+	 * @generated
+	 */
+	Value createValue();
+
+	/**
+	 * Returns a new object of class '<em>Struct Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Struct Value</em>'.
+	 * @generated
+	 */
+	StructValue createStructValue();
+
+	/**
+	 * Returns a new object of class '<em>Array Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Array Value</em>'.
+	 * @generated
+	 */
+	ArrayValue createArrayValue();
+
+	/**
+	 * Returns a new object of class '<em>Simple Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Simple Value</em>'.
+	 * @generated
+	 */
+	SimpleValue createSimpleValue();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

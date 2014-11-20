@@ -2,22 +2,28 @@
  */
 package trace.impl;
 
+import java.util.Map;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
+import trace.ArrayValue;
 import trace.Assignment;
 import trace.Failure;
 import trace.FunctionCall;
 import trace.FunctionReturn;
 import trace.Location;
 import trace.LocationOnly;
+import trace.SimpleValue;
 import trace.Step;
+import trace.StructValue;
 import trace.Trace;
 import trace.TraceFactory;
 import trace.TracePackage;
+import trace.Value;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,6 +87,41 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * @generated
 	 */
 	private EClass traceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass valueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass structValueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass arrayValueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass simpleValueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass nameToValueMapEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -225,6 +266,33 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 */
 	public EAttribute getAssignment_ValueExpression() {
 		return (EAttribute)assignmentEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAssignment_ParsedValue() {
+		return (EReference)assignmentEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getAssignment__GetValue__String() {
+		return assignmentEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getAssignment__GetExpression__String() {
+		return assignmentEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -421,6 +489,132 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getValue() {
+		return valueEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getValue__GetValue__String() {
+		return valueEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getValue__GetChildrenCount() {
+		return valueEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getValue__GetUserFriendlyRepresentation() {
+		return valueEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getValue__GetExpression__String() {
+		return valueEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStructValue() {
+		return structValueEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStructValue_Values() {
+		return (EReference)structValueEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getArrayValue() {
+		return arrayValueEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getArrayValue_Values() {
+		return (EReference)arrayValueEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSimpleValue() {
+		return simpleValueEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSimpleValue_Value() {
+		return (EAttribute)simpleValueEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getNameToValueMap() {
+		return nameToValueMapEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNameToValueMap_Key() {
+		return (EAttribute)nameToValueMapEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNameToValueMap_Value() {
+		return (EReference)nameToValueMapEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public TraceFactory getTraceFactory() {
 		return (TraceFactory)getEFactoryInstance();
 	}
@@ -453,6 +647,9 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		createEAttribute(assignmentEClass, ASSIGNMENT__FULL_LHS_VALUE);
 		createEAttribute(assignmentEClass, ASSIGNMENT__TYPE);
 		createEAttribute(assignmentEClass, ASSIGNMENT__VALUE_EXPRESSION);
+		createEReference(assignmentEClass, ASSIGNMENT__PARSED_VALUE);
+		createEOperation(assignmentEClass, ASSIGNMENT___GET_VALUE__STRING);
+		createEOperation(assignmentEClass, ASSIGNMENT___GET_EXPRESSION__STRING);
 
 		failureEClass = createEClass(FAILURE);
 		createEAttribute(failureEClass, FAILURE__REASON);
@@ -481,6 +678,25 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 
 		traceEClass = createEClass(TRACE);
 		createEReference(traceEClass, TRACE__STEPS);
+
+		valueEClass = createEClass(VALUE);
+		createEOperation(valueEClass, VALUE___GET_VALUE__STRING);
+		createEOperation(valueEClass, VALUE___GET_CHILDREN_COUNT);
+		createEOperation(valueEClass, VALUE___GET_USER_FRIENDLY_REPRESENTATION);
+		createEOperation(valueEClass, VALUE___GET_EXPRESSION__STRING);
+
+		structValueEClass = createEClass(STRUCT_VALUE);
+		createEReference(structValueEClass, STRUCT_VALUE__VALUES);
+
+		arrayValueEClass = createEClass(ARRAY_VALUE);
+		createEReference(arrayValueEClass, ARRAY_VALUE__VALUES);
+
+		simpleValueEClass = createEClass(SIMPLE_VALUE);
+		createEAttribute(simpleValueEClass, SIMPLE_VALUE__VALUE);
+
+		nameToValueMapEClass = createEClass(NAME_TO_VALUE_MAP);
+		createEAttribute(nameToValueMapEClass, NAME_TO_VALUE_MAP__KEY);
+		createEReference(nameToValueMapEClass, NAME_TO_VALUE_MAP__VALUE);
 	}
 
 	/**
@@ -519,6 +735,9 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		functionCallEClass.getESuperTypes().add(this.getStep());
 		functionReturnEClass.getESuperTypes().add(this.getStep());
 		locationOnlyEClass.getESuperTypes().add(this.getStep());
+		structValueEClass.getESuperTypes().add(this.getValue());
+		arrayValueEClass.getESuperTypes().add(this.getValue());
+		simpleValueEClass.getESuperTypes().add(this.getValue());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(assignmentEClass, Assignment.class, "Assignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -530,6 +749,13 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		initEAttribute(getAssignment_FullLhsValue(), theXMLTypePackage.getString(), "fullLhsValue", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAssignment_Type(), theXMLTypePackage.getString(), "type", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAssignment_ValueExpression(), theXMLTypePackage.getString(), "valueExpression", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssignment_ParsedValue(), this.getValue(), null, "parsedValue", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		EOperation op = initEOperation(getAssignment__GetValue__String(), this.getValue(), "getValue", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theXMLTypePackage.getString(), "expression", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getAssignment__GetExpression__String(), theXMLTypePackage.getString(), "getExpression", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theXMLTypePackage.getString(), "exp", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(failureEClass, Failure.class, "Failure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFailure_Reason(), theXMLTypePackage.getString(), "reason", null, 1, 1, Failure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -558,6 +784,31 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 
 		initEClass(traceEClass, Trace.class, "Trace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTrace_Steps(), this.getStep(), null, "steps", null, 0, -1, Trace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(valueEClass, Value.class, "Value", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		op = initEOperation(getValue__GetValue__String(), this.getValue(), "getValue", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theXMLTypePackage.getString(), "expression", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getValue__GetChildrenCount(), theXMLTypePackage.getInt(), "getChildrenCount", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getValue__GetUserFriendlyRepresentation(), theXMLTypePackage.getString(), "getUserFriendlyRepresentation", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getValue__GetExpression__String(), theXMLTypePackage.getString(), "getExpression", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theXMLTypePackage.getString(), "exp", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(structValueEClass, StructValue.class, "StructValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStructValue_Values(), this.getNameToValueMap(), null, "values", null, 0, -1, StructValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(arrayValueEClass, ArrayValue.class, "ArrayValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getArrayValue_Values(), this.getValue(), null, "values", null, 0, -1, ArrayValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(simpleValueEClass, SimpleValue.class, "SimpleValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSimpleValue_Value(), theXMLTypePackage.getString(), "value", null, 0, 1, SimpleValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(nameToValueMapEClass, Map.Entry.class, "NameToValueMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNameToValueMap_Key(), theXMLTypePackage.getString(), "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNameToValueMap_Value(), this.getValue(), null, "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

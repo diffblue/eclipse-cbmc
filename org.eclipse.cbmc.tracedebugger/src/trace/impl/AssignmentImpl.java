@@ -2,14 +2,26 @@
  */
 package trace.impl;
 
+import java.lang.reflect.InvocationTargetException;
+
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.BaseErrorListener;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.RecognitionException;
+import org.antlr.v4.runtime.Recognizer;
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import expressionparser.ValueExpressionLexer;
+import expressionparser.ValueExpressionParser;
 import trace.Assignment;
+import trace.SimpleValue;
+import trace.TraceFactory;
 import trace.TracePackage;
+import trace.Value;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,6 +38,7 @@ import trace.TracePackage;
  *   <li>{@link trace.impl.AssignmentImpl#getFullLhsValue <em>Full Lhs Value</em>}</li>
  *   <li>{@link trace.impl.AssignmentImpl#getType <em>Type</em>}</li>
  *   <li>{@link trace.impl.AssignmentImpl#getValueExpression <em>Value Expression</em>}</li>
+ *   <li>{@link trace.impl.AssignmentImpl#getParsedValue <em>Parsed Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -191,6 +204,16 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	 * @ordered
 	 */
 	protected String valueExpression = VALUE_EXPRESSION_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getParsedValue() <em>Parsed Value</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParsedValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected Value parsedValue;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -384,6 +407,107 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Value getParsedValue() {
+		if (parsedValue != null && parsedValue.eIsProxy()) {
+			InternalEObject oldParsedValue = (InternalEObject)parsedValue;
+			parsedValue = (Value)eResolveProxy(oldParsedValue);
+			if (parsedValue != oldParsedValue) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TracePackage.ASSIGNMENT__PARSED_VALUE, oldParsedValue, parsedValue));
+			}
+		}
+		return parsedValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Value basicGetParsedValue() {
+		return parsedValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setParsedValue(Value newParsedValue) {
+		Value oldParsedValue = parsedValue;
+		parsedValue = newParsedValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.ASSIGNMENT__PARSED_VALUE, oldParsedValue, parsedValue));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Value getValue(String expression) {
+		try {
+			parseValueExpression();
+		} catch(IllegalStateException e) {
+			parsedValue = TraceFactory.eINSTANCE.createSimpleValue();
+			((SimpleValue) parsedValue).setValue(getValue());
+		}
+		if (getBaseName().equals(expression))
+			return parsedValue;
+
+		String[] segments = splitInTwo(expression);
+		if (segments.length == 1)
+			return null; //This happens if the expression passed in is incorrect
+		return parsedValue.getValue(segments[1]);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getExpression(String exp) {
+		String[] segments = splitInTwo(exp);
+		if (segments.length == 1) {
+			return "(" + baseName + ")";
+		} else {
+			return "(" + baseName + ")" + parsedValue.getExpression(segments[1]);
+		}
+	}
+
+	public static String[] splitInTwo(String expression) {
+		int idx = expression.indexOf('.');
+		if (idx < 0)
+			return new String[] {expression};
+		
+		if (idx == 0) {
+			if (expression.length() > 0)
+				return splitInTwo(expression.substring(1));
+			return null;
+		}
+		else 
+			return new String[] {expression.substring(0,idx), splitInTwo(expression.substring(idx))[0]};	
+	}
+	
+	private void parseValueExpression() {
+		if (parsedValue != null)
+			return;
+        ValueExpressionLexer l = new ValueExpressionLexer(new ANTLRInputStream(getValue()));
+        ValueExpressionParser p = new ValueExpressionParser(new CommonTokenStream(l));
+        p.addErrorListener(new BaseErrorListener() {
+            @Override
+            public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine, String msg, RecognitionException e) {
+                throw new IllegalStateException("failed to parse at line " + line + " due to " + msg, e);
+            }
+        });
+        parsedValue = p.expression().newValue;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -403,6 +527,9 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 				return getType();
 			case TracePackage.ASSIGNMENT__VALUE_EXPRESSION:
 				return getValueExpression();
+			case TracePackage.ASSIGNMENT__PARSED_VALUE:
+				if (resolve) return getParsedValue();
+				return basicGetParsedValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -438,6 +565,9 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 				return;
 			case TracePackage.ASSIGNMENT__VALUE_EXPRESSION:
 				setValueExpression((String)newValue);
+				return;
+			case TracePackage.ASSIGNMENT__PARSED_VALUE:
+				setParsedValue((Value)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -475,6 +605,9 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 			case TracePackage.ASSIGNMENT__VALUE_EXPRESSION:
 				setValueExpression(VALUE_EXPRESSION_EDEFAULT);
 				return;
+			case TracePackage.ASSIGNMENT__PARSED_VALUE:
+				setParsedValue((Value)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -503,8 +636,26 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 			case TracePackage.ASSIGNMENT__VALUE_EXPRESSION:
 				return VALUE_EXPRESSION_EDEFAULT == null ? valueExpression != null : !VALUE_EXPRESSION_EDEFAULT.equals(valueExpression);
+			case TracePackage.ASSIGNMENT__PARSED_VALUE:
+				return parsedValue != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case TracePackage.ASSIGNMENT___GET_VALUE__STRING:
+				return getValue((String)arguments.get(0));
+			case TracePackage.ASSIGNMENT___GET_EXPRESSION__STRING:
+				return getExpression((String)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

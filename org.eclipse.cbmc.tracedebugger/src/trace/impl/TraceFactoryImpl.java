@@ -2,6 +2,7 @@
  */
 package trace.impl;
 
+import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -64,6 +65,11 @@ public class TraceFactoryImpl extends EFactoryImpl implements TraceFactory {
 			case TracePackage.LOCATION_ONLY: return createLocationOnly();
 			case TracePackage.STEP: return createStep();
 			case TracePackage.TRACE: return createTrace();
+			case TracePackage.VALUE: return createValue();
+			case TracePackage.STRUCT_VALUE: return createStructValue();
+			case TracePackage.ARRAY_VALUE: return createArrayValue();
+			case TracePackage.SIMPLE_VALUE: return createSimpleValue();
+			case TracePackage.NAME_TO_VALUE_MAP: return (EObject)createNameToValueMap();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -147,6 +153,56 @@ public class TraceFactoryImpl extends EFactoryImpl implements TraceFactory {
 	public Trace createTrace() {
 		TraceImpl trace = new TraceImpl();
 		return trace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Value createValue() {
+		ValueImpl value = new ValueImpl();
+		return value;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StructValue createStructValue() {
+		StructValueImpl structValue = new StructValueImpl();
+		return structValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ArrayValue createArrayValue() {
+		ArrayValueImpl arrayValue = new ArrayValueImpl();
+		return arrayValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SimpleValue createSimpleValue() {
+		SimpleValueImpl simpleValue = new SimpleValueImpl();
+		return simpleValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Map.Entry<String, Value> createNameToValueMap() {
+		NameToValueMapImpl nameToValueMap = new NameToValueMapImpl();
+		return nameToValueMap;
 	}
 
 	/**

@@ -2,24 +2,21 @@ package commands;
 
 import infra.MICommand;
 import infra.MIOutput;
-
-import org.kohsuke.args4j.Option;
-
 import process.Process;
 import results.sync.Done;
 import trace.Assignment;
 import trace.impl.AssignmentImpl;
 
-public class VarEvaluateExpression extends MICommand {
-	@Option(name="-f")
-	String format;
-	
+//61-var-info-path-expression var2.x
+//61^done,path_expr="(s).x"
+public class VarInfoPathExpression extends MICommand {
 	@Override
 	public MIOutput perform(Process process) {
 		String expression = arguments.get(0);
 		String[] segments = AssignmentImpl.splitInTwo(expression);
+		
 		Assignment current = process.getVariableManager().getVariables().get(segments[0]);
-		return new Done(this, "value", current.getValue(expression).getUserFriendlyRepresentation());
+		return new Done(this, "path_exp", current.getExpression(expression));
 	}
 	
 	@Override

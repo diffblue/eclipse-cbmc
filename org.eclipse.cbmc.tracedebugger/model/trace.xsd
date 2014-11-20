@@ -33,7 +33,6 @@
 					<xsd:element name="fullLhs" type="xsd:string" />
 					<xsd:element name="fullLhsValue" type="xsd:string" />
 					<xsd:element name="type" type="xsd:string" />
-					<xsd:element name="valueExpression" type="xsd:string" />
 				</xsd:sequence>
 			</xsd:extension>
 		</xsd:complexContent>

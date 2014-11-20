@@ -34,6 +34,7 @@ public class PathsUtils {
 		allDependencies.add("org.eclipse.emf.common");
 		allDependencies.add("org.eclipse.emf.ecore.xmi");
 		allDependencies.add("org.kohsuke.args4j");
+		allDependencies.add("org.antlr.4-runtime");
 		return allDependencies;
 	}
 

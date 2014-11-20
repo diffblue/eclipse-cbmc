@@ -19,6 +19,7 @@ package trace;
  *   <li>{@link trace.Assignment#getFullLhsValue <em>Full Lhs Value</em>}</li>
  *   <li>{@link trace.Assignment#getType <em>Type</em>}</li>
  *   <li>{@link trace.Assignment#getValueExpression <em>Value Expression</em>}</li>
+ *   <li>{@link trace.Assignment#getParsedValue <em>Parsed Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -242,5 +243,47 @@ public interface Assignment extends Step {
 	 * @generated
 	 */
 	void setValueExpression(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Parsed Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Parsed Value</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parsed Value</em>' reference.
+	 * @see #setParsedValue(Value)
+	 * @see trace.TracePackage#getAssignment_ParsedValue()
+	 * @model required="true" derived="true"
+	 * @generated
+	 */
+	Value getParsedValue();
+
+	/**
+	 * Sets the value of the '{@link trace.Assignment#getParsedValue <em>Parsed Value</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Parsed Value</em>' reference.
+	 * @see #getParsedValue()
+	 * @generated
+	 */
+	void setParsedValue(Value value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model expressionDataType="org.eclipse.emf.ecore.xml.type.String"
+	 * @generated
+	 */
+	Value getValue(String expression);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model dataType="org.eclipse.emf.ecore.xml.type.String" expDataType="org.eclipse.emf.ecore.xml.type.String"
+	 * @generated
+	 */
+	String getExpression(String exp);
 
 } // Assignment

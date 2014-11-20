@@ -2,6 +2,7 @@
  */
 package trace.util;
 
+import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -116,6 +117,39 @@ public class TraceSwitch<T> extends Switch<T> {
 			case TracePackage.TRACE: {
 				Trace trace = (Trace)theEObject;
 				T result = caseTrace(trace);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TracePackage.VALUE: {
+				Value value = (Value)theEObject;
+				T result = caseValue(value);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TracePackage.STRUCT_VALUE: {
+				StructValue structValue = (StructValue)theEObject;
+				T result = caseStructValue(structValue);
+				if (result == null) result = caseValue(structValue);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TracePackage.ARRAY_VALUE: {
+				ArrayValue arrayValue = (ArrayValue)theEObject;
+				T result = caseArrayValue(arrayValue);
+				if (result == null) result = caseValue(arrayValue);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TracePackage.SIMPLE_VALUE: {
+				SimpleValue simpleValue = (SimpleValue)theEObject;
+				T result = caseSimpleValue(simpleValue);
+				if (result == null) result = caseValue(simpleValue);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TracePackage.NAME_TO_VALUE_MAP: {
+				@SuppressWarnings("unchecked") Map.Entry<String, Value> nameToValueMap = (Map.Entry<String, Value>)theEObject;
+				T result = caseNameToValueMap(nameToValueMap);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -240,6 +274,81 @@ public class TraceSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTrace(Trace object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Value</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseValue(Value object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Struct Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Struct Value</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStructValue(StructValue object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Array Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Array Value</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseArrayValue(ArrayValue object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Simple Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Simple Value</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSimpleValue(SimpleValue object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Name To Value Map</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Name To Value Map</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNameToValueMap(Map.Entry<String, Value> object) {
 		return null;
 	}
 

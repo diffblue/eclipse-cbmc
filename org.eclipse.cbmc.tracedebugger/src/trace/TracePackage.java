@@ -4,6 +4,7 @@ package trace;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -221,13 +222,40 @@ public interface TracePackage extends EPackage {
 	int ASSIGNMENT__VALUE_EXPRESSION = STEP_FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>Parsed Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNMENT__PARSED_VALUE = STEP_FEATURE_COUNT + 8;
+
+	/**
 	 * The number of structural features of the '<em>Assignment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNMENT_FEATURE_COUNT = STEP_FEATURE_COUNT + 8;
+	int ASSIGNMENT_FEATURE_COUNT = STEP_FEATURE_COUNT + 9;
+
+	/**
+	 * The operation id for the '<em>Get Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNMENT___GET_VALUE__STRING = STEP_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Expression</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNMENT___GET_EXPRESSION__STRING = STEP_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Assignment</em>' class.
@@ -236,7 +264,7 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNMENT_OPERATION_COUNT = STEP_OPERATION_COUNT + 0;
+	int ASSIGNMENT_OPERATION_COUNT = STEP_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link trace.impl.FailureImpl <em>Failure</em>}' class.
@@ -616,6 +644,336 @@ public interface TracePackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link trace.impl.ValueImpl <em>Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see trace.impl.ValueImpl
+	 * @see trace.impl.TracePackageImpl#getValue()
+	 * @generated
+	 */
+	int VALUE = 8;
+
+	/**
+	 * The number of structural features of the '<em>Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_FEATURE_COUNT = 0;
+
+	/**
+	 * The operation id for the '<em>Get Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE___GET_VALUE__STRING = 0;
+
+	/**
+	 * The operation id for the '<em>Get Children Count</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE___GET_CHILDREN_COUNT = 1;
+
+	/**
+	 * The operation id for the '<em>Get User Friendly Representation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE___GET_USER_FRIENDLY_REPRESENTATION = 2;
+
+	/**
+	 * The operation id for the '<em>Get Expression</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE___GET_EXPRESSION__STRING = 3;
+
+	/**
+	 * The number of operations of the '<em>Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_OPERATION_COUNT = 4;
+
+	/**
+	 * The meta object id for the '{@link trace.impl.StructValueImpl <em>Struct Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see trace.impl.StructValueImpl
+	 * @see trace.impl.TracePackageImpl#getStructValue()
+	 * @generated
+	 */
+	int STRUCT_VALUE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Values</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCT_VALUE__VALUES = VALUE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Struct Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCT_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCT_VALUE___GET_VALUE__STRING = VALUE___GET_VALUE__STRING;
+
+	/**
+	 * The operation id for the '<em>Get Children Count</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCT_VALUE___GET_CHILDREN_COUNT = VALUE___GET_CHILDREN_COUNT;
+
+	/**
+	 * The operation id for the '<em>Get User Friendly Representation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCT_VALUE___GET_USER_FRIENDLY_REPRESENTATION = VALUE___GET_USER_FRIENDLY_REPRESENTATION;
+
+	/**
+	 * The operation id for the '<em>Get Expression</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCT_VALUE___GET_EXPRESSION__STRING = VALUE___GET_EXPRESSION__STRING;
+
+	/**
+	 * The number of operations of the '<em>Struct Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCT_VALUE_OPERATION_COUNT = VALUE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link trace.impl.ArrayValueImpl <em>Array Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see trace.impl.ArrayValueImpl
+	 * @see trace.impl.TracePackageImpl#getArrayValue()
+	 * @generated
+	 */
+	int ARRAY_VALUE = 10;
+
+	/**
+	 * The feature id for the '<em><b>Values</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_VALUE__VALUES = VALUE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Array Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_VALUE___GET_VALUE__STRING = VALUE___GET_VALUE__STRING;
+
+	/**
+	 * The operation id for the '<em>Get Children Count</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_VALUE___GET_CHILDREN_COUNT = VALUE___GET_CHILDREN_COUNT;
+
+	/**
+	 * The operation id for the '<em>Get User Friendly Representation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_VALUE___GET_USER_FRIENDLY_REPRESENTATION = VALUE___GET_USER_FRIENDLY_REPRESENTATION;
+
+	/**
+	 * The operation id for the '<em>Get Expression</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_VALUE___GET_EXPRESSION__STRING = VALUE___GET_EXPRESSION__STRING;
+
+	/**
+	 * The number of operations of the '<em>Array Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_VALUE_OPERATION_COUNT = VALUE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link trace.impl.SimpleValueImpl <em>Simple Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see trace.impl.SimpleValueImpl
+	 * @see trace.impl.TracePackageImpl#getSimpleValue()
+	 * @generated
+	 */
+	int SIMPLE_VALUE = 11;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_VALUE__VALUE = VALUE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Simple Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_VALUE___GET_VALUE__STRING = VALUE___GET_VALUE__STRING;
+
+	/**
+	 * The operation id for the '<em>Get Children Count</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_VALUE___GET_CHILDREN_COUNT = VALUE___GET_CHILDREN_COUNT;
+
+	/**
+	 * The operation id for the '<em>Get User Friendly Representation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_VALUE___GET_USER_FRIENDLY_REPRESENTATION = VALUE___GET_USER_FRIENDLY_REPRESENTATION;
+
+	/**
+	 * The operation id for the '<em>Get Expression</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_VALUE___GET_EXPRESSION__STRING = VALUE___GET_EXPRESSION__STRING;
+
+	/**
+	 * The number of operations of the '<em>Simple Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_VALUE_OPERATION_COUNT = VALUE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link trace.impl.NameToValueMapImpl <em>Name To Value Map</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see trace.impl.NameToValueMapImpl
+	 * @see trace.impl.TracePackageImpl#getNameToValueMap()
+	 * @generated
+	 */
+	int NAME_TO_VALUE_MAP = 12;
+
+	/**
+	 * The feature id for the '<em><b>Key</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_TO_VALUE_MAP__KEY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_TO_VALUE_MAP__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Name To Value Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_TO_VALUE_MAP_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Name To Value Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_TO_VALUE_MAP_OPERATION_COUNT = 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link trace.Assignment <em>Assignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -712,6 +1070,37 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAssignment_ValueExpression();
+
+	/**
+	 * Returns the meta object for the reference '{@link trace.Assignment#getParsedValue <em>Parsed Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Parsed Value</em>'.
+	 * @see trace.Assignment#getParsedValue()
+	 * @see #getAssignment()
+	 * @generated
+	 */
+	EReference getAssignment_ParsedValue();
+
+	/**
+	 * Returns the meta object for the '{@link trace.Assignment#getValue(java.lang.String) <em>Get Value</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Value</em>' operation.
+	 * @see trace.Assignment#getValue(java.lang.String)
+	 * @generated
+	 */
+	EOperation getAssignment__GetValue__String();
+
+	/**
+	 * Returns the meta object for the '{@link trace.Assignment#getExpression(java.lang.String) <em>Get Expression</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Expression</em>' operation.
+	 * @see trace.Assignment#getExpression(java.lang.String)
+	 * @generated
+	 */
+	EOperation getAssignment__GetExpression__String();
 
 	/**
 	 * Returns the meta object for class '{@link trace.Failure <em>Failure</em>}'.
@@ -938,6 +1327,153 @@ public interface TracePackage extends EPackage {
 	EReference getTrace_Steps();
 
 	/**
+	 * Returns the meta object for class '{@link trace.Value <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Value</em>'.
+	 * @see trace.Value
+	 * @generated
+	 */
+	EClass getValue();
+
+	/**
+	 * Returns the meta object for the '{@link trace.Value#getValue(java.lang.String) <em>Get Value</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Value</em>' operation.
+	 * @see trace.Value#getValue(java.lang.String)
+	 * @generated
+	 */
+	EOperation getValue__GetValue__String();
+
+	/**
+	 * Returns the meta object for the '{@link trace.Value#getChildrenCount() <em>Get Children Count</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Children Count</em>' operation.
+	 * @see trace.Value#getChildrenCount()
+	 * @generated
+	 */
+	EOperation getValue__GetChildrenCount();
+
+	/**
+	 * Returns the meta object for the '{@link trace.Value#getUserFriendlyRepresentation() <em>Get User Friendly Representation</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get User Friendly Representation</em>' operation.
+	 * @see trace.Value#getUserFriendlyRepresentation()
+	 * @generated
+	 */
+	EOperation getValue__GetUserFriendlyRepresentation();
+
+	/**
+	 * Returns the meta object for the '{@link trace.Value#getExpression(java.lang.String) <em>Get Expression</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Expression</em>' operation.
+	 * @see trace.Value#getExpression(java.lang.String)
+	 * @generated
+	 */
+	EOperation getValue__GetExpression__String();
+
+	/**
+	 * Returns the meta object for class '{@link trace.StructValue <em>Struct Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Struct Value</em>'.
+	 * @see trace.StructValue
+	 * @generated
+	 */
+	EClass getStructValue();
+
+	/**
+	 * Returns the meta object for the map '{@link trace.StructValue#getValues <em>Values</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the map '<em>Values</em>'.
+	 * @see trace.StructValue#getValues()
+	 * @see #getStructValue()
+	 * @generated
+	 */
+	EReference getStructValue_Values();
+
+	/**
+	 * Returns the meta object for class '{@link trace.ArrayValue <em>Array Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Array Value</em>'.
+	 * @see trace.ArrayValue
+	 * @generated
+	 */
+	EClass getArrayValue();
+
+	/**
+	 * Returns the meta object for the reference list '{@link trace.ArrayValue#getValues <em>Values</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Values</em>'.
+	 * @see trace.ArrayValue#getValues()
+	 * @see #getArrayValue()
+	 * @generated
+	 */
+	EReference getArrayValue_Values();
+
+	/**
+	 * Returns the meta object for class '{@link trace.SimpleValue <em>Simple Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Simple Value</em>'.
+	 * @see trace.SimpleValue
+	 * @generated
+	 */
+	EClass getSimpleValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link trace.SimpleValue#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see trace.SimpleValue#getValue()
+	 * @see #getSimpleValue()
+	 * @generated
+	 */
+	EAttribute getSimpleValue_Value();
+
+	/**
+	 * Returns the meta object for class '{@link java.util.Map.Entry <em>Name To Value Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Name To Value Map</em>'.
+	 * @see java.util.Map.Entry
+	 * @model keyDataType="org.eclipse.emf.ecore.xml.type.String"
+	 *        valueType="trace.Value"
+	 * @generated
+	 */
+	EClass getNameToValueMap();
+
+	/**
+	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Key</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getNameToValueMap()
+	 * @generated
+	 */
+	EAttribute getNameToValueMap_Key();
+
+	/**
+	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Value</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getNameToValueMap()
+	 * @generated
+	 */
+	EReference getNameToValueMap_Value();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1033,6 +1569,30 @@ public interface TracePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ASSIGNMENT__VALUE_EXPRESSION = eINSTANCE.getAssignment_ValueExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Parsed Value</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASSIGNMENT__PARSED_VALUE = eINSTANCE.getAssignment_ParsedValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Value</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ASSIGNMENT___GET_VALUE__STRING = eINSTANCE.getAssignment__GetValue__String();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Expression</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ASSIGNMENT___GET_EXPRESSION__STRING = eINSTANCE.getAssignment__GetExpression__String();
 
 		/**
 		 * The meta object literal for the '{@link trace.impl.FailureImpl <em>Failure</em>}' class.
@@ -1215,6 +1775,128 @@ public interface TracePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TRACE__STEPS = eINSTANCE.getTrace_Steps();
+
+		/**
+		 * The meta object literal for the '{@link trace.impl.ValueImpl <em>Value</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see trace.impl.ValueImpl
+		 * @see trace.impl.TracePackageImpl#getValue()
+		 * @generated
+		 */
+		EClass VALUE = eINSTANCE.getValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Value</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation VALUE___GET_VALUE__STRING = eINSTANCE.getValue__GetValue__String();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Children Count</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation VALUE___GET_CHILDREN_COUNT = eINSTANCE.getValue__GetChildrenCount();
+
+		/**
+		 * The meta object literal for the '<em><b>Get User Friendly Representation</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation VALUE___GET_USER_FRIENDLY_REPRESENTATION = eINSTANCE.getValue__GetUserFriendlyRepresentation();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Expression</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation VALUE___GET_EXPRESSION__STRING = eINSTANCE.getValue__GetExpression__String();
+
+		/**
+		 * The meta object literal for the '{@link trace.impl.StructValueImpl <em>Struct Value</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see trace.impl.StructValueImpl
+		 * @see trace.impl.TracePackageImpl#getStructValue()
+		 * @generated
+		 */
+		EClass STRUCT_VALUE = eINSTANCE.getStructValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Values</b></em>' map feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STRUCT_VALUE__VALUES = eINSTANCE.getStructValue_Values();
+
+		/**
+		 * The meta object literal for the '{@link trace.impl.ArrayValueImpl <em>Array Value</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see trace.impl.ArrayValueImpl
+		 * @see trace.impl.TracePackageImpl#getArrayValue()
+		 * @generated
+		 */
+		EClass ARRAY_VALUE = eINSTANCE.getArrayValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Values</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ARRAY_VALUE__VALUES = eINSTANCE.getArrayValue_Values();
+
+		/**
+		 * The meta object literal for the '{@link trace.impl.SimpleValueImpl <em>Simple Value</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see trace.impl.SimpleValueImpl
+		 * @see trace.impl.TracePackageImpl#getSimpleValue()
+		 * @generated
+		 */
+		EClass SIMPLE_VALUE = eINSTANCE.getSimpleValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SIMPLE_VALUE__VALUE = eINSTANCE.getSimpleValue_Value();
+
+		/**
+		 * The meta object literal for the '{@link trace.impl.NameToValueMapImpl <em>Name To Value Map</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see trace.impl.NameToValueMapImpl
+		 * @see trace.impl.TracePackageImpl#getNameToValueMap()
+		 * @generated
+		 */
+		EClass NAME_TO_VALUE_MAP = eINSTANCE.getNameToValueMap();
+
+		/**
+		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAME_TO_VALUE_MAP__KEY = eINSTANCE.getNameToValueMap_Key();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NAME_TO_VALUE_MAP__VALUE = eINSTANCE.getNameToValueMap_Value();
 
 	}
 
