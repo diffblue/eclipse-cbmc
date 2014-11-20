@@ -38,6 +38,8 @@ public class Done extends MIResult {
 			return Arrays.asList(cmd.getId() + "^done");
 		
 		if (parameter == null && value != null) {
+			if (value instanceof String)
+				return Arrays.asList(cmd.getId() + "^done," + value);
 			String jsonRepresentation = new Gson().toJson(value);
 			//strip first { and last }
 			return Arrays.asList(cmd.getId() + "^done," + jsonRepresentation.subSequence(1,jsonRepresentation.length()-1));

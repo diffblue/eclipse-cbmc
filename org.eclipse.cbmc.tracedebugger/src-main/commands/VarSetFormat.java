@@ -21,7 +21,7 @@ public class VarSetFormat extends MICommand {
 		
 		Assignment currentAssignemt = process.getVariableManager().getVariables().get(requestedVar);
 		Vars v = new Vars();
-		v.value = currentAssignemt.getFullLhsValue();
+		v.value = currentAssignemt.getValue(VarUpdate.resolveInternalVariableName(currentAssignemt, requestedVar)).getUserFriendlyRepresentation();
 		v.format = newFormat;
 		
 		return new Done(this, v);

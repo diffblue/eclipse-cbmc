@@ -8,7 +8,6 @@ import org.kohsuke.args4j.Option;
 import process.Process;
 import results.sync.Done;
 import trace.Assignment;
-import trace.impl.AssignmentImpl;
 
 public class VarEvaluateExpression extends MICommand {
 	@Option(name="-f")
@@ -17,8 +16,9 @@ public class VarEvaluateExpression extends MICommand {
 	@Override
 	public MIOutput perform(Process process) {
 		String expression = arguments.get(0);
-		String[] segments = AssignmentImpl.splitInTwo(expression);
-		Assignment current = process.getVariableManager().getVariables().get(segments[0]);
+		String requestedVariable = VarUpdate.getVariableName(expression);
+		Assignment current = process.getVariableManager().getVariables().get(requestedVariable);
+		expression = VarUpdate.resolveInternalVariableName(current, expression);
 		return new Done(this, "value", current.getValue(expression).getUserFriendlyRepresentation());
 	}
 	
