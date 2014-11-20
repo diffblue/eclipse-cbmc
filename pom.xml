@@ -32,6 +32,11 @@
 			<url>http://download.eclipse.org/cbi/updates/license/</url>
 			<layout>p2</layout>
 		</repository>
+		<repository>
+			<id>antlr-repo</id>
+			<url>http://dl.bintray.com/prapicault/Antlr4-3-as-p2</url>
+			<layout>p2</layout>
+		</repository>
 </repositories>		
   <build>
 		<plugins>
