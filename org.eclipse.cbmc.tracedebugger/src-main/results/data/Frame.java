@@ -2,11 +2,10 @@ package results.data;
 
 import java.util.List;
 
-import com.google.gson.Gson;
-
 import process.FunctionExecution;
-import trace.FunctionCall;
 import trace.Step;
+
+import com.google.gson.Gson;
 
 //https://sourceware.org/gdb/onlinedocs/gdb/GDB_002fMI-Frame-Information.html#GDB_002fMI-Frame-Information
 //	frame={level="0",addr="0x\
