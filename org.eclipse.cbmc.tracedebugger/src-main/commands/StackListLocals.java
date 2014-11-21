@@ -28,7 +28,7 @@ public class StackListLocals extends MICommand {
 		for (Assignment assignment : localVariables) {
 			results[i] = new Vars();
 			results[i].name = assignment.getBaseName();
-			results[i].value = assignment.getFullLhsValue();
+			results[i].value = assignment.getValue(assignment.getBaseName()).getUserFriendlyRepresentation(false);
 			i++;
 		}
 		return new Done(this, "locals", results);
