@@ -186,31 +186,13 @@ public interface TracePackage extends EPackage {
 	int ASSIGNMENT__VALUE = STEP_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Full Lhs</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSIGNMENT__FULL_LHS = STEP_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Full Lhs Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSIGNMENT__FULL_LHS_VALUE = STEP_FEATURE_COUNT + 5;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNMENT__TYPE = STEP_FEATURE_COUNT + 6;
+	int ASSIGNMENT__TYPE = STEP_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Value Expression</b></em>' attribute.
@@ -219,7 +201,7 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNMENT__VALUE_EXPRESSION = STEP_FEATURE_COUNT + 7;
+	int ASSIGNMENT__VALUE_EXPRESSION = STEP_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Parsed Value</b></em>' reference.
@@ -228,7 +210,7 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNMENT__PARSED_VALUE = STEP_FEATURE_COUNT + 8;
+	int ASSIGNMENT__PARSED_VALUE = STEP_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Assignment</em>' class.
@@ -237,7 +219,7 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNMENT_FEATURE_COUNT = STEP_FEATURE_COUNT + 9;
+	int ASSIGNMENT_FEATURE_COUNT = STEP_FEATURE_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Get Value</em>' operation.
@@ -1064,28 +1046,6 @@ public interface TracePackage extends EPackage {
 	EAttribute getAssignment_Value();
 
 	/**
-	 * Returns the meta object for the attribute '{@link trace.Assignment#getFullLhs <em>Full Lhs</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Full Lhs</em>'.
-	 * @see trace.Assignment#getFullLhs()
-	 * @see #getAssignment()
-	 * @generated
-	 */
-	EAttribute getAssignment_FullLhs();
-
-	/**
-	 * Returns the meta object for the attribute '{@link trace.Assignment#getFullLhsValue <em>Full Lhs Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Full Lhs Value</em>'.
-	 * @see trace.Assignment#getFullLhsValue()
-	 * @see #getAssignment()
-	 * @generated
-	 */
-	EAttribute getAssignment_FullLhsValue();
-
-	/**
 	 * Returns the meta object for the attribute '{@link trace.Assignment#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1583,22 +1543,6 @@ public interface TracePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ASSIGNMENT__VALUE = eINSTANCE.getAssignment_Value();
-
-		/**
-		 * The meta object literal for the '<em><b>Full Lhs</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ASSIGNMENT__FULL_LHS = eINSTANCE.getAssignment_FullLhs();
-
-		/**
-		 * The meta object literal for the '<em><b>Full Lhs Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ASSIGNMENT__FULL_LHS_VALUE = eINSTANCE.getAssignment_FullLhsValue();
 
 		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.

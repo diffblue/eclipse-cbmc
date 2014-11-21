@@ -30,8 +30,6 @@
 					<xsd:element name="displayName" type="xsd:string" />
 					<xsd:element name="baseName" type="xsd:string" />
 					<xsd:element name="value" type="xsd:string" />
-					<xsd:element name="fullLhs" type="xsd:string" />
-					<xsd:element name="fullLhsValue" type="xsd:string" />
 					<xsd:element name="type" type="xsd:string" />
 				</xsd:sequence>
 			</xsd:extension>

@@ -238,7 +238,7 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAssignment_FullLhs() {
+	public EAttribute getAssignment_Type() {
 		return (EAttribute)assignmentEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -247,7 +247,7 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAssignment_FullLhsValue() {
+	public EAttribute getAssignment_ValueExpression() {
 		return (EAttribute)assignmentEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -256,26 +256,8 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAssignment_Type() {
-		return (EAttribute)assignmentEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getAssignment_ValueExpression() {
-		return (EAttribute)assignmentEClass.getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getAssignment_ParsedValue() {
-		return (EReference)assignmentEClass.getEStructuralFeatures().get(8);
+		return (EReference)assignmentEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -653,8 +635,6 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		createEAttribute(assignmentEClass, ASSIGNMENT__DISPLAY_NAME);
 		createEAttribute(assignmentEClass, ASSIGNMENT__BASE_NAME);
 		createEAttribute(assignmentEClass, ASSIGNMENT__VALUE);
-		createEAttribute(assignmentEClass, ASSIGNMENT__FULL_LHS);
-		createEAttribute(assignmentEClass, ASSIGNMENT__FULL_LHS_VALUE);
 		createEAttribute(assignmentEClass, ASSIGNMENT__TYPE);
 		createEAttribute(assignmentEClass, ASSIGNMENT__VALUE_EXPRESSION);
 		createEReference(assignmentEClass, ASSIGNMENT__PARSED_VALUE);
@@ -756,8 +736,6 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		initEAttribute(getAssignment_DisplayName(), theXMLTypePackage.getString(), "displayName", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAssignment_BaseName(), theXMLTypePackage.getString(), "baseName", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAssignment_Value(), theXMLTypePackage.getString(), "value", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAssignment_FullLhs(), theXMLTypePackage.getString(), "fullLhs", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAssignment_FullLhsValue(), theXMLTypePackage.getString(), "fullLhsValue", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAssignment_Type(), theXMLTypePackage.getString(), "type", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAssignment_ValueExpression(), theXMLTypePackage.getString(), "valueExpression", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAssignment_ParsedValue(), this.getValue(), null, "parsedValue", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
@@ -880,20 +858,6 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		   new String[] {
 			 "kind", "element",
 			 "name", "value"
-		   });	
-		addAnnotation
-		  (getAssignment_FullLhs(), 
-		   source, 
-		   new String[] {
-			 "kind", "element",
-			 "name", "fullLhs"
-		   });	
-		addAnnotation
-		  (getAssignment_FullLhsValue(), 
-		   source, 
-		   new String[] {
-			 "kind", "element",
-			 "name", "fullLhsValue"
 		   });	
 		addAnnotation
 		  (getAssignment_Type(), 

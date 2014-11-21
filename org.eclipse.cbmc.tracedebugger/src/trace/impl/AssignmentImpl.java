@@ -34,8 +34,6 @@ import trace.Value;
  *   <li>{@link trace.impl.AssignmentImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link trace.impl.AssignmentImpl#getBaseName <em>Base Name</em>}</li>
  *   <li>{@link trace.impl.AssignmentImpl#getValue <em>Value</em>}</li>
- *   <li>{@link trace.impl.AssignmentImpl#getFullLhs <em>Full Lhs</em>}</li>
- *   <li>{@link trace.impl.AssignmentImpl#getFullLhsValue <em>Full Lhs Value</em>}</li>
  *   <li>{@link trace.impl.AssignmentImpl#getType <em>Type</em>}</li>
  *   <li>{@link trace.impl.AssignmentImpl#getValueExpression <em>Value Expression</em>}</li>
  *   <li>{@link trace.impl.AssignmentImpl#getParsedValue <em>Parsed Value</em>}</li>
@@ -124,46 +122,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	 * @ordered
 	 */
 	protected String value = VALUE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getFullLhs() <em>Full Lhs</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFullLhs()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String FULL_LHS_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getFullLhs() <em>Full Lhs</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFullLhs()
-	 * @generated
-	 * @ordered
-	 */
-	protected String fullLhs = FULL_LHS_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getFullLhsValue() <em>Full Lhs Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFullLhsValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String FULL_LHS_VALUE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getFullLhsValue() <em>Full Lhs Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFullLhsValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected String fullLhsValue = FULL_LHS_VALUE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -316,48 +274,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 		value = newValue;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.ASSIGNMENT__VALUE, oldValue, value));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getFullLhs() {
-		return fullLhs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFullLhs(String newFullLhs) {
-		String oldFullLhs = fullLhs;
-		fullLhs = newFullLhs;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.ASSIGNMENT__FULL_LHS, oldFullLhs, fullLhs));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getFullLhsValue() {
-		return fullLhsValue;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFullLhsValue(String newFullLhsValue) {
-		String oldFullLhsValue = fullLhsValue;
-		fullLhsValue = newFullLhsValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.ASSIGNMENT__FULL_LHS_VALUE, oldFullLhsValue, fullLhsValue));
 	}
 
 	/**
@@ -519,10 +435,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 				return getBaseName();
 			case TracePackage.ASSIGNMENT__VALUE:
 				return getValue();
-			case TracePackage.ASSIGNMENT__FULL_LHS:
-				return getFullLhs();
-			case TracePackage.ASSIGNMENT__FULL_LHS_VALUE:
-				return getFullLhsValue();
 			case TracePackage.ASSIGNMENT__TYPE:
 				return getType();
 			case TracePackage.ASSIGNMENT__VALUE_EXPRESSION:
@@ -553,12 +465,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 				return;
 			case TracePackage.ASSIGNMENT__VALUE:
 				setValue((String)newValue);
-				return;
-			case TracePackage.ASSIGNMENT__FULL_LHS:
-				setFullLhs((String)newValue);
-				return;
-			case TracePackage.ASSIGNMENT__FULL_LHS_VALUE:
-				setFullLhsValue((String)newValue);
 				return;
 			case TracePackage.ASSIGNMENT__TYPE:
 				setType((String)newValue);
@@ -593,12 +499,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 			case TracePackage.ASSIGNMENT__VALUE:
 				setValue(VALUE_EDEFAULT);
 				return;
-			case TracePackage.ASSIGNMENT__FULL_LHS:
-				setFullLhs(FULL_LHS_EDEFAULT);
-				return;
-			case TracePackage.ASSIGNMENT__FULL_LHS_VALUE:
-				setFullLhsValue(FULL_LHS_VALUE_EDEFAULT);
-				return;
 			case TracePackage.ASSIGNMENT__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
@@ -628,10 +528,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 				return BASE_NAME_EDEFAULT == null ? baseName != null : !BASE_NAME_EDEFAULT.equals(baseName);
 			case TracePackage.ASSIGNMENT__VALUE:
 				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
-			case TracePackage.ASSIGNMENT__FULL_LHS:
-				return FULL_LHS_EDEFAULT == null ? fullLhs != null : !FULL_LHS_EDEFAULT.equals(fullLhs);
-			case TracePackage.ASSIGNMENT__FULL_LHS_VALUE:
-				return FULL_LHS_VALUE_EDEFAULT == null ? fullLhsValue != null : !FULL_LHS_VALUE_EDEFAULT.equals(fullLhsValue);
 			case TracePackage.ASSIGNMENT__TYPE:
 				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 			case TracePackage.ASSIGNMENT__VALUE_EXPRESSION:
@@ -676,10 +572,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 		result.append(baseName);
 		result.append(", value: ");
 		result.append(value);
-		result.append(", fullLhs: ");
-		result.append(fullLhs);
-		result.append(", fullLhsValue: ");
-		result.append(fullLhsValue);
 		result.append(", type: ");
 		result.append(type);
 		result.append(", valueExpression: ");

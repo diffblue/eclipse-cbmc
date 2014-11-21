@@ -40,12 +40,6 @@
 						<value>
 							<xsl:value-of select="value" />
 						</value>
-						<fullLhs>
-							<xsl:value-of select="full_lhs" />
-						</fullLhs>
-						<fullLhsValue>
-							<xsl:value-of select="full_lhs_value" />
-						</fullLhsValue>
 						<type>
 							<xsl:value-of select="type" />
 						</type>
