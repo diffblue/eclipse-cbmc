@@ -2,6 +2,7 @@
  */
 package trace;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -34,10 +35,10 @@ public interface Value extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model kind="operation" dataType="org.eclipse.emf.ecore.xml.type.String"
+	 * @model dataType="org.eclipse.emf.ecore.xml.type.String" abridgedDataType="org.eclipse.emf.ecore.xml.type.Boolean"
 	 * @generated
 	 */
-	String getUserFriendlyRepresentation();
+	String getUserFriendlyRepresentation(boolean abridged);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -46,5 +47,13 @@ public interface Value extends EObject {
 	 * @generated
 	 */
 	String getExpression(String exp);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model many="false" parentPathDataType="org.eclipse.emf.ecore.xml.type.String"
+	 * @generated
+	 */
+	EList<Object> compare(String parentPath, Value old);
 
 } // Value

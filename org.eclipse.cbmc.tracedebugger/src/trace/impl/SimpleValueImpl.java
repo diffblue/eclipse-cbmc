@@ -3,9 +3,12 @@
 package trace.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import results.data.Vars;
 import trace.SimpleValue;
 import trace.TracePackage;
 import trace.Value;
@@ -163,7 +166,7 @@ public class SimpleValueImpl extends ValueImpl implements SimpleValue {
 	}
 	
 	@Override
-	public String getUserFriendlyRepresentation() {
+	public String getUserFriendlyRepresentation(boolean abridged) {
 		return getValue();
 	}
 	
@@ -175,6 +178,24 @@ public class SimpleValueImpl extends ValueImpl implements SimpleValue {
 	@Override
 	public Value getValue(String expression) {
 		return this;
+	}
+	
+	@Override
+	public EList<Object> compare(String parentPath, Value old) {
+		EList<Object>initialComparison = super.compare(parentPath, old);
+		if (initialComparison != null)
+			return initialComparison;
+		EList<Object> res = new BasicEList<Object>();
+		if (getValue().equals((((SimpleValue) old).getValue())))
+			return res;
+		Vars v = new Vars();
+		v.name = parentPath;
+		v.value = getUserFriendlyRepresentation(false);
+		v.in_scope="true";
+		v.type_changed = "false";
+		v.has_more = "0";
+		res.add(v);
+		return res;
 	}
 	
 } //SimpleValueImpl

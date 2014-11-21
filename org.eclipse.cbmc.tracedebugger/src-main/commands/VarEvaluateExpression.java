@@ -19,7 +19,7 @@ public class VarEvaluateExpression extends MICommand {
 		String requestedVariable = VarUpdate.getVariableName(expression);
 		Assignment current = process.getVariableManager().getVariables().get(requestedVariable);
 		expression = VarUpdate.resolveInternalVariableName(current, expression);
-		return new Done(this, "value", current.getValue(expression).getUserFriendlyRepresentation());
+		return new Done(this, "value", current.getValue(expression).getUserFriendlyRepresentation(false));
 	}
 	
 	@Override

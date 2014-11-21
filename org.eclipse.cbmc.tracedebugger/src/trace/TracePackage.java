@@ -687,7 +687,7 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE___GET_USER_FRIENDLY_REPRESENTATION = 2;
+	int VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN = 2;
 
 	/**
 	 * The operation id for the '<em>Get Expression</em>' operation.
@@ -699,13 +699,22 @@ public interface TracePackage extends EPackage {
 	int VALUE___GET_EXPRESSION__STRING = 3;
 
 	/**
+	 * The operation id for the '<em>Compare</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE___COMPARE__STRING_VALUE = 4;
+
+	/**
 	 * The number of operations of the '<em>Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPERATION_COUNT = 4;
+	int VALUE_OPERATION_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link trace.impl.StructValueImpl <em>Struct Value</em>}' class.
@@ -760,7 +769,7 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCT_VALUE___GET_USER_FRIENDLY_REPRESENTATION = VALUE___GET_USER_FRIENDLY_REPRESENTATION;
+	int STRUCT_VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN = VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Get Expression</em>' operation.
@@ -770,6 +779,15 @@ public interface TracePackage extends EPackage {
 	 * @ordered
 	 */
 	int STRUCT_VALUE___GET_EXPRESSION__STRING = VALUE___GET_EXPRESSION__STRING;
+
+	/**
+	 * The operation id for the '<em>Compare</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCT_VALUE___COMPARE__STRING_VALUE = VALUE___COMPARE__STRING_VALUE;
 
 	/**
 	 * The number of operations of the '<em>Struct Value</em>' class.
@@ -833,7 +851,7 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARRAY_VALUE___GET_USER_FRIENDLY_REPRESENTATION = VALUE___GET_USER_FRIENDLY_REPRESENTATION;
+	int ARRAY_VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN = VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Get Expression</em>' operation.
@@ -843,6 +861,15 @@ public interface TracePackage extends EPackage {
 	 * @ordered
 	 */
 	int ARRAY_VALUE___GET_EXPRESSION__STRING = VALUE___GET_EXPRESSION__STRING;
+
+	/**
+	 * The operation id for the '<em>Compare</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_VALUE___COMPARE__STRING_VALUE = VALUE___COMPARE__STRING_VALUE;
 
 	/**
 	 * The number of operations of the '<em>Array Value</em>' class.
@@ -906,7 +933,7 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_VALUE___GET_USER_FRIENDLY_REPRESENTATION = VALUE___GET_USER_FRIENDLY_REPRESENTATION;
+	int SIMPLE_VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN = VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Get Expression</em>' operation.
@@ -916,6 +943,15 @@ public interface TracePackage extends EPackage {
 	 * @ordered
 	 */
 	int SIMPLE_VALUE___GET_EXPRESSION__STRING = VALUE___GET_EXPRESSION__STRING;
+
+	/**
+	 * The operation id for the '<em>Compare</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_VALUE___COMPARE__STRING_VALUE = VALUE___COMPARE__STRING_VALUE;
 
 	/**
 	 * The number of operations of the '<em>Simple Value</em>' class.
@@ -1357,14 +1393,14 @@ public interface TracePackage extends EPackage {
 	EOperation getValue__GetChildrenCount();
 
 	/**
-	 * Returns the meta object for the '{@link trace.Value#getUserFriendlyRepresentation() <em>Get User Friendly Representation</em>}' operation.
+	 * Returns the meta object for the '{@link trace.Value#getUserFriendlyRepresentation(boolean) <em>Get User Friendly Representation</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get User Friendly Representation</em>' operation.
-	 * @see trace.Value#getUserFriendlyRepresentation()
+	 * @see trace.Value#getUserFriendlyRepresentation(boolean)
 	 * @generated
 	 */
-	EOperation getValue__GetUserFriendlyRepresentation();
+	EOperation getValue__GetUserFriendlyRepresentation__boolean();
 
 	/**
 	 * Returns the meta object for the '{@link trace.Value#getExpression(java.lang.String) <em>Get Expression</em>}' operation.
@@ -1375,6 +1411,16 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getValue__GetExpression__String();
+
+	/**
+	 * Returns the meta object for the '{@link trace.Value#compare(java.lang.String, trace.Value) <em>Compare</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Compare</em>' operation.
+	 * @see trace.Value#compare(java.lang.String, trace.Value)
+	 * @generated
+	 */
+	EOperation getValue__Compare__String_Value();
 
 	/**
 	 * Returns the meta object for class '{@link trace.StructValue <em>Struct Value</em>}'.
@@ -1808,7 +1854,7 @@ public interface TracePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation VALUE___GET_USER_FRIENDLY_REPRESENTATION = eINSTANCE.getValue__GetUserFriendlyRepresentation();
+		EOperation VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN = eINSTANCE.getValue__GetUserFriendlyRepresentation__boolean();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Expression</b></em>' operation.
@@ -1817,6 +1863,14 @@ public interface TracePackage extends EPackage {
 		 * @generated
 		 */
 		EOperation VALUE___GET_EXPRESSION__STRING = eINSTANCE.getValue__GetExpression__String();
+
+		/**
+		 * The meta object literal for the '<em><b>Compare</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation VALUE___COMPARE__STRING_VALUE = eINSTANCE.getValue__Compare__String_Value();
 
 		/**
 		 * The meta object literal for the '{@link trace.impl.StructValueImpl <em>Struct Value</em>}' class.

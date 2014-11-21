@@ -5,6 +5,7 @@ package trace.impl;
 import java.util.Map;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -516,7 +517,7 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getValue__GetUserFriendlyRepresentation() {
+	public EOperation getValue__GetUserFriendlyRepresentation__boolean() {
 		return valueEClass.getEOperations().get(2);
 	}
 
@@ -527,6 +528,15 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 */
 	public EOperation getValue__GetExpression__String() {
 		return valueEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getValue__Compare__String_Value() {
+		return valueEClass.getEOperations().get(4);
 	}
 
 	/**
@@ -682,8 +692,9 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		valueEClass = createEClass(VALUE);
 		createEOperation(valueEClass, VALUE___GET_VALUE__STRING);
 		createEOperation(valueEClass, VALUE___GET_CHILDREN_COUNT);
-		createEOperation(valueEClass, VALUE___GET_USER_FRIENDLY_REPRESENTATION);
+		createEOperation(valueEClass, VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN);
 		createEOperation(valueEClass, VALUE___GET_EXPRESSION__STRING);
+		createEOperation(valueEClass, VALUE___COMPARE__STRING_VALUE);
 
 		structValueEClass = createEClass(STRUCT_VALUE);
 		createEReference(structValueEClass, STRUCT_VALUE__VALUES);
@@ -792,10 +803,19 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 
 		initEOperation(getValue__GetChildrenCount(), theXMLTypePackage.getInt(), "getChildrenCount", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEOperation(getValue__GetUserFriendlyRepresentation(), theXMLTypePackage.getString(), "getUserFriendlyRepresentation", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getValue__GetUserFriendlyRepresentation__boolean(), theXMLTypePackage.getString(), "getUserFriendlyRepresentation", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theXMLTypePackage.getBoolean(), "abridged", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getValue__GetExpression__String(), theXMLTypePackage.getString(), "getExpression", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theXMLTypePackage.getString(), "exp", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getValue__Compare__String_Value(), null, "compare", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theXMLTypePackage.getString(), "parentPath", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getValue(), "old", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EGenericType g1 = createEGenericType(ecorePackage.getEEList());
+		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		initEOperation(op, g1);
 
 		initEClass(structValueEClass, StructValue.class, "StructValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStructValue_Values(), this.getNameToValueMap(), null, "values", null, 0, -1, StructValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -2,7 +2,12 @@
  */
 package trace.impl;
 
+import java.util.Map.Entry;
+import java.util.Set;
+
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -149,8 +154,20 @@ public class StructValueImpl extends ValueImpl implements StructValue {
 	}
 	
 	@Override
-	public String getUserFriendlyRepresentation() {
-		return "{...}";
+	public String getUserFriendlyRepresentation(boolean abriged) {
+		if (abriged)
+			return "{...}";
+		StringBuffer bf = new StringBuffer();
+		bf.append('{');
+		Set<Entry<String, Value>> entries = values.entrySet();
+		for (Entry<String, Value> entry : entries) {
+			bf.append(entry.getKey());
+			bf.append('=');
+			bf.append(entry.getValue().getUserFriendlyRepresentation(false));
+			bf.append(',');
+		}
+		bf.replace(bf.lastIndexOf(","), bf.lastIndexOf(",")+1, "}");
+		return bf.toString();
 	}
 	
 	public Value getValue(String expression) {
@@ -171,5 +188,19 @@ public class StructValueImpl extends ValueImpl implements StructValue {
 			return "." + v.getExpression(segments[1]);
 		else 
 			return "." + segments[0];
+	}
+	
+	@Override
+	public EList<Object> compare(String parentPath, Value old) {
+		EList<Object>initialComparison = super.compare(parentPath, old);
+		if (initialComparison != null)
+			return initialComparison;
+		StructValue oldStruct = (StructValue) old;
+		Set<String> keys = values.keySet();
+		EList<Object> differences = new BasicEList<Object>();
+		for (String key : keys) {
+			differences.addAll(values.get(key).compare(parentPath + '.' + key, oldStruct.getValues().get(key)));
+		}
+		return differences;
 	}
 } //StructValueImpl

@@ -59,7 +59,7 @@ public class VarCreate extends MICommand {
 		
 		Vars v = new Vars();
 		v.name = internalVarName;
-		v.value = value.getUserFriendlyRepresentation();
+		v.value = value.getUserFriendlyRepresentation(true);
 		v.type = VarHelper.getMIType(match.getType());
 		v.numchild = String.valueOf(value.getChildrenCount());
 		v.has_more = "0";	//A revoir avec des vraies variables

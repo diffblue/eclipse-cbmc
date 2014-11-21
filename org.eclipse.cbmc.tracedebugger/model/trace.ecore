@@ -210,9 +210,18 @@
       <eParameters name="expression" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
     </eOperations>
     <eOperations name="getChildrenCount" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
-    <eOperations name="getUserFriendlyRepresentation" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eOperations name="getUserFriendlyRepresentation" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
+      <eParameters name="abridged" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
+    </eOperations>
     <eOperations name="getExpression" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eParameters name="exp" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    </eOperations>
+    <eOperations name="compare">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+      </eGenericType>
+      <eParameters name="parentPath" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      <eParameters name="old" eType="#//Value"/>
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StructValue" eSuperTypes="#//Value">

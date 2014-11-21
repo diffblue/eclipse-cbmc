@@ -133,9 +133,10 @@ public class ArrayValueImpl extends ValueImpl implements ArrayValue {
 	}
 	
 	@Override
-	public String getUserFriendlyRepresentation() {
+	public String getUserFriendlyRepresentation(boolean abridged) {
 		return "[...]";
 	}
+	
 	
 	@Override
 	public String getExpression(String exp) {
