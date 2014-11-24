@@ -60,7 +60,7 @@ public class InterpreterLoop {
 				if (result == null)
 					result = command.perform(process);
 			} catch (Exception e) {
-				logger.log(Level.SEVERE,"Exeception occured while processing command", e);
+				logger.log(Level.SEVERE,"Exception occured while processing command", e);
 				result = new Error(command, "Command could not be executed successfully");
 			}
 			List<String> entries = result.serialize();
