@@ -15,7 +15,7 @@ public class VarInfoPathExpression extends MICommand {
 		String requestedVariable = VarUpdate.getVariableName(expression);
 		Assignment current = process.getVariableManager().getVariables().get(requestedVariable);
 		expression = VarUpdate.resolveInternalVariableName(current, expression);
-		return new Done(this, "path_exp", current.getExpression(expression));
+		return new Done(this, "path_expr", current.getExpression(expression));
 	}
 	
 	@Override
