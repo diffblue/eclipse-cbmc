@@ -1,11 +1,9 @@
 package main;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.util.Scanner;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -62,11 +60,7 @@ public class TraceDebugger {
 		try {
 			new InterpreterLoop(process, scan, System.out, logger).run();
 		} catch(Exception e) {
-			logger.severe(e.getMessage());
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			PrintStream ps = new PrintStream(baos);
-			e.printStackTrace(ps);
-			logger.severe(baos.toString());
+			logger.log(Level.SEVERE, "Exception occured", e);
 		}
 		System.exit(0);
 	}
@@ -115,7 +109,7 @@ public class TraceDebugger {
 		try {
 			fh = new FileHandler(loggingFolder + "/traceDebugger.log", true);
 			logger.addHandler(fh);
-			logger.setLevel(Level.OFF);
+			logger.setLevel(Level.ALL);
 			SimpleFormatter formatter = new SimpleFormatter();
 			fh.setFormatter(formatter);
 		} catch (SecurityException e) {
