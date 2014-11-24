@@ -27,10 +27,10 @@ public class LoopsTableViewer extends TableViewer {
 	private void init() {
 		cp = new ObservableListContentProvider();
 		this.getTable().setHeaderVisible(true);
-		createTableViewerColumn(CbmcPackage.Literals.LOOP__UNWIND, Messages.LoopsTableViewer_0, 80, 0, true);
-		createTableViewerColumn(CbmcPackage.Literals.LOOP__FILENAME, Messages.LoopsTableViewer_1, 80, 1, false);
-		createTableViewerColumn(CbmcPackage.Literals.LOOP__FUNCTION, Messages.LoopsTableViewer_2, 80, 2, false);
-		createTableViewerColumn(CbmcPackage.Literals.LOOP__LINE, Messages.LoopsTableViewer_3, 80, 3, false);
+		createTableViewerColumn(CbmcPackage.Literals.LOOP__UNWIND, Messages.LoopsTableViewer_headerUnwind, 80, 0, true);
+		createTableViewerColumn(CbmcPackage.Literals.LOOP__FILENAME, Messages.LoopsTableViewer_headerFile, 80, 1, false);
+		createTableViewerColumn(CbmcPackage.Literals.LOOP__FUNCTION, Messages.LoopsTableViewer_headerFunction, 80, 2, false);
+		createTableViewerColumn(CbmcPackage.Literals.LOOP__LINE, Messages.LoopsTableViewer_headerLine, 80, 3, false);
 		comparator = new LoopsViewerComparator();
 		setComparator(comparator);
 		setContentProvider(cp);

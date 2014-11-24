@@ -7,39 +7,32 @@ public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.internal.cbmc.view.messages"; //$NON-NLS-1$
 
 	public static String CheckPropertyJob_errorExitValue0;
-
 	public static String CheckPropertyJob_errorExitValue1;
-
 	public static String CheckPropertyJob_errorExitValue2;
-
 	public static String CheckPropertyJob_errorExitValue3;
 
-	public static String CounterPanel_0;
-	public static String CounterPanel_1;
-	public static String CounterPanel_2;
-	public static String CounterPanel_3;
-	public static String CounterPanel_4;
+	public static String CounterPanel_runs;
+	public static String CounterPanel_success;
+	public static String CounterPanel_failures;
+	public static String CounterPanel_errors;
+	public static String CounterPanel_runsdone;
 
-	public static String LoopsTableViewer_0;
-	public static String LoopsTableViewer_1;
-	public static String LoopsTableViewer_2;
-	public static String LoopsTableViewer_3;
+	public static String LoopsTableViewer_headerUnwind;
+	public static String LoopsTableViewer_headerFile;
+	public static String LoopsTableViewer_headerFunction;
+	public static String LoopsTableViewer_headerLine;
 
-	public static String PauseAction_0;
+	public static String PropertiesView_jobGenerateAllProperties;
+	public static String PropertiesView_jobCheckingAllProperties;
+	public static String PropertiesView_actionRun;
+	public static String PropertiesView_jobGenerateLoops;
+	public static String PropertiesView_sectionProperties;
+	public static String PropertiesView_sectionLoopsYes;
+	public static String PropertiesView_sectionLoopsNo;
 
-	public static String PropertiesView_0;
-	public static String PropertiesView_1;
-	public static String PropertiesView_2;
-	public static String PropertiesView_3;
-	public static String PropertiesView_4;
-	public static String PropertiesView_5;
-	public static String PropertiesView_6;
-	public static String PropertiesView_7;
-	public static String PropertiesView_8;
-	public static String PropertiesView_9;
-
-	public static String RunAction_0;
-	public static String StopAction_0;
+	public static String PropertiesView_actionStop;
+	public static String PropertiesView_actionDebug;
+	public static String PropertiesView_actionPause;
 
 	static {
 		// initialize resource bundle

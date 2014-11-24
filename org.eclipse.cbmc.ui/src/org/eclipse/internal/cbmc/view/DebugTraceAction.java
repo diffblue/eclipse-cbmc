@@ -3,8 +3,8 @@ package org.eclipse.internal.cbmc.view;
 import org.eclipse.cbmc.Property;
 import org.eclipse.cbmc.PropertyStatus;
 import org.eclipse.core.runtime.*;
+import org.eclipse.internal.cbmc.Activator;
 import org.eclipse.internal.cbmc.tracedebugger.launcher.CBMCDebug;
-import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.actions.SelectionListenerAction;
@@ -37,7 +37,7 @@ public class DebugTraceAction extends SelectionListenerAction {
 				try {
 					new CBMCDebug(property).launchDebugger();
 				} catch (CoreException e) {
-					ErrorDialog.openError(null, "Counter example analysis", "A problem occurred while launching the analysis of the counter example. Nothing can be done.", new Status(IStatus.ERROR, org.eclipse.internal.cbmc.Activator.PLUGIN_ID, "Problem launching counter example analysis", e)); //$NON-NLS-1$ //$NON-NLS-3$
+					Activator.getDefault().getLog().log(new Status(IStatus.ERROR, org.eclipse.internal.cbmc.Activator.PLUGIN_ID, "Problem launching counter example analysis", e)); //$NON-NLS-1$
 					return;
 				}
 

@@ -43,10 +43,9 @@ public class CbmcView extends ViewPart {
 
 	private Composite parent;
 	private Composite counterComposite;
-
 	private SashForm sashForm;
-
 	private int currentOrientation;
+	CLabel labelLoops;
 
 	/**
 	 * The constructor.
@@ -69,7 +68,7 @@ public class CbmcView extends ViewPart {
 		ViewForm top = new ViewForm(sashForm, SWT.NONE);
 
 		CLabel labelPorperties = new CLabel(top, SWT.NONE);
-		labelPorperties.setText(Messages.PropertiesView_5);
+		labelPorperties.setText(Messages.PropertiesView_sectionProperties);
 		labelPorperties.setImage(ImageDescriptor.createFromURL(FileLocator.find(FrameworkUtil.getBundle(this.getClass()), new Path("icons/list.gif"), null)).createImage()); //$NON-NLS-1$);
 
 		top.setTopLeft(labelPorperties);
@@ -79,13 +78,13 @@ public class CbmcView extends ViewPart {
 		viewer.setLabelProvider(new AdapterFactoryLabelProvider(factory));
 		top.setContent(viewer.getControl());
 
-		ViewForm bottom = new ViewForm(sashForm, SWT.NONE);
-		CLabel labelLoops = new CLabel(bottom, SWT.NONE);
-		labelLoops.setText(Messages.PropertiesView_6);
+		ViewForm loopsViewForm = new ViewForm(sashForm, SWT.NONE);
+		labelLoops = new CLabel(loopsViewForm, SWT.NONE);
+		labelLoops.setText(Messages.PropertiesView_sectionLoopsNo);
 		labelLoops.setImage(ImageDescriptor.createFromURL(FileLocator.find(FrameworkUtil.getBundle(this.getClass()), new Path("icons/list.gif"), null)).createImage()); //$NON-NLS-1$);
-		bottom.setTopLeft(labelLoops);
-		loopsViewer = new LoopsTableViewer(bottom);
-		bottom.setContent(loopsViewer.getControl());
+		loopsViewForm.setTopLeft(labelLoops);
+		loopsViewer = new LoopsTableViewer(loopsViewForm);
+		loopsViewForm.setContent(loopsViewer.getControl());
 
 		sashForm.setWeights(new int[] {50, 50});
 
@@ -99,15 +98,15 @@ public class CbmcView extends ViewPart {
 		// Create menu manager.
 		MenuManager menuMgr = new MenuManager();
 
-		RunPropertyAction runPropertyAction = new RunPropertyAction(Messages.PropertiesView_7);
+		RunPropertyAction runPropertyAction = new RunPropertyAction(Messages.PropertiesView_actionDebug);
 		menuMgr.add(runPropertyAction);
 		viewer.addSelectionChangedListener(runPropertyAction);
 
-		StopPropertyAction stopPropertyAction = new StopPropertyAction(Messages.PropertiesView_8);
+		StopPropertyAction stopPropertyAction = new StopPropertyAction(Messages.PropertiesView_actionStop);
 		menuMgr.add(stopPropertyAction);
 		viewer.addSelectionChangedListener(stopPropertyAction);
 
-		DebugTraceAction debugTraceAction = new DebugTraceAction(Messages.PropertiesView_9);
+		DebugTraceAction debugTraceAction = new DebugTraceAction(Messages.PropertiesView_actionDebug);
 		menuMgr.add(debugTraceAction);
 		viewer.addSelectionChangedListener(debugTraceAction);
 
@@ -140,17 +139,16 @@ public class CbmcView extends ViewPart {
 	}
 
 	public void startVerification(final CBMCCliHelper cbmcHelper) {
-		generatePropertiesJob = new GeneratePropertiesJob(Messages.PropertiesView_1, cbmcHelper);
+		generatePropertiesJob = new GeneratePropertiesJob(Messages.PropertiesView_jobGenerateAllProperties, cbmcHelper);
 		generatePropertiesJob.addJobChangeListener(new JobChangeAdapter() {
-
 			@Override
 			public void done(final IJobChangeEvent event) {
 				if (!event.getResult().isOK())
 					return;
 				results = ((GeneratePropertiesJob) event.getJob()).getCBMCResults();
-				checkAllPropertiesJob = new CheckAllPropertiesJob(Messages.PropertiesView_2, results);
+				checkAllPropertiesJob = new CheckAllPropertiesJob(Messages.PropertiesView_jobCheckingAllProperties, results);
 				if (results.getCBMCHelper().showLoops()) {
-					generateLoopsJob = new GenerateLoopsJob(Messages.PropertiesView_4, cbmcHelper);
+					generateLoopsJob = new GenerateLoopsJob(Messages.PropertiesView_jobGenerateLoops, cbmcHelper);
 					generateLoopsJob.addJobChangeListener(new JobChangeAdapter() {
 						@Override
 						public void done(IJobChangeEvent event1) {
@@ -159,6 +157,11 @@ public class CbmcView extends ViewPart {
 								if (results.getCBMCHelper().isAutoRun()) {
 									checkAllPropertiesJob.schedule();
 								}
+								Display.getDefault().asyncExec(new Runnable() {
+									public void run() {
+										changeLoopInput(results);
+									}
+								});
 							}
 						}
 					});
@@ -178,6 +181,11 @@ public class CbmcView extends ViewPart {
 		generatePropertiesJob.schedule();
 	}
 
+	void changeLoopInput(Results newResults) {
+		labelLoops.setText(Messages.format(Messages.PropertiesView_sectionLoopsYes, new String[] {Integer.toString(newResults.getLoops().size())}));
+		loopsViewer.setInput(EMFProperties.list(CbmcPackage.Literals.RESULTS__LOOPS).observe(newResults));
+	}
+
 	void changeInput(Results newResults) {
 		if (viewer.getTree() != null)
 			viewer.getTree().deselectAll();
@@ -186,7 +194,6 @@ public class CbmcView extends ViewPart {
 		counterPanel.bind(newResults);
 		progressBar.bind(newResults);
 		toolbar.bind(checkAllPropertiesJob);
-		loopsViewer.setInput(EMFProperties.list(CbmcPackage.Literals.RESULTS__LOOPS).observe(newResults));
 	}
 
 	@Override

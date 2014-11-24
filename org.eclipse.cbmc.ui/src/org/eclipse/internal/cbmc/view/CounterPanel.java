@@ -45,10 +45,10 @@ public class CounterPanel extends Composite {
 
 		runsCount = 0;
 		totalCount = 0;
-		fNumberOfRuns = createLabel(Messages.CounterPanel_0, null, " 0/0  "); //$NON-NLS-1$
-		fNumberOfSuccess = createLabel(Messages.CounterPanel_1, fSuccessIcon, " 0 "); //$NON-NLS-1$
-		fNumberOfFailures = createLabel(Messages.CounterPanel_2, fFailureIcon, " 0 "); //$NON-NLS-1$
-		fNumberOfErrors = createLabel(Messages.CounterPanel_3, fErrorIcon, " 0 "); //$NON-NLS-1$
+		fNumberOfRuns = createLabel(Messages.CounterPanel_runs, null, " 0/0  "); //$NON-NLS-1$
+		fNumberOfSuccess = createLabel(Messages.CounterPanel_success, fSuccessIcon, " 0 "); //$NON-NLS-1$
+		fNumberOfFailures = createLabel(Messages.CounterPanel_failures, fFailureIcon, " 0 "); //$NON-NLS-1$
+		fNumberOfErrors = createLabel(Messages.CounterPanel_errors, fErrorIcon, " 0 "); //$NON-NLS-1$
 
 		addDisposeListener(new DisposeListener() {
 			public void widgetDisposed(DisposeEvent e) {
@@ -88,7 +88,7 @@ public class CounterPanel extends Composite {
 	}
 
 	public void setRunValue() {
-		String runString = Messages.format(Messages.CounterPanel_4, new String[] {Integer.toString(runsCount), Integer.toString(totalCount)});
+		String runString = Messages.format(Messages.CounterPanel_runsdone, new String[] {Integer.toString(runsCount), Integer.toString(totalCount)});
 		fNumberOfRuns.setText(runString);
 	}
 
@@ -133,7 +133,7 @@ public class CounterPanel extends Composite {
 
 			@Override
 			public Object convert(Object fromObject) {
-				return Messages.format(Messages.CounterPanel_4, new String[] {Integer.toString(((Integer) fromObject)), Integer.toString(results.getProperties().size())});
+				return Messages.format(Messages.CounterPanel_runsdone, new String[] {Integer.toString(((Integer) fromObject)), Integer.toString(results.getProperties().size())});
 			}
 		});
 		bindingContext.bindValue(WidgetProperties.text(SWT.Modify).observe(fNumberOfRuns), EMFProperties.value(CbmcPackage.Literals.RESULTS__RUN_COUNT).observe(results), null, strategy2);

@@ -22,7 +22,7 @@ public class PauseAction extends JobAction {
 
 	@Override
 	public String getText() {
-		return Messages.PauseAction_0;
+		return Messages.PropertiesView_actionPause;
 	}
 
 	@Override

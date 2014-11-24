@@ -22,7 +22,7 @@ public class StopAction extends JobAction {
 
 	@Override
 	public String getText() {
-		return Messages.StopAction_0;
+		return Messages.PropertiesView_actionStop;
 	}
 
 	@Override

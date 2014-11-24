@@ -57,7 +57,7 @@ public class ProcessHelper {
 				BufferedReader buffer = new BufferedReader(new InputStreamReader(process.getInputStream()));
 				String currentline;
 				while ((currentline = buffer.readLine()) != null) {
-					output = (output == null ? "" : output) + currentline; //$NON-NLS-1$
+					output = (output == null ? "" : " " + output) + currentline; //$NON-NLS-1$ //$NON-NLS-2$
 				}
 				buffer.close();
 			}
