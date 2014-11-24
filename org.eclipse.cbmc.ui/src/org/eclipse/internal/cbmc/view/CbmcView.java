@@ -98,7 +98,7 @@ public class CbmcView extends ViewPart {
 		// Create menu manager.
 		MenuManager menuMgr = new MenuManager();
 
-		RunPropertyAction runPropertyAction = new RunPropertyAction(Messages.PropertiesView_actionDebug);
+		RunPropertyAction runPropertyAction = new RunPropertyAction(Messages.PropertiesView_actionRun);
 		menuMgr.add(runPropertyAction);
 		viewer.addSelectionChangedListener(runPropertyAction);
 
