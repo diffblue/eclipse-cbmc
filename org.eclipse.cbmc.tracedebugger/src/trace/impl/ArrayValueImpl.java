@@ -134,7 +134,14 @@ public class ArrayValueImpl extends ValueImpl implements ArrayValue {
 	
 	@Override
 	public String getUserFriendlyRepresentation(boolean abridged) {
-		return "[...]";
+		if (abridged)
+			return "[...]";
+		StringBuffer result = new StringBuffer();
+		result.append('{');
+		for (Value value : values) {
+			result.append(value.getUserFriendlyRepresentation(false)).append(',');
+		}
+		return result.replace(result.lastIndexOf(","), result.lastIndexOf(",") + 1, "}").toString();
 	}
 	
 	
