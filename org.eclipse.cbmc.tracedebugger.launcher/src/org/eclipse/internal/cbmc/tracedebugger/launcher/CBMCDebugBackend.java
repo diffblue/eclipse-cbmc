@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import org.eclipse.cdt.debug.core.ICDTLaunchConfigurationConstants;
 import org.eclipse.cdt.dsf.concurrent.RequestMonitor;
-import org.eclipse.cdt.dsf.gdb.internal.GdbPlugin;
 import org.eclipse.cdt.dsf.gdb.service.GDBBackend;
 import org.eclipse.cdt.dsf.service.DsfSession;
 import org.eclipse.cdt.utils.spawner.ProcessFactory;
@@ -17,7 +16,6 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.ILaunchConfiguration;
 
@@ -90,7 +88,7 @@ public class CBMCDebugBackend extends GDBBackend {
 		} catch (IOException e) {
             String message = "Error while launching command " + commandLine;   //$NON-NLS-1$
             clearErrorMarker();
-            throw new CoreException(new Status(IStatus.ERROR, GdbPlugin.PLUGIN_ID, -1, message, e));
+            throw new CoreException(new Status(IStatus.ERROR, "org.eclipse.cbmc.tracedebugger.launcher", -1, message, e));
 		}
 		
 		return proc;
