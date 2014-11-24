@@ -16,12 +16,15 @@ public class VarSetFormat extends MICommand {
 	
 	@Override
 	public MIOutput perform(Process process) {                                                            
-		String requestedVar = arguments.get(0);          
+		String expression = arguments.get(0);          
 		String newFormat = arguments.get(1);
 		
-		Assignment currentAssignemt = process.getVariableManager().getVariables().get(requestedVar);
+		
+		String requestedVariable = VarUpdate.getVariableName(expression);
+		Assignment current = process.getVariableManager().getVariables().get(requestedVariable);
+		expression = VarUpdate.resolveInternalVariableName(current, expression);
 		Vars v = new Vars();
-		v.value = currentAssignemt.getValue(VarUpdate.resolveInternalVariableName(currentAssignemt, requestedVar)).getUserFriendlyRepresentation(false);
+		v.value = current.getValue(expression).getUserFriendlyRepresentation(false);
 		v.format = newFormat;
 		
 		return new Done(this, v);
