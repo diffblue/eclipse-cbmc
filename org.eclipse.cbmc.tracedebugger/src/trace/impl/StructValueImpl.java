@@ -185,7 +185,7 @@ public class StructValueImpl extends ValueImpl implements StructValue {
 		if (v == null)
 			return "";
 		if (segments.length == 2)
-			return "." + v.getExpression(segments[1]);
+			return "." + segments[0] + '.' + v.getExpression(segments[1]);
 		else 
 			return "." + segments[0];
 	}

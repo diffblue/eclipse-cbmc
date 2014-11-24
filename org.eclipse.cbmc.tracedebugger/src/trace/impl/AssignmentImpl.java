@@ -399,10 +399,10 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 		if (idx == 0) {
 			if (expression.length() > 0)
 				return splitInTwo(expression.substring(1));
-			return null;
+			return new String[] {""};
 		}
 		else 
-			return new String[] {expression.substring(0,idx), splitInTwo(expression.substring(idx))[0]};	
+			return new String[] {expression.substring(0,idx), expression.substring(idx)};	
 	}
 	
 	private void parseValueExpression() {

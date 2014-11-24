@@ -23,6 +23,7 @@ import trace.Value;
 public class VarListChildren extends MICommand {
 	@Override
 	public MIOutput perform(Process process) {
+		final String requestedExpression = arguments.get(0);
 		String expression = arguments.get(0);
 		
 		String requestedVariable = VarUpdate.getVariableName(expression);
@@ -37,7 +38,7 @@ public class VarListChildren extends MICommand {
 		ArrayList<Vars> children = new ArrayList<Vars>();
 		for (Entry<String, Value> entry : structValues) {
 			Vars v = new Vars();
-			v.name = requestedVariable + '.' + entry.getKey();
+			v.name = requestedExpression + '.' + entry.getKey();
 			v.exp = entry.getKey();
 			v.numchild = String.valueOf(entry.getValue().getChildrenCount());
 			v.type = "int"; //TODO 
