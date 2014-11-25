@@ -2,6 +2,7 @@ package commands;
 
 import infra.MICommand;
 import infra.MIOutput;
+import infra.VarHelpers;
 
 import org.kohsuke.args4j.Option;
 
@@ -42,20 +43,21 @@ public class VarCreate extends MICommand {
 	@Override
 	public MIOutput perform(Process process) {
 		String internalVarName = null;
-		String programVarName = null;
+		String expression = null;
 		
 		if (!arguments.get(0).equals("-")) {
 			internalVarName = arguments.get(0);
 		} else {
 			internalVarName = "var" + (process.getVariableManager().getVariables().size() + 1);
 		}
-		programVarName = arguments.get(2);
+		expression = arguments.get(2);
 		
-		Assignment match = process.getThread(threadId).getFrame(frameId).getVariable(programVarName);
+		//TODO deal with &(var)
+		Assignment match = VarHelpers.getAssignment(process, expression, threadId, frameId);
 		process.getVariableManager().getVariables().put(internalVarName, match);
 		process.getVariableManager().getPreviousValues().put(internalVarName, match);
 		
-		Value value = match.getValue(programVarName);
+		Value value = match.getParsedValue();
 		
 		Vars v = new Vars();
 		v.name = internalVarName;
@@ -66,4 +68,6 @@ public class VarCreate extends MICommand {
 		v.threadId = Integer.toString(threadId);
 		return new Done(this, v);
 	}
+	
+	
 }

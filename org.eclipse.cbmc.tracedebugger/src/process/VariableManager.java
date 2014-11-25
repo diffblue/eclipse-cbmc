@@ -5,6 +5,7 @@ package process;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
 import trace.Assignment;
+import trace.Value;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +37,7 @@ public interface VariableManager extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Variables</em>' map.
 	 * @see process.ProcessPackage#getVariableManager_Variables()
-	 * @model mapType="process.StringToAssignmentMap<org.eclipse.emf.ecore.xml.type.String, trace.Assignment>"
+	 * @model mapType="process.StringToAssignmentEntry<org.eclipse.emf.ecore.xml.type.String, trace.Assignment>"
 	 * @generated
 	 */
 	EMap<String, Assignment> getVariables();
@@ -53,9 +54,25 @@ public interface VariableManager extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Previous Values</em>' map.
 	 * @see process.ProcessPackage#getVariableManager_PreviousValues()
-	 * @model mapType="process.StringToAssignmentMap<org.eclipse.emf.ecore.xml.type.String, trace.Assignment>"
+	 * @model mapType="process.StringToAssignmentEntry<org.eclipse.emf.ecore.xml.type.String, trace.Assignment>"
 	 * @generated
 	 */
 	EMap<String, Assignment> getPreviousValues();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model expressionDataType="org.eclipse.emf.ecore.xml.type.String"
+	 * @generated
+	 */
+	Assignment getAssignment(String expression);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model expressionDataType="org.eclipse.emf.ecore.xml.type.String"
+	 * @generated
+	 */
+	Value getValue(String expression);
 
 } // VariableManager

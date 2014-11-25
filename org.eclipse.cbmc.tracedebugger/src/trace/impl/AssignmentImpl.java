@@ -2,6 +2,8 @@
  */
 package trace.impl;
 
+import infra.VarHelpers;
+
 import java.lang.reflect.InvocationTargetException;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
@@ -371,10 +373,10 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 		if (getBaseName().equals(expression))
 			return parsedValue;
 
-		String[] segments = splitInTwo(expression);
-		if (segments.length == 1)
-			return null; //This happens if the expression passed in is incorrect
-		return parsedValue.getValue(segments[1]);
+		if (expression.startsWith(getBaseName()))
+			expression = expression.substring(getBaseName().length());
+		String[] segments = VarHelpers.splitInTwo(expression);
+		return parsedValue.getValue(segments[0]);
 	}
 
 	/**
@@ -383,7 +385,7 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	 * @generated NOT
 	 */
 	public String getExpression(String exp) {
-		String[] segments = splitInTwo(exp);
+		String[] segments = VarHelpers.splitInTwo(exp);
 		if (segments.length == 1) {
 			return "(" + baseName + ")";
 		} else {
@@ -391,20 +393,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 		}
 	}
 
-	public static String[] splitInTwo(String expression) {
-		int idx = expression.indexOf('.');
-		if (idx < 0)
-			return new String[] {expression};
-		
-		if (idx == 0) {
-			if (expression.length() > 0)
-				return splitInTwo(expression.substring(1));
-			return new String[] {""};
-		}
-		else 
-			return new String[] {expression.substring(0,idx), expression.substring(idx)};	
-	}
-	
 	private void parseValueExpression() {
 		if (parsedValue != null)
 			return;

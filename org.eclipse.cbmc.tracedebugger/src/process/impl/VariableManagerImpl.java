@@ -2,7 +2,12 @@
  */
 package process.impl;
 
+import infra.VarHelpers;
+
+import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -10,9 +15,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import process.ProcessPackage;
 import process.VariableManager;
 import trace.Assignment;
+import trace.TraceFactory;
+import trace.Value;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,7 +83,7 @@ public class VariableManagerImpl extends MinimalEObjectImpl.Container implements
 	 */
 	public EMap<String, Assignment> getVariables() {
 		if (variables == null) {
-			variables = new EcoreEMap<String,Assignment>(ProcessPackage.Literals.STRING_TO_ASSIGNMENT_MAP, StringToAssignmentMapImpl.class, this, ProcessPackage.VARIABLE_MANAGER__VARIABLES);
+			variables = new EcoreEMap<String,Assignment>(ProcessPackage.Literals.STRING_TO_ASSIGNMENT_ENTRY, StringToAssignmentEntryImpl.class, this, ProcessPackage.VARIABLE_MANAGER__VARIABLES);
 		}
 		return variables;
 	}
@@ -87,9 +95,67 @@ public class VariableManagerImpl extends MinimalEObjectImpl.Container implements
 	 */
 	public EMap<String, Assignment> getPreviousValues() {
 		if (previousValues == null) {
-			previousValues = new EcoreEMap<String,Assignment>(ProcessPackage.Literals.STRING_TO_ASSIGNMENT_MAP, StringToAssignmentMapImpl.class, this, ProcessPackage.VARIABLE_MANAGER__PREVIOUS_VALUES);
+			previousValues = new EcoreEMap<String,Assignment>(ProcessPackage.Literals.STRING_TO_ASSIGNMENT_ENTRY, StringToAssignmentEntryImpl.class, this, ProcessPackage.VARIABLE_MANAGER__PREVIOUS_VALUES);
 		}
 		return previousValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Returns an assignment representing the expression. 
+	 * In cases where the expression is a variable name, the assignment is directly returned. 
+	 * Otherwise a new assignment is created and returned. 
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Assignment getAssignment(String expression) {
+		String requestedVariable = VarHelpers.getVariableName(expression);
+		if (requestedVariable.length() == 0)
+			throw new IllegalStateException("The expression is invalid: " + expression);
+		
+		Assignment current = getVariables().get(requestedVariable);
+		if (current == null)
+			throw new IllegalStateException("The requested variable does not exist: " + requestedVariable);
+		
+		Value value = getValue(expression);
+		if (value == null)
+			throw new IllegalStateException("No value found matching expression: " + expression);
+		
+		if (current.getParsedValue() == value)
+			return current;
+		return createTemporaryAssignment(current, expression, value);
+	}
+
+	private Assignment createTemporaryAssignment(Assignment parent, String expression, Value value) {
+		Assignment result = TraceFactory.eINSTANCE.createAssignment();
+		result.setParsedValue(value);
+		result.setValue(value.getUserFriendlyRepresentation(false));
+		result.setBaseName(expression);
+		result.setThread(parent.getThread());
+		result.setLocation(parent.getLocation());
+		result.setNumber(parent.getNumber());
+		result.setType("int"); //TODO FIX ME
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * This method takes an expression and returns the value referenced. 
+	 * The first segment of the expression is expected to be the name of an internal variable name (e.g. var1)
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Value getValue(String expression) {
+		String requestedVariable = VarHelpers.getVariableName(expression);
+		if (requestedVariable.length() == 0)
+			throw new IllegalStateException("The expression is invalid: " + expression);
+		
+		Assignment topLevelAssignment = getVariables().get(requestedVariable);
+		if (topLevelAssignment == null)
+			throw new IllegalStateException("The requested variable does not exist: " + requestedVariable);
+		
+		expression = VarHelpers.resolveInternalVariableName(topLevelAssignment, expression);
+		return topLevelAssignment.getValue(expression);
 	}
 
 	/**
@@ -177,6 +243,22 @@ public class VariableManagerImpl extends MinimalEObjectImpl.Container implements
 				return previousValues != null && !previousValues.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case ProcessPackage.VARIABLE_MANAGER___GET_ASSIGNMENT__STRING:
+				return getAssignment((String)arguments.get(0));
+			case ProcessPackage.VARIABLE_MANAGER___GET_VALUE__STRING:
+				return getValue((String)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //VariableManagerImpl

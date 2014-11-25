@@ -88,16 +88,16 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl {
 				return createVariableManagerAdapter();
 			}
 			@Override
-			public Adapter caseStringToAssignmentMap(Map.Entry<String, Assignment> object) {
-				return createStringToAssignmentMapAdapter();
+			public Adapter caseStringToAssignmentEntry(Map.Entry<String, Assignment> object) {
+				return createStringToAssignmentEntryAdapter();
 			}
 			@Override
 			public Adapter caseBreakpointManager(BreakpointManager object) {
 				return createBreakpointManagerAdapter();
 			}
 			@Override
-			public Adapter caseStringToBreakpointMap(Map.Entry<String, Breakpoint> object) {
-				return createStringToBreakpointMapAdapter();
+			public Adapter caseStringToBreakpointEntry(Map.Entry<String, Breakpoint> object) {
+				return createStringToBreakpointEntryAdapter();
 			}
 			@Override
 			public Adapter caseBreakpoint(Breakpoint object) {
@@ -184,7 +184,7 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>String To Assignment Map</em>}'.
+	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>String To Assignment Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -193,7 +193,7 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl {
 	 * @see java.util.Map.Entry
 	 * @generated
 	 */
-	public Adapter createStringToAssignmentMapAdapter() {
+	public Adapter createStringToAssignmentEntryAdapter() {
 		return null;
 	}
 
@@ -212,7 +212,7 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>String To Breakpoint Map</em>}'.
+	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>String To Breakpoint Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -221,7 +221,7 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl {
 	 * @see java.util.Map.Entry
 	 * @generated
 	 */
-	public Adapter createStringToBreakpointMapAdapter() {
+	public Adapter createStringToBreakpointEntryAdapter() {
 		return null;
 	}
 

@@ -2,6 +2,8 @@
  */
 package trace.impl;
 
+import infra.VarHelpers;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
@@ -152,6 +154,10 @@ public class ArrayValueImpl extends ValueImpl implements ArrayValue {
 	
 	@Override
 	public Value getValue(String expression) {
-		return null;
+		String[] segments = VarHelpers.splitInTwo(expression);
+		int i = Integer.parseInt(segments[0]);
+		if (segments.length == 1)
+			return getValues().get(i);
+		return getValues().get(i).getValue(segments[1]);
 	}
 } //ArrayValueImpl

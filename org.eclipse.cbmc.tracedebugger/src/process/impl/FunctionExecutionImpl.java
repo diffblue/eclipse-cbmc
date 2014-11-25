@@ -902,7 +902,7 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 				return getVariable((String)arguments.get(0));
 			case ProcessPackage.FUNCTION_EXECUTION___GET_FUNCTION_NAME:
 				return getFunctionName();
-			case ProcessPackage.FUNCTION_EXECUTION___STEP__INT_BOOLEAN:
+			case ProcessPackage.FUNCTION_EXECUTION___STEP__BOOLEAN:
 				return step((Boolean)arguments.get(0));
 			case ProcessPackage.FUNCTION_EXECUTION___GET_FILE_NAME:
 				return getFileName();

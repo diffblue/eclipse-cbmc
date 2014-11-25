@@ -5,7 +5,6 @@ import infra.MIOutput;
 import process.Process;
 import results.data.Vars;
 import results.sync.Done;
-import trace.Assignment;
 
 //This command does implement the format change.
 //It just returns the value as is.
@@ -19,12 +18,8 @@ public class VarSetFormat extends MICommand {
 		String expression = arguments.get(0);          
 		String newFormat = arguments.get(1);
 		
-		
-		String requestedVariable = VarUpdate.getVariableName(expression);
-		Assignment current = process.getVariableManager().getVariables().get(requestedVariable);
-		expression = VarUpdate.resolveInternalVariableName(current, expression);
 		Vars v = new Vars();
-		v.value = current.getValue(expression).getUserFriendlyRepresentation(false);
+		v.value = process.getVariableManager().getValue(expression).getUserFriendlyRepresentation(false);
 		v.format = newFormat;
 		
 		return new Done(this, v);

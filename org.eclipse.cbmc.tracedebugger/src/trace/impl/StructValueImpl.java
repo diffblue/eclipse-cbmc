@@ -2,6 +2,8 @@
  */
 package trace.impl;
 
+import infra.VarHelpers;
+
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -171,7 +173,7 @@ public class StructValueImpl extends ValueImpl implements StructValue {
 	}
 	
 	public Value getValue(String expression) {
-		String[] segments = AssignmentImpl.splitInTwo(expression);
+		String[] segments = VarHelpers.splitInTwo(expression);
 		Value v = getValues().get(segments[0]);
 		if (segments.length == 1)
 			return v;
@@ -180,7 +182,7 @@ public class StructValueImpl extends ValueImpl implements StructValue {
 	
 	@Override
 	public String getExpression(String exp) {
-		String[] segments = AssignmentImpl.splitInTwo(exp);
+		String[] segments = VarHelpers.splitInTwo(exp);
 		Value v = getValues().get(segments[0]);
 		if (v == null)
 			return "";

@@ -61,12 +61,18 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="currentGoal" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableManager">
+    <eOperations name="getAssignment" eType="ecore:EClass trace.ecore#//Assignment">
+      <eParameters name="expression" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    </eOperations>
+    <eOperations name="getValue" eType="ecore:EClass trace.ecore#//Value">
+      <eParameters name="expression" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
-        eType="#//StringToAssignmentMap" containment="true"/>
+        eType="#//StringToAssignmentEntry" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="previousValues" upperBound="-1"
-        eType="#//StringToAssignmentMap" containment="true"/>
+        eType="#//StringToAssignmentEntry" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StringToAssignmentMap" instanceClassName="java.util.Map$Entry">
+  <eClassifiers xsi:type="ecore:EClass" name="StringToAssignmentEntry" instanceClassName="java.util.Map$Entry">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass trace.ecore#//Assignment"/>
   </eClassifiers>
@@ -76,11 +82,11 @@
       <eParameters name="step" eType="ecore:EClass trace.ecore#//Step"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="breakpointsByLocation"
-        lowerBound="1" upperBound="-1" eType="#//StringToBreakpointMap" containment="true"/>
+        lowerBound="1" upperBound="-1" eType="#//StringToBreakpointEntry" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="breakpointsById" lowerBound="1"
-        upperBound="-1" eType="#//StringToBreakpointMap" containment="true"/>
+        upperBound="-1" eType="#//StringToBreakpointEntry" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StringToBreakpointMap" instanceClassName="java.util.Map$Entry">
+  <eClassifiers xsi:type="ecore:EClass" name="StringToBreakpointEntry" instanceClassName="java.util.Map$Entry">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Breakpoint"/>
   </eClassifiers>

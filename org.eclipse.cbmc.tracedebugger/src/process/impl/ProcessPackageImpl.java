@@ -63,7 +63,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass stringToAssignmentMapEClass = null;
+	private EClass stringToAssignmentEntryEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -77,7 +77,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass stringToBreakpointMapEClass = null;
+	private EClass stringToBreakpointEntryEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -460,7 +460,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFunctionExecution__Step__int_boolean() {
+	public EOperation getFunctionExecution__Step__boolean() {
 		return functionExecutionEClass.getEOperations().get(2);
 	}
 
@@ -505,8 +505,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getStringToAssignmentMap() {
-		return stringToAssignmentMapEClass;
+	public EOperation getVariableManager__GetAssignment__String() {
+		return variableManagerEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -514,8 +514,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getStringToAssignmentMap_Key() {
-		return (EAttribute)stringToAssignmentMapEClass.getEStructuralFeatures().get(0);
+	public EOperation getVariableManager__GetValue__String() {
+		return variableManagerEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -523,8 +523,26 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStringToAssignmentMap_Value() {
-		return (EReference)stringToAssignmentMapEClass.getEStructuralFeatures().get(1);
+	public EClass getStringToAssignmentEntry() {
+		return stringToAssignmentEntryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStringToAssignmentEntry_Key() {
+		return (EAttribute)stringToAssignmentEntryEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStringToAssignmentEntry_Value() {
+		return (EReference)stringToAssignmentEntryEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -568,8 +586,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getStringToBreakpointMap() {
-		return stringToBreakpointMapEClass;
+	public EClass getStringToBreakpointEntry() {
+		return stringToBreakpointEntryEClass;
 	}
 
 	/**
@@ -577,8 +595,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getStringToBreakpointMap_Key() {
-		return (EAttribute)stringToBreakpointMapEClass.getEStructuralFeatures().get(0);
+	public EAttribute getStringToBreakpointEntry_Key() {
+		return (EAttribute)stringToBreakpointEntryEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -586,8 +604,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStringToBreakpointMap_Value() {
-		return (EReference)stringToBreakpointMapEClass.getEStructuralFeatures().get(1);
+	public EReference getStringToBreakpointEntry_Value() {
+		return (EReference)stringToBreakpointEntryEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -779,25 +797,27 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 		createEAttribute(functionExecutionEClass, FUNCTION_EXECUTION__CURRENT_GOAL);
 		createEOperation(functionExecutionEClass, FUNCTION_EXECUTION___GET_VARIABLE__STRING);
 		createEOperation(functionExecutionEClass, FUNCTION_EXECUTION___GET_FUNCTION_NAME);
-		createEOperation(functionExecutionEClass, FUNCTION_EXECUTION___STEP__INT_BOOLEAN);
+		createEOperation(functionExecutionEClass, FUNCTION_EXECUTION___STEP__BOOLEAN);
 		createEOperation(functionExecutionEClass, FUNCTION_EXECUTION___GET_FILE_NAME);
 
 		variableManagerEClass = createEClass(VARIABLE_MANAGER);
 		createEReference(variableManagerEClass, VARIABLE_MANAGER__VARIABLES);
 		createEReference(variableManagerEClass, VARIABLE_MANAGER__PREVIOUS_VALUES);
+		createEOperation(variableManagerEClass, VARIABLE_MANAGER___GET_ASSIGNMENT__STRING);
+		createEOperation(variableManagerEClass, VARIABLE_MANAGER___GET_VALUE__STRING);
 
-		stringToAssignmentMapEClass = createEClass(STRING_TO_ASSIGNMENT_MAP);
-		createEAttribute(stringToAssignmentMapEClass, STRING_TO_ASSIGNMENT_MAP__KEY);
-		createEReference(stringToAssignmentMapEClass, STRING_TO_ASSIGNMENT_MAP__VALUE);
+		stringToAssignmentEntryEClass = createEClass(STRING_TO_ASSIGNMENT_ENTRY);
+		createEAttribute(stringToAssignmentEntryEClass, STRING_TO_ASSIGNMENT_ENTRY__KEY);
+		createEReference(stringToAssignmentEntryEClass, STRING_TO_ASSIGNMENT_ENTRY__VALUE);
 
 		breakpointManagerEClass = createEClass(BREAKPOINT_MANAGER);
 		createEReference(breakpointManagerEClass, BREAKPOINT_MANAGER__BREAKPOINTS_BY_LOCATION);
 		createEReference(breakpointManagerEClass, BREAKPOINT_MANAGER__BREAKPOINTS_BY_ID);
 		createEOperation(breakpointManagerEClass, BREAKPOINT_MANAGER___HAS_BREAKPOINT__FUNCTIONEXECUTION_STEP);
 
-		stringToBreakpointMapEClass = createEClass(STRING_TO_BREAKPOINT_MAP);
-		createEAttribute(stringToBreakpointMapEClass, STRING_TO_BREAKPOINT_MAP__KEY);
-		createEReference(stringToBreakpointMapEClass, STRING_TO_BREAKPOINT_MAP__VALUE);
+		stringToBreakpointEntryEClass = createEClass(STRING_TO_BREAKPOINT_ENTRY);
+		createEAttribute(stringToBreakpointEntryEClass, STRING_TO_BREAKPOINT_ENTRY__KEY);
+		createEReference(stringToBreakpointEntryEClass, STRING_TO_BREAKPOINT_ENTRY__VALUE);
 
 		breakpointEClass = createEClass(BREAKPOINT);
 		createEAttribute(breakpointEClass, BREAKPOINT__ENABLED);
@@ -898,30 +918,36 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 
 		initEOperation(getFunctionExecution__GetFunctionName(), theXMLTypePackage.getString(), "getFunctionName", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getFunctionExecution__Step__int_boolean(), this.getStepResult(), "step", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getFunctionExecution__Step__boolean(), this.getStepResult(), "step", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theXMLTypePackage.getBoolean(), "enableBreakpoint", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getFunctionExecution__GetFileName(), theXMLTypePackage.getString(), "getFileName", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(variableManagerEClass, VariableManager.class, "VariableManager", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVariableManager_Variables(), this.getStringToAssignmentMap(), null, "variables", null, 0, -1, VariableManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getVariableManager_PreviousValues(), this.getStringToAssignmentMap(), null, "previousValues", null, 0, -1, VariableManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVariableManager_Variables(), this.getStringToAssignmentEntry(), null, "variables", null, 0, -1, VariableManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVariableManager_PreviousValues(), this.getStringToAssignmentEntry(), null, "previousValues", null, 0, -1, VariableManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(stringToAssignmentMapEClass, Map.Entry.class, "StringToAssignmentMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStringToAssignmentMap_Key(), theXMLTypePackage.getString(), "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStringToAssignmentMap_Value(), theTracePackage.getAssignment(), null, "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		op = initEOperation(getVariableManager__GetAssignment__String(), theTracePackage.getAssignment(), "getAssignment", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theXMLTypePackage.getString(), "expression", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getVariableManager__GetValue__String(), theTracePackage.getValue(), "getValue", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theXMLTypePackage.getString(), "expression", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(stringToAssignmentEntryEClass, Map.Entry.class, "StringToAssignmentEntry", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStringToAssignmentEntry_Key(), theXMLTypePackage.getString(), "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStringToAssignmentEntry_Value(), theTracePackage.getAssignment(), null, "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(breakpointManagerEClass, BreakpointManager.class, "BreakpointManager", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBreakpointManager_BreakpointsByLocation(), this.getStringToBreakpointMap(), null, "breakpointsByLocation", null, 1, -1, BreakpointManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBreakpointManager_BreakpointsById(), this.getStringToBreakpointMap(), null, "breakpointsById", null, 1, -1, BreakpointManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBreakpointManager_BreakpointsByLocation(), this.getStringToBreakpointEntry(), null, "breakpointsByLocation", null, 1, -1, BreakpointManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBreakpointManager_BreakpointsById(), this.getStringToBreakpointEntry(), null, "breakpointsById", null, 1, -1, BreakpointManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getBreakpointManager__HasBreakpoint__FunctionExecution_Step(), this.getBreakpoint(), "hasBreakpoint", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getFunctionExecution(), "function", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theTracePackage.getStep(), "step", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(stringToBreakpointMapEClass, Map.Entry.class, "StringToBreakpointMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStringToBreakpointMap_Key(), theXMLTypePackage.getString(), "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStringToBreakpointMap_Value(), this.getBreakpoint(), null, "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(stringToBreakpointEntryEClass, Map.Entry.class, "StringToBreakpointEntry", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStringToBreakpointEntry_Key(), theXMLTypePackage.getString(), "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStringToBreakpointEntry_Value(), this.getBreakpoint(), null, "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(breakpointEClass, Breakpoint.class, "Breakpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBreakpoint_Enabled(), theXMLTypePackage.getBoolean(), "enabled", null, 0, 1, Breakpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -38,7 +38,7 @@ public interface BreakpointManager extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Breakpoints By Location</em>' map.
 	 * @see process.ProcessPackage#getBreakpointManager_BreakpointsByLocation()
-	 * @model mapType="process.StringToBreakpointMap<org.eclipse.emf.ecore.xml.type.String, process.Breakpoint>"
+	 * @model mapType="process.StringToBreakpointEntry<org.eclipse.emf.ecore.xml.type.String, process.Breakpoint>"
 	 * @generated
 	 */
 	EMap<String, Breakpoint> getBreakpointsByLocation();
@@ -55,7 +55,7 @@ public interface BreakpointManager extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Breakpoints By Id</em>' map.
 	 * @see process.ProcessPackage#getBreakpointManager_BreakpointsById()
-	 * @model mapType="process.StringToBreakpointMap<org.eclipse.emf.ecore.xml.type.String, process.Breakpoint>"
+	 * @model mapType="process.StringToBreakpointEntry<org.eclipse.emf.ecore.xml.type.String, process.Breakpoint>"
 	 * @generated
 	 */
 	EMap<String, Breakpoint> getBreakpointsById();

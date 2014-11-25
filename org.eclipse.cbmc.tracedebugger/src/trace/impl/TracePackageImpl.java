@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
+import process.ProcessPackage;
+import process.impl.ProcessPackageImpl;
 import trace.ArrayValue;
 import trace.Assignment;
 import trace.Failure;
@@ -173,11 +175,16 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		// Initialize simple dependencies
 		XMLTypePackage.eINSTANCE.eClass();
 
+		// Obtain or create and register interdependencies
+		ProcessPackageImpl theProcessPackage = (ProcessPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI) instanceof ProcessPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI) : ProcessPackage.eINSTANCE);
+
 		// Create package meta-data objects
 		theTracePackage.createPackageContents();
+		theProcessPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theTracePackage.initializePackageContents();
+		theProcessPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theTracePackage.freeze();

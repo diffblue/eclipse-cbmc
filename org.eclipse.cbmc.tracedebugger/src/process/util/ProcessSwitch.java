@@ -95,9 +95,9 @@ public class ProcessSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.STRING_TO_ASSIGNMENT_MAP: {
-				@SuppressWarnings("unchecked") Map.Entry<String, Assignment> stringToAssignmentMap = (Map.Entry<String, Assignment>)theEObject;
-				T result = caseStringToAssignmentMap(stringToAssignmentMap);
+			case ProcessPackage.STRING_TO_ASSIGNMENT_ENTRY: {
+				@SuppressWarnings("unchecked") Map.Entry<String, Assignment> stringToAssignmentEntry = (Map.Entry<String, Assignment>)theEObject;
+				T result = caseStringToAssignmentEntry(stringToAssignmentEntry);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -107,9 +107,9 @@ public class ProcessSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ProcessPackage.STRING_TO_BREAKPOINT_MAP: {
-				@SuppressWarnings("unchecked") Map.Entry<String, Breakpoint> stringToBreakpointMap = (Map.Entry<String, Breakpoint>)theEObject;
-				T result = caseStringToBreakpointMap(stringToBreakpointMap);
+			case ProcessPackage.STRING_TO_BREAKPOINT_ENTRY: {
+				@SuppressWarnings("unchecked") Map.Entry<String, Breakpoint> stringToBreakpointEntry = (Map.Entry<String, Breakpoint>)theEObject;
+				T result = caseStringToBreakpointEntry(stringToBreakpointEntry);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -190,17 +190,17 @@ public class ProcessSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>String To Assignment Map</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>String To Assignment Entry</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>String To Assignment Map</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>String To Assignment Entry</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStringToAssignmentMap(Map.Entry<String, Assignment> object) {
+	public T caseStringToAssignmentEntry(Map.Entry<String, Assignment> object) {
 		return null;
 	}
 
@@ -220,17 +220,17 @@ public class ProcessSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>String To Breakpoint Map</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>String To Breakpoint Entry</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>String To Breakpoint Map</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>String To Breakpoint Entry</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStringToBreakpointMap(Map.Entry<String, Breakpoint> object) {
+	public T caseStringToBreakpointEntry(Map.Entry<String, Breakpoint> object) {
 		return null;
 	}
 

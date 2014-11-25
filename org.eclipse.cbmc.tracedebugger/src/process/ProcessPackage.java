@@ -411,7 +411,7 @@ public interface ProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_EXECUTION___STEP__INT_BOOLEAN = 2;
+	int FUNCTION_EXECUTION___STEP__BOOLEAN = 2;
 
 	/**
 	 * The operation id for the '<em>Get File Name</em>' operation.
@@ -470,23 +470,41 @@ public interface ProcessPackage extends EPackage {
 	int VARIABLE_MANAGER_FEATURE_COUNT = 2;
 
 	/**
+	 * The operation id for the '<em>Get Assignment</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_MANAGER___GET_ASSIGNMENT__STRING = 0;
+
+	/**
+	 * The operation id for the '<em>Get Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_MANAGER___GET_VALUE__STRING = 1;
+
+	/**
 	 * The number of operations of the '<em>Variable Manager</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_MANAGER_OPERATION_COUNT = 0;
+	int VARIABLE_MANAGER_OPERATION_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link process.impl.StringToAssignmentMapImpl <em>String To Assignment Map</em>}' class.
+	 * The meta object id for the '{@link process.impl.StringToAssignmentEntryImpl <em>String To Assignment Entry</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see process.impl.StringToAssignmentMapImpl
-	 * @see process.impl.ProcessPackageImpl#getStringToAssignmentMap()
+	 * @see process.impl.StringToAssignmentEntryImpl
+	 * @see process.impl.ProcessPackageImpl#getStringToAssignmentEntry()
 	 * @generated
 	 */
-	int STRING_TO_ASSIGNMENT_MAP = 4;
+	int STRING_TO_ASSIGNMENT_ENTRY = 4;
 
 	/**
 	 * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -495,7 +513,7 @@ public interface ProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_TO_ASSIGNMENT_MAP__KEY = 0;
+	int STRING_TO_ASSIGNMENT_ENTRY__KEY = 0;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' reference.
@@ -504,26 +522,25 @@ public interface ProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_TO_ASSIGNMENT_MAP__VALUE = 1;
+	int STRING_TO_ASSIGNMENT_ENTRY__VALUE = 1;
 
 	/**
-	 * The number of structural features of the '<em>String To Assignment Map</em>' class.
+	 * The number of structural features of the '<em>String To Assignment Entry</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_TO_ASSIGNMENT_MAP_FEATURE_COUNT = 2;
+	int STRING_TO_ASSIGNMENT_ENTRY_FEATURE_COUNT = 2;
 
 	/**
-	 * The number of operations of the '<em>String To Assignment Map</em>' class.
+	 * The number of operations of the '<em>String To Assignment Entry</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_TO_ASSIGNMENT_MAP_OPERATION_COUNT = 0;
-
+	int STRING_TO_ASSIGNMENT_ENTRY_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link process.impl.BreakpointManagerImpl <em>Breakpoint Manager</em>}' class.
@@ -581,14 +598,14 @@ public interface ProcessPackage extends EPackage {
 	int BREAKPOINT_MANAGER_OPERATION_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link process.impl.StringToBreakpointMapImpl <em>String To Breakpoint Map</em>}' class.
+	 * The meta object id for the '{@link process.impl.StringToBreakpointEntryImpl <em>String To Breakpoint Entry</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see process.impl.StringToBreakpointMapImpl
-	 * @see process.impl.ProcessPackageImpl#getStringToBreakpointMap()
+	 * @see process.impl.StringToBreakpointEntryImpl
+	 * @see process.impl.ProcessPackageImpl#getStringToBreakpointEntry()
 	 * @generated
 	 */
-	int STRING_TO_BREAKPOINT_MAP = 6;
+	int STRING_TO_BREAKPOINT_ENTRY = 6;
 
 	/**
 	 * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -597,7 +614,7 @@ public interface ProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_TO_BREAKPOINT_MAP__KEY = 0;
+	int STRING_TO_BREAKPOINT_ENTRY__KEY = 0;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' reference.
@@ -606,25 +623,25 @@ public interface ProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_TO_BREAKPOINT_MAP__VALUE = 1;
+	int STRING_TO_BREAKPOINT_ENTRY__VALUE = 1;
 
 	/**
-	 * The number of structural features of the '<em>String To Breakpoint Map</em>' class.
+	 * The number of structural features of the '<em>String To Breakpoint Entry</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_TO_BREAKPOINT_MAP_FEATURE_COUNT = 2;
+	int STRING_TO_BREAKPOINT_ENTRY_FEATURE_COUNT = 2;
 
 	/**
-	 * The number of operations of the '<em>String To Breakpoint Map</em>' class.
+	 * The number of operations of the '<em>String To Breakpoint Entry</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_TO_BREAKPOINT_MAP_OPERATION_COUNT = 0;
+	int STRING_TO_BREAKPOINT_ENTRY_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link process.impl.BreakpointImpl <em>Breakpoint</em>}' class.
@@ -1113,7 +1130,7 @@ public interface ProcessPackage extends EPackage {
 	 * @see process.FunctionExecution#step(boolean)
 	 * @generated
 	 */
-	EOperation getFunctionExecution__Step__int_boolean();
+	EOperation getFunctionExecution__Step__boolean();
 
 	/**
 	 * Returns the meta object for the '{@link process.FunctionExecution#getFileName() <em>Get File Name</em>}' operation.
@@ -1158,16 +1175,36 @@ public interface ProcessPackage extends EPackage {
 	EReference getVariableManager_PreviousValues();
 
 	/**
-	 * Returns the meta object for class '{@link java.util.Map.Entry <em>String To Assignment Map</em>}'.
+	 * Returns the meta object for the '{@link process.VariableManager#getAssignment(java.lang.String) <em>Get Assignment</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>String To Assignment Map</em>'.
+	 * @return the meta object for the '<em>Get Assignment</em>' operation.
+	 * @see process.VariableManager#getAssignment(java.lang.String)
+	 * @generated
+	 */
+	EOperation getVariableManager__GetAssignment__String();
+
+	/**
+	 * Returns the meta object for the '{@link process.VariableManager#getValue(java.lang.String) <em>Get Value</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Value</em>' operation.
+	 * @see process.VariableManager#getValue(java.lang.String)
+	 * @generated
+	 */
+	EOperation getVariableManager__GetValue__String();
+
+	/**
+	 * Returns the meta object for class '{@link java.util.Map.Entry <em>String To Assignment Entry</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>String To Assignment Entry</em>'.
 	 * @see java.util.Map.Entry
 	 * @model keyDataType="org.eclipse.emf.ecore.xml.type.String"
 	 *        valueType="trace.Assignment"
 	 * @generated
 	 */
-	EClass getStringToAssignmentMap();
+	EClass getStringToAssignmentEntry();
 
 	/**
 	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
@@ -1175,10 +1212,10 @@ public interface ProcessPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Key</em>'.
 	 * @see java.util.Map.Entry
-	 * @see #getStringToAssignmentMap()
+	 * @see #getStringToAssignmentEntry()
 	 * @generated
 	 */
-	EAttribute getStringToAssignmentMap_Key();
+	EAttribute getStringToAssignmentEntry_Key();
 
 	/**
 	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
@@ -1186,10 +1223,10 @@ public interface ProcessPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Value</em>'.
 	 * @see java.util.Map.Entry
-	 * @see #getStringToAssignmentMap()
+	 * @see #getStringToAssignmentEntry()
 	 * @generated
 	 */
-	EReference getStringToAssignmentMap_Value();
+	EReference getStringToAssignmentEntry_Value();
 
 	/**
 	 * Returns the meta object for class '{@link process.BreakpointManager <em>Breakpoint Manager</em>}'.
@@ -1234,16 +1271,16 @@ public interface ProcessPackage extends EPackage {
 	EOperation getBreakpointManager__HasBreakpoint__FunctionExecution_Step();
 
 	/**
-	 * Returns the meta object for class '{@link java.util.Map.Entry <em>String To Breakpoint Map</em>}'.
+	 * Returns the meta object for class '{@link java.util.Map.Entry <em>String To Breakpoint Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>String To Breakpoint Map</em>'.
+	 * @return the meta object for class '<em>String To Breakpoint Entry</em>'.
 	 * @see java.util.Map.Entry
 	 * @model keyDataType="org.eclipse.emf.ecore.xml.type.String"
 	 *        valueType="process.Breakpoint"
 	 * @generated
 	 */
-	EClass getStringToBreakpointMap();
+	EClass getStringToBreakpointEntry();
 
 	/**
 	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
@@ -1251,10 +1288,10 @@ public interface ProcessPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Key</em>'.
 	 * @see java.util.Map.Entry
-	 * @see #getStringToBreakpointMap()
+	 * @see #getStringToBreakpointEntry()
 	 * @generated
 	 */
-	EAttribute getStringToBreakpointMap_Key();
+	EAttribute getStringToBreakpointEntry_Key();
 
 	/**
 	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
@@ -1262,10 +1299,10 @@ public interface ProcessPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Value</em>'.
 	 * @see java.util.Map.Entry
-	 * @see #getStringToBreakpointMap()
+	 * @see #getStringToBreakpointEntry()
 	 * @generated
 	 */
-	EReference getStringToBreakpointMap_Value();
+	EReference getStringToBreakpointEntry_Value();
 
 	/**
 	 * Returns the meta object for class '{@link process.Breakpoint <em>Breakpoint</em>}'.
@@ -1700,7 +1737,7 @@ public interface ProcessPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation FUNCTION_EXECUTION___STEP__INT_BOOLEAN = eINSTANCE.getFunctionExecution__Step__int_boolean();
+		EOperation FUNCTION_EXECUTION___STEP__BOOLEAN = eINSTANCE.getFunctionExecution__Step__boolean();
 
 		/**
 		 * The meta object literal for the '<em><b>Get File Name</b></em>' operation.
@@ -1737,14 +1774,30 @@ public interface ProcessPackage extends EPackage {
 		EReference VARIABLE_MANAGER__PREVIOUS_VALUES = eINSTANCE.getVariableManager_PreviousValues();
 
 		/**
-		 * The meta object literal for the '{@link process.impl.StringToAssignmentMapImpl <em>String To Assignment Map</em>}' class.
+		 * The meta object literal for the '<em><b>Get Assignment</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see process.impl.StringToAssignmentMapImpl
-		 * @see process.impl.ProcessPackageImpl#getStringToAssignmentMap()
 		 * @generated
 		 */
-		EClass STRING_TO_ASSIGNMENT_MAP = eINSTANCE.getStringToAssignmentMap();
+		EOperation VARIABLE_MANAGER___GET_ASSIGNMENT__STRING = eINSTANCE.getVariableManager__GetAssignment__String();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Value</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation VARIABLE_MANAGER___GET_VALUE__STRING = eINSTANCE.getVariableManager__GetValue__String();
+
+		/**
+		 * The meta object literal for the '{@link process.impl.StringToAssignmentEntryImpl <em>String To Assignment Entry</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see process.impl.StringToAssignmentEntryImpl
+		 * @see process.impl.ProcessPackageImpl#getStringToAssignmentEntry()
+		 * @generated
+		 */
+		EClass STRING_TO_ASSIGNMENT_ENTRY = eINSTANCE.getStringToAssignmentEntry();
 
 		/**
 		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
@@ -1752,7 +1805,7 @@ public interface ProcessPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute STRING_TO_ASSIGNMENT_MAP__KEY = eINSTANCE.getStringToAssignmentMap_Key();
+		EAttribute STRING_TO_ASSIGNMENT_ENTRY__KEY = eINSTANCE.getStringToAssignmentEntry_Key();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
@@ -1760,7 +1813,7 @@ public interface ProcessPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference STRING_TO_ASSIGNMENT_MAP__VALUE = eINSTANCE.getStringToAssignmentMap_Value();
+		EReference STRING_TO_ASSIGNMENT_ENTRY__VALUE = eINSTANCE.getStringToAssignmentEntry_Value();
 
 		/**
 		 * The meta object literal for the '{@link process.impl.BreakpointManagerImpl <em>Breakpoint Manager</em>}' class.
@@ -1797,14 +1850,14 @@ public interface ProcessPackage extends EPackage {
 		EOperation BREAKPOINT_MANAGER___HAS_BREAKPOINT__FUNCTIONEXECUTION_STEP = eINSTANCE.getBreakpointManager__HasBreakpoint__FunctionExecution_Step();
 
 		/**
-		 * The meta object literal for the '{@link process.impl.StringToBreakpointMapImpl <em>String To Breakpoint Map</em>}' class.
+		 * The meta object literal for the '{@link process.impl.StringToBreakpointEntryImpl <em>String To Breakpoint Entry</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see process.impl.StringToBreakpointMapImpl
-		 * @see process.impl.ProcessPackageImpl#getStringToBreakpointMap()
+		 * @see process.impl.StringToBreakpointEntryImpl
+		 * @see process.impl.ProcessPackageImpl#getStringToBreakpointEntry()
 		 * @generated
 		 */
-		EClass STRING_TO_BREAKPOINT_MAP = eINSTANCE.getStringToBreakpointMap();
+		EClass STRING_TO_BREAKPOINT_ENTRY = eINSTANCE.getStringToBreakpointEntry();
 
 		/**
 		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
@@ -1812,7 +1865,7 @@ public interface ProcessPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute STRING_TO_BREAKPOINT_MAP__KEY = eINSTANCE.getStringToBreakpointMap_Key();
+		EAttribute STRING_TO_BREAKPOINT_ENTRY__KEY = eINSTANCE.getStringToBreakpointEntry_Key();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
@@ -1820,7 +1873,7 @@ public interface ProcessPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference STRING_TO_BREAKPOINT_MAP__VALUE = eINSTANCE.getStringToBreakpointMap_Value();
+		EReference STRING_TO_BREAKPOINT_ENTRY__VALUE = eINSTANCE.getStringToBreakpointEntry_Value();
 
 		/**
 		 * The meta object literal for the '{@link process.impl.BreakpointImpl <em>Breakpoint</em>}' class.

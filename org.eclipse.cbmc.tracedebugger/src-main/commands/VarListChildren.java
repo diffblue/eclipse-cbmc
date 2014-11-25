@@ -13,7 +13,6 @@ import process.Process;
 import results.data.Vars;
 import results.sync.Done;
 import results.sync.Error;
-import trace.Assignment;
 import trace.StructValue;
 import trace.Value;
 
@@ -24,12 +23,7 @@ public class VarListChildren extends MICommand {
 	@Override
 	public MIOutput perform(Process process) {
 		final String requestedExpression = arguments.get(0);
-		String expression = arguments.get(0);
-		
-		String requestedVariable = VarUpdate.getVariableName(expression);
-		Assignment current = process.getVariableManager().getVariables().get(requestedVariable);
-		expression = VarUpdate.resolveInternalVariableName(current, expression);
-		Value value = current.getValue(expression);
+		Value value = process.getVariableManager().getValue(requestedExpression);
 		
 		if (!(value instanceof StructValue)) {
 			return new Error(this, "Variable does not have children");
@@ -41,13 +35,9 @@ public class VarListChildren extends MICommand {
 			v.name = requestedExpression + '.' + entry.getKey();
 			v.exp = entry.getKey();
 			v.numchild = String.valueOf(entry.getValue().getChildrenCount());
-			v.type = "int"; //TODO 
-			v.threadId = String.valueOf(current.getThread());
+			v.type = "int"; //TODO FIXME
 			children.add(v);
 		}
-//		Vars result = new Vars();
-//		result.numchild = String.valueOf(structValues.size());
-//		result.has_more = "0";
 		return new Done(this, buildAnswer(String.valueOf(structValues.size()), "0",children));
 	}
 

@@ -20,19 +20,19 @@ import trace.Assignment;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>String To Assignment Map</b></em>'.
+ * An implementation of the model object '<em><b>String To Assignment Entry</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link process.impl.StringToAssignmentMapImpl#getTypedKey <em>Key</em>}</li>
- *   <li>{@link process.impl.StringToAssignmentMapImpl#getTypedValue <em>Value</em>}</li>
+ *   <li>{@link process.impl.StringToAssignmentEntryImpl#getTypedKey <em>Key</em>}</li>
+ *   <li>{@link process.impl.StringToAssignmentEntryImpl#getTypedValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class StringToAssignmentMapImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<String,Assignment> {
+public class StringToAssignmentEntryImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<String,Assignment> {
 	/**
 	 * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -68,7 +68,7 @@ public class StringToAssignmentMapImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StringToAssignmentMapImpl() {
+	protected StringToAssignmentEntryImpl() {
 		super();
 	}
 
@@ -79,7 +79,7 @@ public class StringToAssignmentMapImpl extends MinimalEObjectImpl.Container impl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ProcessPackage.Literals.STRING_TO_ASSIGNMENT_MAP;
+		return ProcessPackage.Literals.STRING_TO_ASSIGNMENT_ENTRY;
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class StringToAssignmentMapImpl extends MinimalEObjectImpl.Container impl
 		String oldKey = key;
 		key = newKey;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.STRING_TO_ASSIGNMENT_MAP__KEY, oldKey, key));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.STRING_TO_ASSIGNMENT_ENTRY__KEY, oldKey, key));
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class StringToAssignmentMapImpl extends MinimalEObjectImpl.Container impl
 			value = (Assignment)eResolveProxy(oldValue);
 			if (value != oldValue) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.STRING_TO_ASSIGNMENT_MAP__VALUE, oldValue, value));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.STRING_TO_ASSIGNMENT_ENTRY__VALUE, oldValue, value));
 			}
 		}
 		return value;
@@ -138,7 +138,7 @@ public class StringToAssignmentMapImpl extends MinimalEObjectImpl.Container impl
 		Assignment oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.STRING_TO_ASSIGNMENT_MAP__VALUE, oldValue, value));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.STRING_TO_ASSIGNMENT_ENTRY__VALUE, oldValue, value));
 	}
 
 	/**
@@ -149,9 +149,9 @@ public class StringToAssignmentMapImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ProcessPackage.STRING_TO_ASSIGNMENT_MAP__KEY:
+			case ProcessPackage.STRING_TO_ASSIGNMENT_ENTRY__KEY:
 				return getTypedKey();
-			case ProcessPackage.STRING_TO_ASSIGNMENT_MAP__VALUE:
+			case ProcessPackage.STRING_TO_ASSIGNMENT_ENTRY__VALUE:
 				if (resolve) return getTypedValue();
 				return basicGetTypedValue();
 		}
@@ -166,10 +166,10 @@ public class StringToAssignmentMapImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ProcessPackage.STRING_TO_ASSIGNMENT_MAP__KEY:
+			case ProcessPackage.STRING_TO_ASSIGNMENT_ENTRY__KEY:
 				setTypedKey((String)newValue);
 				return;
-			case ProcessPackage.STRING_TO_ASSIGNMENT_MAP__VALUE:
+			case ProcessPackage.STRING_TO_ASSIGNMENT_ENTRY__VALUE:
 				setTypedValue((Assignment)newValue);
 				return;
 		}
@@ -184,10 +184,10 @@ public class StringToAssignmentMapImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ProcessPackage.STRING_TO_ASSIGNMENT_MAP__KEY:
+			case ProcessPackage.STRING_TO_ASSIGNMENT_ENTRY__KEY:
 				setTypedKey(KEY_EDEFAULT);
 				return;
-			case ProcessPackage.STRING_TO_ASSIGNMENT_MAP__VALUE:
+			case ProcessPackage.STRING_TO_ASSIGNMENT_ENTRY__VALUE:
 				setTypedValue((Assignment)null);
 				return;
 		}
@@ -202,9 +202,9 @@ public class StringToAssignmentMapImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ProcessPackage.STRING_TO_ASSIGNMENT_MAP__KEY:
+			case ProcessPackage.STRING_TO_ASSIGNMENT_ENTRY__KEY:
 				return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
-			case ProcessPackage.STRING_TO_ASSIGNMENT_MAP__VALUE:
+			case ProcessPackage.STRING_TO_ASSIGNMENT_ENTRY__VALUE:
 				return value != null;
 		}
 		return super.eIsSet(featureID);
@@ -304,4 +304,4 @@ public class StringToAssignmentMapImpl extends MinimalEObjectImpl.Container impl
 		return container == null ? null : (EMap<String, Assignment>)container.eGet(eContainmentFeature());
 	}
 
-} //StringToAssignmentMapImpl
+} //StringToAssignmentEntryImpl

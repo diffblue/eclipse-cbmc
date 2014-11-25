@@ -68,9 +68,9 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory {
 			case ProcessPackage.THREAD: return createThread();
 			case ProcessPackage.FUNCTION_EXECUTION: return createFunctionExecution();
 			case ProcessPackage.VARIABLE_MANAGER: return createVariableManager();
-			case ProcessPackage.STRING_TO_ASSIGNMENT_MAP: return (EObject)createStringToAssignmentMap();
+			case ProcessPackage.STRING_TO_ASSIGNMENT_ENTRY: return (EObject)createStringToAssignmentEntry();
 			case ProcessPackage.BREAKPOINT_MANAGER: return createBreakpointManager();
-			case ProcessPackage.STRING_TO_BREAKPOINT_MAP: return (EObject)createStringToBreakpointMap();
+			case ProcessPackage.STRING_TO_BREAKPOINT_ENTRY: return (EObject)createStringToBreakpointEntry();
 			case ProcessPackage.BREAKPOINT: return createBreakpoint();
 			case ProcessPackage.STEP_RESULT: return createStepResult();
 			default:
@@ -157,9 +157,9 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Map.Entry<String, Assignment> createStringToAssignmentMap() {
-		StringToAssignmentMapImpl stringToAssignmentMap = new StringToAssignmentMapImpl();
-		return stringToAssignmentMap;
+	public Map.Entry<String, Assignment> createStringToAssignmentEntry() {
+		StringToAssignmentEntryImpl stringToAssignmentEntry = new StringToAssignmentEntryImpl();
+		return stringToAssignmentEntry;
 	}
 
 	/**
@@ -177,9 +177,9 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Map.Entry<String, Breakpoint> createStringToBreakpointMap() {
-		StringToBreakpointMapImpl stringToBreakpointMap = new StringToBreakpointMapImpl();
-		return stringToBreakpointMap;
+	public Map.Entry<String, Breakpoint> createStringToBreakpointEntry() {
+		StringToBreakpointEntryImpl stringToBreakpointEntry = new StringToBreakpointEntryImpl();
+		return stringToBreakpointEntry;
 	}
 
 	/**

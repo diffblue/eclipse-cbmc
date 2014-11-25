@@ -90,6 +90,7 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	//TODO FIXME because this is a string and should be a VAR
 	public EList<Object> compare(String parentPath, Value old) {
 		EList<Object> res = new BasicEList<Object>();
 		if (old == null) {

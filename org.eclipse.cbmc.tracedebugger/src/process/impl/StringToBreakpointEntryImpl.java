@@ -3,31 +3,35 @@
 package process.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EMap;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import process.Breakpoint;
 import process.ProcessPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>String To Breakpoint Map</b></em>'.
+ * An implementation of the model object '<em><b>String To Breakpoint Entry</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link process.impl.StringToBreakpointMapImpl#getTypedKey <em>Key</em>}</li>
- *   <li>{@link process.impl.StringToBreakpointMapImpl#getTypedValue <em>Value</em>}</li>
+ *   <li>{@link process.impl.StringToBreakpointEntryImpl#getTypedKey <em>Key</em>}</li>
+ *   <li>{@link process.impl.StringToBreakpointEntryImpl#getTypedValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class StringToBreakpointMapImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<String,Breakpoint> {
+public class StringToBreakpointEntryImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<String,Breakpoint> {
 	/**
 	 * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -63,7 +67,7 @@ public class StringToBreakpointMapImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StringToBreakpointMapImpl() {
+	protected StringToBreakpointEntryImpl() {
 		super();
 	}
 
@@ -74,7 +78,7 @@ public class StringToBreakpointMapImpl extends MinimalEObjectImpl.Container impl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ProcessPackage.Literals.STRING_TO_BREAKPOINT_MAP;
+		return ProcessPackage.Literals.STRING_TO_BREAKPOINT_ENTRY;
 	}
 
 	/**
@@ -95,7 +99,7 @@ public class StringToBreakpointMapImpl extends MinimalEObjectImpl.Container impl
 		String oldKey = key;
 		key = newKey;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.STRING_TO_BREAKPOINT_MAP__KEY, oldKey, key));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.STRING_TO_BREAKPOINT_ENTRY__KEY, oldKey, key));
 	}
 
 	/**
@@ -109,7 +113,7 @@ public class StringToBreakpointMapImpl extends MinimalEObjectImpl.Container impl
 			value = (Breakpoint)eResolveProxy(oldValue);
 			if (value != oldValue) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.STRING_TO_BREAKPOINT_MAP__VALUE, oldValue, value));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.STRING_TO_BREAKPOINT_ENTRY__VALUE, oldValue, value));
 			}
 		}
 		return value;
@@ -133,7 +137,7 @@ public class StringToBreakpointMapImpl extends MinimalEObjectImpl.Container impl
 		Breakpoint oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.STRING_TO_BREAKPOINT_MAP__VALUE, oldValue, value));
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.STRING_TO_BREAKPOINT_ENTRY__VALUE, oldValue, value));
 	}
 
 	/**
@@ -144,9 +148,9 @@ public class StringToBreakpointMapImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ProcessPackage.STRING_TO_BREAKPOINT_MAP__KEY:
+			case ProcessPackage.STRING_TO_BREAKPOINT_ENTRY__KEY:
 				return getTypedKey();
-			case ProcessPackage.STRING_TO_BREAKPOINT_MAP__VALUE:
+			case ProcessPackage.STRING_TO_BREAKPOINT_ENTRY__VALUE:
 				if (resolve) return getTypedValue();
 				return basicGetTypedValue();
 		}
@@ -161,10 +165,10 @@ public class StringToBreakpointMapImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ProcessPackage.STRING_TO_BREAKPOINT_MAP__KEY:
+			case ProcessPackage.STRING_TO_BREAKPOINT_ENTRY__KEY:
 				setTypedKey((String)newValue);
 				return;
-			case ProcessPackage.STRING_TO_BREAKPOINT_MAP__VALUE:
+			case ProcessPackage.STRING_TO_BREAKPOINT_ENTRY__VALUE:
 				setTypedValue((Breakpoint)newValue);
 				return;
 		}
@@ -179,10 +183,10 @@ public class StringToBreakpointMapImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ProcessPackage.STRING_TO_BREAKPOINT_MAP__KEY:
+			case ProcessPackage.STRING_TO_BREAKPOINT_ENTRY__KEY:
 				setTypedKey(KEY_EDEFAULT);
 				return;
-			case ProcessPackage.STRING_TO_BREAKPOINT_MAP__VALUE:
+			case ProcessPackage.STRING_TO_BREAKPOINT_ENTRY__VALUE:
 				setTypedValue((Breakpoint)null);
 				return;
 		}
@@ -197,9 +201,9 @@ public class StringToBreakpointMapImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ProcessPackage.STRING_TO_BREAKPOINT_MAP__KEY:
+			case ProcessPackage.STRING_TO_BREAKPOINT_ENTRY__KEY:
 				return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
-			case ProcessPackage.STRING_TO_BREAKPOINT_MAP__VALUE:
+			case ProcessPackage.STRING_TO_BREAKPOINT_ENTRY__VALUE:
 				return value != null;
 		}
 		return super.eIsSet(featureID);
@@ -299,4 +303,4 @@ public class StringToBreakpointMapImpl extends MinimalEObjectImpl.Container impl
 		return container == null ? null : (EMap<String, Breakpoint>)container.eGet(eContainmentFeature());
 	}
 
-} //StringToBreakpointMapImpl
+} //StringToBreakpointEntryImpl

@@ -86,7 +86,7 @@ public class BreakpointManagerImpl extends MinimalEObjectImpl.Container implemen
 	 */
 	public EMap<String, Breakpoint> getBreakpointsByLocation() {
 		if (breakpointsByLocation == null) {
-			breakpointsByLocation = new EcoreEMap<String,Breakpoint>(ProcessPackage.Literals.STRING_TO_BREAKPOINT_MAP, StringToBreakpointMapImpl.class, this, ProcessPackage.BREAKPOINT_MANAGER__BREAKPOINTS_BY_LOCATION);
+			breakpointsByLocation = new EcoreEMap<String,Breakpoint>(ProcessPackage.Literals.STRING_TO_BREAKPOINT_ENTRY, StringToBreakpointEntryImpl.class, this, ProcessPackage.BREAKPOINT_MANAGER__BREAKPOINTS_BY_LOCATION);
 		}
 		return breakpointsByLocation;
 	}
@@ -98,7 +98,7 @@ public class BreakpointManagerImpl extends MinimalEObjectImpl.Container implemen
 	 */
 	public EMap<String, Breakpoint> getBreakpointsById() {
 		if (breakpointsById == null) {
-			breakpointsById = new EcoreEMap<String,Breakpoint>(ProcessPackage.Literals.STRING_TO_BREAKPOINT_MAP, StringToBreakpointMapImpl.class, this, ProcessPackage.BREAKPOINT_MANAGER__BREAKPOINTS_BY_ID);
+			breakpointsById = new EcoreEMap<String,Breakpoint>(ProcessPackage.Literals.STRING_TO_BREAKPOINT_ENTRY, StringToBreakpointEntryImpl.class, this, ProcessPackage.BREAKPOINT_MANAGER__BREAKPOINTS_BY_ID);
 		}
 		return breakpointsById;
 	}
