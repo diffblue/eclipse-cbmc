@@ -41,20 +41,20 @@ public class TraceDebugger {
 			System.exit(1);
 		}
 
-		
 		String filename = args[0];
 		File inputFile = new File(filename);
 		if (!inputFile.exists()) {
 			System.out.println("File " + filename + " not found.");
 			System.exit(-1);
 		}
+		
 		initializeLog(inputFile.getParentFile());
-		//Transform the counter example trace then load it as a Process
-		File traceFile = transformCounterExample(filename);
-		if (traceFile == null)
+		process.Process process = loadAsProcess(inputFile);
+		if (process == null) {
+			System.out.println("A problem occured during the loading of the file " + inputFile.getAbsolutePath());
 			System.exit(-1);
-		process.Process process = createProgramRepresentation(loadTrace(traceFile));
-
+		}
+		
 		//Start the real work
 		Scanner scan = new Scanner(new InputStreamReader(System.in));
 		try {
@@ -65,7 +65,16 @@ public class TraceDebugger {
 		System.exit(0);
 	}
 
-	private static File transformCounterExample(String filename) {
+	public static process.Process loadAsProcess(File filename) {
+		//Transform the counter example trace then load it as a Process
+		File traceFile = transformCounterExample(filename);
+		if (traceFile == null)
+			return null;
+		process.Process process = createProgramRepresentation(loadTrace(traceFile));
+		return process;
+	}
+
+	private static File transformCounterExample(File filename) {
 		Source xmlInput = new StreamSource(filename);
 		InputStream xslt = ClassLoader.getSystemResourceAsStream("traceTransform.xsl");
 		if (xslt == null) {
@@ -73,7 +82,7 @@ public class TraceDebugger {
 			return null;
 		}
 		Source xsl = new StreamSource(xslt);
-		File transformResult = new File(filename + ".emf.xml");
+		File transformResult = new File(filename.getAbsolutePath() + ".emf.xml");
 		Result xmlOutput = new StreamResult(transformResult);
 		Transformer transformer;
 		try {
