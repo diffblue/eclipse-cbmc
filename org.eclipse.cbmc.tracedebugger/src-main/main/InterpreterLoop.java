@@ -31,8 +31,8 @@ public class InterpreterLoop {
 	}
 
 	public void run() {
-		System.out.println("CBMC Trace debugger - MI frontend");
-		System.out.println("(gdb)");
+		out.println("CBMC Trace debugger - MI frontend");
+		out.println("(gdb)");
 
 		while (true) {
 			Pattern pattern = Pattern.compile("([0-9]+)(\\S+)(.*)");
@@ -41,8 +41,8 @@ public class InterpreterLoop {
 			logger.info(input);
 
 			if (input.startsWith("13source")) {
-				System.out.println("13^error,msg=\".gdbinit: No such file or directory.\"");
-				System.out.println("(gdb)");
+				out.println("13^error,msg=\".gdbinit: No such file or directory.\"");
+				out.println("(gdb)");
 				continue;
 			}
 
@@ -66,9 +66,9 @@ public class InterpreterLoop {
 			List<String> entries = result.serialize();
 			for (String entry : entries) {
 				logger.info(entry);
-				System.out.println(entry);
+				out.println(entry);
 			}
-			System.out.println("(gdb)");
+			out.println("(gdb)");
 			if (command instanceof GdbExit) {
 				return;
 			}
