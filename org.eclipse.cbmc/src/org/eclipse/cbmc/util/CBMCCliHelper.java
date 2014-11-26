@@ -8,6 +8,7 @@ import java.nio.file.attribute.FileAttribute;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import org.eclipse.cbmc.*;
+import org.eclipse.core.resources.*;
 import org.eclipse.core.runtime.*;
 import org.eclipse.debug.core.ILaunchConfiguration;
 
@@ -32,6 +33,8 @@ public class CBMCCliHelper {
 	private File workingDirectory;
 	private List<String> baseCli = new ArrayList<String>();
 	private static final String PLUGIN_ID = "org.eclipse.cbmc"; //$NON-NLS-1$
+	private static final Object C_EXTENSION = "c";
+	private static final Object CPP_EXTENSION = "cpp";
 	private ILog logger = Platform.getPlugin(PLUGIN_ID).getLog();
 	private String lcCBMCFileToCheck;
 	private String lcCBMCExecutable;
@@ -40,6 +43,7 @@ public class CBMCCliHelper {
 	private List<String> lcCBMCOptions;
 	private String lcCBMCUnwind;
 	private boolean lcCBMCAutoRun;
+	private Collection<String> filesToCheck;
 
 	public enum CheckAllPropertiesOption {
 		NO_ASSERTIONS("--no-assertions", "ignore user assertions"), //$NON-NLS-1$//$NON-NLS-2$
@@ -103,13 +107,58 @@ public class CBMCCliHelper {
 
 	private void initializeBaseCommandLine() {
 		baseCli.add(lcCBMCExecutable);
-		baseCli.add(lcCBMCFileToCheck);
+		filesToCheck = computeFilesToCheck();
+		baseCli.addAll(filesToCheck);
 		if (lcCBMCFunction.length() > 0) {
 			baseCli.add(CBMC_ARG_FUNCTION);
 			baseCli.add(lcCBMCFunction);
 		}
 		baseCli.addAll(lcCBMCOptions);
 		baseCli = Collections.unmodifiableList(baseCli);
+	}
+
+	private Collection<String> computeFilesToCheck() {
+		ArrayList<String> files = new ArrayList<String>();
+		if (isFileToCheckASourceFile()) {
+			IProject currentProject = getCurrentProject();
+			if (currentProject != null && currentProject.isOpen() && currentProject.exists()) {
+				recursiveFindInProject(files, currentProject.getLocation(), ResourcesPlugin.getWorkspace().getRoot());
+			}
+		} else
+			files.add(lcCBMCFileToCheck);
+		return files;
+	}
+
+	private boolean isFileToCheckASourceFile() {
+		return lcCBMCFileToCheck.endsWith("." + C_EXTENSION) || lcCBMCFileToCheck.endsWith("." + CPP_EXTENSION); //$NON-NLS-1$//$NON-NLS-2$
+	}
+
+	private IProject getCurrentProject() {
+		org.eclipse.core.runtime.Path path = new org.eclipse.core.runtime.Path(lcCBMCFileToCheck);
+		IFile file = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(path);
+		if (file != null)
+			return file.getProject();
+		return null;
+	}
+
+	private void recursiveFindInProject(Collection<String> files, IPath path, IWorkspaceRoot workspaceRoot) {
+		IContainer container = workspaceRoot.getContainerForLocation(path);
+		try {
+			IResource[] iResources;
+			iResources = container.members();
+			for (IResource resource : iResources) {
+				String extension = resource.getFileExtension();
+				if (extension != null && (extension.equals(C_EXTENSION) || extension.equals(CPP_EXTENSION)))
+					files.add(resource.getRawLocation().makeAbsolute().toString());
+				if (resource.getType() == IResource.FOLDER) {
+					IPath tempPath = resource.getLocation();
+					recursiveFindInProject(files, tempPath, workspaceRoot);
+				}
+			}
+		} catch (CoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static CBMCCliHelper create(ILaunchConfiguration config) {
@@ -128,7 +177,7 @@ public class CBMCCliHelper {
 	public String[] getCommandLineForAllLoops() {
 		ArrayList<String> result = new ArrayList<String>();
 		result.add(lcCBMCExecutable);
-		result.add(lcCBMCFileToCheck);
+		result.addAll(filesToCheck);
 		result.add(CBMC_ARG_SHOW_LOOPS);
 		result.add(CBMC_ARG_XML_UI);
 		return result.toArray(new String[result.size()]);
