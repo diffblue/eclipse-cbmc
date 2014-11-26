@@ -34,8 +34,8 @@ public class InterpreterLoop {
 		out.println("CBMC Trace debugger - MI frontend");
 		out.println("(gdb)");
 
+		Pattern pattern = Pattern.compile("([0-9]+)(\\S+)(.*)");
 		while (true) {
-			Pattern pattern = Pattern.compile("([0-9]+)(\\S+)(.*)");
 			scan.hasNextLine();
 			String input = scan.nextLine();
 			logger.info(input);
@@ -63,15 +63,21 @@ public class InterpreterLoop {
 				logger.log(Level.SEVERE,"Exception occured while processing command", e);
 				result = new Error(command, "Command could not be executed successfully");
 			}
-			List<String> entries = result.serialize();
-			for (String entry : entries) {
-				logger.info(entry);
-				out.println(entry);
-			}
-			out.println("(gdb)");
+			serializeResult(result);
 			if (command instanceof GdbExit) {
 				return;
 			}
 		}
+	}
+
+	//Method public to allow for testing by subclassing the InterpreterLoop
+	public void serializeResult(MIOutput result) {
+		List<String> entries = result.serialize();
+		for (String entry : entries) {
+			logger.info(entry);
+			out.println(entry);
+		}
+		out.println("(gdb)");
+		out.flush();
 	}
 }
