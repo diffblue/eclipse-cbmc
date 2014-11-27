@@ -2,6 +2,7 @@ package commands;
 
 import infra.MICommand;
 import infra.MIOutput;
+import infra.VarHelpers;
 import process.Process;
 import results.sync.Done;
 import trace.Assignment;
@@ -12,7 +13,8 @@ public class VarInfoPathExpression extends MICommand {
 	@Override
 	public MIOutput perform(Process process) {
 		String expression = arguments.get(0);
-		Assignment assignment = process.getVariableManager().getAssignment(expression);
+		String[] segments = VarHelpers.splitInTwo(expression);
+		Assignment assignment = process.getVariableManager().getAssignment(segments[0]);
 		return new Done(this, "path_expr", assignment.getExpression(expression));
 	}
 	
