@@ -33,7 +33,7 @@ import org.junit.runners.Parameterized.Parameters;
 public class IntegrationTest {
 	 @Parameters
 	public static Collection<String[]> data() {
-        return Arrays.asList(new String[][] { { "simpleTest" } });
+        return Arrays.asList(new String[][] { { "simpleTest" } , { "struct" } });
     }
 	
 	@Parameter
