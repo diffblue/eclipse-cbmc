@@ -190,9 +190,9 @@ public class CBMCCliHelper {
 			result.add(String.valueOf(lcCBMCUnwind));
 		}
 		Results model = (Results) (property.eContainer());
-		if (model.getLoops() != null && !model.getLoops().isEmpty()) {
+		if (model.getLoopResults() != null && !model.getLoopResults().getLoops().isEmpty()) {
 			ArrayList<String> unwindsets = new ArrayList<String>();
-			for (Loop loop : model.getLoops()) {
+			for (Loop loop : model.getLoopResults().getLoops()) {
 				if (!loop.getUnwind().isEmpty()) {
 					unwindsets.add(loop.getId().concat(":").concat(loop.getUnwind())); //$NON-NLS-1$
 				}

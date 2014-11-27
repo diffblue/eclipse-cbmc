@@ -4,7 +4,6 @@
 	<xsl:output method="xml" indent="yes" />
 	<xsl:key name="kUniqueCategory" match="property" use="@class" />
 	<xsl:variable name="categories">
-
 		<xsl:for-each
 			select="//property[
               generate-id() = generate-id(key('kUniqueCategory', @class)[1])
@@ -37,6 +36,9 @@
 			<failedCount>0</failedCount>
 			<errorCount>0</errorCount>
 			<succeededCount>0</succeededCount>
+			<loopResults>
+			<errorMessage></errorMessage>
+			</loopResults>
 			<xsl:copy-of select="$categories" />
 			<xsl:copy-of select="$files" />
 			<errorMessage>

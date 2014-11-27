@@ -1,7 +1,6 @@
 package org.eclipse.internal.cbmc.view;
 
-import org.eclipse.cbmc.CbmcPackage;
-import org.eclipse.cbmc.Results;
+import org.eclipse.cbmc.*;
 import org.eclipse.cbmc.provider.CbmcItemProviderAdapterFactory;
 import org.eclipse.cbmc.util.CBMCCliHelper;
 import org.eclipse.core.runtime.*;
@@ -51,6 +50,7 @@ public class CbmcView extends ViewPart {
 	private int currentOrientation;
 	CLabel labelLoops;
 	CLabel labelErrorProperties;
+	CLabel labelErrorLoops;
 
 	/**
 	 * The constructor.
@@ -91,9 +91,8 @@ public class CbmcView extends ViewPart {
 		composite.setLayout(new GridLayout());
 
 		labelErrorProperties = new CLabel(composite, SWT.NONE);
-		composite.pack();
 		labelErrorProperties.setImage(getImageDescriptor(ICONS_ERROR));
-		labelErrorProperties.setVisible(false);
+		hideErrorMessage(labelErrorProperties);
 
 		viewer = new TreeViewer(composite, SWT.NONE);
 		CbmcItemProviderAdapterFactory factory = new CbmcItemProviderAdapterFactory();
@@ -109,8 +108,18 @@ public class CbmcView extends ViewPart {
 		labelLoops.setText(Messages.PropertiesView_sectionLoopsNo);
 		labelLoops.setImage(getImageDescriptor(ICONS_LIST));
 		loopsViewForm.setTopLeft(labelLoops);
-		loopsViewer = new LoopsTableViewer(loopsViewForm);
-		loopsViewForm.setContent(loopsViewer.getControl());
+
+		Composite composite = new Composite(loopsViewForm, SWT.NONE);
+		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, false);
+		gridData.horizontalSpan = 1;
+		composite.setLayout(new GridLayout());
+
+		labelErrorLoops = new CLabel(composite, SWT.NONE);
+		labelErrorLoops.setImage(getImageDescriptor(ICONS_ERROR));
+		hideErrorMessage(labelErrorLoops);
+		loopsViewer = new LoopsTableViewer(composite);
+		loopsViewer.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		loopsViewForm.setContent(composite);
 	}
 
 	private void createContextMenu() {
@@ -170,7 +179,7 @@ public class CbmcView extends ViewPart {
 					Display.getDefault().asyncExec(new Runnable() {
 						public void run() {
 							if (results == null || !(results.getErrorMessage().isEmpty())) {
-								showErrorMessage(Messages.format(Messages.PropertiesView_errorProperties, new String[] {results == null ? " unknown" : results.getErrorMessage()}));
+								showErrorMessage(labelErrorProperties, Messages.format(Messages.PropertiesView_errorProperties, new String[] {results == null ? " see Error Log view" : results.getErrorMessage()}));
 							}
 						}
 					});
@@ -183,19 +192,24 @@ public class CbmcView extends ViewPart {
 						@Override
 						public void done(IJobChangeEvent event1) {
 							if (event1.getJob().getResult().isOK()) {
-								if (results == null) {
-									Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Problem while getting loops", null)); //$NON-NLS-1$
-									return;
+								final LoopResults loopResults = ((GenerateLoopsJob) event1.getJob()).getLoopResults();
+								if (loopResults == null || !loopResults.getErrorMessage().isEmpty()) {
+									Display.getDefault().asyncExec(new Runnable() {
+										public void run() {
+											showErrorMessage(labelErrorLoops, Messages.format(Messages.PropertiesView_errorLoops, new String[] {loopResults == null ? " See Error Log view" : loopResults.getErrorMessage()}));
+										}
+									});
+								} else {
+									results.getLoopResults().getLoops().addAll(loopResults.getLoops());
+									Display.getDefault().asyncExec(new Runnable() {
+										public void run() {
+											changeLoopInput();
+										}
+									});
 								}
-								results.getLoops().addAll(((GenerateLoopsJob) event1.getJob()).getLoops());
 								if (results.getCBMCHelper().isAutoRun()) {
 									checkAllPropertiesJob.schedule();
 								}
-								Display.getDefault().asyncExec(new Runnable() {
-									public void run() {
-										changeLoopInput();
-									}
-								});
 							}
 						}
 					});
@@ -216,7 +230,9 @@ public class CbmcView extends ViewPart {
 	}
 
 	private void reset() {
-		hideErrorMessage();
+
+		hideErrorMessage(labelErrorProperties);
+		hideErrorMessage(labelErrorLoops);
 		results = null;
 		viewer.setInput(null);
 		counterPanel.reset();
@@ -226,8 +242,8 @@ public class CbmcView extends ViewPart {
 	}
 
 	void changeLoopInput() {
-		labelLoops.setText(Messages.format(Messages.PropertiesView_sectionLoopsYes, new String[] {Integer.toString(results.getLoops().size())}));
-		loopsViewer.setInput(EMFProperties.list(CbmcPackage.Literals.RESULTS__LOOPS).observe(results));
+		labelLoops.setText(Messages.format(Messages.PropertiesView_sectionLoopsYes, new String[] {Integer.toString(results.getLoopResults().getLoops().size())}));
+		loopsViewer.setInput(EMFProperties.list(CbmcPackage.Literals.LOOP_RESULTS__LOOPS).observe(results.getLoopResults()));
 	}
 
 	void changeInput() {
@@ -293,16 +309,16 @@ public class CbmcView extends ViewPart {
 		return ImageDescriptor.createFromURL(FileLocator.find(FrameworkUtil.getBundle(this.getClass()), new Path(imageName), null)).createImage();
 	}
 
-	void showErrorMessage(String message) {
+	void showErrorMessage(CLabel label, String message) {
 		Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, message, null));
-		labelErrorProperties.setText(message);
-		labelErrorProperties.setVisible(true);
-		labelErrorProperties.getParent().pack();
+		label.setText(message);
+		label.setVisible(true);
+		label.getParent().pack();
 	}
 
-	private void hideErrorMessage() {
-		labelErrorProperties.setText(""); //$NON-NLS-1$
-		labelErrorProperties.setVisible(false);
-		labelErrorProperties.getParent().pack();
+	private void hideErrorMessage(CLabel label) {
+		label.setText(""); //$NON-NLS-1$
+		label.setVisible(false);
+		label.getParent().pack();
 	}
 }

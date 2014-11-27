@@ -20,29 +20,36 @@
 	</xsl:template>
 	<xsl:template match="/">
 		<cbmc:Results xmlns:cbmc="http://www.eclipse.org/cbmc">
-			<xsl:for-each select="/cprover/loop">
-				<loops>
-					<id>
-						<xsl:value-of select="loop-id" />
-					</id>
-					<unwind></unwind>
-					<path>
-						<xsl:value-of select="location/@file" />
-					</path>
-					<filename>
-						<xsl:call-template name="substring-after-last">
-							<xsl:with-param name="string" select="location/@file" />
-							<xsl:with-param name="delimiter" select="'/'" />
-						</xsl:call-template>
-					</filename>
-					<function>
-						<xsl:value-of select="location/@function" />
-					</function>
-					<line>
-						<xsl:value-of select="location/@line" />
-					</line>
-				</loops>
-			</xsl:for-each>
+			<loopResults>
+				<errorMessage>
+					<xsl:for-each select="/cprover/message[@type='ERROR']">
+						<xsl:value-of select="text" />
+					</xsl:for-each>
+				</errorMessage>
+				<xsl:for-each select="/cprover/loop">
+					<loops>
+						<id>
+							<xsl:value-of select="loop-id" />
+						</id>
+						<unwind></unwind>
+						<path>
+							<xsl:value-of select="location/@file" />
+						</path>
+						<filename>
+							<xsl:call-template name="substring-after-last">
+								<xsl:with-param name="string" select="location/@file" />
+								<xsl:with-param name="delimiter" select="'/'" />
+							</xsl:call-template>
+						</filename>
+						<function>
+							<xsl:value-of select="location/@function" />
+						</function>
+						<line>
+							<xsl:value-of select="location/@line" />
+						</line>
+					</loops>
+				</xsl:for-each>
+			</loopResults>
 		</cbmc:Results>
 	</xsl:template>
 </xsl:stylesheet>

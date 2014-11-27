@@ -187,6 +187,52 @@ public interface CbmcPackage extends EPackage {
 	int LOOP_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.cbmc.impl.LoopResultsImpl <em>Loop Results</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.cbmc.impl.LoopResultsImpl
+	 * @see org.eclipse.cbmc.impl.CbmcPackageImpl#getLoopResults()
+	 * @generated
+	 */
+	int LOOP_RESULTS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Error Message</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_RESULTS__ERROR_MESSAGE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Loops</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_RESULTS__LOOPS = 1;
+
+	/**
+	 * The number of structural features of the '<em>Loop Results</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_RESULTS_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Loop Results</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_RESULTS_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.cbmc.impl.PropertyImpl <em>Property</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -194,7 +240,7 @@ public interface CbmcPackage extends EPackage {
 	 * @see org.eclipse.cbmc.impl.CbmcPackageImpl#getProperty()
 	 * @generated
 	 */
-	int PROPERTY = 2;
+	int PROPERTY = 3;
 
 	/**
 	 * The feature id for the '<em><b>Category</b></em>' reference.
@@ -294,7 +340,7 @@ public interface CbmcPackage extends EPackage {
 	 * @see org.eclipse.cbmc.impl.CbmcPackageImpl#getPropertyCategory()
 	 * @generated
 	 */
-	int PROPERTY_CATEGORY = 3;
+	int PROPERTY_CATEGORY = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -340,7 +386,7 @@ public interface CbmcPackage extends EPackage {
 	 * @see org.eclipse.cbmc.impl.CbmcPackageImpl#getResults()
 	 * @generated
 	 */
-	int RESULTS = 4;
+	int RESULTS = 5;
 
 	/**
 	 * The feature id for the '<em><b>Error Message</b></em>' attribute.
@@ -388,13 +434,13 @@ public interface CbmcPackage extends EPackage {
 	int RESULTS__RUN_COUNT = 4;
 
 	/**
-	 * The feature id for the '<em><b>Loops</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Loop Results</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESULTS__LOOPS = 5;
+	int RESULTS__LOOP_RESULTS = 5;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -449,7 +495,7 @@ public interface CbmcPackage extends EPackage {
 	 * @see org.eclipse.cbmc.impl.CbmcPackageImpl#getPropertyStatus()
 	 * @generated
 	 */
-	int PROPERTY_STATUS = 5;
+	int PROPERTY_STATUS = 6;
 
 	/**
 	 * The meta object id for the '<em>Property Status Object</em>' data type.
@@ -459,7 +505,7 @@ public interface CbmcPackage extends EPackage {
 	 * @see org.eclipse.cbmc.impl.CbmcPackageImpl#getPropertyStatusObject()
 	 * @generated
 	 */
-	int PROPERTY_STATUS_OBJECT = 6;
+	int PROPERTY_STATUS_OBJECT = 7;
 
 
 	/**
@@ -569,6 +615,38 @@ public interface CbmcPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getLoop_Line();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.cbmc.LoopResults <em>Loop Results</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Loop Results</em>'.
+	 * @see org.eclipse.cbmc.LoopResults
+	 * @generated
+	 */
+	EClass getLoopResults();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.cbmc.LoopResults#getErrorMessage <em>Error Message</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Error Message</em>'.
+	 * @see org.eclipse.cbmc.LoopResults#getErrorMessage()
+	 * @see #getLoopResults()
+	 * @generated
+	 */
+	EAttribute getLoopResults_ErrorMessage();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.cbmc.LoopResults#getLoops <em>Loops</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Loops</em>'.
+	 * @see org.eclipse.cbmc.LoopResults#getLoops()
+	 * @see #getLoopResults()
+	 * @generated
+	 */
+	EReference getLoopResults_Loops();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.cbmc.Property <em>Property</em>}'.
@@ -766,15 +844,15 @@ public interface CbmcPackage extends EPackage {
 	EAttribute getResults_RunCount();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.cbmc.Results#getLoops <em>Loops</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.cbmc.Results#getLoopResults <em>Loop Results</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Loops</em>'.
-	 * @see org.eclipse.cbmc.Results#getLoops()
+	 * @return the meta object for the containment reference '<em>Loop Results</em>'.
+	 * @see org.eclipse.cbmc.Results#getLoopResults()
 	 * @see #getResults()
 	 * @generated
 	 */
-	EReference getResults_Loops();
+	EReference getResults_LoopResults();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.cbmc.Results#getProperties <em>Properties</em>}'.
@@ -939,6 +1017,32 @@ public interface CbmcPackage extends EPackage {
 		EAttribute LOOP__LINE = eINSTANCE.getLoop_Line();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.cbmc.impl.LoopResultsImpl <em>Loop Results</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.cbmc.impl.LoopResultsImpl
+		 * @see org.eclipse.cbmc.impl.CbmcPackageImpl#getLoopResults()
+		 * @generated
+		 */
+		EClass LOOP_RESULTS = eINSTANCE.getLoopResults();
+
+		/**
+		 * The meta object literal for the '<em><b>Error Message</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LOOP_RESULTS__ERROR_MESSAGE = eINSTANCE.getLoopResults_ErrorMessage();
+
+		/**
+		 * The meta object literal for the '<em><b>Loops</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LOOP_RESULTS__LOOPS = eINSTANCE.getLoopResults_Loops();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.cbmc.impl.PropertyImpl <em>Property</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1089,12 +1193,12 @@ public interface CbmcPackage extends EPackage {
 		EAttribute RESULTS__RUN_COUNT = eINSTANCE.getResults_RunCount();
 
 		/**
-		 * The meta object literal for the '<em><b>Loops</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Loop Results</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference RESULTS__LOOPS = eINSTANCE.getResults_Loops();
+		EReference RESULTS__LOOP_RESULTS = eINSTANCE.getResults_LoopResults();
 
 		/**
 		 * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.

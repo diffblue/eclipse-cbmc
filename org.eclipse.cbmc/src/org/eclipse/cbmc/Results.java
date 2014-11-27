@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.cbmc.Results#getFailedCount <em>Failed Count</em>}</li>
  *   <li>{@link org.eclipse.cbmc.Results#getErrorCount <em>Error Count</em>}</li>
  *   <li>{@link org.eclipse.cbmc.Results#getRunCount <em>Run Count</em>}</li>
- *   <li>{@link org.eclipse.cbmc.Results#getLoops <em>Loops</em>}</li>
+ *   <li>{@link org.eclipse.cbmc.Results#getLoopResults <em>Loop Results</em>}</li>
  *   <li>{@link org.eclipse.cbmc.Results#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.eclipse.cbmc.Results#getFiles <em>Files</em>}</li>
  *   <li>{@link org.eclipse.cbmc.Results#getCategories <em>Categories</em>}</li>
@@ -275,21 +275,31 @@ public interface Results extends EObject {
 	boolean isSetRunCount();
 
 	/**
-	 * Returns the value of the '<em><b>Loops</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.cbmc.Loop}.
+	 * Returns the value of the '<em><b>Loop Results</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Loops</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Loop Results</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Loops</em>' containment reference list.
-	 * @see org.eclipse.cbmc.CbmcPackage#getResults_Loops()
-	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='loops'"
+	 * @return the value of the '<em>Loop Results</em>' containment reference.
+	 * @see #setLoopResults(LoopResults)
+	 * @see org.eclipse.cbmc.CbmcPackage#getResults_LoopResults()
+	 * @model containment="true" required="true"
+	 *        extendedMetaData="kind='element' name='loopResults'"
 	 * @generated
 	 */
-	EList<Loop> getLoops();
+	LoopResults getLoopResults();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.cbmc.Results#getLoopResults <em>Loop Results</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Loop Results</em>' containment reference.
+	 * @see #getLoopResults()
+	 * @generated
+	 */
+	void setLoopResults(LoopResults value);
 
 	/**
 	 * Returns the value of the '<em><b>Properties</b></em>' containment reference list.

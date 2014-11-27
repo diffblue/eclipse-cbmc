@@ -245,7 +245,7 @@ public class ResultsItemProvider extends ItemProviderAdapter implements IEditing
 			case CbmcPackage.RESULTS__RUN_COUNT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case CbmcPackage.RESULTS__LOOPS:
+			case CbmcPackage.RESULTS__LOOP_RESULTS:
 			case CbmcPackage.RESULTS__PROPERTIES:
 			case CbmcPackage.RESULTS__FILES:
 			case CbmcPackage.RESULTS__CATEGORIES:
@@ -268,8 +268,8 @@ public class ResultsItemProvider extends ItemProviderAdapter implements IEditing
 
 		newChildDescriptors.add
 			(createChildParameter
-				(CbmcPackage.Literals.RESULTS__LOOPS,
-				 CbmcFactory.eINSTANCE.createLoop()));
+				(CbmcPackage.Literals.RESULTS__LOOP_RESULTS,
+				 CbmcFactory.eINSTANCE.createLoopResults()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -59,6 +59,7 @@ public class CbmcFactoryImpl extends EFactoryImpl implements CbmcFactory {
 		switch (eClass.getClassifierID()) {
 			case CbmcPackage.FILE: return createFile();
 			case CbmcPackage.LOOP: return createLoop();
+			case CbmcPackage.LOOP_RESULTS: return createLoopResults();
 			case CbmcPackage.PROPERTY: return createProperty();
 			case CbmcPackage.PROPERTY_CATEGORY: return createPropertyCategory();
 			case CbmcPackage.RESULTS: return createResults();
@@ -119,6 +120,16 @@ public class CbmcFactoryImpl extends EFactoryImpl implements CbmcFactory {
 	public Loop createLoop() {
 		LoopImpl loop = new LoopImpl();
 		return loop;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LoopResults createLoopResults() {
+		LoopResultsImpl loopResults = new LoopResultsImpl();
+		return loopResults;
 	}
 
 	/**

@@ -78,6 +78,12 @@ public class CbmcSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case CbmcPackage.LOOP_RESULTS: {
+				LoopResults loopResults = (LoopResults)theEObject;
+				T result = caseLoopResults(loopResults);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case CbmcPackage.PROPERTY: {
 				Property property = (Property)theEObject;
 				T result = caseProperty(property);
@@ -127,6 +133,21 @@ public class CbmcSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLoop(Loop object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Loop Results</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Loop Results</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLoopResults(LoopResults object) {
 		return null;
 	}
 

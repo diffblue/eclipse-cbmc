@@ -5,7 +5,7 @@ package org.eclipse.cbmc.impl;
 import java.util.Collection;
 import org.eclipse.cbmc.CbmcPackage;
 import org.eclipse.cbmc.File;
-import org.eclipse.cbmc.Loop;
+import org.eclipse.cbmc.LoopResults;
 import org.eclipse.cbmc.Property;
 import org.eclipse.cbmc.PropertyCategory;
 import org.eclipse.cbmc.Results;
@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.util.*;
  *   <li>{@link org.eclipse.cbmc.impl.ResultsImpl#getFailedCount <em>Failed Count</em>}</li>
  *   <li>{@link org.eclipse.cbmc.impl.ResultsImpl#getErrorCount <em>Error Count</em>}</li>
  *   <li>{@link org.eclipse.cbmc.impl.ResultsImpl#getRunCount <em>Run Count</em>}</li>
- *   <li>{@link org.eclipse.cbmc.impl.ResultsImpl#getLoops <em>Loops</em>}</li>
+ *   <li>{@link org.eclipse.cbmc.impl.ResultsImpl#getLoopResults <em>Loop Results</em>}</li>
  *   <li>{@link org.eclipse.cbmc.impl.ResultsImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.eclipse.cbmc.impl.ResultsImpl#getFiles <em>Files</em>}</li>
  *   <li>{@link org.eclipse.cbmc.impl.ResultsImpl#getCategories <em>Categories</em>}</li>
@@ -181,14 +181,14 @@ public class ResultsImpl extends MinimalEObjectImpl.Container implements Results
 	protected boolean runCountESet;
 
 	/**
-	 * The cached value of the '{@link #getLoops() <em>Loops</em>}' containment reference list.
+	 * The cached value of the '{@link #getLoopResults() <em>Loop Results</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLoops()
+	 * @see #getLoopResults()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Loop> loops;
+	protected LoopResults loopResults;
 
 	/**
 	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
@@ -450,11 +450,42 @@ public class ResultsImpl extends MinimalEObjectImpl.Container implements Results
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Loop> getLoops() {
-		if (loops == null) {
-			loops = new EObjectContainmentEList<Loop>(Loop.class, this, CbmcPackage.RESULTS__LOOPS);
+	public LoopResults getLoopResults() {
+		return loopResults;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetLoopResults(LoopResults newLoopResults, NotificationChain msgs) {
+		LoopResults oldLoopResults = loopResults;
+		loopResults = newLoopResults;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CbmcPackage.RESULTS__LOOP_RESULTS, oldLoopResults, newLoopResults);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		return loops;
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLoopResults(LoopResults newLoopResults) {
+		if (newLoopResults != loopResults) {
+			NotificationChain msgs = null;
+			if (loopResults != null)
+				msgs = ((InternalEObject)loopResults).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CbmcPackage.RESULTS__LOOP_RESULTS, null, msgs);
+			if (newLoopResults != null)
+				msgs = ((InternalEObject)newLoopResults).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CbmcPackage.RESULTS__LOOP_RESULTS, null, msgs);
+			msgs = basicSetLoopResults(newLoopResults, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CbmcPackage.RESULTS__LOOP_RESULTS, newLoopResults, newLoopResults));
 	}
 
 	/**
@@ -501,8 +532,8 @@ public class ResultsImpl extends MinimalEObjectImpl.Container implements Results
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CbmcPackage.RESULTS__LOOPS:
-				return ((InternalEList<?>)getLoops()).basicRemove(otherEnd, msgs);
+			case CbmcPackage.RESULTS__LOOP_RESULTS:
+				return basicSetLoopResults(null, msgs);
 			case CbmcPackage.RESULTS__PROPERTIES:
 				return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
 			case CbmcPackage.RESULTS__FILES:
@@ -531,8 +562,8 @@ public class ResultsImpl extends MinimalEObjectImpl.Container implements Results
 				return getErrorCount();
 			case CbmcPackage.RESULTS__RUN_COUNT:
 				return getRunCount();
-			case CbmcPackage.RESULTS__LOOPS:
-				return getLoops();
+			case CbmcPackage.RESULTS__LOOP_RESULTS:
+				return getLoopResults();
 			case CbmcPackage.RESULTS__PROPERTIES:
 				return getProperties();
 			case CbmcPackage.RESULTS__FILES:
@@ -567,9 +598,8 @@ public class ResultsImpl extends MinimalEObjectImpl.Container implements Results
 			case CbmcPackage.RESULTS__RUN_COUNT:
 				setRunCount((Integer)newValue);
 				return;
-			case CbmcPackage.RESULTS__LOOPS:
-				getLoops().clear();
-				getLoops().addAll((Collection<? extends Loop>)newValue);
+			case CbmcPackage.RESULTS__LOOP_RESULTS:
+				setLoopResults((LoopResults)newValue);
 				return;
 			case CbmcPackage.RESULTS__PROPERTIES:
 				getProperties().clear();
@@ -610,8 +640,8 @@ public class ResultsImpl extends MinimalEObjectImpl.Container implements Results
 			case CbmcPackage.RESULTS__RUN_COUNT:
 				unsetRunCount();
 				return;
-			case CbmcPackage.RESULTS__LOOPS:
-				getLoops().clear();
+			case CbmcPackage.RESULTS__LOOP_RESULTS:
+				setLoopResults((LoopResults)null);
 				return;
 			case CbmcPackage.RESULTS__PROPERTIES:
 				getProperties().clear();
@@ -644,8 +674,8 @@ public class ResultsImpl extends MinimalEObjectImpl.Container implements Results
 				return isSetErrorCount();
 			case CbmcPackage.RESULTS__RUN_COUNT:
 				return isSetRunCount();
-			case CbmcPackage.RESULTS__LOOPS:
-				return loops != null && !loops.isEmpty();
+			case CbmcPackage.RESULTS__LOOP_RESULTS:
+				return loopResults != null;
 			case CbmcPackage.RESULTS__PROPERTIES:
 				return properties != null && !properties.isEmpty();
 			case CbmcPackage.RESULTS__FILES:

@@ -5,12 +5,11 @@ import java.io.IOException;
 import javax.xml.transform.*;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-import org.eclipse.cbmc.Loop;
+import org.eclipse.cbmc.LoopResults;
 import org.eclipse.cbmc.Results;
 import org.eclipse.cbmc.util.CBMCCliHelper;
 import org.eclipse.core.runtime.*;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -25,7 +24,7 @@ public class GenerateLoopsJob extends Job {
 	private static final int SUCCESS_EXITVALUE = 6;
 
 	private CBMCCliHelper cliHelper;
-	private EList<Loop> loops;
+	private LoopResults loopResults;
 
 	public GenerateLoopsJob(String name, CBMCCliHelper cliHelper) {
 		super(name);
@@ -51,10 +50,11 @@ public class GenerateLoopsJob extends Job {
 				ResourceSet resSet = new ResourceSetImpl();
 				Resource resource = resSet.getResource(uri, true);
 				Results results = (Results) resource.getContents().get(0);
-				if (!results.getErrorMessage().isEmpty()) {
-					Activator.getDefault().getLog().log(new Status(IStatus.ERROR, "Error while getting loops. Reason: " + results.getErrorMessage(), null));
+				if (results == null) {
+					Activator.getDefault().getLog().log(new Status(IStatus.ERROR, "Error while getting loops", null)); //$NON-NLS-1$
+				} else {
+					loopResults = results.getLoopResults();
 				}
-				loops = results.getLoops();
 			}
 		} catch (IOException e) {
 			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Cannot open the XSLT file for loops: " + TRANSFORM_XSL, e); //$NON-NLS-1$
@@ -64,7 +64,7 @@ public class GenerateLoopsJob extends Job {
 		return Status.OK_STATUS;
 	}
 
-	public EList<Loop> getLoops() {
-		return loops;
+	public LoopResults getLoopResults() {
+		return loopResults;
 	}
 }

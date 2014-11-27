@@ -28,6 +28,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Loop/function"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Loop/line"/>
     </genClasses>
+    <genClasses ecoreClass="cbmc.ecore#//LoopResults">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//LoopResults/errorMessage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cbmc.ecore#//LoopResults/loops"/>
+    </genClasses>
     <genClasses ecoreClass="cbmc.ecore#//Property">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cbmc.ecore#//Property/category"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Property/number"/>
@@ -48,7 +52,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Results/failedCount"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Results/errorCount"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Results/runCount"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cbmc.ecore#//Results/loops"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cbmc.ecore#//Results/loopResults"/>
       <genFeatures property="None" children="true" createChild="true" propertyCategory=""
           ecoreFeature="ecore:EReference cbmc.ecore#//Results/properties"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cbmc.ecore#//Results/files"/>

@@ -40,6 +40,15 @@ public interface CbmcFactory extends EFactory {
 	Loop createLoop();
 
 	/**
+	 * Returns a new object of class '<em>Loop Results</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Loop Results</em>'.
+	 * @generated
+	 */
+	LoopResults createLoopResults();
+
+	/**
 	 * Returns a new object of class '<em>Property</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -76,6 +76,10 @@ public class CbmcAdapterFactory extends AdapterFactoryImpl {
 				return createLoopAdapter();
 			}
 			@Override
+			public Adapter caseLoopResults(LoopResults object) {
+				return createLoopResultsAdapter();
+			}
+			@Override
 			public Adapter caseProperty(Property object) {
 				return createPropertyAdapter();
 			}
@@ -132,6 +136,20 @@ public class CbmcAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLoopAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.cbmc.LoopResults <em>Loop Results</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.cbmc.LoopResults
+	 * @generated
+	 */
+	public Adapter createLoopResultsAdapter() {
 		return null;
 	}
 

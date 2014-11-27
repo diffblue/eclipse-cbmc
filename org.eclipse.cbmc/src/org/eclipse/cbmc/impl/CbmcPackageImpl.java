@@ -6,6 +6,7 @@ import org.eclipse.cbmc.CbmcFactory;
 import org.eclipse.cbmc.CbmcPackage;
 import org.eclipse.cbmc.File;
 import org.eclipse.cbmc.Loop;
+import org.eclipse.cbmc.LoopResults;
 import org.eclipse.cbmc.Property;
 import org.eclipse.cbmc.PropertyCategory;
 import org.eclipse.cbmc.PropertyStatus;
@@ -39,6 +40,13 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 	 * @generated
 	 */
 	private EClass loopEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass loopResultsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -234,6 +242,33 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getLoopResults() {
+		return loopResultsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLoopResults_ErrorMessage() {
+		return (EAttribute)loopResultsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLoopResults_Loops() {
+		return (EReference)loopResultsEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getProperty() {
 		return propertyEClass;
 	}
@@ -396,7 +431,7 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getResults_Loops() {
+	public EReference getResults_LoopResults() {
 		return (EReference)resultsEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -485,6 +520,10 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 		createEAttribute(loopEClass, LOOP__FUNCTION);
 		createEAttribute(loopEClass, LOOP__LINE);
 
+		loopResultsEClass = createEClass(LOOP_RESULTS);
+		createEAttribute(loopResultsEClass, LOOP_RESULTS__ERROR_MESSAGE);
+		createEReference(loopResultsEClass, LOOP_RESULTS__LOOPS);
+
 		propertyEClass = createEClass(PROPERTY);
 		createEReference(propertyEClass, PROPERTY__CATEGORY);
 		createEAttribute(propertyEClass, PROPERTY__NUMBER);
@@ -505,7 +544,7 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 		createEAttribute(resultsEClass, RESULTS__FAILED_COUNT);
 		createEAttribute(resultsEClass, RESULTS__ERROR_COUNT);
 		createEAttribute(resultsEClass, RESULTS__RUN_COUNT);
-		createEReference(resultsEClass, RESULTS__LOOPS);
+		createEReference(resultsEClass, RESULTS__LOOP_RESULTS);
 		createEReference(resultsEClass, RESULTS__PROPERTIES);
 		createEReference(resultsEClass, RESULTS__FILES);
 		createEReference(resultsEClass, RESULTS__CATEGORIES);
@@ -562,6 +601,10 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 		initEAttribute(getLoop_Function(), theXMLTypePackage.getString(), "function", null, 1, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLoop_Line(), theXMLTypePackage.getInt(), "line", null, 1, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(loopResultsEClass, LoopResults.class, "LoopResults", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLoopResults_ErrorMessage(), theXMLTypePackage.getString(), "errorMessage", null, 1, 1, LoopResults.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLoopResults_Loops(), this.getLoop(), null, "loops", null, 0, -1, LoopResults.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProperty_Category(), this.getPropertyCategory(), this.getPropertyCategory_Properties(), "category", null, 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProperty_Number(), theXMLTypePackage.getString(), "number", null, 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -582,7 +625,7 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 		initEAttribute(getResults_FailedCount(), theXMLTypePackage.getInt(), "failedCount", null, 1, 1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getResults_ErrorCount(), theXMLTypePackage.getInt(), "errorCount", null, 1, 1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getResults_RunCount(), theXMLTypePackage.getInt(), "runCount", null, 1, 1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getResults_Loops(), this.getLoop(), null, "loops", null, 0, -1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getResults_LoopResults(), this.getLoopResults(), null, "loopResults", null, 1, 1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getResults_Properties(), this.getProperty(), null, "properties", null, 0, -1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getResults_Files(), this.getFile(), null, "files", null, 0, -1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getResults_Categories(), this.getPropertyCategory(), null, "categories", null, 0, -1, Results.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -683,6 +726,27 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 		   new String[] {
 			 "kind", "element",
 			 "name", "line"
+		   });	
+		addAnnotation
+		  (loopResultsEClass, 
+		   source, 
+		   new String[] {
+			 "name", "LoopResults",
+			 "kind", "elementOnly"
+		   });	
+		addAnnotation
+		  (getLoopResults_ErrorMessage(), 
+		   source, 
+		   new String[] {
+			 "kind", "element",
+			 "name", "errorMessage"
+		   });	
+		addAnnotation
+		  (getLoopResults_Loops(), 
+		   source, 
+		   new String[] {
+			 "kind", "element",
+			 "name", "loops"
 		   });	
 		addAnnotation
 		  (propertyEClass, 
@@ -824,11 +888,11 @@ public class CbmcPackageImpl extends EPackageImpl implements CbmcPackage {
 			 "name", "runCount"
 		   });	
 		addAnnotation
-		  (getResults_Loops(), 
+		  (getResults_LoopResults(), 
 		   source, 
 		   new String[] {
 			 "kind", "element",
-			 "name", "loops"
+			 "name", "loopResults"
 		   });	
 		addAnnotation
 		  (getResults_Properties(), 
