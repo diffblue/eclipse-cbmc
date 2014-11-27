@@ -43,7 +43,6 @@ public class VarListChildren extends MICommand {
 
 	private String buildAnswer(String numchild, String has_more, List<Vars> children) {
 		return "numchild=\"" + numchild + "\",children=" +   Vars.serializeAsChildrenList(children) + ",has_more=\"" + has_more + "\"";
-//		return new Gson().toJson(v).replace('{', ' ').replace('}', ' ') + "," + Vars.serializeAsChildrenList(children);
 	}
 	
 	@Override
