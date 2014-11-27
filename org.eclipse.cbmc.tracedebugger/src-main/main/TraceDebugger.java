@@ -76,7 +76,7 @@ public class TraceDebugger {
 
 	private static File transformCounterExample(File filename) {
 		Source xmlInput = new StreamSource(filename);
-		InputStream xslt = ClassLoader.getSystemResourceAsStream("traceTransform.xsl");
+		InputStream xslt = TraceDebugger.class.getClassLoader().getResourceAsStream("traceTransform.xsl");
 		if (xslt == null) {
 			logger.log(Level.SEVERE, "traceTransform.xsl not found");
 			return null;
