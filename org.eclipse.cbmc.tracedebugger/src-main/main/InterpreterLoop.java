@@ -35,8 +35,7 @@ public class InterpreterLoop {
 		out.println("(gdb)");
 
 		Pattern pattern = Pattern.compile("([0-9]+)(\\S+)(.*)");
-		while (true) {
-			scan.hasNextLine();
+		while (scan.hasNextLine()) {
 			String input = scan.nextLine();
 			logger.info(input);
 

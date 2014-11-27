@@ -3,7 +3,7 @@ package infra;
 import com.google.gson.GsonBuilder;
 
 public abstract class MIResult extends MIOutput {
-	protected MICommand cmd;
+	private MICommand cmd;
 
 	public MIResult(MICommand cmd) {
 		this.cmd = cmd;
@@ -11,5 +11,9 @@ public abstract class MIResult extends MIOutput {
 	
 	protected String toJson(Object o) {
 		return new GsonBuilder().disableHtmlEscaping().create().toJson(o);
+	}
+	
+	public MICommand getCommand() {
+		return cmd;
 	}
 }

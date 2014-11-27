@@ -21,7 +21,7 @@ public class Error extends MIResult {
 
 	@Override
 	public List<String> serialize() {
-		return Arrays.asList(cmd.getId() + "^error" + (reason != null ? ",msg=\"" + reason + '"': ""));
+		return Arrays.asList(getCommand().getId() + "^error" + (reason != null ? ",msg=\"" + reason + '"': ""));
 	}
 
 }

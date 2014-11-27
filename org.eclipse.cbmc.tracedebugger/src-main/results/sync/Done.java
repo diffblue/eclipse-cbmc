@@ -35,17 +35,17 @@ public class Done extends MIResult {
 	@Override
 	public List<String> serialize() {
 		if (parameter == null && value == null)
-			return Arrays.asList(cmd.getId() + "^done");
+			return Arrays.asList(getCommand().getId() + "^done");
 		
 		if (parameter == null && value != null) {
 			if (value instanceof String)
-				return Arrays.asList(cmd.getId() + "^done," + value);
+				return Arrays.asList(getCommand().getId() + "^done," + value);
 			String jsonRepresentation = new Gson().toJson(value);
 			//strip first { and last }
-			return Arrays.asList(cmd.getId() + "^done," + jsonRepresentation.subSequence(1,jsonRepresentation.length()-1));
+			return Arrays.asList(getCommand().getId() + "^done," + jsonRepresentation.subSequence(1,jsonRepresentation.length()-1));
 		}
 		
-		return Arrays.asList(cmd.getId() + "^done" + ','+parameter+'='+ (value instanceof String ? quote() : toJson(value)));
+		return Arrays.asList(getCommand().getId() + "^done" + ','+parameter+'='+ (value instanceof String ? quote() : toJson(value)));
 	}
 
 	private String quote() {

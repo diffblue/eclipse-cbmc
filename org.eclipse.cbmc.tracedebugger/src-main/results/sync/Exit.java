@@ -14,7 +14,7 @@ public class Exit extends MIResult {
 
 	@Override
 	public List<String> serialize() {
-		return Arrays.asList(cmd.getId() + "^exit");
+		return Arrays.asList(getCommand().getId() + "^exit");
 	}
 
 }

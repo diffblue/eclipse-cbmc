@@ -14,7 +14,7 @@ public class Running extends MIResult {
 
 	@Override
 	public List<String> serialize() {
-		return Arrays.asList(cmd.getId() + "^running");
+		return Arrays.asList(getCommand().getId() + "^running");
 	}
 
 }
