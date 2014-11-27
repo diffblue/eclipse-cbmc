@@ -181,18 +181,6 @@ public class StructValueImpl extends ValueImpl implements StructValue {
 	}
 	
 	@Override
-	public String getExpression(String exp) {
-		String[] segments = VarHelpers.splitInTwo(exp);
-		Value v = getValues().get(segments[0]);
-		if (v == null)
-			return "";
-		if (segments.length == 2)
-			return "." + segments[0] + '.' + v.getExpression(segments[1]);
-		else 
-			return "." + segments[0];
-	}
-	
-	@Override
 	public EList<Object> compare(String parentPath, Value old) {
 		EList<Object>initialComparison = super.compare(parentPath, old);
 		if (initialComparison != null)

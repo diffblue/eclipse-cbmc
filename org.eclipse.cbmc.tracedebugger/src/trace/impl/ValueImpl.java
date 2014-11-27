@@ -77,17 +77,6 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getExpression(String exp) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	//TODO FIXME because this is a string and should be a VAR
@@ -120,8 +109,6 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value {
 				return getChildrenCount();
 			case TracePackage.VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN:
 				return getUserFriendlyRepresentation((Boolean)arguments.get(0));
-			case TracePackage.VALUE___GET_EXPRESSION__STRING:
-				return getExpression((String)arguments.get(0));
 			case TracePackage.VALUE___COMPARE__STRING_VALUE:
 				return compare((String)arguments.get(0), (Value)arguments.get(1));
 		}

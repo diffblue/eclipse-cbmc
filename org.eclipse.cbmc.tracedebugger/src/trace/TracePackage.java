@@ -231,22 +231,13 @@ public interface TracePackage extends EPackage {
 	int ASSIGNMENT___GET_VALUE__STRING = STEP_OPERATION_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Get Expression</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSIGNMENT___GET_EXPRESSION__STRING = STEP_OPERATION_COUNT + 1;
-
-	/**
 	 * The number of operations of the '<em>Assignment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNMENT_OPERATION_COUNT = STEP_OPERATION_COUNT + 2;
+	int ASSIGNMENT_OPERATION_COUNT = STEP_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link trace.impl.FailureImpl <em>Failure</em>}' class.
@@ -672,22 +663,13 @@ public interface TracePackage extends EPackage {
 	int VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN = 2;
 
 	/**
-	 * The operation id for the '<em>Get Expression</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE___GET_EXPRESSION__STRING = 3;
-
-	/**
 	 * The operation id for the '<em>Compare</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE___COMPARE__STRING_VALUE = 4;
+	int VALUE___COMPARE__STRING_VALUE = 3;
 
 	/**
 	 * The number of operations of the '<em>Value</em>' class.
@@ -696,7 +678,7 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPERATION_COUNT = 5;
+	int VALUE_OPERATION_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link trace.impl.StructValueImpl <em>Struct Value</em>}' class.
@@ -752,15 +734,6 @@ public interface TracePackage extends EPackage {
 	 * @ordered
 	 */
 	int STRUCT_VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN = VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN;
-
-	/**
-	 * The operation id for the '<em>Get Expression</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRUCT_VALUE___GET_EXPRESSION__STRING = VALUE___GET_EXPRESSION__STRING;
 
 	/**
 	 * The operation id for the '<em>Compare</em>' operation.
@@ -836,15 +809,6 @@ public interface TracePackage extends EPackage {
 	int ARRAY_VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN = VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN;
 
 	/**
-	 * The operation id for the '<em>Get Expression</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARRAY_VALUE___GET_EXPRESSION__STRING = VALUE___GET_EXPRESSION__STRING;
-
-	/**
 	 * The operation id for the '<em>Compare</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -916,15 +880,6 @@ public interface TracePackage extends EPackage {
 	 * @ordered
 	 */
 	int SIMPLE_VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN = VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN;
-
-	/**
-	 * The operation id for the '<em>Get Expression</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_VALUE___GET_EXPRESSION__STRING = VALUE___GET_EXPRESSION__STRING;
 
 	/**
 	 * The operation id for the '<em>Compare</em>' operation.
@@ -1087,16 +1042,6 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getAssignment__GetValue__String();
-
-	/**
-	 * Returns the meta object for the '{@link trace.Assignment#getExpression(java.lang.String) <em>Get Expression</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Expression</em>' operation.
-	 * @see trace.Assignment#getExpression(java.lang.String)
-	 * @generated
-	 */
-	EOperation getAssignment__GetExpression__String();
 
 	/**
 	 * Returns the meta object for class '{@link trace.Failure <em>Failure</em>}'.
@@ -1363,16 +1308,6 @@ public interface TracePackage extends EPackage {
 	EOperation getValue__GetUserFriendlyRepresentation__boolean();
 
 	/**
-	 * Returns the meta object for the '{@link trace.Value#getExpression(java.lang.String) <em>Get Expression</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Expression</em>' operation.
-	 * @see trace.Value#getExpression(java.lang.String)
-	 * @generated
-	 */
-	EOperation getValue__GetExpression__String();
-
-	/**
 	 * Returns the meta object for the '{@link trace.Value#compare(java.lang.String, trace.Value) <em>Compare</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1575,14 +1510,6 @@ public interface TracePackage extends EPackage {
 		 * @generated
 		 */
 		EOperation ASSIGNMENT___GET_VALUE__STRING = eINSTANCE.getAssignment__GetValue__String();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Expression</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation ASSIGNMENT___GET_EXPRESSION__STRING = eINSTANCE.getAssignment__GetExpression__String();
 
 		/**
 		 * The meta object literal for the '{@link trace.impl.FailureImpl <em>Failure</em>}' class.
@@ -1799,14 +1726,6 @@ public interface TracePackage extends EPackage {
 		 * @generated
 		 */
 		EOperation VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN = eINSTANCE.getValue__GetUserFriendlyRepresentation__boolean();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Expression</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation VALUE___GET_EXPRESSION__STRING = eINSTANCE.getValue__GetExpression__String();
 
 		/**
 		 * The meta object literal for the '<em><b>Compare</b></em>' operation.

@@ -169,12 +169,7 @@ public class SimpleValueImpl extends ValueImpl implements SimpleValue {
 	public String getUserFriendlyRepresentation(boolean abridged) {
 		return getValue();
 	}
-	
-	@Override
-	public String getExpression(String exp) {
-		return "";
-	}
-	
+
 	@Override
 	public Value getValue(String expression) {
 		return this;

@@ -43,14 +43,6 @@ public interface Value extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String" expDataType="org.eclipse.emf.ecore.xml.type.String"
-	 * @generated
-	 */
-	String getExpression(String exp);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @model many="false" parentPathDataType="org.eclipse.emf.ecore.xml.type.String"
 	 * @generated
 	 */

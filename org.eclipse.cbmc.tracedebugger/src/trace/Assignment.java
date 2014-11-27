@@ -222,12 +222,4 @@ public interface Assignment extends Step {
 	 */
 	Value getValue(String expression);
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String" expDataType="org.eclipse.emf.ecore.xml.type.String"
-	 * @generated
-	 */
-	String getExpression(String exp);
-
 } // Assignment

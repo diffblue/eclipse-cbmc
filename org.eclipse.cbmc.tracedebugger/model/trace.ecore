@@ -9,9 +9,6 @@
     <eOperations name="getValue" eType="#//Value">
       <eParameters name="expression" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
     </eOperations>
-    <eOperations name="getExpression" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
-      <eParameters name="exp" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -198,9 +195,6 @@
     <eOperations name="getChildrenCount" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
     <eOperations name="getUserFriendlyRepresentation" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eParameters name="abridged" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
-    </eOperations>
-    <eOperations name="getExpression" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
-      <eParameters name="exp" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
     </eOperations>
     <eOperations name="compare">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">

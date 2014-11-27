@@ -379,20 +379,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 		return parsedValue.getValue(segments[0]);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public String getExpression(String exp) {
-		String[] segments = VarHelpers.splitInTwo(exp);
-		if (segments.length == 1) {
-			return "(" + baseName + ")";
-		} else {
-			return "(" + baseName + ")" + parsedValue.getExpression(segments[1]);
-		}
-	}
-
 	private void parseValueExpression() {
 		if (parsedValue != null)
 			return;
@@ -536,8 +522,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 		switch (operationID) {
 			case TracePackage.ASSIGNMENT___GET_VALUE__STRING:
 				return getValue((String)arguments.get(0));
-			case TracePackage.ASSIGNMENT___GET_EXPRESSION__STRING:
-				return getExpression((String)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

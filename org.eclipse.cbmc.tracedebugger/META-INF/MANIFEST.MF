@@ -7,7 +7,23 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: trace,
+Export-Package: com.google.gson,
+ com.google.gson.annotations,
+ com.google.gson.internal,
+ com.google.gson.internal.bind,
+ com.google.gson.reflect,
+ com.google.gson.stream,
+ commands,
+ expressionparser,
+ infra,
+ main,
+ process,
+ process.impl,
+ process.util,
+ results.async,
+ results.data,
+ results.sync,
+ trace,
  trace.impl,
  trace.util
 Require-Bundle: org.eclipse.core.runtime,

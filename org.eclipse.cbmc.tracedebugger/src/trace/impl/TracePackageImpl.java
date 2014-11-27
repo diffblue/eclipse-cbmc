@@ -11,8 +11,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
-import process.ProcessPackage;
-import process.impl.ProcessPackageImpl;
 import trace.ArrayValue;
 import trace.Assignment;
 import trace.Failure;
@@ -175,16 +173,11 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		// Initialize simple dependencies
 		XMLTypePackage.eINSTANCE.eClass();
 
-		// Obtain or create and register interdependencies
-		ProcessPackageImpl theProcessPackage = (ProcessPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI) instanceof ProcessPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI) : ProcessPackage.eINSTANCE);
-
 		// Create package meta-data objects
 		theTracePackage.createPackageContents();
-		theProcessPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theTracePackage.initializePackageContents();
-		theProcessPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theTracePackage.freeze();
@@ -274,15 +267,6 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 */
 	public EOperation getAssignment__GetValue__String() {
 		return assignmentEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getAssignment__GetExpression__String() {
-		return assignmentEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -515,17 +499,8 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getValue__GetExpression__String() {
-		return valueEClass.getEOperations().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getValue__Compare__String_Value() {
-		return valueEClass.getEOperations().get(4);
+		return valueEClass.getEOperations().get(3);
 	}
 
 	/**
@@ -646,7 +621,6 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		createEAttribute(assignmentEClass, ASSIGNMENT__VALUE_EXPRESSION);
 		createEReference(assignmentEClass, ASSIGNMENT__PARSED_VALUE);
 		createEOperation(assignmentEClass, ASSIGNMENT___GET_VALUE__STRING);
-		createEOperation(assignmentEClass, ASSIGNMENT___GET_EXPRESSION__STRING);
 
 		failureEClass = createEClass(FAILURE);
 		createEAttribute(failureEClass, FAILURE__REASON);
@@ -680,7 +654,6 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		createEOperation(valueEClass, VALUE___GET_VALUE__STRING);
 		createEOperation(valueEClass, VALUE___GET_CHILDREN_COUNT);
 		createEOperation(valueEClass, VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN);
-		createEOperation(valueEClass, VALUE___GET_EXPRESSION__STRING);
 		createEOperation(valueEClass, VALUE___COMPARE__STRING_VALUE);
 
 		structValueEClass = createEClass(STRUCT_VALUE);
@@ -750,9 +723,6 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		EOperation op = initEOperation(getAssignment__GetValue__String(), this.getValue(), "getValue", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theXMLTypePackage.getString(), "expression", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getAssignment__GetExpression__String(), theXMLTypePackage.getString(), "getExpression", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theXMLTypePackage.getString(), "exp", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		initEClass(failureEClass, Failure.class, "Failure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFailure_Reason(), theXMLTypePackage.getString(), "reason", null, 1, 1, Failure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -790,9 +760,6 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 
 		op = initEOperation(getValue__GetUserFriendlyRepresentation__boolean(), theXMLTypePackage.getString(), "getUserFriendlyRepresentation", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theXMLTypePackage.getBoolean(), "abridged", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getValue__GetExpression__String(), theXMLTypePackage.getString(), "getExpression", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theXMLTypePackage.getString(), "exp", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getValue__Compare__String_Value(), null, "compare", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theXMLTypePackage.getString(), "parentPath", 0, 1, IS_UNIQUE, IS_ORDERED);

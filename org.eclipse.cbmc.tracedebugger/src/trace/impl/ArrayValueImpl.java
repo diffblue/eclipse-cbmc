@@ -146,12 +146,6 @@ public class ArrayValueImpl extends ValueImpl implements ArrayValue {
 		return result.replace(result.lastIndexOf(","), result.lastIndexOf(",") + 1, "}").toString();
 	}
 	
-	
-	@Override
-	public String getExpression(String exp) {
-		return null;
-	}
-	
 	@Override
 	public Value getValue(String expression) {
 		String[] segments = VarHelpers.splitInTwo(expression);
