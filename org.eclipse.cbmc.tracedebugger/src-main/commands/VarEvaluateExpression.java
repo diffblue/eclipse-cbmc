@@ -17,7 +17,7 @@ public class VarEvaluateExpression extends MICommand {
 	public MIOutput perform(Process process) {
 		String expression = arguments.get(0);
 		Value v = process.getVariableManager().getValue(expression);
-		return new Done(this, "value", v);
+		return new Done(this, "value", v.getUserFriendlyRepresentation(false));
 	}
 	
 	@Override
