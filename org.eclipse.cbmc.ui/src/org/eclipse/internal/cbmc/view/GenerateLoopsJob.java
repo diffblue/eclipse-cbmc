@@ -51,6 +51,9 @@ public class GenerateLoopsJob extends Job {
 				ResourceSet resSet = new ResourceSetImpl();
 				Resource resource = resSet.getResource(uri, true);
 				Results results = (Results) resource.getContents().get(0);
+				if (!results.getErrorMessage().isEmpty()) {
+					Activator.getDefault().getLog().log(new Status(IStatus.ERROR, "Error while getting loops. Reason: " + results.getErrorMessage(), null));
+				}
 				loops = results.getLoops();
 			}
 		} catch (IOException e) {

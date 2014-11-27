@@ -39,6 +39,11 @@
 			<succeededCount>0</succeededCount>
 			<xsl:copy-of select="$categories" />
 			<xsl:copy-of select="$files" />
+			<errorMessage>
+				<xsl:for-each select="/cprover/message[@type='ERROR']">
+					<xsl:value-of select="text" />
+				</xsl:for-each>
+			</errorMessage>
 			<xsl:for-each select="/cprover/property">
 				<xsl:variable name="category" select="@class" />
 				<xsl:variable name="file" select="./location/@file" />

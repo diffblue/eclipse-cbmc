@@ -42,4 +42,9 @@ public class ViewToolbar {
 	public Job getJob() {
 		return job;
 	}
+
+	public void reset() {
+		job = null;
+		refresh();
+	}
 }

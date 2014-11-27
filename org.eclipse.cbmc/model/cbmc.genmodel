@@ -43,6 +43,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cbmc.ecore#//PropertyCategory/properties"/>
     </genClasses>
     <genClasses ecoreClass="cbmc.ecore#//Results">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Results/errorMessage"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Results/succeededCount"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Results/failedCount"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cbmc.ecore#//Results/errorCount"/>

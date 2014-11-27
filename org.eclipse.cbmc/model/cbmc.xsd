@@ -55,6 +55,7 @@
 
 	<xsd:complexType name="Results">
 		<xsd:sequence>
+			<xsd:element name="errorMessage" type="xsd:string" />
 			<xsd:element name="succeededCount" type="xsd:int" />
 			<xsd:element name="failedCount" type="xsd:int" />
 			<xsd:element name="errorCount" type="xsd:int" />

@@ -343,13 +343,22 @@ public interface CbmcPackage extends EPackage {
 	int RESULTS = 4;
 
 	/**
+	 * The feature id for the '<em><b>Error Message</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULTS__ERROR_MESSAGE = 0;
+
+	/**
 	 * The feature id for the '<em><b>Succeeded Count</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESULTS__SUCCEEDED_COUNT = 0;
+	int RESULTS__SUCCEEDED_COUNT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Failed Count</b></em>' attribute.
@@ -358,7 +367,7 @@ public interface CbmcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESULTS__FAILED_COUNT = 1;
+	int RESULTS__FAILED_COUNT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Error Count</b></em>' attribute.
@@ -367,7 +376,7 @@ public interface CbmcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESULTS__ERROR_COUNT = 2;
+	int RESULTS__ERROR_COUNT = 3;
 
 	/**
 	 * The feature id for the '<em><b>Run Count</b></em>' attribute.
@@ -376,7 +385,7 @@ public interface CbmcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESULTS__RUN_COUNT = 3;
+	int RESULTS__RUN_COUNT = 4;
 
 	/**
 	 * The feature id for the '<em><b>Loops</b></em>' containment reference list.
@@ -385,7 +394,7 @@ public interface CbmcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESULTS__LOOPS = 4;
+	int RESULTS__LOOPS = 5;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -394,7 +403,7 @@ public interface CbmcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESULTS__PROPERTIES = 5;
+	int RESULTS__PROPERTIES = 6;
 
 	/**
 	 * The feature id for the '<em><b>Files</b></em>' containment reference list.
@@ -403,7 +412,7 @@ public interface CbmcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESULTS__FILES = 6;
+	int RESULTS__FILES = 7;
 
 	/**
 	 * The feature id for the '<em><b>Categories</b></em>' containment reference list.
@@ -412,7 +421,7 @@ public interface CbmcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESULTS__CATEGORIES = 7;
+	int RESULTS__CATEGORIES = 8;
 
 	/**
 	 * The number of structural features of the '<em>Results</em>' class.
@@ -421,7 +430,7 @@ public interface CbmcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESULTS_FEATURE_COUNT = 8;
+	int RESULTS_FEATURE_COUNT = 9;
 
 	/**
 	 * The number of operations of the '<em>Results</em>' class.
@@ -700,6 +709,17 @@ public interface CbmcPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getResults();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.cbmc.Results#getErrorMessage <em>Error Message</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Error Message</em>'.
+	 * @see org.eclipse.cbmc.Results#getErrorMessage()
+	 * @see #getResults()
+	 * @generated
+	 */
+	EAttribute getResults_ErrorMessage();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.cbmc.Results#getSucceededCount <em>Succeeded Count</em>}'.
@@ -1027,6 +1047,14 @@ public interface CbmcPackage extends EPackage {
 		 * @generated
 		 */
 		EClass RESULTS = eINSTANCE.getResults();
+
+		/**
+		 * The meta object literal for the '<em><b>Error Message</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RESULTS__ERROR_MESSAGE = eINSTANCE.getResults_ErrorMessage();
 
 		/**
 		 * The meta object literal for the '<em><b>Succeeded Count</b></em>' attribute feature.

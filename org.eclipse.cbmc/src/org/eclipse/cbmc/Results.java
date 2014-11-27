@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.cbmc.Results#getErrorMessage <em>Error Message</em>}</li>
  *   <li>{@link org.eclipse.cbmc.Results#getSucceededCount <em>Succeeded Count</em>}</li>
  *   <li>{@link org.eclipse.cbmc.Results#getFailedCount <em>Failed Count</em>}</li>
  *   <li>{@link org.eclipse.cbmc.Results#getErrorCount <em>Error Count</em>}</li>
@@ -30,6 +31,33 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Results extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Error Message</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Error Message</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Error Message</em>' attribute.
+	 * @see #setErrorMessage(String)
+	 * @see org.eclipse.cbmc.CbmcPackage#getResults_ErrorMessage()
+	 * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+	 *        extendedMetaData="kind='element' name='errorMessage'"
+	 * @generated
+	 */
+	String getErrorMessage();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.cbmc.Results#getErrorMessage <em>Error Message</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Error Message</em>' attribute.
+	 * @see #getErrorMessage()
+	 * @generated
+	 */
+	void setErrorMessage(String value);
+
 	/**
 	 * Returns the value of the '<em><b>Succeeded Count</b></em>' attribute.
 	 * <!-- begin-user-doc -->

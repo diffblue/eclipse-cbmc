@@ -341,17 +341,17 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CbmcPackage.LOOP__ID :
+			case CbmcPackage.LOOP__ID:
 				return getId();
-			case CbmcPackage.LOOP__UNWIND :
+			case CbmcPackage.LOOP__UNWIND:
 				return getUnwind();
-			case CbmcPackage.LOOP__PATH :
+			case CbmcPackage.LOOP__PATH:
 				return getPath();
-			case CbmcPackage.LOOP__FILENAME :
+			case CbmcPackage.LOOP__FILENAME:
 				return getFilename();
-			case CbmcPackage.LOOP__FUNCTION :
+			case CbmcPackage.LOOP__FUNCTION:
 				return getFunction();
-			case CbmcPackage.LOOP__LINE :
+			case CbmcPackage.LOOP__LINE:
 				return getLine();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -365,23 +365,23 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CbmcPackage.LOOP__ID :
-				setId((String) newValue);
+			case CbmcPackage.LOOP__ID:
+				setId((String)newValue);
 				return;
-			case CbmcPackage.LOOP__UNWIND :
-				setUnwind((String) newValue);
+			case CbmcPackage.LOOP__UNWIND:
+				setUnwind((String)newValue);
 				return;
-			case CbmcPackage.LOOP__PATH :
-				setPath((String) newValue);
+			case CbmcPackage.LOOP__PATH:
+				setPath((String)newValue);
 				return;
-			case CbmcPackage.LOOP__FILENAME :
-				setFilename((String) newValue);
+			case CbmcPackage.LOOP__FILENAME:
+				setFilename((String)newValue);
 				return;
-			case CbmcPackage.LOOP__FUNCTION :
-				setFunction((String) newValue);
+			case CbmcPackage.LOOP__FUNCTION:
+				setFunction((String)newValue);
 				return;
-			case CbmcPackage.LOOP__LINE :
-				setLine((Integer) newValue);
+			case CbmcPackage.LOOP__LINE:
+				setLine((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -395,22 +395,22 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CbmcPackage.LOOP__ID :
+			case CbmcPackage.LOOP__ID:
 				setId(ID_EDEFAULT);
 				return;
-			case CbmcPackage.LOOP__UNWIND :
+			case CbmcPackage.LOOP__UNWIND:
 				setUnwind(UNWIND_EDEFAULT);
 				return;
-			case CbmcPackage.LOOP__PATH :
+			case CbmcPackage.LOOP__PATH:
 				setPath(PATH_EDEFAULT);
 				return;
-			case CbmcPackage.LOOP__FILENAME :
+			case CbmcPackage.LOOP__FILENAME:
 				setFilename(FILENAME_EDEFAULT);
 				return;
-			case CbmcPackage.LOOP__FUNCTION :
+			case CbmcPackage.LOOP__FUNCTION:
 				setFunction(FUNCTION_EDEFAULT);
 				return;
-			case CbmcPackage.LOOP__LINE :
+			case CbmcPackage.LOOP__LINE:
 				unsetLine();
 				return;
 		}
@@ -425,17 +425,17 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CbmcPackage.LOOP__ID :
+			case CbmcPackage.LOOP__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-			case CbmcPackage.LOOP__UNWIND :
+			case CbmcPackage.LOOP__UNWIND:
 				return UNWIND_EDEFAULT == null ? unwind != null : !UNWIND_EDEFAULT.equals(unwind);
-			case CbmcPackage.LOOP__PATH :
+			case CbmcPackage.LOOP__PATH:
 				return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
-			case CbmcPackage.LOOP__FILENAME :
+			case CbmcPackage.LOOP__FILENAME:
 				return FILENAME_EDEFAULT == null ? filename != null : !FILENAME_EDEFAULT.equals(filename);
-			case CbmcPackage.LOOP__FUNCTION :
+			case CbmcPackage.LOOP__FUNCTION:
 				return FUNCTION_EDEFAULT == null ? function != null : !FUNCTION_EDEFAULT.equals(function);
-			case CbmcPackage.LOOP__LINE :
+			case CbmcPackage.LOOP__LINE:
 				return isSetLine();
 		}
 		return super.eIsSet(featureID);
@@ -448,8 +448,7 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (id: ");
@@ -463,10 +462,7 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop {
 		result.append(", function: ");
 		result.append(function);
 		result.append(", line: ");
-		if (lineESet)
-			result.append(line);
-		else
-			result.append("<unset>");
+		if (lineESet) result.append(line); else result.append("<unset>");
 		result.append(')');
 		return result.toString();
 	}

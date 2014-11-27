@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.*;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.cbmc.impl.ResultsImpl#getErrorMessage <em>Error Message</em>}</li>
  *   <li>{@link org.eclipse.cbmc.impl.ResultsImpl#getSucceededCount <em>Succeeded Count</em>}</li>
  *   <li>{@link org.eclipse.cbmc.impl.ResultsImpl#getFailedCount <em>Failed Count</em>}</li>
  *   <li>{@link org.eclipse.cbmc.impl.ResultsImpl#getErrorCount <em>Error Count</em>}</li>
@@ -43,6 +44,26 @@ import org.eclipse.emf.ecore.util.*;
  * @generated
  */
 public class ResultsImpl extends MinimalEObjectImpl.Container implements Results {
+	/**
+	 * The default value of the '{@link #getErrorMessage() <em>Error Message</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getErrorMessage()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ERROR_MESSAGE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getErrorMessage() <em>Error Message</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getErrorMessage()
+	 * @generated
+	 * @ordered
+	 */
+	protected String errorMessage = ERROR_MESSAGE_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getSucceededCount() <em>Succeeded Count</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -217,6 +238,27 @@ public class ResultsImpl extends MinimalEObjectImpl.Container implements Results
 	@Override
 	protected EClass eStaticClass() {
 		return CbmcPackage.Literals.RESULTS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setErrorMessage(String newErrorMessage) {
+		String oldErrorMessage = errorMessage;
+		errorMessage = newErrorMessage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CbmcPackage.RESULTS__ERROR_MESSAGE, oldErrorMessage, errorMessage));
 	}
 
 	/**
@@ -479,6 +521,8 @@ public class ResultsImpl extends MinimalEObjectImpl.Container implements Results
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case CbmcPackage.RESULTS__ERROR_MESSAGE:
+				return getErrorMessage();
 			case CbmcPackage.RESULTS__SUCCEEDED_COUNT:
 				return getSucceededCount();
 			case CbmcPackage.RESULTS__FAILED_COUNT:
@@ -508,6 +552,9 @@ public class ResultsImpl extends MinimalEObjectImpl.Container implements Results
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case CbmcPackage.RESULTS__ERROR_MESSAGE:
+				setErrorMessage((String)newValue);
+				return;
 			case CbmcPackage.RESULTS__SUCCEEDED_COUNT:
 				setSucceededCount((Integer)newValue);
 				return;
@@ -548,6 +595,9 @@ public class ResultsImpl extends MinimalEObjectImpl.Container implements Results
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case CbmcPackage.RESULTS__ERROR_MESSAGE:
+				setErrorMessage(ERROR_MESSAGE_EDEFAULT);
+				return;
 			case CbmcPackage.RESULTS__SUCCEEDED_COUNT:
 				unsetSucceededCount();
 				return;
@@ -584,6 +634,8 @@ public class ResultsImpl extends MinimalEObjectImpl.Container implements Results
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case CbmcPackage.RESULTS__ERROR_MESSAGE:
+				return ERROR_MESSAGE_EDEFAULT == null ? errorMessage != null : !ERROR_MESSAGE_EDEFAULT.equals(errorMessage);
 			case CbmcPackage.RESULTS__SUCCEEDED_COUNT:
 				return isSetSucceededCount();
 			case CbmcPackage.RESULTS__FAILED_COUNT:
@@ -614,7 +666,9 @@ public class ResultsImpl extends MinimalEObjectImpl.Container implements Results
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (succeededCount: ");
+		result.append(" (errorMessage: ");
+		result.append(errorMessage);
+		result.append(", succeededCount: ");
 		if (succeededCountESet) result.append(succeededCount); else result.append("<unset>");
 		result.append(", failedCount: ");
 		if (failedCountESet) result.append(failedCount); else result.append("<unset>");

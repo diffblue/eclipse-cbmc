@@ -20,7 +20,6 @@ public class GeneratePropertiesJob extends Job {
 	private static final String PROPERTIES_OUTPUT_CBMC = "properties.output.cbmc"; //$NON-NLS-1$
 	private static final String PROPERTIES_INPUT_XML = "properties.input.xml"; //$NON-NLS-1$
 	private static final String TRANSFORM_XSL = "cbmcTransform.xsl"; //$NON-NLS-1$
-	private static final int SUCCESS_EXITVALUE = 0;
 
 	private CBMCCliHelper cliHelper;
 
@@ -36,19 +35,20 @@ public class GeneratePropertiesJob extends Job {
 		try {
 			File inputfile = new File(cliHelper.getWorkingDirectory(), PROPERTIES_INPUT_XML);
 			File outputfile = new File(cliHelper.getWorkingDirectory(), PROPERTIES_OUTPUT_CBMC);
-			int exitValue = ProcessHelper.executeCommandWithRedirectOutput(cliHelper.getCommandLineForAllProperties(), inputfile);
-			if (exitValue == SUCCESS_EXITVALUE) {
-				Source xmlInput = new StreamSource(inputfile);
-				Source xsl = new StreamSource(FileLocator.openStream(Platform.getBundle(Activator.PLUGIN_ID), new Path(TRANSFORM_XSL), false));
-				Result xmlOutput = new StreamResult(outputfile);
-				Transformer transformer = TransformerFactory.newInstance().newTransformer(xsl);
-				transformer.transform(xmlInput, xmlOutput);
+			ProcessHelper.executeCommandWithRedirectOutput(cliHelper.getCommandLineForAllProperties(), inputfile);
+			Source xmlInput = new StreamSource(inputfile);
+			Source xsl = new StreamSource(FileLocator.openStream(Platform.getBundle(Activator.PLUGIN_ID), new Path(TRANSFORM_XSL), false));
+			Result xmlOutput = new StreamResult(outputfile);
+			Transformer transformer = TransformerFactory.newInstance().newTransformer(xsl);
+			transformer.transform(xmlInput, xmlOutput);
 
-				URI uri = URI.createFileURI(outputfile.getAbsolutePath());
-				ResourceSet resSet = new ResourceSetImpl();
-				Resource resource = resSet.getResource(uri, true);
-				results = (Results) resource.getContents().get(0);
-				results.setCBMCHelper(cliHelper);
+			URI uri = URI.createFileURI(outputfile.getAbsolutePath());
+			ResourceSet resSet = new ResourceSetImpl();
+			Resource resource = resSet.getResource(uri, true);
+			results = (Results) resource.getContents().get(0);
+			results.setCBMCHelper(cliHelper);
+			if (!results.getErrorMessage().isEmpty()) {
+				Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error while getting properties. Reason: " + results.getErrorMessage(), null));
 			}
 		} catch (TransformerException e) {
 			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Cannot transform the CBMC properties into the ecore model", e); //$NON-NLS-1$

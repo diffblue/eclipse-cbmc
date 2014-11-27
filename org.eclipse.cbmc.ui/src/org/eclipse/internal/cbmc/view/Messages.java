@@ -30,6 +30,9 @@ public class Messages extends NLS {
 	public static String PropertiesView_sectionLoopsYes;
 	public static String PropertiesView_sectionLoopsNo;
 
+	public static String PropertiesView_errorProperties;
+	public static String PropertiesView_errorLoops;
+
 	public static String PropertiesView_actionStop;
 	public static String PropertiesView_actionDebug;
 	public static String PropertiesView_actionPause;

@@ -50,12 +50,35 @@ public class ResultsItemProvider extends ItemProviderAdapter implements IEditing
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addErrorMessagePropertyDescriptor(object);
 			addSucceededCountPropertyDescriptor(object);
 			addFailedCountPropertyDescriptor(object);
 			addErrorCountPropertyDescriptor(object);
 			addRunCountPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Error Message feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addErrorMessagePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Results_errorMessage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Results_errorMessage_feature", "_UI_Results_type"),
+				 CbmcPackage.Literals.RESULTS__ERROR_MESSAGE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -197,8 +220,10 @@ public class ResultsItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	@Override
 	public String getText(Object object) {
-		Results results = (Results)object;
-		return getString("_UI_Results_type") + " " + results.getSucceededCount();
+		String label = ((Results)object).getErrorMessage();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Results_type") :
+			getString("_UI_Results_type") + " " + label;
 	}
 
 	/**
@@ -213,6 +238,7 @@ public class ResultsItemProvider extends ItemProviderAdapter implements IEditing
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Results.class)) {
+			case CbmcPackage.RESULTS__ERROR_MESSAGE:
 			case CbmcPackage.RESULTS__SUCCEEDED_COUNT:
 			case CbmcPackage.RESULTS__FAILED_COUNT:
 			case CbmcPackage.RESULTS__ERROR_COUNT:

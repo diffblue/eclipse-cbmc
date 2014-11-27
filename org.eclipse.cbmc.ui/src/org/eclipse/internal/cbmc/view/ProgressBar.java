@@ -149,6 +149,9 @@ public class ProgressBar extends Canvas {
 		if (bindingContext != null)
 			bindingContext.dispose();
 
+		if (results == null)
+			return;
+
 		fMaxTickCount = results.getProperties().size();
 		bindingContext = new DataBindingContext();
 		UpdateValueStrategy strategy = new UpdateValueStrategy();

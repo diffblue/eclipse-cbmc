@@ -45,16 +45,24 @@ public class CounterPanel extends Composite {
 
 		runsCount = 0;
 		totalCount = 0;
-		fNumberOfRuns = createLabel(Messages.CounterPanel_runs, null, " 0/0  "); //$NON-NLS-1$
-		fNumberOfSuccess = createLabel(Messages.CounterPanel_success, fSuccessIcon, " 0 "); //$NON-NLS-1$
-		fNumberOfFailures = createLabel(Messages.CounterPanel_failures, fFailureIcon, " 0 "); //$NON-NLS-1$
-		fNumberOfErrors = createLabel(Messages.CounterPanel_errors, fErrorIcon, " 0 "); //$NON-NLS-1$
-
+		fNumberOfRuns = createLabel(Messages.CounterPanel_runs, null);
+		fNumberOfSuccess = createLabel(Messages.CounterPanel_success, fSuccessIcon);
+		fNumberOfFailures = createLabel(Messages.CounterPanel_failures, fFailureIcon);
+		fNumberOfErrors = createLabel(Messages.CounterPanel_errors, fErrorIcon);
+		initialize();
 		addDisposeListener(new DisposeListener() {
 			public void widgetDisposed(DisposeEvent e) {
 				disposeIcons();
 			}
 		});
+	}
+
+	private void initialize() {
+		fNumberOfRuns.setText("0/0"); //$NON-NLS-1$
+		fNumberOfSuccess.setText(" 0 "); //$NON-NLS-1$
+		fNumberOfFailures.setText(" 0 "); //$NON-NLS-1$
+		fNumberOfErrors.setText(" 0 "); //$NON-NLS-1$
+
 	}
 
 	private void disposeIcons() {
@@ -68,7 +76,7 @@ public class CounterPanel extends Composite {
 			fErrorIcon.dispose();
 	}
 
-	private Text createLabel(String name, Image image, String init) {
+	private Text createLabel(String name, Image image) {
 		Label label = new Label(this, SWT.NONE);
 		if (image != null) {
 			image.setBackground(label.getBackground());
@@ -81,7 +89,6 @@ public class CounterPanel extends Composite {
 		label.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING));
 
 		Text value = new Text(this, SWT.READ_ONLY);
-		value.setText(init);
 		value.setBackground(getDisplay().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND));
 		value.setLayoutData(new GridData(GridData.FILL_HORIZONTAL | GridData.HORIZONTAL_ALIGN_BEGINNING));
 		return value;
@@ -90,6 +97,11 @@ public class CounterPanel extends Composite {
 	public void setRunValue() {
 		String runString = Messages.format(Messages.CounterPanel_runsdone, new String[] {Integer.toString(runsCount), Integer.toString(totalCount)});
 		fNumberOfRuns.setText(runString);
+	}
+
+	public void reset() {
+		initialize();
+		bindingContext = null;
 	}
 
 	public void bind(final Results results) {
