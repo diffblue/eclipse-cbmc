@@ -1,6 +1,11 @@
 package infra;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import process.Process;
 import trace.Assignment;
+import trace.SimpleValue;
 import trace.TraceFactory;
 import trace.Value;
 
@@ -52,6 +57,9 @@ public class VarHelpers {
 	}
 
 	public static Assignment getAssignment(process.Process process, String expression, int threadId, int frameId) {
+		if (expression.startsWith("&")) {
+			return createAssignmentForReference(process, expression, threadId);
+		}
 		String topLevelVariable = VarHelpers.getVariableName(expression);
 		Assignment match = process.getThread(threadId).getFrame(frameId).getVariable(topLevelVariable);
 		if (match == null)
@@ -72,6 +80,24 @@ public class VarHelpers {
 		result.setLocation(parent.getLocation());
 		result.setNumber(parent.getNumber());
 		result.setType("int"); //TODO FIX ME
+		return result;
+	}
+	
+
+	private static Assignment createAssignmentForReference(Process process, String expression, int threadId) {
+		Pattern pattern = Pattern.compile("&\\((.*)\\).*");
+		Matcher matcher = pattern.matcher(expression);
+		if (matcher.find()) {
+			matcher.group(1);
+		}
+		SimpleValue value = TraceFactory.eINSTANCE.createSimpleValue();
+		value.setValue("Address unknown");
+		Assignment result = TraceFactory.eINSTANCE.createAssignment();
+		result.setParsedValue(value);
+		result.setValue(value.getUserFriendlyRepresentation(false));
+		result.setBaseName(expression);
+		result.setThread(threadId);
+		result.setType("pointer");
 		return result;
 	}
 }

@@ -57,12 +57,7 @@ public class VarCreate extends MICommand {
 		}
 		expression = arguments.get(2);
 		
-		Assignment match = null;
-		if (expression.startsWith("&(")) {
-			match = createAssignmentForReference(process, expression, threadId);
-		} else {
-			match = VarHelpers.getAssignment(process, expression, threadId, frameId);
-		}
+		Assignment match = VarHelpers.getAssignment(process, expression, threadId, frameId);
 		process.getVariableManager().getVariables().put(internalVarName, match);
 		process.getVariableManager().getPreviousValues().put(internalVarName, match);
 		
@@ -76,22 +71,5 @@ public class VarCreate extends MICommand {
 		v.has_more = "0";
 		v.threadId = Integer.toString(threadId);
 		return new Done(this, v);
-	}
-	
-	private Assignment createAssignmentForReference(Process process, String expression, int threadId) {
-		Pattern pattern = Pattern.compile("&\\((.*)\\).*");
-		Matcher matcher = pattern.matcher(expression);
-		if (matcher.find()) {
-			matcher.group(1);
-		}
-		SimpleValue value = TraceFactory.eINSTANCE.createSimpleValue();
-		value.setValue("Address unknown");
-		Assignment result = TraceFactory.eINSTANCE.createAssignment();
-		result.setParsedValue(value);
-		result.setValue(value.getUserFriendlyRepresentation(false));
-		result.setBaseName(expression);
-		result.setThread(threadId);
-		result.setType("pointer");
-		return result;
 	}
 }
