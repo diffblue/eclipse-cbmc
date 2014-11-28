@@ -40,15 +40,20 @@ public class Frame {
 		level = String.valueOf(depth);
 	}
 
-	// TODO this does not deal properly with max
-	public static void toFrames(List<Frame> frames,
-			FunctionExecution execution, int depth, int max) {
-		if (max == 0)
+	public static void toFrames(List<Frame> frames, FunctionExecution execution, int lowFrame, int highFrame, int depth) {
+		if (execution == null)
 			return;
-		String funcName = execution.getFunctionName();
-		frames.add(new Frame(execution.getCurrentStep(), funcName, depth));
+
+		if (depth > highFrame)
+			return;
+		
+		if (depth >= lowFrame) {
+			String funcName = execution.getFunctionName();
+			frames.add(new Frame(execution.getCurrentStep(), funcName, depth));
+		}
 		if (execution.getParent() != null)
-			toFrames(frames, execution.getParent(), depth + 1, max - 1);
+			toFrames(frames, execution.getParent(), lowFrame, highFrame, depth+1);
+			
 	}
 
 	//This method exists because the serialization format of Stack is not standard.
