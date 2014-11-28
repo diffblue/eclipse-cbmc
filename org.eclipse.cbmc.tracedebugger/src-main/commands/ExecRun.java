@@ -52,6 +52,6 @@ public class ExecRun extends MICommand {
 		Running running = new Running();
 		running.threadId = "all";
 		
-		return new CompositeOutput(result, new results.sync.Running(this), running, startReturnCodeAsMIOuput); 
+		return new CompositeOutput(this, result, new results.sync.Running(this), running, startReturnCodeAsMIOuput); 
 	}
 }

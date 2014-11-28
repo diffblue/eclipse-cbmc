@@ -1,5 +1,6 @@
 package org.eclipse.cbmc.tracedebugger.test;
 
+import infra.CompositeOutput;
 import infra.MIOutput;
 import infra.MIResult;
 
@@ -25,6 +26,12 @@ public class TestingInterpreterLoop extends InterpreterLoop {
 		if (result instanceof MIResult) {
 			//TODO to be more resilient to reordering of fields, we should deserialize the objects and compare those
 			Assert.assertEquals(chatter.getResponses().get(((MIResult) result).getCommand().getId()), result.serialize());
+			return;
+		} 
+		if (result instanceof CompositeOutput) {
+			Assert.assertEquals(chatter.getResponses().get(((CompositeOutput) result).getCommand().getId()), result.serialize());
+			return;
 		}
+		Assert.fail("Unexpected type of result");
 	}
 }

@@ -49,6 +49,6 @@ public class ExecContinue extends MICommand {
 		Running running = new Running();
 		running.threadId = "all";
 
-		return new CompositeOutput(new results.sync.Running(this), running, result);
+		return new CompositeOutput(this, new results.sync.Running(this), running, result);
 	}
 }

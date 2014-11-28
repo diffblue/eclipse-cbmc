@@ -34,6 +34,6 @@ public class InterpreterExec extends MICommand {
 		}
 		output.add("=thread-group-exited,id=\"" + threadGroup + "\"");
 		
-		return new CompositeOutput(new StringOutput(output.toArray(new String[output.size()])), new Done(this));
+		return new CompositeOutput(this, new StringOutput(output.toArray(new String[output.size()])), new Done(this));
 	}
 }
