@@ -9,6 +9,9 @@ import java.util.Scanner;
 
 import main.TraceDebugger;
 
+import org.eclipse.cbmc.tracedebugger.test.infrastructure.Chatter;
+import org.eclipse.cbmc.tracedebugger.test.infrastructure.TestHelpers;
+import org.eclipse.cbmc.tracedebugger.test.infrastructure.TestingInterpreterLoop;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

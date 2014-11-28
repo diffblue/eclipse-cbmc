@@ -1,4 +1,4 @@
-package org.eclipse.cbmc.tracedebugger.test;
+package org.eclipse.cbmc.tracedebugger.test.infrastructure;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;

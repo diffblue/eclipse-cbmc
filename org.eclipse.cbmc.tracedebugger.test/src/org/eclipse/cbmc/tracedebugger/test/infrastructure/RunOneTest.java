@@ -1,4 +1,4 @@
-package org.eclipse.cbmc.tracedebugger.test;
+package org.eclipse.cbmc.tracedebugger.test.infrastructure;
 
 import java.io.File;
 import java.io.IOException;
