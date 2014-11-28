@@ -1,5 +1,8 @@
 package commands;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import infra.MICommand;
 import infra.MIOutput;
 import infra.VarHelpers;
@@ -11,6 +14,8 @@ import results.data.VarHelper;
 import results.data.Vars;
 import results.sync.Done;
 import trace.Assignment;
+import trace.SimpleValue;
+import trace.TraceFactory;
 import trace.Value;
 
 // 41-var-create --thread 1 --frame 0 - * tmpOne
@@ -52,8 +57,12 @@ public class VarCreate extends MICommand {
 		}
 		expression = arguments.get(2);
 		
-		//TODO deal with &(var)
-		Assignment match = VarHelpers.getAssignment(process, expression, threadId, frameId);
+		Assignment match = null;
+		if (expression.startsWith("&(")) {
+			match = createAssignmentForReference(process, expression, threadId);
+		} else {
+			match = VarHelpers.getAssignment(process, expression, threadId, frameId);
+		}
 		process.getVariableManager().getVariables().put(internalVarName, match);
 		process.getVariableManager().getPreviousValues().put(internalVarName, match);
 		
@@ -64,10 +73,25 @@ public class VarCreate extends MICommand {
 		v.value = value.getUserFriendlyRepresentation(true);
 		v.type = VarHelper.getMIType(match.getType());
 		v.numchild = String.valueOf(value.getChildrenCount());
-		v.has_more = "0";	//A revoir avec des vraies variables
+		v.has_more = "0";
 		v.threadId = Integer.toString(threadId);
 		return new Done(this, v);
 	}
 	
-	
+	private Assignment createAssignmentForReference(Process process, String expression, int threadId) {
+		Pattern pattern = Pattern.compile("&\\((.*)\\).*");
+		Matcher matcher = pattern.matcher(expression);
+		if (matcher.find()) {
+			matcher.group(1);
+		}
+		SimpleValue value = TraceFactory.eINSTANCE.createSimpleValue();
+		value.setValue("Address unknown");
+		Assignment result = TraceFactory.eINSTANCE.createAssignment();
+		result.setParsedValue(value);
+		result.setValue(value.getUserFriendlyRepresentation(false));
+		result.setBaseName(expression);
+		result.setThread(threadId);
+		result.setType("pointer");
+		return result;
+	}
 }
