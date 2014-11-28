@@ -1,0 +1,308 @@
+16-file-exec-and-symbols --thread-group i1 <<inputFile>>
+16^done
+(gdb)
+23-break-insert -t -f main
+23^done,bkpt={number="1",type="breakpoint",enabled="y",func="main"}
+(gdb)
+25-exec-run --thread-group i1
+=thread-group-started,id="i1",pid="123"
+=thread-created,id="0",group-id="i1"
+25^running
+*running,thread-id="all"
+*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",line="16"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+(gdb)
+26-list-thread-groups --available
+26^done,groups=[{id="i1",type="process",pid="123",executable="<<inputFile>>"}]
+(gdb)
+27-list-thread-groups
+27^done,groups=[{id="i1",type="process",pid="123",executable="<<inputFile>>"}]
+(gdb)
+28-list-thread-groups
+28^done,groups=[{id="i1",type="process",pid="123",executable="<<inputFile>>"}]
+(gdb)
+29-list-thread-groups i1
+29^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",line="16"}}]
+(gdb)
+30-stack-info-depth --thread 0 11
+30^done,depth="1"
+(gdb)
+31-thread-info 0
+31^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",line="16"}}]
+(gdb)
+32-stack-list-locals --thread 0 --frame 0 1
+32^done,locals=[]
+(gdb)
+33-stack-list-frames --thread 0
+33^done,stack=[frame={level="0",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",line="16"}]
+(gdb)
+34-exec-next --thread 0 1
+34^running
+*running,thread-id="all"
+*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",line="17"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+(gdb)
+35-stack-list-locals --thread 0 --frame 0 1
+35^done,locals=[{name="arr",value="{{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}}}"}]
+(gdb)
+36-stack-info-depth --thread 0 11
+36^done,depth="1"
+(gdb)
+37-stack-info-depth --thread 0
+37^done,depth="1"
+(gdb)
+38-list-thread-groups
+38^done,groups=[{id="i1",type="process",pid="123",executable="<<inputFile>>"}]
+(gdb)
+39-thread-info 0
+39^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",line="17"}}]
+(gdb)
+40-var-create --thread 0 --frame 0 - * arr
+40^done,name="var1",value="[...]",type="struct str [10]",numchild="10",thread-id="0",has_more="0"
+(gdb)
+41-var-create --thread 0 --frame 0 - * &(arr)
+41^done,name="var2",value="Address unknown",type="pointer",numchild="0",thread-id="0",has_more="0"
+(gdb)
+42-exec-next --thread 0 1
+42^running
+*running,thread-id="all"
+*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",line="18"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+(gdb)
+43-stack-list-locals --thread 0 --frame 0 1
+43^done,locals=[{name="arr",value="{{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}}}"}]
+(gdb)
+44-stack-info-depth --thread 0 11
+44^done,depth="1"
+(gdb)
+45-stack-info-depth --thread 0
+45^done,depth="1"
+(gdb)
+46-var-update 1 var1
+46^done,changelist=null
+(gdb)
+47-var-update 1 var2
+47^done,changelist=[]
+(gdb)
+48-list-thread-groups
+48^done,groups=[{id="i1",type="process",pid="123",executable="<<inputFile>>"}]
+(gdb)
+49-thread-info 0
+49^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",line="18"}}]
+(gdb)
+50-var-create --thread 0 --frame 0 - * arr[0]
+50^done,name="var3",value="{...}",type="int",numchild="4",thread-id="0",has_more="0"
+(gdb)
+51-var-create --thread 0 --frame 0 - * arr[1]
+51^done,name="var4",value="{...}",type="int",numchild="4",thread-id="0",has_more="0"
+(gdb)
+52-var-create --thread 0 --frame 0 - * arr[2]
+52^done,name="var5",value="{...}",type="int",numchild="4",thread-id="0",has_more="0"
+(gdb)
+53-var-create --thread 0 --frame 0 - * arr[3]
+53^done,name="var6",value="{...}",type="int",numchild="4",thread-id="0",has_more="0"
+(gdb)
+54-var-create --thread 0 --frame 0 - * arr[4]
+54^done,name="var7",value="{...}",type="int",numchild="4",thread-id="0",has_more="0"
+(gdb)
+55-var-create --thread 0 --frame 0 - * arr[5]
+55^done,name="var8",value="{...}",type="int",numchild="4",thread-id="0",has_more="0"
+(gdb)
+56-var-create --thread 0 --frame 0 - * arr[6]
+56^done,name="var9",value="{...}",type="int",numchild="4",thread-id="0",has_more="0"
+(gdb)
+57-var-create --thread 0 --frame 0 - * arr[7]
+57^done,name="var10",value="{...}",type="int",numchild="4",thread-id="0",has_more="0"
+(gdb)
+58-var-create --thread 0 --frame 0 - * arr[8]
+58^done,name="var11",value="{...}",type="int",numchild="4",thread-id="0",has_more="0"
+(gdb)
+59-var-create --thread 0 --frame 0 - * arr[9]
+59^done,name="var12",value="{...}",type="int",numchild="4",thread-id="0",has_more="0"
+(gdb)
+60-var-list-children var4
+60^done,numchild="4",children=[child={name="var4.x",type="int",numchild="0",exp="x"},child={name="var4.y",type="int",numchild="0",exp="y"},child={name="var4.z",type="int",numchild="0",exp="z"},child={name="var4.zoo",type="int",numchild="1",exp="zoo"}],has_more="0"
+(gdb)
+61-var-info-path-expression var4.x
+61^done,path_expr="(arr[1]).x"
+(gdb)
+62-var-info-path-expression var4.y
+62^done,path_expr="(arr[1]).y"
+(gdb)
+63-var-info-path-expression var4.z
+63^done,path_expr="(arr[1]).z"
+(gdb)
+64-var-info-path-expression var4.zoo
+64^done,path_expr="(arr[1]).zoo"
+(gdb)
+65-var-evaluate-expression var4.x
+65^done,value="0"
+(gdb)
+66-var-evaluate-expression var4.y
+66^done,value="0"
+(gdb)
+67-var-evaluate-expression var4.z
+67^done,value="0"
+(gdb)
+68-var-list-children var4.zoo
+68^done,numchild="1",children=[child={name="var4.zoo.a",type="int",numchild="0",exp="a"}],has_more="0"
+(gdb)
+69-var-info-path-expression var4.zoo.a
+69^done,path_expr="(arr[1]).zoo.a"
+(gdb)
+70-var-evaluate-expression var4.zoo.a
+70^done,value="0"
+(gdb)
+71-exec-next --thread 0 1
+71^running
+*running,thread-id="all"
+*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",line="19"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+(gdb)
+72-stack-list-locals --thread 0 --frame 0 1
+72^done,locals=[{name="arr",value="{{x=0,y=0,z=0,zoo={a=0}},{x=0,y=1,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}}}"}]
+(gdb)
+73-stack-info-depth --thread 0 11
+73^done,depth="1"
+(gdb)
+74-stack-info-depth --thread 0
+74^done,depth="1"
+(gdb)
+75-list-thread-groups
+75^done,groups=[{id="i1",type="process",pid="123",executable="<<inputFile>>"}]
+(gdb)
+76-thread-info 0
+76^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",line="19"}}]
+(gdb)
+77-var-update 1 var1
+77^done,changelist=null
+(gdb)
+78-var-update 1 var2
+78^done,changelist=[]
+(gdb)
+79-var-update 1 var3
+79^done,changelist=[]
+(gdb)
+80-var-update 1 var4
+80^done,changelist=[{name="var4.y",value="1",in_scope="true",type_changed="false",has_more="0"}]
+(gdb)
+81-var-update 1 var5
+81^done,changelist=[]
+(gdb)
+82-var-update 1 var6
+82^done,changelist=[]
+(gdb)
+83-var-update 1 var7
+83^done,changelist=[]
+(gdb)
+84-var-update 1 var8
+84^done,changelist=[]
+(gdb)
+85-var-update 1 var9
+85^done,changelist=[]
+(gdb)
+86-exec-next --thread 0 1
+86^running
+*running,thread-id="all"
+*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",line="20"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+(gdb)
+87-stack-list-locals --thread 0 --frame 0 1
+87^done,locals=[{name="arr",value="{{x=0,y=0,z=0,zoo={a=0}},{x=0,y=2,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}}}"}]
+(gdb)
+88-stack-info-depth --thread 0 11
+88^done,depth="1"
+(gdb)
+89-stack-info-depth --thread 0
+89^done,depth="1"
+(gdb)
+90-var-update 1 var1
+90^done,changelist=null
+(gdb)
+91-var-update 1 var2
+91^done,changelist=[]
+(gdb)
+92-list-thread-groups
+92^done,groups=[{id="i1",type="process",pid="123",executable="<<inputFile>>"}]
+(gdb)
+93-thread-info 0
+93^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",line="20"}}]
+(gdb)
+94-var-update 1 var3
+94^done,changelist=[]
+(gdb)
+95-var-update 1 var4
+95^done,changelist=[{name="var4.y",value="2",in_scope="true",type_changed="false",has_more="0"}]
+(gdb)
+96-var-update 1 var5
+96^done,changelist=[]
+(gdb)
+97-var-update 1 var6
+97^done,changelist=[]
+(gdb)
+98-var-update 1 var7
+98^done,changelist=[]
+(gdb)
+99-var-update 1 var8
+99^done,changelist=[]
+(gdb)
+100-var-update 1 var9
+100^done,changelist=[]
+(gdb)
+101-exec-next --thread 0 1
+101^running
+*running,thread-id="all"
+*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",line="22"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+(gdb)
+102-stack-list-locals --thread 0 --frame 0 1
+102^done,locals=[{name="arr",value="{{x=0,y=0,z=0,zoo={a=0}},{x=0,y=2,z=0,zoo={a=3}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}},{x=0,y=0,z=0,zoo={a=0}}}"}]
+(gdb)
+103-stack-info-depth --thread 0 11
+103^done,depth="1"
+(gdb)
+104-stack-info-depth --thread 0
+104^done,depth="1"
+(gdb)
+105-list-thread-groups
+105^done,groups=[{id="i1",type="process",pid="123",executable="<<inputFile>>"}]
+(gdb)
+106-thread-info 0
+106^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c",line="22"}}]
+(gdb)
+107-var-update 1 var1
+107^done,changelist=null
+(gdb)
+108-var-update 1 var2
+108^done,changelist=[]
+(gdb)
+125-data-evaluate-expression --thread 0 --frame 0 arr
+125^done
+(gdb)
+126-var-set-format var2 octal
+126^done,value="Address unknown",format="octal"
+(gdb)
+127-var-set-format var2 natural
+127^done,value="Address unknown",format="natural"
+(gdb)
+128-var-set-format var2 decimal
+128^done,value="Address unknown",format="decimal"
+(gdb)
+129-var-set-format var2 natural
+129^done,value="Address unknown",format="natural"
+(gdb)
+130-var-set-format var2 binary
+130^done,value="Address unknown",format="binary"
+(gdb)
+131-var-set-format var2 natural
+131^done,value="Address unknown",format="natural"
+(gdb)
+132-var-set-format var2 hexadecimal
+132^done,value="Address unknown",format="hexadecimal"
+(gdb)
+133-var-set-format var2 natural
+133^done,value="Address unknown",format="natural"
+(gdb)
+134-interpreter-exec --thread-group i1 console kill
+ ~"Kill the program being debugged? (y or n) [answered Y; input not from terminal]\n"
+=thread-exited,id="0",group-id="i1"
+=thread-group-exited,id="i1"
+134^done
+(gdb)
+135-gdb-exit
+135^done
+(gdb)

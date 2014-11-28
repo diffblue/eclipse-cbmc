@@ -1,0 +1,1287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cprover>
+<program>CBMC 4.9</program>
+<message type="STATUS-MESSAGE">
+  <text>CBMC version 4.9 64-bit linux</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Parsing /home/pascal/dev/runtime-New_configuration/AAAA/deux.c</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Converting</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Type-checking deux</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Generating GOTO Program</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Adding CPROVER library</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Function Pointer Removal</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Partial Inlining</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Generic Property Instrumentation</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Starting Bounded Model Checking</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>size of program expression: 38 steps</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>simple slicing removed 4 assignments</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Generated 1 VCC(s), 1 remaining after simplification</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Passing problem to propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Post-processing</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Solving with MiniSAT 2.2.0 with simplifier</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>1290 variables, 11 clauses</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>SAT checker: negated claim is SATISFIABLE, i.e., does not hold</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Runtime decision procedure: 0.001s</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Building error trace</text>
+</message>
+
+<goto_trace>
+  <function_call step_nr="2" thread="0">
+    <function display_name="__CPROVER_initialize" identifier="c::__CPROVER_initialize">
+      <location file="&lt;built-in-additions&gt;" line="14"/>
+    </function>
+  </function_call>
+  <assignment base_name="__CPROVER_malloc_is_new_array" display_name="__CPROVER_malloc_is_new_array" identifier="c::__CPROVER_malloc_is_new_array" mode="C" step_nr="3" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="34"/>
+    <type>_Bool</type>
+    <full_lhs>__CPROVER_malloc_is_new_array</full_lhs>
+    <full_lhs_value>FALSE</full_lhs_value>
+    <value>FALSE</value>
+    <value_expression>
+      <boolean binary="0">FALSE</boolean>
+    </value_expression>
+  </assignment>
+  <assignment base_name="__CPROVER_memory_leak" display_name="__CPROVER_memory_leak" identifier="c::__CPROVER_memory_leak" mode="C" step_nr="4" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="35"/>
+    <type>void *</type>
+    <full_lhs>__CPROVER_memory_leak</full_lhs>
+    <full_lhs_value>NULL</full_lhs_value>
+    <value>NULL</value>
+    <value_expression>
+      <pointer binary="0000000000000000000000000000000000000000000000000000000000000000"/>
+    </value_expression>
+  </assignment>
+  <assignment base_name="__CPROVER_pipe_count" display_name="__CPROVER_pipe_count" identifier="c::__CPROVER_pipe_count" mode="C" step_nr="5" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="78"/>
+    <type>unsigned int</type>
+    <full_lhs>__CPROVER_pipe_count</full_lhs>
+    <full_lhs_value>0</full_lhs_value>
+    <value>0</value>
+    <value_expression>
+      <integer binary="00000000000000000000000000000000">0</integer>
+    </value_expression>
+  </assignment>
+  <assignment base_name="__CPROVER_thread_id" display_name="__CPROVER_thread_id" identifier="c::__CPROVER_thread_id" mode="C" step_nr="6" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="21"/>
+    <type>unsigned long int</type>
+    <full_lhs>__CPROVER_thread_id</full_lhs>
+    <full_lhs_value>0</full_lhs_value>
+    <value>0</value>
+    <value_expression>
+      <integer binary="0000000000000000000000000000000000000000000000000000000000000000">0</integer>
+    </value_expression>
+  </assignment>
+  <assignment base_name="__CPROVER_threads_exited" display_name="__CPROVER_threads_exited" identifier="c::__CPROVER_threads_exited" mode="C" step_nr="7" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="22"/>
+    <type>_Bool [INFINITY()]</type>
+    <full_lhs>__CPROVER_threads_exited</full_lhs>
+    <full_lhs_value>__CPROVER_threads_exited#1</full_lhs_value>
+    <value>__CPROVER_threads_exited#1</value>
+    <value_expression>
+      <unknown/>
+    </value_expression>
+  </assignment>
+  <assignment base_name="__CPROVER_next_thread_id" display_name="__CPROVER_next_thread_id" identifier="c::__CPROVER_next_thread_id" mode="C" step_nr="8" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="23"/>
+    <type>unsigned long int</type>
+    <full_lhs>__CPROVER_next_thread_id</full_lhs>
+    <full_lhs_value>0</full_lhs_value>
+    <value>0</value>
+    <value_expression>
+      <integer binary="0000000000000000000000000000000000000000000000000000000000000000">0</integer>
+    </value_expression>
+  </assignment>
+  <assignment base_name="__CPROVER_rounding_mode" display_name="__CPROVER_rounding_mode" identifier="c::__CPROVER_rounding_mode" mode="C" step_nr="9" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="57"/>
+    <type>int</type>
+    <full_lhs>__CPROVER_rounding_mode</full_lhs>
+    <full_lhs_value>0</full_lhs_value>
+    <value>0</value>
+    <value_expression>
+      <integer binary="00000000000000000000000000000000">0</integer>
+    </value_expression>
+  </assignment>
+  <assignment base_name="__CPROVER_deallocated" display_name="__CPROVER_deallocated" identifier="c::__CPROVER_deallocated" mode="C" step_nr="10" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="30"/>
+    <type>void *</type>
+    <full_lhs>__CPROVER_deallocated</full_lhs>
+    <full_lhs_value>NULL</full_lhs_value>
+    <value>NULL</value>
+    <value_expression>
+      <pointer binary="0000000000000000000000000000000000000000000000000000000000000000"/>
+    </value_expression>
+  </assignment>
+  <assignment base_name="__CPROVER_dead_object" display_name="__CPROVER_dead_object" identifier="c::__CPROVER_dead_object" mode="C" step_nr="11" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="31"/>
+    <type>void *</type>
+    <full_lhs>__CPROVER_dead_object</full_lhs>
+    <full_lhs_value>NULL</full_lhs_value>
+    <value>NULL</value>
+    <value_expression>
+      <pointer binary="0000000000000000000000000000000000000000000000000000000000000000"/>
+    </value_expression>
+  </assignment>
+  <assignment base_name="__CPROVER_malloc_object" display_name="__CPROVER_malloc_object" identifier="c::__CPROVER_malloc_object" mode="C" step_nr="12" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="32"/>
+    <type>void *</type>
+    <full_lhs>__CPROVER_malloc_object</full_lhs>
+    <full_lhs_value>NULL</full_lhs_value>
+    <value>NULL</value>
+    <value_expression>
+      <pointer binary="0000000000000000000000000000000000000000000000000000000000000000"/>
+    </value_expression>
+  </assignment>
+  <assignment base_name="__CPROVER_malloc_size" display_name="__CPROVER_malloc_size" identifier="c::__CPROVER_malloc_size" mode="C" step_nr="13" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="33"/>
+    <type>unsigned long int</type>
+    <full_lhs>__CPROVER_malloc_size</full_lhs>
+    <full_lhs_value>0</full_lhs_value>
+    <value>0</value>
+    <value_expression>
+      <integer binary="0000000000000000000000000000000000000000000000000000000000000000">0</integer>
+    </value_expression>
+  </assignment>
+  <function_return step_nr="14" thread="0">
+    <function display_name="__CPROVER_initialize" identifier="c::__CPROVER_initialize">
+      <location file="&lt;built-in-additions&gt;" line="14"/>
+    </function>
+  </function_return>
+  <location-only step_nr="15" thread="0">
+    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c" line="14"/>
+  </location-only>
+  <function_call step_nr="16" thread="0">
+    <function display_name="main" identifier="c::main">
+      <location file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c" line="14"/>
+    </function>
+    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c" line="14"/>
+  </function_call>
+  <assignment base_name="arr" display_name="main::1::arr" identifier="c::main::1::arr" mode="C" step_nr="17" thread="0">
+    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c" function="main" line="16"/>
+    <type>struct str [10]</type>
+    <full_lhs>arr</full_lhs>
+    <full_lhs_value>{ { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } } }</full_lhs_value>
+    <value>{ { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } } }</value>
+    <value_expression>
+      <array>
+        <element index="0">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="1">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="2">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="3">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="4">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="5">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="6">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="7">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="8">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="9">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+      </array>
+    </value_expression>
+  </assignment>
+  <assignment base_name="arr" display_name="main::1::arr" identifier="c::main::1::arr" mode="C" step_nr="18" thread="0">
+    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c" function="main" line="17"/>
+    <type>struct str [10]</type>
+    <full_lhs>arr[(long int)0].x</full_lhs>
+    <full_lhs_value>0</full_lhs_value>
+    <value>{ { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } } }</value>
+    <value_expression>
+      <array>
+        <element index="0">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="1">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="2">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="3">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="4">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="5">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="6">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="7">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="8">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="9">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+      </array>
+    </value_expression>
+  </assignment>
+  <assignment base_name="arr" display_name="main::1::arr" identifier="c::main::1::arr" mode="C" step_nr="19" thread="0">
+    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c" function="main" line="18"/>
+    <type>struct str [10]</type>
+    <full_lhs>arr[(long int)1].y</full_lhs>
+    <full_lhs_value>1</full_lhs_value>
+    <value>{ { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=1, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } } }</value>
+    <value_expression>
+      <array>
+        <element index="0">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="1">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000001">1</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="2">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="3">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="4">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="5">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="6">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="7">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="8">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="9">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+      </array>
+    </value_expression>
+  </assignment>
+  <assignment base_name="arr" display_name="main::1::arr" identifier="c::main::1::arr" mode="C" step_nr="20" thread="0">
+    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c" function="main" line="19"/>
+    <type>struct str [10]</type>
+    <full_lhs>arr[(long int)1].y</full_lhs>
+    <full_lhs_value>2</full_lhs_value>
+    <value>{ { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=2, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } } }</value>
+    <value_expression>
+      <array>
+        <element index="0">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="1">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000010">2</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="2">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="3">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="4">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="5">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="6">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="7">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="8">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="9">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+      </array>
+    </value_expression>
+  </assignment>
+  <assignment base_name="arr" display_name="main::1::arr" identifier="c::main::1::arr" mode="C" step_nr="21" thread="0">
+    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c" function="main" line="20"/>
+    <type>struct str [10]</type>
+    <full_lhs>arr[(long int)1].zoo.a</full_lhs>
+    <full_lhs_value>3</full_lhs_value>
+    <value>{ { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=2, .z=0, .zoo={ .a=3 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } }, { .x=0, .y=0, .z=0, .zoo={ .a=0 } } }</value>
+    <value_expression>
+      <array>
+        <element index="0">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="1">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000010">2</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000011">3</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="2">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="3">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="4">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="5">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="6">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="7">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="8">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+        <element index="9">
+          <struct>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <integer binary="00000000000000000000000000000000">0</integer>
+            </member>
+            <member>
+              <struct>
+                <member>
+                  <integer binary="00000000000000000000000000000000">0</integer>
+                </member>
+              </struct>
+            </member>
+          </struct>
+        </element>
+      </array>
+    </value_expression>
+  </assignment>
+  <location-only step_nr="22" thread="0">
+    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c" function="main" line="22"/>
+  </location-only>
+  <failure property="main.assertion.1" reason="assertion arr[0].x == arr[1].y" step_nr="23" thread="0">
+    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/deux.c" function="main" line="22"/>
+  </failure>
+</goto_trace>
+
+<message type="STATUS-MESSAGE">
+  <text>VERIFICATION FAILED</text>
+</message>
+
+<cprover-status>FAILURE</cprover-status>
+
+</cprover>
