@@ -375,8 +375,7 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 
 		if (expression.startsWith(getBaseName()))
 			expression = expression.substring(getBaseName().length());
-		String[] segments = VarHelpers.splitInTwo(expression);
-		return parsedValue.getValue(segments[0]);
+		return parsedValue.getValue(expression);
 	}
 
 	private void parseValueExpression() {
