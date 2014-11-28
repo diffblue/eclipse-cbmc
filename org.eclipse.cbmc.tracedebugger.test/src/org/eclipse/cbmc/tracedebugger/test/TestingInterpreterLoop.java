@@ -23,6 +23,7 @@ public class TestingInterpreterLoop extends InterpreterLoop {
 	@Override
 	public void serializeResult(MIOutput result) {
 		if (result instanceof MIResult) {
+			//TODO to be more resilient to reordering of fields, we should deserialize the objects and compare those
 			Assert.assertEquals(chatter.getResponses().get(((MIResult) result).getCommand().getId()), result.serialize());
 		}
 	}
