@@ -1,8 +1,5 @@
 package commands;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import infra.MICommand;
 import infra.MIOutput;
 import infra.VarHelpers;
@@ -14,8 +11,6 @@ import results.data.VarHelper;
 import results.data.Vars;
 import results.sync.Done;
 import trace.Assignment;
-import trace.SimpleValue;
-import trace.TraceFactory;
 import trace.Value;
 
 // 41-var-create --thread 1 --frame 0 - * tmpOne
