@@ -29,7 +29,7 @@ public class RunAction extends JobAction {
 
 	@Override
 	public String getText() {
-		return Messages.PropertiesView_actionRun;
+		return Messages.PropertiesViewForm_actionRun;
 	}
 
 	@Override

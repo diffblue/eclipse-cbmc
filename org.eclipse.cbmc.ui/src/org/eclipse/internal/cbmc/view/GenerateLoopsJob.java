@@ -61,6 +61,8 @@ public class GenerateLoopsJob extends Job {
 		} catch (TransformerException e) {
 			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Cannot transform CBMC loops into the ecore model", e); //$NON-NLS-1$
 		}
+		if (loopResults == null)
+			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Cannot retrieve loops. Check Error Log view.", null); //$NON-NLS-1$
 		return Status.OK_STATUS;
 	}
 

@@ -35,26 +35,30 @@ public class GeneratePropertiesJob extends Job {
 		try {
 			File inputfile = new File(cliHelper.getWorkingDirectory(), PROPERTIES_INPUT_XML);
 			File outputfile = new File(cliHelper.getWorkingDirectory(), PROPERTIES_OUTPUT_CBMC);
-			ProcessHelper.executeCommandWithRedirectOutput(cliHelper.getCommandLineForAllProperties(), inputfile);
-			Source xmlInput = new StreamSource(inputfile);
-			Source xsl = new StreamSource(FileLocator.openStream(Platform.getBundle(Activator.PLUGIN_ID), new Path(TRANSFORM_XSL), false));
-			Result xmlOutput = new StreamResult(outputfile);
-			Transformer transformer = TransformerFactory.newInstance().newTransformer(xsl);
-			transformer.transform(xmlInput, xmlOutput);
+			int exitValue = ProcessHelper.executeCommandWithRedirectOutput(cliHelper.getCommandLineForAllProperties(), inputfile);
+			if (exitValue != -1) {
+				Source xmlInput = new StreamSource(inputfile);
+				Source xsl = new StreamSource(FileLocator.openStream(Platform.getBundle(Activator.PLUGIN_ID), new Path(TRANSFORM_XSL), false));
+				Result xmlOutput = new StreamResult(outputfile);
+				Transformer transformer = TransformerFactory.newInstance().newTransformer(xsl);
+				transformer.transform(xmlInput, xmlOutput);
 
-			URI uri = URI.createFileURI(outputfile.getAbsolutePath());
-			ResourceSet resSet = new ResourceSetImpl();
-			Resource resource = resSet.getResource(uri, true);
-			results = (Results) resource.getContents().get(0);
-			results.setCBMCHelper(cliHelper);
-			if (!results.getErrorMessage().isEmpty()) {
-				Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error while getting properties. Reason: " + results.getErrorMessage(), null));
+				URI uri = URI.createFileURI(outputfile.getAbsolutePath());
+				ResourceSet resSet = new ResourceSetImpl();
+				Resource resource = resSet.getResource(uri, true);
+				results = (Results) resource.getContents().get(0);
+				results.setCBMCHelper(cliHelper);
+				if (!results.getErrorMessage().isEmpty()) {
+					Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error while getting properties. Reason: " + results.getErrorMessage(), null));
+				}
 			}
 		} catch (TransformerException e) {
 			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Cannot transform the CBMC properties into the ecore model", e); //$NON-NLS-1$
 		} catch (IOException e) {
 			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Cannot open transform XSL:" + TRANSFORM_XSL, e); //$NON-NLS-1$
 		}
+		if (results == null)
+			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Cannot retrieve properties", null); //$NON-NLS-1$
 		return Status.OK_STATUS;
 	}
 

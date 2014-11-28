@@ -6,6 +6,8 @@ import org.eclipse.osgi.util.NLS;
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.internal.cbmc.view.messages"; //$NON-NLS-1$
 
+	public static String PropertiesViewForm_helpMessage;
+
 	public static String CheckPropertyJob_errorExitValue0;
 	public static String CheckPropertyJob_errorExitValue1;
 	public static String CheckPropertyJob_errorExitValue2;
@@ -22,19 +24,21 @@ public class Messages extends NLS {
 	public static String LoopsTableViewer_headerFunction;
 	public static String LoopsTableViewer_headerLine;
 
+	public static String LoopsViewForm_sectionLoops;
+	public static String LoopsViewForm_helpMessage;
+	public static String LoopsViewForm_infoMessage;
+
 	public static String PropertiesView_jobGenerateAllProperties;
 	public static String PropertiesView_jobCheckingAllProperties;
-	public static String PropertiesView_actionRun;
+	public static String PropertiesViewForm_actionRun;
 	public static String PropertiesView_jobGenerateLoops;
-	public static String PropertiesView_sectionProperties;
-	public static String PropertiesView_sectionLoopsYes;
-	public static String PropertiesView_sectionLoopsNo;
+	public static String PropertiesViewForm_sectionProperties;
 
-	public static String PropertiesView_errorProperties;
+	public static String PropertiesViewForm_errorMessage;
 	public static String PropertiesView_errorLoops;
 
-	public static String PropertiesView_actionStop;
-	public static String PropertiesView_actionDebug;
+	public static String PropertiesViewForm_actionStop;
+	public static String PropertiesViewForm_actionDebug;
 	public static String PropertiesView_actionPause;
 
 	static {
