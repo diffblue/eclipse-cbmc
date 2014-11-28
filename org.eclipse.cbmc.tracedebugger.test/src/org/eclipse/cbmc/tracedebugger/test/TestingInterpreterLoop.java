@@ -23,9 +23,7 @@ public class TestingInterpreterLoop extends InterpreterLoop {
 	@Override
 	public void serializeResult(MIOutput result) {
 		if (result instanceof MIResult) {
-			Assert.assertEquals(result.serialize(), chatter.getResponses().get(((MIResult) result).getCommand().getId()));
+			Assert.assertEquals(chatter.getResponses().get(((MIResult) result).getCommand().getId()), result.serialize());
 		}
-		// TODO Auto-generated method stub
-		super.serializeResult(result);
 	}
 }
