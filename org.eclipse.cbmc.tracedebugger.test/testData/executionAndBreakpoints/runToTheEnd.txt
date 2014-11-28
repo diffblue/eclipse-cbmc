@@ -15,4 +15,4 @@
 60^running
 *running,thread-id="all"
 *stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/functions.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/functions.c",line="17"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
-072,544 (gdb)
+(gdb)
