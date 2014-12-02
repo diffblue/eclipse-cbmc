@@ -3,6 +3,8 @@
 package trace;
 
 import org.eclipse.emf.ecore.EObject;
+import process.Context;
+import process.StepResult;
 
 /**
  * <!-- begin-user-doc -->
@@ -157,6 +159,14 @@ public interface Step extends EObject {
 	 * @generated
 	 */
 	boolean isSetThread();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	StepResult interpret(Context context);
 
 	/**
 	 * <!-- begin-user-doc -->

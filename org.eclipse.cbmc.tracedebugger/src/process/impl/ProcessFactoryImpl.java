@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import process.Breakpoint;
 import process.BreakpointManager;
+import process.Context;
 import process.FunctionExecution;
 import process.ProcessFactory;
 import process.ProcessPackage;
@@ -73,6 +74,7 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory {
 			case ProcessPackage.STRING_TO_BREAKPOINT_ENTRY: return (EObject)createStringToBreakpointEntry();
 			case ProcessPackage.BREAKPOINT: return createBreakpoint();
 			case ProcessPackage.STEP_RESULT: return createStepResult();
+			case ProcessPackage.CONTEXT: return createContext();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -200,6 +202,16 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory {
 	public StepResult createStepResult() {
 		StepResultImpl stepResult = new StepResultImpl();
 		return stepResult;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Context createContext() {
+		ContextImpl context = new ContextImpl();
+		return context;
 	}
 
 	/**

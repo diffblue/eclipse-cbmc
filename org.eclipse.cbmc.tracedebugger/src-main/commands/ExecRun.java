@@ -1,12 +1,12 @@
 package commands;
 
-import org.kohsuke.args4j.Option;
-
 import infra.CompositeOutput;
 import infra.MICommand;
 import infra.MIOutput;
 import infra.StringOutput;
-import process.Breakpoint;
+
+import org.kohsuke.args4j.Option;
+
 import process.Process;
 import process.StepResult;
 import process.SteppingResult;
@@ -36,7 +36,7 @@ public class ExecRun extends MICommand {
 		MIOutput startReturnCodeAsMIOuput = null;
 		if (startReturnCode.getCode().equals(SteppingResult.BREAKPOINT_HIT)) {
 			BreakpointHit hit = new BreakpointHit();
-			hit.bkptno = ((Breakpoint) startReturnCode.getObject()).getId();
+			hit.bkptno = startReturnCode.getBreakpoint().getId();
 			hit.disp = "del";
 			hit.frame = currentFrame;
 			hit.stoppedThreads = "all";

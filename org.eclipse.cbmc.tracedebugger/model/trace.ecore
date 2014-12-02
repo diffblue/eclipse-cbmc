@@ -50,6 +50,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parsedValue" lowerBound="1"
         eType="#//Value" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameter" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Failure" eSuperTypes="#//Step">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -153,6 +154,9 @@
       <details key="name" value="Step"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
+    <eOperations name="interpret" eType="ecore:EClass process.ecore#//StepResult">
+      <eParameters name="context" eType="ecore:EClass process.ecore#//Context"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">

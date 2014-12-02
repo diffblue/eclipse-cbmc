@@ -109,7 +109,7 @@ public class BreakpointManagerImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated NOT
 	 */
 	public Breakpoint hasBreakpoint(FunctionExecution e, Step step) {
-		int lineNumber = step.getLineNumber();
+		int lineNumber = step != null ? step.getLineNumber() : -1;
 		Breakpoint match = null;
 		if (lineNumber != -1)
 			match = getBreakpointsByLocation().get(e.getFileName() + ":"+lineNumber);

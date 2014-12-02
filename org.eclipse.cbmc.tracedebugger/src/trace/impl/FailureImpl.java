@@ -3,11 +3,13 @@
 package trace.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import process.Context;
+import process.ProcessFactory;
+import process.StepResult;
+import process.SteppingResult;
 import trace.Failure;
 import trace.TracePackage;
 
@@ -159,4 +161,11 @@ public class FailureImpl extends StepImpl implements Failure {
 		return result.toString();
 	}
 
+	@Override
+	public StepResult interpret(Context context) {
+		StepResult result = ProcessFactory.eINSTANCE.createStepResult();
+		result.setCode(SteppingResult.STEP_COMPLETE);
+		result.setStepDone(Context.STEPPED);
+		return result;
+	}
 } //FailureImpl

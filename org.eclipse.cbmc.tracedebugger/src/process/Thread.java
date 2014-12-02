@@ -22,6 +22,7 @@ import trace.Step;
  *   <li>{@link process.Thread#getStack <em>Stack</em>}</li>
  *   <li>{@link process.Thread#isRunning <em>Running</em>}</li>
  *   <li>{@link process.Thread#getProcess <em>Process</em>}</li>
+ *   <li>{@link process.Thread#getStepToExecuteIdx <em>Step To Execute Idx</em>}</li>
  * </ul>
  * </p>
  *
@@ -179,6 +180,32 @@ public interface Thread extends EObject {
 	void setProcess(process.Process value);
 
 	/**
+	 * Returns the value of the '<em><b>Step To Execute Idx</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Step To Execute Idx</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Step To Execute Idx</em>' attribute.
+	 * @see #setStepToExecuteIdx(int)
+	 * @see process.ProcessPackage#getThread_StepToExecuteIdx()
+	 * @model dataType="org.eclipse.emf.ecore.xml.type.Int"
+	 * @generated
+	 */
+	int getStepToExecuteIdx();
+
+	/**
+	 * Sets the value of the '{@link process.Thread#getStepToExecuteIdx <em>Step To Execute Idx</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Step To Execute Idx</em>' attribute.
+	 * @see #getStepToExecuteIdx()
+	 * @generated
+	 */
+	void setStepToExecuteIdx(int value);
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model goalDataType="org.eclipse.emf.ecore.xml.type.Int"
@@ -201,5 +228,13 @@ public interface Thread extends EObject {
 	 * @generated
 	 */
 	FunctionExecution getFrame(int depth);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	Step getStepToExecuteOrLastOne();
 
 } // Thread

@@ -4,9 +4,8 @@ package trace;
 
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Function Return</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '
+ * <em><b>Function Return</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -23,13 +22,14 @@ package trace;
  */
 public interface FunctionReturn extends Step {
 	/**
-	 * Returns the value of the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Id</b></em>' attribute. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Id</em>' attribute isn't clear, there really
+	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
 	 * @see trace.TracePackage#getFunctionReturn_Id()
@@ -41,8 +41,7 @@ public interface FunctionReturn extends Step {
 
 	/**
 	 * Sets the value of the '{@link trace.FunctionReturn#getId <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Id</em>' attribute.
 	 * @see #getId()
 	 * @generated
@@ -50,13 +49,14 @@ public interface FunctionReturn extends Step {
 	void setId(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Display Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Display Name</b></em>' attribute. <!--
+	 * begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Display Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Display Name</em>' attribute.
 	 * @see #setDisplayName(String)
 	 * @see trace.TracePackage#getFunctionReturn_DisplayName()
@@ -68,8 +68,8 @@ public interface FunctionReturn extends Step {
 
 	/**
 	 * Sets the value of the '{@link trace.FunctionReturn#getDisplayName <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @param value the new value of the '<em>Display Name</em>' attribute.
 	 * @see #getDisplayName()
 	 * @generated
@@ -80,8 +80,8 @@ public interface FunctionReturn extends Step {
 	 * Returns the value of the '<em><b>Function Location</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Function Location</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Function Location</em>' containment reference
+	 * isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Function Location</em>' containment reference.
@@ -95,12 +95,11 @@ public interface FunctionReturn extends Step {
 
 	/**
 	 * Sets the value of the '{@link trace.FunctionReturn#getFunctionLocation <em>Function Location</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Function Location</em>' containment reference.
 	 * @see #getFunctionLocation()
 	 * @generated
 	 */
 	void setFunctionLocation(Location value);
-
 } // FunctionReturn

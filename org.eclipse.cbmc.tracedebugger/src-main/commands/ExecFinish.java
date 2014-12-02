@@ -6,11 +6,10 @@ import infra.MIOutput;
 
 import org.kohsuke.args4j.Option;
 
-import process.Breakpoint;
+import process.Context;
 import process.Process;
 import process.StepResult;
 import process.SteppingResult;
-import process.impl.FunctionExecutionImpl;
 import results.async.BreakpointHit;
 import results.async.FunctionFinished;
 import results.async.Running;
@@ -20,20 +19,23 @@ public class ExecFinish extends MICommand {
 	@Option(name = "--thread", required = true)
 	int threadId = 0;
 	
+	//Not used - not documented in MI doc
+	@Option(name = "--frame", required = false)
+	int frameId = 0;
+	
 	@Override
 	public MIOutput perform(Process process) {
-		//TODO we don't deal with the last argument
 		
 		//Step in the model
 		process.Thread thread = process.getThread(threadId);
-		StepResult stepResult = thread.step(FunctionExecutionImpl.FUNCTION_EXIT);
+		StepResult stepResult = thread.step(Context.FUNCTION_EXIT);
 		
 		//Build result
 		Frame currentFrame = new Frame(thread.getStack().getCurrentStep(), thread.getStack().getFunctionName());
 		MIOutput result = null;
 		if (stepResult.getCode().equals(SteppingResult.BREAKPOINT_HIT)) {
 			BreakpointHit hit = new BreakpointHit();
-			hit.bkptno = ((Breakpoint) stepResult.getObject()).getId();
+			hit.bkptno = stepResult.getBreakpoint().getId();
 			hit.disp = "del";
 			hit.frame = currentFrame;
 			hit.stoppedThreads = "all";

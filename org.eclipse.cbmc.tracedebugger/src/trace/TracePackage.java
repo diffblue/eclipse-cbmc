@@ -104,13 +104,22 @@ public interface TracePackage extends EPackage {
 	int STEP_FEATURE_COUNT = 3;
 
 	/**
+	 * The operation id for the '<em>Interpret</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP___INTERPRET__CONTEXT = 0;
+
+	/**
 	 * The number of operations of the '<em>Step</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEP_OPERATION_COUNT = 0;
+	int STEP_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link trace.impl.AssignmentImpl <em>Assignment</em>}' class.
@@ -213,13 +222,31 @@ public interface TracePackage extends EPackage {
 	int ASSIGNMENT__PARSED_VALUE = STEP_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Parameter</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNMENT__PARAMETER = STEP_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Assignment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNMENT_FEATURE_COUNT = STEP_FEATURE_COUNT + 7;
+	int ASSIGNMENT_FEATURE_COUNT = STEP_FEATURE_COUNT + 8;
+
+	/**
+	 * The operation id for the '<em>Interpret</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNMENT___INTERPRET__CONTEXT = STEP___INTERPRET__CONTEXT;
 
 	/**
 	 * The operation id for the '<em>Get Value</em>' operation.
@@ -293,6 +320,15 @@ public interface TracePackage extends EPackage {
 	 * @ordered
 	 */
 	int FAILURE_FEATURE_COUNT = STEP_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Interpret</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FAILURE___INTERPRET__CONTEXT = STEP___INTERPRET__CONTEXT;
 
 	/**
 	 * The number of operations of the '<em>Failure</em>' class.
@@ -377,6 +413,15 @@ public interface TracePackage extends EPackage {
 	int FUNCTION_CALL_FEATURE_COUNT = STEP_FEATURE_COUNT + 3;
 
 	/**
+	 * The operation id for the '<em>Interpret</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL___INTERPRET__CONTEXT = STEP___INTERPRET__CONTEXT;
+
+	/**
 	 * The number of operations of the '<em>Function Call</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -457,6 +502,15 @@ public interface TracePackage extends EPackage {
 	 * @ordered
 	 */
 	int FUNCTION_RETURN_FEATURE_COUNT = STEP_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Interpret</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_RETURN___INTERPRET__CONTEXT = STEP___INTERPRET__CONTEXT;
 
 	/**
 	 * The number of operations of the '<em>Function Return</em>' class.
@@ -567,6 +621,15 @@ public interface TracePackage extends EPackage {
 	 * @ordered
 	 */
 	int LOCATION_ONLY_FEATURE_COUNT = STEP_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Interpret</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCATION_ONLY___INTERPRET__CONTEXT = STEP___INTERPRET__CONTEXT;
 
 	/**
 	 * The number of operations of the '<em>Location Only</em>' class.
@@ -1034,6 +1097,17 @@ public interface TracePackage extends EPackage {
 	EReference getAssignment_ParsedValue();
 
 	/**
+	 * Returns the meta object for the attribute '{@link trace.Assignment#isParameter <em>Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Parameter</em>'.
+	 * @see trace.Assignment#isParameter()
+	 * @see #getAssignment()
+	 * @generated
+	 */
+	EAttribute getAssignment_Parameter();
+
+	/**
 	 * Returns the meta object for the '{@link trace.Assignment#getValue(java.lang.String) <em>Get Value</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1245,6 +1319,16 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getStep_Thread();
+
+	/**
+	 * Returns the meta object for the '{@link trace.Step#interpret(process.Context) <em>Interpret</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Interpret</em>' operation.
+	 * @see trace.Step#interpret(process.Context)
+	 * @generated
+	 */
+	EOperation getStep__Interpret__Context();
 
 	/**
 	 * Returns the meta object for class '{@link trace.Trace <em>Trace</em>}'.
@@ -1504,6 +1588,14 @@ public interface TracePackage extends EPackage {
 		EReference ASSIGNMENT__PARSED_VALUE = eINSTANCE.getAssignment_ParsedValue();
 
 		/**
+		 * The meta object literal for the '<em><b>Parameter</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ASSIGNMENT__PARAMETER = eINSTANCE.getAssignment_Parameter();
+
+		/**
 		 * The meta object literal for the '<em><b>Get Value</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1674,6 +1766,14 @@ public interface TracePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute STEP__THREAD = eINSTANCE.getStep_Thread();
+
+		/**
+		 * The meta object literal for the '<em><b>Interpret</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation STEP___INTERPRET__CONTEXT = eINSTANCE.getStep__Interpret__Context();
 
 		/**
 		 * The meta object literal for the '{@link trace.impl.TraceImpl <em>Trace</em>}' class.

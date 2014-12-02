@@ -3,13 +3,16 @@
 package trace.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import process.Context;
+import process.FunctionExecution;
+import process.ProcessFactory;
+import process.StepResult;
+import process.SteppingResult;
 import trace.FunctionCall;
 import trace.Location;
 import trace.TracePackage;
@@ -294,4 +297,27 @@ public class FunctionCallImpl extends StepImpl implements FunctionCall {
 		return result.toString();
 	}
 
+	@Override
+	public StepResult interpret(Context context) {
+		FunctionExecution newExecution = functionFromStep(context);
+		context.getContainingThread().setStack(newExecution);
+
+		StepResult result = ProcessFactory.eINSTANCE.createStepResult();
+		result.setCode(SteppingResult.STEP_COMPLETE);
+		result.setStepDone(Context.FUNCTION_ENTER);
+		return result;
+	}
+	
+	private FunctionExecution functionFromStep(Context context) {
+		FunctionExecution newFunction = ProcessFactory.eINSTANCE.createFunctionExecution();
+		newFunction.setEntryStep(this);
+		newFunction.setContainingThread(context.getContainingThread());
+		FunctionExecution previousCall = context.getFunction();
+		if (previousCall != null) {
+			newFunction.setParent(context.getFunction());
+			previousCall.setStepIndexBeforeChild(context.getStepBeingExecutedIdx() - 1); 
+		}
+		context.getContainingThread().setStack(newFunction);
+		return newFunction;
+	}
 } //FunctionCallImpl

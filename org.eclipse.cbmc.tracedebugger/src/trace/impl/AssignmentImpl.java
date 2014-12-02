@@ -2,9 +2,10 @@
  */
 package trace.impl;
 
-import infra.VarHelpers;
-
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BaseErrorListener;
@@ -17,6 +18,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import process.Context;
+import process.FunctionExecution;
+import process.ProcessFactory;
+import process.StepResult;
+import process.SteppingResult;
 import expressionparser.ValueExpressionLexer;
 import expressionparser.ValueExpressionParser;
 import trace.Assignment;
@@ -39,6 +45,7 @@ import trace.Value;
  *   <li>{@link trace.impl.AssignmentImpl#getType <em>Type</em>}</li>
  *   <li>{@link trace.impl.AssignmentImpl#getValueExpression <em>Value Expression</em>}</li>
  *   <li>{@link trace.impl.AssignmentImpl#getParsedValue <em>Parsed Value</em>}</li>
+ *   <li>{@link trace.impl.AssignmentImpl#isParameter <em>Parameter</em>}</li>
  * </ul>
  * </p>
  *
@@ -174,6 +181,26 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	 * @ordered
 	 */
 	protected Value parsedValue;
+
+	/**
+	 * The default value of the '{@link #isParameter() <em>Parameter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean PARAMETER_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isParameter() <em>Parameter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean parameter = PARAMETER_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -361,6 +388,27 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isParameter() {
+		return parameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setParameter(boolean newParameter) {
+		boolean oldParameter = parameter;
+		parameter = newParameter;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.ASSIGNMENT__PARAMETER, oldParameter, parameter));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Value getValue(String expression) {
@@ -415,6 +463,8 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 			case TracePackage.ASSIGNMENT__PARSED_VALUE:
 				if (resolve) return getParsedValue();
 				return basicGetParsedValue();
+			case TracePackage.ASSIGNMENT__PARAMETER:
+				return isParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -447,6 +497,9 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 				return;
 			case TracePackage.ASSIGNMENT__PARSED_VALUE:
 				setParsedValue((Value)newValue);
+				return;
+			case TracePackage.ASSIGNMENT__PARAMETER:
+				setParameter((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -481,6 +534,9 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 			case TracePackage.ASSIGNMENT__PARSED_VALUE:
 				setParsedValue((Value)null);
 				return;
+			case TracePackage.ASSIGNMENT__PARAMETER:
+				setParameter(PARAMETER_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -507,6 +563,8 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 				return VALUE_EXPRESSION_EDEFAULT == null ? valueExpression != null : !VALUE_EXPRESSION_EDEFAULT.equals(valueExpression);
 			case TracePackage.ASSIGNMENT__PARSED_VALUE:
 				return parsedValue != null;
+			case TracePackage.ASSIGNMENT__PARAMETER:
+				return parameter != PARAMETER_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -547,8 +605,31 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 		result.append(type);
 		result.append(", valueExpression: ");
 		result.append(valueExpression);
+		result.append(", parameter: ");
+		result.append(parameter);
 		result.append(')');
 		return result.toString();
 	}
 
+	@Override
+	public StepResult interpret(Context context) {
+		FunctionExecution function = context.getFunction();
+		if (function == null)
+			return null;
+		
+		ListIterator<Assignment> iter = function.getVariables().listIterator();
+		List<Assignment> assignementToRemove = new ArrayList<Assignment>();
+		while(iter.hasNext()){
+			Assignment currentAssignment = iter.next();
+			if(currentAssignment.getBaseName().equals(getBaseName()))
+				assignementToRemove.add(currentAssignment);
+		}
+		function.getVariables().removeAll(assignementToRemove);
+		function.getVariables().add(this);
+		
+		StepResult result = ProcessFactory.eINSTANCE.createStepResult();
+		result.setCode(SteppingResult.STEP_COMPLETE);
+		result.setStepDone(Context.STEPPED);
+		return result;
+	}
 } //AssignmentImpl

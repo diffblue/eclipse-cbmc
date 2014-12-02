@@ -6,11 +6,10 @@ import infra.MIOutput;
 
 import org.kohsuke.args4j.Option;
 
-import process.Breakpoint;
+import process.Context;
 import process.Process;
 import process.StepResult;
 import process.SteppingResult;
-import process.impl.FunctionExecutionImpl;
 import results.async.BreakpointHit;
 import results.async.EndSteppingRange;
 import results.async.Running;
@@ -26,14 +25,14 @@ public class ExecNext extends MICommand {
 		
 		//Step in the model
 		process.Thread thread = process.getThread(threadId);
-		StepResult stepResult = thread.step(FunctionExecutionImpl.NEXT_LINE);
+		StepResult stepResult = thread.step(Context.NEXT_LINE);
 		
 		//Build result
 		Frame currentFrame = new Frame(thread.getStack().getCurrentStep(), thread.getStack().getFunctionName());
 		MIOutput result = null;
 		if (stepResult.getCode().equals(SteppingResult.BREAKPOINT_HIT)) {
 			BreakpointHit hit = new BreakpointHit();
-			hit.bkptno = ((Breakpoint) stepResult.getObject()).getId();
+			hit.bkptno = stepResult.getBreakpoint().getId();
 			hit.disp = "del";
 			hit.frame = currentFrame;
 			hit.stoppedThreads = "all";

@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import process.Breakpoint;
 import process.BreakpointManager;
+import process.Context;
 import process.FunctionExecution;
 import process.ProcessFactory;
 import process.ProcessPackage;
@@ -92,6 +93,13 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * @generated
 	 */
 	private EClass stepResultEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass contextEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -352,6 +360,15 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getThread_StepToExecuteIdx() {
+		return (EAttribute)threadEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getThread__Step__int() {
 		return threadEClass.getEOperations().get(0);
 	}
@@ -379,6 +396,15 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getThread__GetStepToExecuteOrLastOne() {
+		return threadEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFunctionExecution() {
 		return functionExecutionEClass;
 	}
@@ -389,7 +415,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * @generated
 	 */
 	public EReference getFunctionExecution_Child() {
-		return (EReference)functionExecutionEClass.getEStructuralFeatures().get(0);
+		return (EReference)functionExecutionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -398,7 +424,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * @generated
 	 */
 	public EReference getFunctionExecution_Parent() {
-		return (EReference)functionExecutionEClass.getEStructuralFeatures().get(3);
+		return (EReference)functionExecutionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -415,26 +441,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionExecution_CurrentStep() {
-		return (EReference)functionExecutionEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getFunctionExecution_CurrentStepNumber() {
-		return (EAttribute)functionExecutionEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getFunctionExecution_CurrentGoal() {
-		return (EAttribute)functionExecutionEClass.getEStructuralFeatures().get(7);
+	public EAttribute getFunctionExecution_StepIndexBeforeChild() {
+		return (EAttribute)functionExecutionEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -460,7 +468,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFunctionExecution__Step__boolean() {
+	public EOperation getFunctionExecution__GetFileName() {
 		return functionExecutionEClass.getEOperations().get(2);
 	}
 
@@ -469,7 +477,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFunctionExecution__GetFileName() {
+	public EOperation getFunctionExecution__GetCurrentStep() {
 		return functionExecutionEClass.getEOperations().get(3);
 	}
 
@@ -676,7 +684,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getStepResult_Object() {
+	public EAttribute getStepResult_Code() {
 		return (EAttribute)stepResultEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -685,7 +693,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getStepResult_Code() {
+	public EAttribute getStepResult_StepDone() {
 		return (EAttribute)stepResultEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -694,8 +702,53 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getStepResult_StepDone() {
-		return (EAttribute)stepResultEClass.getEStructuralFeatures().get(2);
+	public EReference getStepResult_LineExecuted() {
+		return (EReference)stepResultEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStepResult_Breakpoint() {
+		return (EReference)stepResultEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getContext() {
+		return contextEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getContext_Function() {
+		return (EReference)contextEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getContext_ContainingThread() {
+		return (EReference)contextEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getContext_StepBeingExecutedIdx() {
+		return (EAttribute)contextEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -722,7 +775,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * @generated
 	 */
 	public EReference getFunctionExecution_EntryStep() {
-		return (EReference)functionExecutionEClass.getEStructuralFeatures().get(1);
+		return (EReference)functionExecutionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -731,7 +784,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * @generated
 	 */
 	public EReference getFunctionExecution_ContainingThread() {
-		return (EReference)functionExecutionEClass.getEStructuralFeatures().get(2);
+		return (EReference)functionExecutionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -782,23 +835,23 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 		createEReference(threadEClass, THREAD__STACK);
 		createEAttribute(threadEClass, THREAD__RUNNING);
 		createEReference(threadEClass, THREAD__PROCESS);
+		createEAttribute(threadEClass, THREAD__STEP_TO_EXECUTE_IDX);
 		createEOperation(threadEClass, THREAD___STEP__INT);
 		createEOperation(threadEClass, THREAD___GET_STACK_DEPTH);
 		createEOperation(threadEClass, THREAD___GET_FRAME__INT);
+		createEOperation(threadEClass, THREAD___GET_STEP_TO_EXECUTE_OR_LAST_ONE);
 
 		functionExecutionEClass = createEClass(FUNCTION_EXECUTION);
+		createEReference(functionExecutionEClass, FUNCTION_EXECUTION__PARENT);
 		createEReference(functionExecutionEClass, FUNCTION_EXECUTION__CHILD);
 		createEReference(functionExecutionEClass, FUNCTION_EXECUTION__ENTRY_STEP);
 		createEReference(functionExecutionEClass, FUNCTION_EXECUTION__CONTAINING_THREAD);
-		createEReference(functionExecutionEClass, FUNCTION_EXECUTION__PARENT);
 		createEReference(functionExecutionEClass, FUNCTION_EXECUTION__VARIABLES);
-		createEReference(functionExecutionEClass, FUNCTION_EXECUTION__CURRENT_STEP);
-		createEAttribute(functionExecutionEClass, FUNCTION_EXECUTION__CURRENT_STEP_NUMBER);
-		createEAttribute(functionExecutionEClass, FUNCTION_EXECUTION__CURRENT_GOAL);
+		createEAttribute(functionExecutionEClass, FUNCTION_EXECUTION__STEP_INDEX_BEFORE_CHILD);
 		createEOperation(functionExecutionEClass, FUNCTION_EXECUTION___GET_VARIABLE__STRING);
 		createEOperation(functionExecutionEClass, FUNCTION_EXECUTION___GET_FUNCTION_NAME);
-		createEOperation(functionExecutionEClass, FUNCTION_EXECUTION___STEP__BOOLEAN);
 		createEOperation(functionExecutionEClass, FUNCTION_EXECUTION___GET_FILE_NAME);
+		createEOperation(functionExecutionEClass, FUNCTION_EXECUTION___GET_CURRENT_STEP);
 
 		variableManagerEClass = createEClass(VARIABLE_MANAGER);
 		createEReference(variableManagerEClass, VARIABLE_MANAGER__VARIABLES);
@@ -827,9 +880,15 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 		createEAttribute(breakpointEClass, BREAKPOINT__FUNCTION_NAME);
 
 		stepResultEClass = createEClass(STEP_RESULT);
-		createEAttribute(stepResultEClass, STEP_RESULT__OBJECT);
 		createEAttribute(stepResultEClass, STEP_RESULT__CODE);
 		createEAttribute(stepResultEClass, STEP_RESULT__STEP_DONE);
+		createEReference(stepResultEClass, STEP_RESULT__BREAKPOINT);
+		createEReference(stepResultEClass, STEP_RESULT__LINE_EXECUTED);
+
+		contextEClass = createEClass(CONTEXT);
+		createEReference(contextEClass, CONTEXT__FUNCTION);
+		createEReference(contextEClass, CONTEXT__CONTAINING_THREAD);
+		createEAttribute(contextEClass, CONTEXT__STEP_BEING_EXECUTED_IDX);
 
 		// Create enums
 		stepGoalEEnum = createEEnum(STEP_GOAL);
@@ -893,6 +952,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 		initEReference(getThread_Stack(), this.getFunctionExecution(), null, "stack", null, 0, 1, process.Thread.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getThread_Running(), theXMLTypePackage.getBoolean(), "running", null, 0, 1, process.Thread.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getThread_Process(), this.getProcess(), this.getProcess_Threads(), "process", null, 0, 1, process.Thread.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getThread_StepToExecuteIdx(), theXMLTypePackage.getInt(), "stepToExecuteIdx", null, 0, 1, process.Thread.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getThread__Step__int(), this.getStepResult(), "step", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theXMLTypePackage.getInt(), "goal", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -902,26 +962,25 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 		op = initEOperation(getThread__GetFrame__int(), this.getFunctionExecution(), "getFrame", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theXMLTypePackage.getInt(), "depth", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		initEOperation(getThread__GetStepToExecuteOrLastOne(), theTracePackage.getStep(), "getStepToExecuteOrLastOne", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(functionExecutionEClass, FunctionExecution.class, "FunctionExecution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFunctionExecution_Parent(), this.getFunctionExecution(), this.getFunctionExecution_Child(), "parent", null, 0, 1, FunctionExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionExecution_Child(), this.getFunctionExecution(), this.getFunctionExecution_Parent(), "child", null, 0, 1, FunctionExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionExecution_EntryStep(), theTracePackage.getFunctionCall(), null, "entryStep", null, 0, 1, FunctionExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionExecution_ContainingThread(), this.getThread(), null, "containingThread", null, 0, 1, FunctionExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionExecution_Parent(), this.getFunctionExecution(), this.getFunctionExecution_Child(), "parent", null, 0, 1, FunctionExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionExecution_Variables(), theTracePackage.getAssignment(), null, "variables", null, 0, -1, FunctionExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		getFunctionExecution_Variables().getEKeys().add(theTracePackage.getAssignment_BaseName());
-		initEReference(getFunctionExecution_CurrentStep(), theTracePackage.getStep(), null, "currentStep", null, 0, 1, FunctionExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFunctionExecution_CurrentStepNumber(), theXMLTypePackage.getInt(), "currentStepNumber", null, 0, 1, FunctionExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFunctionExecution_CurrentGoal(), theXMLTypePackage.getInt(), "currentGoal", null, 0, 1, FunctionExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFunctionExecution_StepIndexBeforeChild(), theXMLTypePackage.getInt(), "stepIndexBeforeChild", "-1", 0, 1, FunctionExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getFunctionExecution__GetVariable__String(), theTracePackage.getAssignment(), "getVariable", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theXMLTypePackage.getString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getFunctionExecution__GetFunctionName(), theXMLTypePackage.getString(), "getFunctionName", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getFunctionExecution__Step__boolean(), this.getStepResult(), "step", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theXMLTypePackage.getBoolean(), "enableBreakpoint", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		initEOperation(getFunctionExecution__GetFileName(), theXMLTypePackage.getString(), "getFileName", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getFunctionExecution__GetCurrentStep(), theTracePackage.getStep(), "getCurrentStep", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(variableManagerEClass, VariableManager.class, "VariableManager", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVariableManager_Variables(), this.getStringToAssignmentEntry(), null, "variables", null, 0, -1, VariableManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -957,9 +1016,15 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 		initEAttribute(getBreakpoint_FunctionName(), theXMLTypePackage.getString(), "functionName", null, 0, 1, Breakpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stepResultEClass, StepResult.class, "StepResult", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStepResult_Object(), ecorePackage.getEJavaObject(), "object", null, 0, 1, StepResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStepResult_Code(), this.getSteppingResult(), "code", null, 0, 1, StepResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStepResult_StepDone(), theXMLTypePackage.getInt(), "stepDone", null, 0, 1, StepResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStepResult_Breakpoint(), this.getBreakpoint(), null, "breakpoint", null, 0, 1, StepResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStepResult_LineExecuted(), theTracePackage.getLocation(), null, "lineExecuted", null, 0, 1, StepResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(contextEClass, Context.class, "Context", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getContext_Function(), this.getFunctionExecution(), null, "function", null, 0, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getContext_ContainingThread(), this.getThread(), null, "containingThread", null, 0, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getContext_StepBeingExecutedIdx(), theXMLTypePackage.getInt(), "stepBeingExecutedIdx", null, 0, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(stepGoalEEnum, StepGoal.class, "StepGoal");

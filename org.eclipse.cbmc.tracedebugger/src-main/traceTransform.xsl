@@ -171,6 +171,9 @@
 								<line>
 									<xsl:value-of select="location/@line" />
 								</line>
+								<function>
+									<xsl:value-of select="location/@function" />
+								</function>
 							</location>
 						</xsl:if>
 					</steps>

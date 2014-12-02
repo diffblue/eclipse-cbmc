@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
+import process.ProcessPackage;
+import process.impl.ProcessPackageImpl;
 import trace.ArrayValue;
 import trace.Assignment;
 import trace.Failure;
@@ -173,11 +175,16 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		// Initialize simple dependencies
 		XMLTypePackage.eINSTANCE.eClass();
 
+		// Obtain or create and register interdependencies
+		ProcessPackageImpl theProcessPackage = (ProcessPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI) instanceof ProcessPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI) : ProcessPackage.eINSTANCE);
+
 		// Create package meta-data objects
 		theTracePackage.createPackageContents();
+		theProcessPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theTracePackage.initializePackageContents();
+		theProcessPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theTracePackage.freeze();
@@ -258,6 +265,15 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 */
 	public EReference getAssignment_ParsedValue() {
 		return (EReference)assignmentEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAssignment_Parameter() {
+		return (EAttribute)assignmentEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -445,6 +461,15 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getStep__Interpret__Context() {
+		return stepEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTrace() {
 		return traceEClass;
 	}
@@ -620,6 +645,7 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		createEAttribute(assignmentEClass, ASSIGNMENT__TYPE);
 		createEAttribute(assignmentEClass, ASSIGNMENT__VALUE_EXPRESSION);
 		createEReference(assignmentEClass, ASSIGNMENT__PARSED_VALUE);
+		createEAttribute(assignmentEClass, ASSIGNMENT__PARAMETER);
 		createEOperation(assignmentEClass, ASSIGNMENT___GET_VALUE__STRING);
 
 		failureEClass = createEClass(FAILURE);
@@ -646,6 +672,7 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		createEAttribute(stepEClass, STEP__NUMBER);
 		createEReference(stepEClass, STEP__LOCATION);
 		createEAttribute(stepEClass, STEP__THREAD);
+		createEOperation(stepEClass, STEP___INTERPRET__CONTEXT);
 
 		traceEClass = createEClass(TRACE);
 		createEReference(traceEClass, TRACE__STEPS);
@@ -695,6 +722,7 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 
 		// Obtain other dependent packages
 		XMLTypePackage theXMLTypePackage = (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
+		ProcessPackage theProcessPackage = (ProcessPackage)EPackage.Registry.INSTANCE.getEPackage(ProcessPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -719,6 +747,7 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		initEAttribute(getAssignment_Type(), theXMLTypePackage.getString(), "type", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAssignment_ValueExpression(), theXMLTypePackage.getString(), "valueExpression", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAssignment_ParsedValue(), this.getValue(), null, "parsedValue", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAssignment_Parameter(), theXMLTypePackage.getBoolean(), "parameter", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getAssignment__GetValue__String(), this.getValue(), "getValue", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theXMLTypePackage.getString(), "expression", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -747,6 +776,9 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		initEAttribute(getStep_Number(), theXMLTypePackage.getInt(), "number", null, 1, 1, Step.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getStep_Location(), this.getLocation(), null, "location", null, 1, 1, Step.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStep_Thread(), theXMLTypePackage.getInt(), "thread", null, 1, 1, Step.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getStep__Interpret__Context(), theProcessPackage.getStepResult(), "interpret", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theProcessPackage.getContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(traceEClass, Trace.class, "Trace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTrace_Steps(), this.getStep(), null, "steps", null, 0, -1, Trace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

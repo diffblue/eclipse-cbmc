@@ -18,6 +18,7 @@ package trace;
  *   <li>{@link trace.Assignment#getType <em>Type</em>}</li>
  *   <li>{@link trace.Assignment#getValueExpression <em>Value Expression</em>}</li>
  *   <li>{@link trace.Assignment#getParsedValue <em>Parsed Value</em>}</li>
+ *   <li>{@link trace.Assignment#isParameter <em>Parameter</em>}</li>
  * </ul>
  * </p>
  *
@@ -213,6 +214,32 @@ public interface Assignment extends Step {
 	 * @generated
 	 */
 	void setParsedValue(Value value);
+
+	/**
+	 * Returns the value of the '<em><b>Parameter</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Parameter</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parameter</em>' attribute.
+	 * @see #setParameter(boolean)
+	 * @see trace.TracePackage#getAssignment_Parameter()
+	 * @model dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+	 * @generated
+	 */
+	boolean isParameter();
+
+	/**
+	 * Sets the value of the '{@link trace.Assignment#isParameter <em>Parameter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Parameter</em>' attribute.
+	 * @see #isParameter()
+	 * @generated
+	 */
+	void setParameter(boolean value);
 
 	/**
 	 * <!-- begin-user-doc -->

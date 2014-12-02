@@ -16,14 +16,12 @@ import trace.Step;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link process.FunctionExecution#getParent <em>Parent</em>}</li>
  *   <li>{@link process.FunctionExecution#getChild <em>Child</em>}</li>
  *   <li>{@link process.FunctionExecution#getEntryStep <em>Entry Step</em>}</li>
  *   <li>{@link process.FunctionExecution#getContainingThread <em>Containing Thread</em>}</li>
- *   <li>{@link process.FunctionExecution#getParent <em>Parent</em>}</li>
  *   <li>{@link process.FunctionExecution#getVariables <em>Variables</em>}</li>
- *   <li>{@link process.FunctionExecution#getCurrentStep <em>Current Step</em>}</li>
- *   <li>{@link process.FunctionExecution#getCurrentStepNumber <em>Current Step Number</em>}</li>
- *   <li>{@link process.FunctionExecution#getCurrentGoal <em>Current Goal</em>}</li>
+ *   <li>{@link process.FunctionExecution#getStepIndexBeforeChild <em>Step Index Before Child</em>}</li>
  * </ul>
  * </p>
  *
@@ -105,82 +103,31 @@ public interface FunctionExecution extends EObject {
 	EList<Assignment> getVariables();
 
 	/**
-	 * Returns the value of the '<em><b>Current Step</b></em>' reference.
+	 * Returns the value of the '<em><b>Step Index Before Child</b></em>' attribute.
+	 * The default value is <code>"-1"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Current Step</em>' reference isn't clear,
+	 * If the meaning of the '<em>Step Index Before Child</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Current Step</em>' reference.
-	 * @see #setCurrentStep(Step)
-	 * @see process.ProcessPackage#getFunctionExecution_CurrentStep()
-	 * @model
+	 * @return the value of the '<em>Step Index Before Child</em>' attribute.
+	 * @see #setStepIndexBeforeChild(int)
+	 * @see process.ProcessPackage#getFunctionExecution_StepIndexBeforeChild()
+	 * @model default="-1" dataType="org.eclipse.emf.ecore.xml.type.Int"
 	 * @generated
 	 */
-	Step getCurrentStep();
+	int getStepIndexBeforeChild();
 
 	/**
-	 * Sets the value of the '{@link process.FunctionExecution#getCurrentStep <em>Current Step</em>}' reference.
+	 * Sets the value of the '{@link process.FunctionExecution#getStepIndexBeforeChild <em>Step Index Before Child</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Current Step</em>' reference.
-	 * @see #getCurrentStep()
+	 * @param value the new value of the '<em>Step Index Before Child</em>' attribute.
+	 * @see #getStepIndexBeforeChild()
 	 * @generated
 	 */
-	void setCurrentStep(Step value);
-
-	/**
-	 * Returns the value of the '<em><b>Current Step Number</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Current Step Number</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Current Step Number</em>' attribute.
-	 * @see #setCurrentStepNumber(int)
-	 * @see process.ProcessPackage#getFunctionExecution_CurrentStepNumber()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.Int"
-	 * @generated
-	 */
-	int getCurrentStepNumber();
-
-	/**
-	 * Sets the value of the '{@link process.FunctionExecution#getCurrentStepNumber <em>Current Step Number</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Current Step Number</em>' attribute.
-	 * @see #getCurrentStepNumber()
-	 * @generated
-	 */
-	void setCurrentStepNumber(int value);
-
-	/**
-	 * Returns the value of the '<em><b>Current Goal</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Current Goal</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Current Goal</em>' attribute.
-	 * @see #setCurrentGoal(int)
-	 * @see process.ProcessPackage#getFunctionExecution_CurrentGoal()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.Int"
-	 * @generated
-	 */
-	int getCurrentGoal();
-
-	/**
-	 * Sets the value of the '{@link process.FunctionExecution#getCurrentGoal <em>Current Goal</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Current Goal</em>' attribute.
-	 * @see #getCurrentGoal()
-	 * @generated
-	 */
-	void setCurrentGoal(int value);
+	void setStepIndexBeforeChild(int value);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -201,19 +148,18 @@ public interface FunctionExecution extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model enableBreakpointDataType="org.eclipse.emf.ecore.xml.type.Boolean"
-	 * @generated
-	 */
-	StepResult step(boolean enableBreakpoint);
-	StepResult step(boolean enableBreakpoint, int lineBeingProcessed);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @model kind="operation" dataType="org.eclipse.emf.ecore.xml.type.String"
 	 * @generated
 	 */
 	String getFileName();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	Step getCurrentStep();
 
 	/**
 	 * Returns the value of the '<em><b>Entry Step</b></em>' reference.

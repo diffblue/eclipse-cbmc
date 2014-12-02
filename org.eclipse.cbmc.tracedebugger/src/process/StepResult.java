@@ -3,6 +3,7 @@
 package process;
 
 import org.eclipse.emf.ecore.EObject;
+import trace.Location;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,9 +13,10 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link process.StepResult#getObject <em>Object</em>}</li>
  *   <li>{@link process.StepResult#getCode <em>Code</em>}</li>
  *   <li>{@link process.StepResult#getStepDone <em>Step Done</em>}</li>
+ *   <li>{@link process.StepResult#getBreakpoint <em>Breakpoint</em>}</li>
+ *   <li>{@link process.StepResult#getLineExecuted <em>Line Executed</em>}</li>
  * </ul>
  * </p>
  *
@@ -23,32 +25,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface StepResult extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Object</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Object</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Object</em>' attribute.
-	 * @see #setObject(Object)
-	 * @see process.ProcessPackage#getStepResult_Object()
-	 * @model
-	 * @generated
-	 */
-	Object getObject();
-
-	/**
-	 * Sets the value of the '{@link process.StepResult#getObject <em>Object</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Object</em>' attribute.
-	 * @see #getObject()
-	 * @generated
-	 */
-	void setObject(Object value);
-
 	/**
 	 * Returns the value of the '<em><b>Code</b></em>' attribute.
 	 * The literals are from the enumeration {@link process.SteppingResult}.
@@ -103,5 +79,57 @@ public interface StepResult extends EObject {
 	 * @generated
 	 */
 	void setStepDone(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Line Executed</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Line Executed</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Line Executed</em>' reference.
+	 * @see #setLineExecuted(Location)
+	 * @see process.ProcessPackage#getStepResult_LineExecuted()
+	 * @model
+	 * @generated
+	 */
+	Location getLineExecuted();
+
+	/**
+	 * Sets the value of the '{@link process.StepResult#getLineExecuted <em>Line Executed</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Line Executed</em>' reference.
+	 * @see #getLineExecuted()
+	 * @generated
+	 */
+	void setLineExecuted(Location value);
+
+	/**
+	 * Returns the value of the '<em><b>Breakpoint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Breakpoint</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Breakpoint</em>' reference.
+	 * @see #setBreakpoint(Breakpoint)
+	 * @see process.ProcessPackage#getStepResult_Breakpoint()
+	 * @model
+	 * @generated
+	 */
+	Breakpoint getBreakpoint();
+
+	/**
+	 * Sets the value of the '{@link process.StepResult#getBreakpoint <em>Breakpoint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Breakpoint</em>' reference.
+	 * @see #getBreakpoint()
+	 * @generated
+	 */
+	void setBreakpoint(Breakpoint value);
 
 } // StepResult

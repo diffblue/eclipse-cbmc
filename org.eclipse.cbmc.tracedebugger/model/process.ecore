@@ -29,6 +29,7 @@
     <eOperations name="getFrame" eType="#//FunctionExecution">
       <eParameters name="depth" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
     </eOperations>
+    <eOperations name="getStepToExecuteOrLastOne" eType="ecore:EClass trace.ecore#//Step"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="allSteps" upperBound="-1"
         eType="ecore:EClass trace.ecore#//Step"/>
@@ -37,28 +38,26 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="running" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="process" eType="#//Process"
         eOpposite="#//Process/threads"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stepToExecuteIdx" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionExecution">
     <eOperations name="getVariable" eType="ecore:EClass trace.ecore#//Assignment">
       <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
     </eOperations>
     <eOperations name="getFunctionName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
-    <eOperations name="step" eType="#//StepResult">
-      <eParameters name="enableBreakpoint" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
-    </eOperations>
     <eOperations name="getFileName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eOperations name="getCurrentStep" eType="ecore:EClass trace.ecore#//Step"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//FunctionExecution"
+        eOpposite="#//FunctionExecution/child"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="child" eType="#//FunctionExecution"
         eOpposite="#//FunctionExecution/parent"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entryStep" eType="ecore:EClass trace.ecore#//FunctionCall"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="containingThread" eType="#//Thread"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//FunctionExecution"
-        eOpposite="#//FunctionExecution/child"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" ordered="false"
         upperBound="-1" eType="ecore:EClass trace.ecore#//Assignment" containment="true"
         eKeys="trace.ecore#//Assignment/baseName"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="currentStep" eType="ecore:EClass trace.ecore#//Step"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="currentStepNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="currentGoal" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stepIndexBeforeChild" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"
+        defaultValueLiteral="-1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableManager">
     <eOperations name="getAssignment" eType="ecore:EClass trace.ecore#//Assignment">
@@ -108,8 +107,14 @@
     <eLiterals name="StepComplete" value="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StepResult">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="object" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" eType="#//SteppingResult"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stepDone" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="breakpoint" eType="#//Breakpoint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineExecuted" eType="ecore:EClass trace.ecore#//Location"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Context">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="#//FunctionExecution"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containingThread" eType="#//Thread"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stepBeingExecutedIdx" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
   </eClassifiers>
 </ecore:EPackage>

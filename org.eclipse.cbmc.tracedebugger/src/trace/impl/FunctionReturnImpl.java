@@ -3,21 +3,24 @@
 package trace.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import process.Context;
+import process.FunctionExecution;
+import process.ProcessFactory;
+import process.StepResult;
+import process.SteppingResult;
+import process.impl.FunctionExecutionImpl;
 import trace.FunctionReturn;
 import trace.Location;
 import trace.TracePackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Function Return</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Function Return</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -31,9 +34,9 @@ import trace.TracePackage;
  */
 public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 	/**
-	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getId()
 	 * @generated
 	 * @ordered
@@ -41,9 +44,9 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 	protected static final String ID_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getId()
 	 * @generated
 	 * @ordered
@@ -52,8 +55,7 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 
 	/**
 	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDisplayName()
 	 * @generated
 	 * @ordered
@@ -62,8 +64,7 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 
 	/**
 	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDisplayName()
 	 * @generated
 	 * @ordered
@@ -72,8 +73,8 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 
 	/**
 	 * The cached value of the '{@link #getFunctionLocation() <em>Function Location</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #getFunctionLocation()
 	 * @generated
 	 * @ordered
@@ -81,8 +82,7 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 	protected Location functionLocation;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected FunctionReturnImpl() {
@@ -90,8 +90,7 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -100,8 +99,7 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String getId() {
@@ -109,8 +107,7 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setId(String newId) {
@@ -121,8 +118,7 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String getDisplayName() {
@@ -130,8 +126,7 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setDisplayName(String newDisplayName) {
@@ -142,8 +137,7 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Location getFunctionLocation() {
@@ -151,8 +145,7 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetFunctionLocation(Location newFunctionLocation, NotificationChain msgs) {
@@ -166,8 +159,7 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setFunctionLocation(Location newFunctionLocation) {
@@ -185,8 +177,7 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -199,8 +190,7 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -217,8 +207,7 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -238,8 +227,7 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -259,8 +247,7 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -277,8 +264,7 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -294,4 +280,27 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 		return result.toString();
 	}
 
-} //FunctionReturnImpl
+	@Override
+	public StepResult interpret(Context context) {
+		if (context.getContainingThread().getStack() == null)
+			return null;
+
+		FunctionExecution previousFunction = context.getFunction().getParent();
+		if (previousFunction == null) {
+			StepResult result = ProcessFactory.eINSTANCE.createStepResult();
+			result.setCode(SteppingResult.STEP_COMPLETE);
+			result.setStepDone(Context.FUNCTION_EXIT);
+			return result;
+		}
+		
+		context.getContainingThread().setStack(previousFunction);
+		previousFunction.setChild(null);
+		previousFunction.setStepIndexBeforeChild(FunctionExecutionImpl.STEP_INDEX_BEFORE_CHILD_EDEFAULT);
+		
+		StepResult result = ProcessFactory.eINSTANCE.createStepResult();
+		result.setCode(SteppingResult.STEP_COMPLETE);
+		result.setStepDone(Context.FUNCTION_EXIT);
+		return result;
+		
+	}
+} // FunctionReturnImpl

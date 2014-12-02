@@ -250,13 +250,22 @@ public interface ProcessPackage extends EPackage {
 	int THREAD__PROCESS = 5;
 
 	/**
+	 * The feature id for the '<em><b>Step To Execute Idx</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THREAD__STEP_TO_EXECUTE_IDX = 6;
+
+	/**
 	 * The number of structural features of the '<em>Thread</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int THREAD_FEATURE_COUNT = 6;
+	int THREAD_FEATURE_COUNT = 7;
 
 	/**
 	 * The operation id for the '<em>Step</em>' operation.
@@ -286,13 +295,22 @@ public interface ProcessPackage extends EPackage {
 	int THREAD___GET_FRAME__INT = 2;
 
 	/**
+	 * The operation id for the '<em>Get Step To Execute Or Last One</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THREAD___GET_STEP_TO_EXECUTE_OR_LAST_ONE = 3;
+
+	/**
 	 * The number of operations of the '<em>Thread</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int THREAD_OPERATION_COUNT = 3;
+	int THREAD_OPERATION_COUNT = 4;
 
 
 	/**
@@ -306,13 +324,22 @@ public interface ProcessPackage extends EPackage {
 	int FUNCTION_EXECUTION = 2;
 
 	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_EXECUTION__PARENT = 0;
+
+	/**
 	 * The feature id for the '<em><b>Child</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_EXECUTION__CHILD = 0;
+	int FUNCTION_EXECUTION__CHILD = 1;
 
 	/**
 	 * The feature id for the '<em><b>Entry Step</b></em>' reference.
@@ -321,7 +348,7 @@ public interface ProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_EXECUTION__ENTRY_STEP = 1;
+	int FUNCTION_EXECUTION__ENTRY_STEP = 2;
 
 	/**
 	 * The feature id for the '<em><b>Containing Thread</b></em>' reference.
@@ -330,16 +357,7 @@ public interface ProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_EXECUTION__CONTAINING_THREAD = 2;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTION_EXECUTION__PARENT = 3;
+	int FUNCTION_EXECUTION__CONTAINING_THREAD = 3;
 
 	/**
 	 * The feature id for the '<em><b>Variables</b></em>' containment reference list.
@@ -351,31 +369,13 @@ public interface ProcessPackage extends EPackage {
 	int FUNCTION_EXECUTION__VARIABLES = 4;
 
 	/**
-	 * The feature id for the '<em><b>Current Step</b></em>' reference.
+	 * The feature id for the '<em><b>Step Index Before Child</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_EXECUTION__CURRENT_STEP = 5;
-
-	/**
-	 * The feature id for the '<em><b>Current Step Number</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTION_EXECUTION__CURRENT_STEP_NUMBER = 6;
-
-	/**
-	 * The feature id for the '<em><b>Current Goal</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTION_EXECUTION__CURRENT_GOAL = 7;
+	int FUNCTION_EXECUTION__STEP_INDEX_BEFORE_CHILD = 5;
 
 	/**
 	 * The number of structural features of the '<em>Function Execution</em>' class.
@@ -384,7 +384,7 @@ public interface ProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_EXECUTION_FEATURE_COUNT = 8;
+	int FUNCTION_EXECUTION_FEATURE_COUNT = 6;
 
 	/**
 	 * The operation id for the '<em>Get Variable</em>' operation.
@@ -405,22 +405,22 @@ public interface ProcessPackage extends EPackage {
 	int FUNCTION_EXECUTION___GET_FUNCTION_NAME = 1;
 
 	/**
-	 * The operation id for the '<em>Step</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTION_EXECUTION___STEP__BOOLEAN = 2;
-
-	/**
 	 * The operation id for the '<em>Get File Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_EXECUTION___GET_FILE_NAME = 3;
+	int FUNCTION_EXECUTION___GET_FILE_NAME = 2;
+
+	/**
+	 * The operation id for the '<em>Get Current Step</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_EXECUTION___GET_CURRENT_STEP = 3;
 
 	/**
 	 * The number of operations of the '<em>Function Execution</em>' class.
@@ -727,22 +727,13 @@ public interface ProcessPackage extends EPackage {
 	int STEP_RESULT = 8;
 
 	/**
-	 * The feature id for the '<em><b>Object</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEP_RESULT__OBJECT = 0;
-
-	/**
 	 * The feature id for the '<em><b>Code</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEP_RESULT__CODE = 1;
+	int STEP_RESULT__CODE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Step Done</b></em>' attribute.
@@ -751,7 +742,25 @@ public interface ProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEP_RESULT__STEP_DONE = 2;
+	int STEP_RESULT__STEP_DONE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Breakpoint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP_RESULT__BREAKPOINT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Line Executed</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP_RESULT__LINE_EXECUTED = 3;
 
 	/**
 	 * The number of structural features of the '<em>Step Result</em>' class.
@@ -760,7 +769,7 @@ public interface ProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEP_RESULT_FEATURE_COUNT = 3;
+	int STEP_RESULT_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Step Result</em>' class.
@@ -772,6 +781,61 @@ public interface ProcessPackage extends EPackage {
 	int STEP_RESULT_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link process.impl.ContextImpl <em>Context</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see process.impl.ContextImpl
+	 * @see process.impl.ProcessPackageImpl#getContext()
+	 * @generated
+	 */
+	int CONTEXT = 9;
+
+	/**
+	 * The feature id for the '<em><b>Function</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT__FUNCTION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Containing Thread</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT__CONTAINING_THREAD = 1;
+
+	/**
+	 * The feature id for the '<em><b>Step Being Executed Idx</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT__STEP_BEING_EXECUTED_IDX = 2;
+
+	/**
+	 * The number of structural features of the '<em>Context</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Context</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link process.StepGoal <em>Step Goal</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -779,7 +843,7 @@ public interface ProcessPackage extends EPackage {
 	 * @see process.impl.ProcessPackageImpl#getStepGoal()
 	 * @generated
 	 */
-	int STEP_GOAL = 9;
+	int STEP_GOAL = 10;
 
 	/**
 	 * The meta object id for the '{@link process.SteppingResult <em>Stepping Result</em>}' enum.
@@ -789,7 +853,7 @@ public interface ProcessPackage extends EPackage {
 	 * @see process.impl.ProcessPackageImpl#getSteppingResult()
 	 * @generated
 	 */
-	int STEPPING_RESULT = 10;
+	int STEPPING_RESULT = 11;
 
 	/**
 	 * Returns the meta object for class '{@link process.Process <em>Process</em>}'.
@@ -997,6 +1061,17 @@ public interface ProcessPackage extends EPackage {
 	EReference getThread_Process();
 
 	/**
+	 * Returns the meta object for the attribute '{@link process.Thread#getStepToExecuteIdx <em>Step To Execute Idx</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Step To Execute Idx</em>'.
+	 * @see process.Thread#getStepToExecuteIdx()
+	 * @see #getThread()
+	 * @generated
+	 */
+	EAttribute getThread_StepToExecuteIdx();
+
+	/**
 	 * Returns the meta object for the '{@link process.Thread#step(int) <em>Step</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1025,6 +1100,16 @@ public interface ProcessPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getThread__GetFrame__int();
+
+	/**
+	 * Returns the meta object for the '{@link process.Thread#getStepToExecuteOrLastOne() <em>Get Step To Execute Or Last One</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Step To Execute Or Last One</em>' operation.
+	 * @see process.Thread#getStepToExecuteOrLastOne()
+	 * @generated
+	 */
+	EOperation getThread__GetStepToExecuteOrLastOne();
 
 	/**
 	 * Returns the meta object for class '{@link process.FunctionExecution <em>Function Execution</em>}'.
@@ -1070,37 +1155,15 @@ public interface ProcessPackage extends EPackage {
 	EReference getFunctionExecution_Variables();
 
 	/**
-	 * Returns the meta object for the reference '{@link process.FunctionExecution#getCurrentStep <em>Current Step</em>}'.
+	 * Returns the meta object for the attribute '{@link process.FunctionExecution#getStepIndexBeforeChild <em>Step Index Before Child</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Current Step</em>'.
-	 * @see process.FunctionExecution#getCurrentStep()
+	 * @return the meta object for the attribute '<em>Step Index Before Child</em>'.
+	 * @see process.FunctionExecution#getStepIndexBeforeChild()
 	 * @see #getFunctionExecution()
 	 * @generated
 	 */
-	EReference getFunctionExecution_CurrentStep();
-
-	/**
-	 * Returns the meta object for the attribute '{@link process.FunctionExecution#getCurrentStepNumber <em>Current Step Number</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Current Step Number</em>'.
-	 * @see process.FunctionExecution#getCurrentStepNumber()
-	 * @see #getFunctionExecution()
-	 * @generated
-	 */
-	EAttribute getFunctionExecution_CurrentStepNumber();
-
-	/**
-	 * Returns the meta object for the attribute '{@link process.FunctionExecution#getCurrentGoal <em>Current Goal</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Current Goal</em>'.
-	 * @see process.FunctionExecution#getCurrentGoal()
-	 * @see #getFunctionExecution()
-	 * @generated
-	 */
-	EAttribute getFunctionExecution_CurrentGoal();
+	EAttribute getFunctionExecution_StepIndexBeforeChild();
 
 	/**
 	 * Returns the meta object for the '{@link process.FunctionExecution#getVariable(java.lang.String) <em>Get Variable</em>}' operation.
@@ -1123,16 +1186,6 @@ public interface ProcessPackage extends EPackage {
 	EOperation getFunctionExecution__GetFunctionName();
 
 	/**
-	 * Returns the meta object for the '{@link process.FunctionExecution#step(boolean) <em>Step</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Step</em>' operation.
-	 * @see process.FunctionExecution#step(boolean)
-	 * @generated
-	 */
-	EOperation getFunctionExecution__Step__boolean();
-
-	/**
 	 * Returns the meta object for the '{@link process.FunctionExecution#getFileName() <em>Get File Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1141,6 +1194,16 @@ public interface ProcessPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getFunctionExecution__GetFileName();
+
+	/**
+	 * Returns the meta object for the '{@link process.FunctionExecution#getCurrentStep() <em>Get Current Step</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Current Step</em>' operation.
+	 * @see process.FunctionExecution#getCurrentStep()
+	 * @generated
+	 */
+	EOperation getFunctionExecution__GetCurrentStep();
 
 	/**
 	 * Returns the meta object for class '{@link process.VariableManager <em>Variable Manager</em>}'.
@@ -1380,17 +1443,6 @@ public interface ProcessPackage extends EPackage {
 	EClass getStepResult();
 
 	/**
-	 * Returns the meta object for the attribute '{@link process.StepResult#getObject <em>Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Object</em>'.
-	 * @see process.StepResult#getObject()
-	 * @see #getStepResult()
-	 * @generated
-	 */
-	EAttribute getStepResult_Object();
-
-	/**
 	 * Returns the meta object for the attribute '{@link process.StepResult#getCode <em>Code</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1411,6 +1463,71 @@ public interface ProcessPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getStepResult_StepDone();
+
+	/**
+	 * Returns the meta object for the reference '{@link process.StepResult#getLineExecuted <em>Line Executed</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Line Executed</em>'.
+	 * @see process.StepResult#getLineExecuted()
+	 * @see #getStepResult()
+	 * @generated
+	 */
+	EReference getStepResult_LineExecuted();
+
+	/**
+	 * Returns the meta object for the reference '{@link process.StepResult#getBreakpoint <em>Breakpoint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Breakpoint</em>'.
+	 * @see process.StepResult#getBreakpoint()
+	 * @see #getStepResult()
+	 * @generated
+	 */
+	EReference getStepResult_Breakpoint();
+
+	/**
+	 * Returns the meta object for class '{@link process.Context <em>Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Context</em>'.
+	 * @see process.Context
+	 * @generated
+	 */
+	EClass getContext();
+
+	/**
+	 * Returns the meta object for the reference '{@link process.Context#getFunction <em>Function</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Function</em>'.
+	 * @see process.Context#getFunction()
+	 * @see #getContext()
+	 * @generated
+	 */
+	EReference getContext_Function();
+
+	/**
+	 * Returns the meta object for the reference '{@link process.Context#getContainingThread <em>Containing Thread</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Containing Thread</em>'.
+	 * @see process.Context#getContainingThread()
+	 * @see #getContext()
+	 * @generated
+	 */
+	EReference getContext_ContainingThread();
+
+	/**
+	 * Returns the meta object for the attribute '{@link process.Context#getStepBeingExecutedIdx <em>Step Being Executed Idx</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Step Being Executed Idx</em>'.
+	 * @see process.Context#getStepBeingExecutedIdx()
+	 * @see #getContext()
+	 * @generated
+	 */
+	EAttribute getContext_StepBeingExecutedIdx();
 
 	/**
 	 * Returns the meta object for enum '{@link process.StepGoal <em>Step Goal</em>}'.
@@ -1634,6 +1751,14 @@ public interface ProcessPackage extends EPackage {
 		EReference THREAD__PROCESS = eINSTANCE.getThread_Process();
 
 		/**
+		 * The meta object literal for the '<em><b>Step To Execute Idx</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute THREAD__STEP_TO_EXECUTE_IDX = eINSTANCE.getThread_StepToExecuteIdx();
+
+		/**
 		 * The meta object literal for the '<em><b>Step</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1656,6 +1781,14 @@ public interface ProcessPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation THREAD___GET_FRAME__INT = eINSTANCE.getThread__GetFrame__int();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Step To Execute Or Last One</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation THREAD___GET_STEP_TO_EXECUTE_OR_LAST_ONE = eINSTANCE.getThread__GetStepToExecuteOrLastOne();
 
 		/**
 		 * The meta object literal for the '{@link process.impl.FunctionExecutionImpl <em>Function Execution</em>}' class.
@@ -1692,28 +1825,12 @@ public interface ProcessPackage extends EPackage {
 		EReference FUNCTION_EXECUTION__VARIABLES = eINSTANCE.getFunctionExecution_Variables();
 
 		/**
-		 * The meta object literal for the '<em><b>Current Step</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Step Index Before Child</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FUNCTION_EXECUTION__CURRENT_STEP = eINSTANCE.getFunctionExecution_CurrentStep();
-
-		/**
-		 * The meta object literal for the '<em><b>Current Step Number</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FUNCTION_EXECUTION__CURRENT_STEP_NUMBER = eINSTANCE.getFunctionExecution_CurrentStepNumber();
-
-		/**
-		 * The meta object literal for the '<em><b>Current Goal</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FUNCTION_EXECUTION__CURRENT_GOAL = eINSTANCE.getFunctionExecution_CurrentGoal();
+		EAttribute FUNCTION_EXECUTION__STEP_INDEX_BEFORE_CHILD = eINSTANCE.getFunctionExecution_StepIndexBeforeChild();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Variable</b></em>' operation.
@@ -1732,20 +1849,20 @@ public interface ProcessPackage extends EPackage {
 		EOperation FUNCTION_EXECUTION___GET_FUNCTION_NAME = eINSTANCE.getFunctionExecution__GetFunctionName();
 
 		/**
-		 * The meta object literal for the '<em><b>Step</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation FUNCTION_EXECUTION___STEP__BOOLEAN = eINSTANCE.getFunctionExecution__Step__boolean();
-
-		/**
 		 * The meta object literal for the '<em><b>Get File Name</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EOperation FUNCTION_EXECUTION___GET_FILE_NAME = eINSTANCE.getFunctionExecution__GetFileName();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Current Step</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation FUNCTION_EXECUTION___GET_CURRENT_STEP = eINSTANCE.getFunctionExecution__GetCurrentStep();
 
 		/**
 		 * The meta object literal for the '{@link process.impl.VariableManagerImpl <em>Variable Manager</em>}' class.
@@ -1936,14 +2053,6 @@ public interface ProcessPackage extends EPackage {
 		EClass STEP_RESULT = eINSTANCE.getStepResult();
 
 		/**
-		 * The meta object literal for the '<em><b>Object</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute STEP_RESULT__OBJECT = eINSTANCE.getStepResult_Object();
-
-		/**
 		 * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1958,6 +2067,56 @@ public interface ProcessPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute STEP_RESULT__STEP_DONE = eINSTANCE.getStepResult_StepDone();
+
+		/**
+		 * The meta object literal for the '<em><b>Line Executed</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STEP_RESULT__LINE_EXECUTED = eINSTANCE.getStepResult_LineExecuted();
+
+		/**
+		 * The meta object literal for the '<em><b>Breakpoint</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STEP_RESULT__BREAKPOINT = eINSTANCE.getStepResult_Breakpoint();
+
+		/**
+		 * The meta object literal for the '{@link process.impl.ContextImpl <em>Context</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see process.impl.ContextImpl
+		 * @see process.impl.ProcessPackageImpl#getContext()
+		 * @generated
+		 */
+		EClass CONTEXT = eINSTANCE.getContext();
+
+		/**
+		 * The meta object literal for the '<em><b>Function</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONTEXT__FUNCTION = eINSTANCE.getContext_Function();
+
+		/**
+		 * The meta object literal for the '<em><b>Containing Thread</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONTEXT__CONTAINING_THREAD = eINSTANCE.getContext_ContainingThread();
+
+		/**
+		 * The meta object literal for the '<em><b>Step Being Executed Idx</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONTEXT__STEP_BEING_EXECUTED_IDX = eINSTANCE.getContext_StepBeingExecutedIdx();
 
 		/**
 		 * The meta object literal for the '{@link process.StepGoal <em>Step Goal</em>}' enum.

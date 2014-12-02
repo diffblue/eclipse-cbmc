@@ -9,6 +9,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import process.Breakpoint;
 import process.BreakpointManager;
+import process.Context;
 import process.FunctionExecution;
 import process.ProcessPackage;
 import process.StepResult;
@@ -106,6 +107,10 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseStepResult(StepResult object) {
 				return createStepResultAdapter();
+			}
+			@Override
+			public Adapter caseContext(Context object) {
+				return createContextAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -250,6 +255,20 @@ public class ProcessAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createStepResultAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link process.Context <em>Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see process.Context
+	 * @generated
+	 */
+	public Adapter createContextAdapter() {
 		return null;
 	}
 

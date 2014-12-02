@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import process.BreakpointManager;
+import process.Context;
 import process.ProcessFactory;
 import process.ProcessPackage;
 import process.StepResult;
@@ -423,7 +424,7 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements process
 		
 		//Start first thread
 		Thread threadToStart = getThreads().get(0);
-		StepResult result = threadToStart.step(FunctionExecutionImpl.FUNCTION_ENTER);
+		StepResult result = threadToStart.step(Context.FUNCTION_ENTER);
 		getActiveThreads().add(threadToStart);
 		return result;
 	}
