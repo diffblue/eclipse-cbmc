@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Trace debugger tests
 Bundle-SymbolicName: org.eclipse.cbmc.tracedebugger.test
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.eclipse.cbmc.tracedebugger.test.Activator
+Bundle-Activator: org.eclipse.cbmc.tracedebugger.test.infrastructure.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.cbmc.tracedebugger;bundle-version="1.0.0",
  org.junit;bundle-version="4.11.0"
