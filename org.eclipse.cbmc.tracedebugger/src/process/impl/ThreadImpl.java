@@ -394,7 +394,8 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 		StepResult lastResult = null;
 		while (stepToExecuteIdx < allSteps.size()) {
 			Step stepToExecute = getStepToExecute();
-			if (stepToExecute.eClass().getClassifierID() == TracePackage.ASSIGNMENT && ((Assignment) stepToExecute).isParameter()) {
+			if (stepToExecute.eClass().getClassifierID() == TracePackage.ASSIGNMENT
+					&& ((Assignment) stepToExecute).isParameter()) {
 				lastResult = executeNextInstruction();
 			} else {
 				return lastResult != null ? lastResult : getNothingDoneStep();
@@ -423,15 +424,42 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 		return getProcess().getBreakpointManager().hasBreakpoint(getStack(), getStepToExecute());
 	}
 
-	private boolean reachedNextLine() {
+	private boolean reachedNextLine(StepResult result) {
 		Step nextStep = getStepToExecute();
 		if (nextStep == null)
 			return true;
 
 		Location nextLocation = nextStep.getLocation();
-		if (nextLocation.getFile().equals(location.getFile())
-				&& nextLocation.getFunction().equals(location.getFunction())
-				&& nextLocation.getLine() != location.getLine())
+		if (onDifferentLine(nextLocation, location))
+			return true;
+		
+		if ((result.getStepDone() & Context.FUNCTION_EXIT) == Context.FUNCTION_EXIT) {
+			//Simple case
+			if (nextLocation.getFile().equals(location.getFile()) && nextLocation.getFunction().equals(location.getFunction()))
+				return true;
+			
+			//I exited a function but it is only relevant to stop if the function I'm returning to (what is now on the stack)
+			//is the function I started from. This handles the case where stepping will execute other functions.
+			FunctionExecution parent = getStack();
+			if (parent == null)
+				return true;
+			if (location.getFile().equals(parent.getFileName()) && location.getFunction().equals(parent.getFunctionName()))
+				return true;
+			
+			//If I just exited from the function from which I started stepping
+			if (sameFileAndFunction(result.getLineExecuted(), location)) 
+				return true;
+		}
+		return false;
+	}
+	
+	private boolean sameFileAndFunction(Location location1, Location location2) {
+		return location1.getFile().equals(location2.getFile()) && location1.getFunction().equals(location2.getFunction());
+	}
+
+	private boolean onDifferentLine(Location location1, Location location2) {
+		if (location1.getFile().equals(location2.getFile()) && location1.getFunction().equals(location2.getFunction())
+				&& location1.getLine() != location2.getLine())
 			return true;
 		return false;
 	}
@@ -456,15 +484,11 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 				consumeParameters();
 			}
 
-			if (stepResult.getStepDone() == Context.FUNCTION_EXIT && goal == Context.NEXT_LINE) {
-				goal = Context.FUNCTION_EXIT;
-			}
-
 			// Now return the breakpoint
 			if (bkpt != null)
 				return createBreakpointResult(bkpt, goal);
 
-			if (reachedNextLine()) {
+			if (reachedNextLine(stepResult)) {
 				stepResult.setStepDone(stepResult.getStepDone() | Context.NEXT_LINE);
 			}
 
