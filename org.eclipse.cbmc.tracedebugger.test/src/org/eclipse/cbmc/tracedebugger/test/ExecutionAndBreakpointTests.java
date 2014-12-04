@@ -28,7 +28,7 @@ public class ExecutionAndBreakpointTests {
 	//run with Breakpoint
 	@Parameters
 	public static Collection<String[]> data() {
-       return Arrays.asList(new String[][] { {"runToTheEnd.txt"}, { "runToBreakpoint.txt" }, {"keepRunningAfterError.txt"}, {"nextStepUntilTheEnd.txt"}, {"stackListFrames.txt"} });
+       return Arrays.asList(new String[][] { {"runToTheEnd.txt"}, { "stepOverAllTheWay.txt" },  {"stepIntoFunctionAndNextUntilTheEnd.txt"}, {"keepRunningAfterError.txt"}, {"stepInStepOut.txt"}, { "runToBreakpoint.txt" }, {"stackListFrames.txt"},{ "stepOutWhenBreakpointInTheWay.txt"} });
    }
 	
 	public String testData = "executionAndBreakpoints";

@@ -1,0 +1,31 @@
+16-file-exec-and-symbols --thread-group i1 <<inputFile>>
+16^done
+(gdb)
+25-break-insert -t -f main
+25^done,bkpt={number="1",type="breakpoint",enabled="y",func="main"}
+(gdb)
+27-exec-run --thread-group i1
+=thread-group-started,id="i1",pid="123"
+=thread-created,id="0",group-id="i1"
+27^running
+*running,thread-id="all"
+*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="14"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+(gdb)
+34-exec-next --thread 0 1
+34^running
+*running,thread-id="all"
+*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="15"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+(gdb)
+41-exec-step --thread 0 1
+41^running
+*running,thread-id="all"
+*stopped,frame={func="foo",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="7"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+(gdb)
+49-exec-finish --thread 0 --frame 0
+49^running
+*running,thread-id="all"
+*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="16"},reason="function-finished",thread-id="0",stopped-threads="all"
+(gdb)
+52-stack-info-depth --thread 0
+52^done,depth="1"
+(gdb)

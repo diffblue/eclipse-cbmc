@@ -11,23 +11,26 @@
 *running,thread-id="all"
 *stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="14"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
-60-exec-continue --thread 0
-60^running
+30-exec-next --thread 0 1
+30^running
+*running,thread-id="all"
+*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="15"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+(gdb)
+33-exec-next --thread 0 1
+33^running
+*running,thread-id="all"
+*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="16"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+(gdb)
+37-exec-next --thread 0 1
+37^running
 *running,thread-id="all"
 *stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="17"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
-61-exec-continue --thread 0
-61^running
+41-exec-next --thread 0 1
+41^running
 *running,thread-id="all"
 *stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="17"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
-62-exec-next --thread 0
-62^running
-*running,thread-id="all"
-*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="17"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
-(gdb)
-63-exec-step --thread 0
-63^running
-*running,thread-id="all"
-*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="17"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+45-gdb-exit
+45^done
 (gdb)

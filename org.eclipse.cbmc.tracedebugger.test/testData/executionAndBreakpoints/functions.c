@@ -1,19 +1,18 @@
 #include <assert.h>
 
-int bar(int p) {
-	return p++;
+int bar() {
+	return 3;
+}
+void foo() {
+	int a;
+	bar();
+	a++;
 }
 
-int foo(int p) {
-	int v = bar(p);
-	v = v + 1;
-	return v;
+
+int main() {
+	int a = 3;
+	foo();
+	int b = 2;
+	assert(b == 1);
 }
-
-
-int main(void) {
-	int fooValue = foo(2);
-	fooValue++;
-	assert(fooValue == 1);
-}
-
