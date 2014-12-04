@@ -69,6 +69,10 @@ public class TraceAdapterFactory extends AdapterFactoryImpl {
 	protected TraceSwitch<Adapter> modelSwitch =
 		new TraceSwitch<Adapter>() {
 			@Override
+			public Adapter caseArrayValue(ArrayValue object) {
+				return createArrayValueAdapter();
+			}
+			@Override
 			public Adapter caseAssignment(Assignment object) {
 				return createAssignmentAdapter();
 			}
@@ -93,8 +97,20 @@ public class TraceAdapterFactory extends AdapterFactoryImpl {
 				return createLocationOnlyAdapter();
 			}
 			@Override
+			public Adapter caseNameToValueMap(Map.Entry<String, Value> object) {
+				return createNameToValueMapAdapter();
+			}
+			@Override
+			public Adapter caseSimpleValue(SimpleValue object) {
+				return createSimpleValueAdapter();
+			}
+			@Override
 			public Adapter caseStep(Step object) {
 				return createStepAdapter();
+			}
+			@Override
+			public Adapter caseStructValue(StructValue object) {
+				return createStructValueAdapter();
 			}
 			@Override
 			public Adapter caseTrace(Trace object) {
@@ -103,22 +119,6 @@ public class TraceAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseValue(Value object) {
 				return createValueAdapter();
-			}
-			@Override
-			public Adapter caseStructValue(StructValue object) {
-				return createStructValueAdapter();
-			}
-			@Override
-			public Adapter caseArrayValue(ArrayValue object) {
-				return createArrayValueAdapter();
-			}
-			@Override
-			public Adapter caseSimpleValue(SimpleValue object) {
-				return createSimpleValueAdapter();
-			}
-			@Override
-			public Adapter caseNameToValueMap(Map.Entry<String, Value> object) {
-				return createNameToValueMapAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {

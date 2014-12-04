@@ -169,11 +169,6 @@ public class SimpleValueImpl extends ValueImpl implements SimpleValue {
 	public String getUserFriendlyRepresentation(boolean abridged) {
 		return getValue();
 	}
-
-	@Override
-	public Value getValue(String expression) {
-		return this;
-	}
 	
 	@Override
 	public EList<Object> compare(String parentPath, Value old) {

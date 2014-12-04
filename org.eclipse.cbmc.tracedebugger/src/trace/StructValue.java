@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.EMap;
  * </p>
  *
  * @see trace.TracePackage#getStructValue()
- * @model
+ * @model extendedMetaData="name='StructValue' kind='elementOnly'"
  * @generated
  */
 public interface StructValue extends Value {
@@ -34,6 +34,7 @@ public interface StructValue extends Value {
 	 * @return the value of the '<em>Values</em>' map.
 	 * @see trace.TracePackage#getStructValue_Values()
 	 * @model mapType="trace.NameToValueMap<org.eclipse.emf.ecore.xml.type.String, trace.Value>"
+	 *        extendedMetaData="kind='element' name='values'"
 	 * @generated
 	 */
 	EMap<String, Value> getValues();

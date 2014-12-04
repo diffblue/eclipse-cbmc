@@ -12,14 +12,14 @@ import org.eclipse.emf.ecore.EObject;
  *
  *
  * @see trace.TracePackage#getValue()
- * @model
+ * @model extendedMetaData="name='Value' kind='empty'"
  * @generated
  */
 public interface Value extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model expressionDataType="org.eclipse.emf.ecore.xml.type.String" expressionRequired="true"
+	 * @model expressionDataType="org.eclipse.emf.ecore.xml.type.String"
 	 * @generated
 	 */
 	Value getValue(String expression);

@@ -4,6 +4,7 @@ package trace.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EMap;
 
@@ -24,14 +25,24 @@ import trace.Value;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link trace.impl.NameToValueMapImpl#getTypedKey <em>Key</em>}</li>
  *   <li>{@link trace.impl.NameToValueMapImpl#getTypedValue <em>Value</em>}</li>
+ *   <li>{@link trace.impl.NameToValueMapImpl#getTypedKey <em>Key</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class NameToValueMapImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<String,Value> {
+	/**
+	 * The cached value of the '{@link #getTypedValue() <em>Value</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypedValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected Value value;
+
 	/**
 	 * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -51,16 +62,6 @@ public class NameToValueMapImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	protected String key = KEY_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getTypedValue() <em>Value</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTypedValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected Value value;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -107,15 +108,21 @@ public class NameToValueMapImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Value getTypedValue() {
-		if (value != null && value.eIsProxy()) {
-			InternalEObject oldValue = (InternalEObject)value;
-			value = (Value)eResolveProxy(oldValue);
-			if (value != oldValue) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TracePackage.NAME_TO_VALUE_MAP__VALUE, oldValue, value));
-			}
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case TracePackage.NAME_TO_VALUE_MAP__VALUE:
+				return basicSetTypedValue(null, msgs);
 		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Value getTypedValue() {
 		return value;
 	}
 
@@ -124,8 +131,14 @@ public class NameToValueMapImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Value basicGetTypedValue() {
-		return value;
+	public NotificationChain basicSetTypedValue(Value newValue, NotificationChain msgs) {
+		Value oldValue = value;
+		value = newValue;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TracePackage.NAME_TO_VALUE_MAP__VALUE, oldValue, newValue);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -134,10 +147,17 @@ public class NameToValueMapImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	public void setTypedValue(Value newValue) {
-		Value oldValue = value;
-		value = newValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.NAME_TO_VALUE_MAP__VALUE, oldValue, value));
+		if (newValue != value) {
+			NotificationChain msgs = null;
+			if (value != null)
+				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TracePackage.NAME_TO_VALUE_MAP__VALUE, null, msgs);
+			if (newValue != null)
+				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TracePackage.NAME_TO_VALUE_MAP__VALUE, null, msgs);
+			msgs = basicSetTypedValue(newValue, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.NAME_TO_VALUE_MAP__VALUE, newValue, newValue));
 	}
 
 	/**
@@ -148,11 +168,10 @@ public class NameToValueMapImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case TracePackage.NAME_TO_VALUE_MAP__VALUE:
+				return getTypedValue();
 			case TracePackage.NAME_TO_VALUE_MAP__KEY:
 				return getTypedKey();
-			case TracePackage.NAME_TO_VALUE_MAP__VALUE:
-				if (resolve) return getTypedValue();
-				return basicGetTypedValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -165,11 +184,11 @@ public class NameToValueMapImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TracePackage.NAME_TO_VALUE_MAP__KEY:
-				setTypedKey((String)newValue);
-				return;
 			case TracePackage.NAME_TO_VALUE_MAP__VALUE:
 				setTypedValue((Value)newValue);
+				return;
+			case TracePackage.NAME_TO_VALUE_MAP__KEY:
+				setTypedKey((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -183,11 +202,11 @@ public class NameToValueMapImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TracePackage.NAME_TO_VALUE_MAP__KEY:
-				setTypedKey(KEY_EDEFAULT);
-				return;
 			case TracePackage.NAME_TO_VALUE_MAP__VALUE:
 				setTypedValue((Value)null);
+				return;
+			case TracePackage.NAME_TO_VALUE_MAP__KEY:
+				setTypedKey(KEY_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -201,10 +220,10 @@ public class NameToValueMapImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TracePackage.NAME_TO_VALUE_MAP__KEY:
-				return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
 			case TracePackage.NAME_TO_VALUE_MAP__VALUE:
 				return value != null;
+			case TracePackage.NAME_TO_VALUE_MAP__KEY:
+				return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
 		}
 		return super.eIsSet(featureID);
 	}

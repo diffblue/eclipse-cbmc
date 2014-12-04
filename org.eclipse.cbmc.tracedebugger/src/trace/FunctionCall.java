@@ -13,7 +13,6 @@ package trace;
  * <ul>
  *   <li>{@link trace.FunctionCall#getId <em>Id</em>}</li>
  *   <li>{@link trace.FunctionCall#getDisplayName <em>Display Name</em>}</li>
- *   <li>{@link trace.FunctionCall#getFunctionLocation <em>Function Location</em>}</li>
  * </ul>
  * </p>
  *
@@ -75,32 +74,5 @@ public interface FunctionCall extends Step {
 	 * @generated
 	 */
 	void setDisplayName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Function Location</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Function Location</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Function Location</em>' containment reference.
-	 * @see #setFunctionLocation(Location)
-	 * @see trace.TracePackage#getFunctionCall_FunctionLocation()
-	 * @model containment="true" required="true"
-	 *        extendedMetaData="kind='element' name='location'"
-	 * @generated
-	 */
-	Location getFunctionLocation();
-
-	/**
-	 * Sets the value of the '{@link trace.FunctionCall#getFunctionLocation <em>Function Location</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Function Location</em>' containment reference.
-	 * @see #getFunctionLocation()
-	 * @generated
-	 */
-	void setFunctionLocation(Location value);
 
 } // FunctionCall

@@ -236,8 +236,8 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAssignment_Value() {
-		return (EAttribute)assignmentEClass.getEStructuralFeatures().get(3);
+	public EReference getAssignment_Value() {
+		return (EReference)assignmentEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -254,26 +254,8 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAssignment_ValueExpression() {
-		return (EAttribute)assignmentEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAssignment_ParsedValue() {
-		return (EReference)assignmentEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getAssignment_Parameter() {
-		return (EAttribute)assignmentEClass.getEStructuralFeatures().get(7);
+		return (EAttribute)assignmentEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -283,6 +265,15 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 */
 	public EOperation getAssignment__GetValue__String() {
 		return assignmentEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getAssignment__SetValue__String() {
+		return assignmentEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -335,15 +326,6 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionCall_FunctionLocation() {
-		return (EReference)functionCallEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getFunctionReturn() {
 		return functionReturnEClass;
 	}
@@ -364,15 +346,6 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 */
 	public EAttribute getFunctionReturn_DisplayName() {
 		return (EAttribute)functionReturnEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFunctionReturn_FunctionLocation() {
-		return (EReference)functionReturnEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -597,7 +570,7 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * @generated
 	 */
 	public EAttribute getNameToValueMap_Key() {
-		return (EAttribute)nameToValueMapEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)nameToValueMapEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -606,7 +579,7 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * @generated
 	 */
 	public EReference getNameToValueMap_Value() {
-		return (EReference)nameToValueMapEClass.getEStructuralFeatures().get(1);
+		return (EReference)nameToValueMapEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -637,16 +610,18 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		isCreated = true;
 
 		// Create classes and their features
+		arrayValueEClass = createEClass(ARRAY_VALUE);
+		createEReference(arrayValueEClass, ARRAY_VALUE__VALUES);
+
 		assignmentEClass = createEClass(ASSIGNMENT);
 		createEAttribute(assignmentEClass, ASSIGNMENT__ID);
 		createEAttribute(assignmentEClass, ASSIGNMENT__DISPLAY_NAME);
 		createEAttribute(assignmentEClass, ASSIGNMENT__BASE_NAME);
-		createEAttribute(assignmentEClass, ASSIGNMENT__VALUE);
+		createEReference(assignmentEClass, ASSIGNMENT__VALUE);
 		createEAttribute(assignmentEClass, ASSIGNMENT__TYPE);
-		createEAttribute(assignmentEClass, ASSIGNMENT__VALUE_EXPRESSION);
-		createEReference(assignmentEClass, ASSIGNMENT__PARSED_VALUE);
 		createEAttribute(assignmentEClass, ASSIGNMENT__PARAMETER);
 		createEOperation(assignmentEClass, ASSIGNMENT___GET_VALUE__STRING);
+		createEOperation(assignmentEClass, ASSIGNMENT___SET_VALUE__STRING);
 
 		failureEClass = createEClass(FAILURE);
 		createEAttribute(failureEClass, FAILURE__REASON);
@@ -654,12 +629,10 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		functionCallEClass = createEClass(FUNCTION_CALL);
 		createEAttribute(functionCallEClass, FUNCTION_CALL__ID);
 		createEAttribute(functionCallEClass, FUNCTION_CALL__DISPLAY_NAME);
-		createEReference(functionCallEClass, FUNCTION_CALL__FUNCTION_LOCATION);
 
 		functionReturnEClass = createEClass(FUNCTION_RETURN);
 		createEAttribute(functionReturnEClass, FUNCTION_RETURN__ID);
 		createEAttribute(functionReturnEClass, FUNCTION_RETURN__DISPLAY_NAME);
-		createEReference(functionReturnEClass, FUNCTION_RETURN__FUNCTION_LOCATION);
 
 		locationEClass = createEClass(LOCATION);
 		createEAttribute(locationEClass, LOCATION__FILE);
@@ -668,11 +641,21 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 
 		locationOnlyEClass = createEClass(LOCATION_ONLY);
 
+		nameToValueMapEClass = createEClass(NAME_TO_VALUE_MAP);
+		createEReference(nameToValueMapEClass, NAME_TO_VALUE_MAP__VALUE);
+		createEAttribute(nameToValueMapEClass, NAME_TO_VALUE_MAP__KEY);
+
+		simpleValueEClass = createEClass(SIMPLE_VALUE);
+		createEAttribute(simpleValueEClass, SIMPLE_VALUE__VALUE);
+
 		stepEClass = createEClass(STEP);
 		createEAttribute(stepEClass, STEP__NUMBER);
 		createEReference(stepEClass, STEP__LOCATION);
 		createEAttribute(stepEClass, STEP__THREAD);
 		createEOperation(stepEClass, STEP___INTERPRET__CONTEXT);
+
+		structValueEClass = createEClass(STRUCT_VALUE);
+		createEReference(structValueEClass, STRUCT_VALUE__VALUES);
 
 		traceEClass = createEClass(TRACE);
 		createEReference(traceEClass, TRACE__STEPS);
@@ -682,19 +665,6 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		createEOperation(valueEClass, VALUE___GET_CHILDREN_COUNT);
 		createEOperation(valueEClass, VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN);
 		createEOperation(valueEClass, VALUE___COMPARE__STRING_VALUE);
-
-		structValueEClass = createEClass(STRUCT_VALUE);
-		createEReference(structValueEClass, STRUCT_VALUE__VALUES);
-
-		arrayValueEClass = createEClass(ARRAY_VALUE);
-		createEReference(arrayValueEClass, ARRAY_VALUE__VALUES);
-
-		simpleValueEClass = createEClass(SIMPLE_VALUE);
-		createEAttribute(simpleValueEClass, SIMPLE_VALUE__VALUE);
-
-		nameToValueMapEClass = createEClass(NAME_TO_VALUE_MAP);
-		createEAttribute(nameToValueMapEClass, NAME_TO_VALUE_MAP__KEY);
-		createEReference(nameToValueMapEClass, NAME_TO_VALUE_MAP__VALUE);
 	}
 
 	/**
@@ -729,28 +699,32 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		arrayValueEClass.getESuperTypes().add(this.getValue());
 		assignmentEClass.getESuperTypes().add(this.getStep());
 		failureEClass.getESuperTypes().add(this.getStep());
 		functionCallEClass.getESuperTypes().add(this.getStep());
 		functionReturnEClass.getESuperTypes().add(this.getStep());
 		locationOnlyEClass.getESuperTypes().add(this.getStep());
-		structValueEClass.getESuperTypes().add(this.getValue());
-		arrayValueEClass.getESuperTypes().add(this.getValue());
 		simpleValueEClass.getESuperTypes().add(this.getValue());
+		structValueEClass.getESuperTypes().add(this.getValue());
 
 		// Initialize classes, features, and operations; add parameters
+		initEClass(arrayValueEClass, ArrayValue.class, "ArrayValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getArrayValue_Values(), this.getValue(), null, "values", null, 0, -1, ArrayValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(assignmentEClass, Assignment.class, "Assignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAssignment_Id(), theXMLTypePackage.getString(), "id", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAssignment_DisplayName(), theXMLTypePackage.getString(), "displayName", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAssignment_BaseName(), theXMLTypePackage.getString(), "baseName", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAssignment_Value(), theXMLTypePackage.getString(), "value", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssignment_Value(), this.getValue(), null, "value", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAssignment_Type(), theXMLTypePackage.getString(), "type", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAssignment_ValueExpression(), theXMLTypePackage.getString(), "valueExpression", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAssignment_ParsedValue(), this.getValue(), null, "parsedValue", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAssignment_Parameter(), theXMLTypePackage.getBoolean(), "parameter", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getAssignment__GetValue__String(), this.getValue(), "getValue", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theXMLTypePackage.getString(), "expression", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getAssignment__SetValue__String(), null, "setValue", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theXMLTypePackage.getString(), "userFriendlyRepresentation", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(failureEClass, Failure.class, "Failure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFailure_Reason(), theXMLTypePackage.getString(), "reason", null, 1, 1, Failure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -758,12 +732,10 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		initEClass(functionCallEClass, FunctionCall.class, "FunctionCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFunctionCall_Id(), theXMLTypePackage.getString(), "id", null, 1, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFunctionCall_DisplayName(), theXMLTypePackage.getString(), "displayName", null, 1, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionCall_FunctionLocation(), this.getLocation(), null, "functionLocation", null, 1, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(functionReturnEClass, FunctionReturn.class, "FunctionReturn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFunctionReturn_Id(), theXMLTypePackage.getString(), "id", null, 1, 1, FunctionReturn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFunctionReturn_DisplayName(), theXMLTypePackage.getString(), "displayName", null, 1, 1, FunctionReturn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionReturn_FunctionLocation(), this.getLocation(), null, "functionLocation", null, 1, 1, FunctionReturn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(locationEClass, Location.class, "Location", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLocation_File(), theXMLTypePackage.getString(), "file", null, 1, 1, Location.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -771,6 +743,13 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		initEAttribute(getLocation_Line(), theXMLTypePackage.getInt(), "line", null, 1, 1, Location.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(locationOnlyEClass, LocationOnly.class, "LocationOnly", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(nameToValueMapEClass, Map.Entry.class, "NameToValueMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNameToValueMap_Value(), this.getValue(), null, "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNameToValueMap_Key(), theXMLTypePackage.getString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(simpleValueEClass, SimpleValue.class, "SimpleValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSimpleValue_Value(), theXMLTypePackage.getString(), "value", null, 1, 1, SimpleValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stepEClass, Step.class, "Step", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStep_Number(), theXMLTypePackage.getInt(), "number", null, 1, 1, Step.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -780,13 +759,16 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		op = initEOperation(getStep__Interpret__Context(), theProcessPackage.getStepResult(), "interpret", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theProcessPackage.getContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		initEClass(structValueEClass, StructValue.class, "StructValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStructValue_Values(), this.getNameToValueMap(), null, "values", null, 0, -1, StructValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(traceEClass, Trace.class, "Trace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTrace_Steps(), this.getStep(), null, "steps", null, 0, -1, Trace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(valueEClass, Value.class, "Value", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		op = initEOperation(getValue__GetValue__String(), this.getValue(), "getValue", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theXMLTypePackage.getString(), "expression", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theXMLTypePackage.getString(), "expression", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getValue__GetChildrenCount(), theXMLTypePackage.getInt(), "getChildrenCount", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -800,19 +782,6 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
-
-		initEClass(structValueEClass, StructValue.class, "StructValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStructValue_Values(), this.getNameToValueMap(), null, "values", null, 0, -1, StructValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(arrayValueEClass, ArrayValue.class, "ArrayValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getArrayValue_Values(), this.getValue(), null, "values", null, 0, -1, ArrayValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(simpleValueEClass, SimpleValue.class, "SimpleValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSimpleValue_Value(), theXMLTypePackage.getString(), "value", null, 0, 1, SimpleValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(nameToValueMapEClass, Map.Entry.class, "NameToValueMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getNameToValueMap_Key(), theXMLTypePackage.getString(), "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNameToValueMap_Value(), this.getValue(), null, "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -830,6 +799,20 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 */
 	protected void createExtendedMetaDataAnnotations() {
 		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";	
+		addAnnotation
+		  (arrayValueEClass, 
+		   source, 
+		   new String[] {
+			 "name", "ArrayValue",
+			 "kind", "elementOnly"
+		   });	
+		addAnnotation
+		  (getArrayValue_Values(), 
+		   source, 
+		   new String[] {
+			 "kind", "element",
+			 "name", "values"
+		   });	
 		addAnnotation
 		  (assignmentEClass, 
 		   source, 
@@ -873,13 +856,6 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 			 "name", "type"
 		   });	
 		addAnnotation
-		  (getAssignment_ValueExpression(), 
-		   source, 
-		   new String[] {
-			 "kind", "element",
-			 "name", "valueExpression"
-		   });	
-		addAnnotation
 		  (failureEClass, 
 		   source, 
 		   new String[] {
@@ -915,13 +891,6 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 			 "name", "displayName"
 		   });	
 		addAnnotation
-		  (getFunctionCall_FunctionLocation(), 
-		   source, 
-		   new String[] {
-			 "kind", "element",
-			 "name", "location"
-		   });	
-		addAnnotation
 		  (functionReturnEClass, 
 		   source, 
 		   new String[] {
@@ -941,13 +910,6 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		   new String[] {
 			 "kind", "element",
 			 "name", "displayName"
-		   });	
-		addAnnotation
-		  (getFunctionReturn_FunctionLocation(), 
-		   source, 
-		   new String[] {
-			 "kind", "element",
-			 "name", "location"
 		   });	
 		addAnnotation
 		  (locationEClass, 
@@ -985,6 +947,41 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 			 "kind", "elementOnly"
 		   });	
 		addAnnotation
+		  (nameToValueMapEClass, 
+		   source, 
+		   new String[] {
+			 "name", "NameToValueMap",
+			 "kind", "elementOnly"
+		   });	
+		addAnnotation
+		  (getNameToValueMap_Value(), 
+		   source, 
+		   new String[] {
+			 "kind", "element",
+			 "name", "value"
+		   });	
+		addAnnotation
+		  (getNameToValueMap_Key(), 
+		   source, 
+		   new String[] {
+			 "kind", "element",
+			 "name", "key"
+		   });	
+		addAnnotation
+		  (simpleValueEClass, 
+		   source, 
+		   new String[] {
+			 "name", "SimpleValue",
+			 "kind", "elementOnly"
+		   });	
+		addAnnotation
+		  (getSimpleValue_Value(), 
+		   source, 
+		   new String[] {
+			 "kind", "element",
+			 "name", "value"
+		   });	
+		addAnnotation
 		  (stepEClass, 
 		   source, 
 		   new String[] {
@@ -1013,6 +1010,20 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 			 "name", "thread"
 		   });	
 		addAnnotation
+		  (structValueEClass, 
+		   source, 
+		   new String[] {
+			 "name", "StructValue",
+			 "kind", "elementOnly"
+		   });	
+		addAnnotation
+		  (getStructValue_Values(), 
+		   source, 
+		   new String[] {
+			 "kind", "element",
+			 "name", "values"
+		   });	
+		addAnnotation
 		  (traceEClass, 
 		   source, 
 		   new String[] {
@@ -1025,6 +1036,13 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		   new String[] {
 			 "kind", "element",
 			 "name", "steps"
+		   });	
+		addAnnotation
+		  (valueEClass, 
+		   source, 
+		   new String[] {
+			 "name", "Value",
+			 "kind", "empty"
 		   });
 	}
 

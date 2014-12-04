@@ -56,7 +56,7 @@ public class VarCreate extends MICommand {
 		process.getVariableManager().getVariables().put(internalVarName, match);
 		process.getVariableManager().getPreviousValues().put(internalVarName, match);
 		
-		Value value = match.getParsedValue();
+		Value value = match.getValue();
 		
 		Vars v = new Vars();
 		v.name = internalVarName;

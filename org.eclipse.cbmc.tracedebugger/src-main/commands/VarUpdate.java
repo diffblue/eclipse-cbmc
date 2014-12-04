@@ -28,7 +28,7 @@ public class VarUpdate extends MICommand {
 		if (previousAssignment == newAssignement) {
 			changes = Collections.emptyList();
 		} else {
-			changes = newAssignement.getParsedValue().compare(requestedVariable, previousAssignment.getParsedValue());
+			changes = newAssignement.getValue().compare(requestedVariable, previousAssignment.getValue());
 			process.getVariableManager().getPreviousValues().put(requestedVariable, newAssignement);
 			process.getVariableManager().getVariables().put(requestedVariable, newAssignement);
 		}

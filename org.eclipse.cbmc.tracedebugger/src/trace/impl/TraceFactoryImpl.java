@@ -57,19 +57,19 @@ public class TraceFactoryImpl extends EFactoryImpl implements TraceFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
+			case TracePackage.ARRAY_VALUE: return createArrayValue();
 			case TracePackage.ASSIGNMENT: return createAssignment();
 			case TracePackage.FAILURE: return createFailure();
 			case TracePackage.FUNCTION_CALL: return createFunctionCall();
 			case TracePackage.FUNCTION_RETURN: return createFunctionReturn();
 			case TracePackage.LOCATION: return createLocation();
 			case TracePackage.LOCATION_ONLY: return createLocationOnly();
+			case TracePackage.NAME_TO_VALUE_MAP: return (EObject)createNameToValueMap();
+			case TracePackage.SIMPLE_VALUE: return createSimpleValue();
 			case TracePackage.STEP: return createStep();
+			case TracePackage.STRUCT_VALUE: return createStructValue();
 			case TracePackage.TRACE: return createTrace();
 			case TracePackage.VALUE: return createValue();
-			case TracePackage.STRUCT_VALUE: return createStructValue();
-			case TracePackage.ARRAY_VALUE: return createArrayValue();
-			case TracePackage.SIMPLE_VALUE: return createSimpleValue();
-			case TracePackage.NAME_TO_VALUE_MAP: return (EObject)createNameToValueMap();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}

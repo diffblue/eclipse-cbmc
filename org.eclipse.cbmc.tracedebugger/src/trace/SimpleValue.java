@@ -16,7 +16,7 @@ package trace;
  * </p>
  *
  * @see trace.TracePackage#getSimpleValue()
- * @model
+ * @model extendedMetaData="name='SimpleValue' kind='elementOnly'"
  * @generated
  */
 public interface SimpleValue extends Value {
@@ -32,7 +32,8 @@ public interface SimpleValue extends Value {
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(String)
 	 * @see trace.TracePackage#getSimpleValue_Value()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+	 * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+	 *        extendedMetaData="kind='element' name='value'"
 	 * @generated
 	 */
 	String getValue();

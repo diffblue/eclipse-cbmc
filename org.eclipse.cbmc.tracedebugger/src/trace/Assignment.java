@@ -16,8 +16,6 @@ package trace;
  *   <li>{@link trace.Assignment#getBaseName <em>Base Name</em>}</li>
  *   <li>{@link trace.Assignment#getValue <em>Value</em>}</li>
  *   <li>{@link trace.Assignment#getType <em>Type</em>}</li>
- *   <li>{@link trace.Assignment#getValueExpression <em>Value Expression</em>}</li>
- *   <li>{@link trace.Assignment#getParsedValue <em>Parsed Value</em>}</li>
  *   <li>{@link trace.Assignment#isParameter <em>Parameter</em>}</li>
  * </ul>
  * </p>
@@ -109,31 +107,39 @@ public interface Assignment extends Step {
 	void setBaseName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Value</b></em>' attribute.
+	 * Returns the value of the '<em><b>Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Value</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value</em>' attribute.
-	 * @see #setValue(String)
+	 * @return the value of the '<em>Value</em>' containment reference.
+	 * @see #setValue(Value)
 	 * @see trace.TracePackage#getAssignment_Value()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+	 * @model containment="true" required="true"
 	 *        extendedMetaData="kind='element' name='value'"
 	 * @generated
 	 */
-	String getValue();
+	Value getValue();
 
 	/**
-	 * Sets the value of the '{@link trace.Assignment#getValue <em>Value</em>}' attribute.
+	 * Sets the value of the '{@link trace.Assignment#getValue <em>Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value</em>' attribute.
+	 * @param value the new value of the '<em>Value</em>' containment reference.
 	 * @see #getValue()
 	 * @generated
 	 */
-	void setValue(String value);
+	void setValue(Value value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model userFriendlyRepresentationDataType="org.eclipse.emf.ecore.xml.type.String"
+	 * @generated
+	 */
+	void setValue(String userFriendlyRepresentation);
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
@@ -161,59 +167,6 @@ public interface Assignment extends Step {
 	 * @generated
 	 */
 	void setType(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Value Expression</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Value Expression</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value Expression</em>' attribute.
-	 * @see #setValueExpression(String)
-	 * @see trace.TracePackage#getAssignment_ValueExpression()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
-	 *        extendedMetaData="kind='element' name='valueExpression'"
-	 * @generated
-	 */
-	String getValueExpression();
-
-	/**
-	 * Sets the value of the '{@link trace.Assignment#getValueExpression <em>Value Expression</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value Expression</em>' attribute.
-	 * @see #getValueExpression()
-	 * @generated
-	 */
-	void setValueExpression(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Parsed Value</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Parsed Value</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parsed Value</em>' reference.
-	 * @see #setParsedValue(Value)
-	 * @see trace.TracePackage#getAssignment_ParsedValue()
-	 * @model required="true" derived="true"
-	 * @generated
-	 */
-	Value getParsedValue();
-
-	/**
-	 * Sets the value of the '{@link trace.Assignment#getParsedValue <em>Parsed Value</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Parsed Value</em>' reference.
-	 * @see #getParsedValue()
-	 * @generated
-	 */
-	void setParsedValue(Value value);
 
 	/**
 	 * Returns the value of the '<em><b>Parameter</b></em>' attribute.

@@ -67,6 +67,13 @@ public class TraceSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case TracePackage.ARRAY_VALUE: {
+				ArrayValue arrayValue = (ArrayValue)theEObject;
+				T result = caseArrayValue(arrayValue);
+				if (result == null) result = caseValue(arrayValue);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case TracePackage.ASSIGNMENT: {
 				Assignment assignment = (Assignment)theEObject;
 				T result = caseAssignment(assignment);
@@ -108,9 +115,29 @@ public class TraceSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case TracePackage.NAME_TO_VALUE_MAP: {
+				@SuppressWarnings("unchecked") Map.Entry<String, Value> nameToValueMap = (Map.Entry<String, Value>)theEObject;
+				T result = caseNameToValueMap(nameToValueMap);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TracePackage.SIMPLE_VALUE: {
+				SimpleValue simpleValue = (SimpleValue)theEObject;
+				T result = caseSimpleValue(simpleValue);
+				if (result == null) result = caseValue(simpleValue);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case TracePackage.STEP: {
 				Step step = (Step)theEObject;
 				T result = caseStep(step);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TracePackage.STRUCT_VALUE: {
+				StructValue structValue = (StructValue)theEObject;
+				T result = caseStructValue(structValue);
+				if (result == null) result = caseValue(structValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -123,33 +150,6 @@ public class TraceSwitch<T> extends Switch<T> {
 			case TracePackage.VALUE: {
 				Value value = (Value)theEObject;
 				T result = caseValue(value);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case TracePackage.STRUCT_VALUE: {
-				StructValue structValue = (StructValue)theEObject;
-				T result = caseStructValue(structValue);
-				if (result == null) result = caseValue(structValue);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case TracePackage.ARRAY_VALUE: {
-				ArrayValue arrayValue = (ArrayValue)theEObject;
-				T result = caseArrayValue(arrayValue);
-				if (result == null) result = caseValue(arrayValue);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case TracePackage.SIMPLE_VALUE: {
-				SimpleValue simpleValue = (SimpleValue)theEObject;
-				T result = caseSimpleValue(simpleValue);
-				if (result == null) result = caseValue(simpleValue);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case TracePackage.NAME_TO_VALUE_MAP: {
-				@SuppressWarnings("unchecked") Map.Entry<String, Value> nameToValueMap = (Map.Entry<String, Value>)theEObject;
-				T result = caseNameToValueMap(nameToValueMap);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

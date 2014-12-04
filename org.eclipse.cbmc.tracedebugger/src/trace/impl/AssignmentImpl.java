@@ -2,22 +2,20 @@
  */
 package trace.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
-
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import process.Context;
 import process.FunctionExecution;
 import process.ProcessFactory;
@@ -25,6 +23,7 @@ import process.StepResult;
 import process.SteppingResult;
 import expressionparser.ValueExpressionLexer;
 import expressionparser.ValueExpressionParser;
+import java.lang.reflect.InvocationTargetException;
 import trace.Assignment;
 import trace.SimpleValue;
 import trace.TraceFactory;
@@ -43,8 +42,6 @@ import trace.Value;
  *   <li>{@link trace.impl.AssignmentImpl#getBaseName <em>Base Name</em>}</li>
  *   <li>{@link trace.impl.AssignmentImpl#getValue <em>Value</em>}</li>
  *   <li>{@link trace.impl.AssignmentImpl#getType <em>Type</em>}</li>
- *   <li>{@link trace.impl.AssignmentImpl#getValueExpression <em>Value Expression</em>}</li>
- *   <li>{@link trace.impl.AssignmentImpl#getParsedValue <em>Parsed Value</em>}</li>
  *   <li>{@link trace.impl.AssignmentImpl#isParameter <em>Parameter</em>}</li>
  * </ul>
  * </p>
@@ -113,24 +110,14 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	protected String baseName = BASE_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String VALUE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected String value = VALUE_EDEFAULT;
+	protected Value value;
 
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -151,36 +138,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	 * @ordered
 	 */
 	protected String type = TYPE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getValueExpression() <em>Value Expression</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValueExpression()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String VALUE_EXPRESSION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getValueExpression() <em>Value Expression</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValueExpression()
-	 * @generated
-	 * @ordered
-	 */
-	protected String valueExpression = VALUE_EXPRESSION_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getParsedValue() <em>Parsed Value</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getParsedValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected Value parsedValue;
 
 	/**
 	 * The default value of the '{@link #isParameter() <em>Parameter</em>}' attribute.
@@ -289,7 +246,7 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getValue() {
+	public Value getValue() {
 		return value;
 	}
 
@@ -298,11 +255,47 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValue(String newValue) {
-		String oldValue = value;
+	public NotificationChain basicSetValue(Value newValue, NotificationChain msgs) {
+		Value oldValue = value;
 		value = newValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.ASSIGNMENT__VALUE, oldValue, value));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TracePackage.ASSIGNMENT__VALUE, oldValue, newValue);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setValue(Value newValue) {
+		if (newValue != value) {
+			NotificationChain msgs = null;
+			if (value != null)
+				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TracePackage.ASSIGNMENT__VALUE, null, msgs);
+			if (newValue != null)
+				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TracePackage.ASSIGNMENT__VALUE, null, msgs);
+			msgs = basicSetValue(newValue, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.ASSIGNMENT__VALUE, newValue, newValue));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case TracePackage.ASSIGNMENT__VALUE:
+				return basicSetValue(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -324,65 +317,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 		type = newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.ASSIGNMENT__TYPE, oldType, type));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getValueExpression() {
-		return valueExpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setValueExpression(String newValueExpression) {
-		String oldValueExpression = valueExpression;
-		valueExpression = newValueExpression;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.ASSIGNMENT__VALUE_EXPRESSION, oldValueExpression, valueExpression));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Value getParsedValue() {
-		if (parsedValue != null && parsedValue.eIsProxy()) {
-			InternalEObject oldParsedValue = (InternalEObject)parsedValue;
-			parsedValue = (Value)eResolveProxy(oldParsedValue);
-			if (parsedValue != oldParsedValue) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TracePackage.ASSIGNMENT__PARSED_VALUE, oldParsedValue, parsedValue));
-			}
-		}
-		return parsedValue;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Value basicGetParsedValue() {
-		return parsedValue;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setParsedValue(Value newParsedValue) {
-		Value oldParsedValue = parsedValue;
-		parsedValue = newParsedValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.ASSIGNMENT__PARSED_VALUE, oldParsedValue, parsedValue));
 	}
 
 	/**
@@ -412,32 +346,23 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	 * @generated NOT
 	 */
 	public Value getValue(String expression) {
-		try {
-			parseValueExpression();
-		} catch(IllegalStateException e) {
-			parsedValue = TraceFactory.eINSTANCE.createSimpleValue();
-			((SimpleValue) parsedValue).setValue(getValue());
-		}
 		if (getBaseName().equals(expression))
-			return parsedValue;
+			return value;
 
 		if (expression.startsWith(getBaseName()))
 			expression = expression.substring(getBaseName().length());
-		return parsedValue.getValue(expression);
+		return value.getValue(expression);
 	}
 
-	private void parseValueExpression() {
-		if (parsedValue != null)
-			return;
-        ValueExpressionLexer l = new ValueExpressionLexer(new ANTLRInputStream(getValue()));
-        ValueExpressionParser p = new ValueExpressionParser(new CommonTokenStream(l));
-        p.addErrorListener(new BaseErrorListener() {
-            @Override
-            public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine, String msg, RecognitionException e) {
-                throw new IllegalStateException("failed to parse at line " + line + " due to " + msg, e);
-            }
-        });
-        parsedValue = p.expression().newValue;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setValue(String userFriendlyRepresentation) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 	
 	/**
@@ -458,11 +383,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 				return getValue();
 			case TracePackage.ASSIGNMENT__TYPE:
 				return getType();
-			case TracePackage.ASSIGNMENT__VALUE_EXPRESSION:
-				return getValueExpression();
-			case TracePackage.ASSIGNMENT__PARSED_VALUE:
-				if (resolve) return getParsedValue();
-				return basicGetParsedValue();
 			case TracePackage.ASSIGNMENT__PARAMETER:
 				return isParameter();
 		}
@@ -487,16 +407,10 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 				setBaseName((String)newValue);
 				return;
 			case TracePackage.ASSIGNMENT__VALUE:
-				setValue((String)newValue);
+				setValue((Value)newValue);
 				return;
 			case TracePackage.ASSIGNMENT__TYPE:
 				setType((String)newValue);
-				return;
-			case TracePackage.ASSIGNMENT__VALUE_EXPRESSION:
-				setValueExpression((String)newValue);
-				return;
-			case TracePackage.ASSIGNMENT__PARSED_VALUE:
-				setParsedValue((Value)newValue);
 				return;
 			case TracePackage.ASSIGNMENT__PARAMETER:
 				setParameter((Boolean)newValue);
@@ -523,16 +437,10 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 				setBaseName(BASE_NAME_EDEFAULT);
 				return;
 			case TracePackage.ASSIGNMENT__VALUE:
-				setValue(VALUE_EDEFAULT);
+				setValue((Value)null);
 				return;
 			case TracePackage.ASSIGNMENT__TYPE:
 				setType(TYPE_EDEFAULT);
-				return;
-			case TracePackage.ASSIGNMENT__VALUE_EXPRESSION:
-				setValueExpression(VALUE_EXPRESSION_EDEFAULT);
-				return;
-			case TracePackage.ASSIGNMENT__PARSED_VALUE:
-				setParsedValue((Value)null);
 				return;
 			case TracePackage.ASSIGNMENT__PARAMETER:
 				setParameter(PARAMETER_EDEFAULT);
@@ -556,13 +464,9 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 			case TracePackage.ASSIGNMENT__BASE_NAME:
 				return BASE_NAME_EDEFAULT == null ? baseName != null : !BASE_NAME_EDEFAULT.equals(baseName);
 			case TracePackage.ASSIGNMENT__VALUE:
-				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+				return value != null;
 			case TracePackage.ASSIGNMENT__TYPE:
 				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-			case TracePackage.ASSIGNMENT__VALUE_EXPRESSION:
-				return VALUE_EXPRESSION_EDEFAULT == null ? valueExpression != null : !VALUE_EXPRESSION_EDEFAULT.equals(valueExpression);
-			case TracePackage.ASSIGNMENT__PARSED_VALUE:
-				return parsedValue != null;
 			case TracePackage.ASSIGNMENT__PARAMETER:
 				return parameter != PARAMETER_EDEFAULT;
 		}
@@ -579,6 +483,9 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 		switch (operationID) {
 			case TracePackage.ASSIGNMENT___GET_VALUE__STRING:
 				return getValue((String)arguments.get(0));
+			case TracePackage.ASSIGNMENT___SET_VALUE__STRING:
+				setValue((String)arguments.get(0));
+				return null;
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -599,12 +506,8 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 		result.append(displayName);
 		result.append(", baseName: ");
 		result.append(baseName);
-		result.append(", value: ");
-		result.append(value);
 		result.append(", type: ");
 		result.append(type);
-		result.append(", valueExpression: ");
-		result.append(valueExpression);
 		result.append(", parameter: ");
 		result.append(parameter);
 		result.append(')');

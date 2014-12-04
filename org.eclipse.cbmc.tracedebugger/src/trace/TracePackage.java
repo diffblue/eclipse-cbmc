@@ -65,7 +65,224 @@ public interface TracePackage extends EPackage {
 	 * @see trace.impl.TracePackageImpl#getStep()
 	 * @generated
 	 */
-	int STEP = 6;
+	int STEP = 9;
+
+	/**
+	 * The meta object id for the '{@link trace.impl.AssignmentImpl <em>Assignment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see trace.impl.AssignmentImpl
+	 * @see trace.impl.TracePackageImpl#getAssignment()
+	 * @generated
+	 */
+	int ASSIGNMENT = 1;
+
+	/**
+	 * The meta object id for the '{@link trace.impl.FailureImpl <em>Failure</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see trace.impl.FailureImpl
+	 * @see trace.impl.TracePackageImpl#getFailure()
+	 * @generated
+	 */
+	int FAILURE = 2;
+
+	/**
+	 * The meta object id for the '{@link trace.impl.FunctionCallImpl <em>Function Call</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see trace.impl.FunctionCallImpl
+	 * @see trace.impl.TracePackageImpl#getFunctionCall()
+	 * @generated
+	 */
+	int FUNCTION_CALL = 3;
+
+	/**
+	 * The meta object id for the '{@link trace.impl.FunctionReturnImpl <em>Function Return</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see trace.impl.FunctionReturnImpl
+	 * @see trace.impl.TracePackageImpl#getFunctionReturn()
+	 * @generated
+	 */
+	int FUNCTION_RETURN = 4;
+
+	/**
+	 * The meta object id for the '{@link trace.impl.LocationImpl <em>Location</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see trace.impl.LocationImpl
+	 * @see trace.impl.TracePackageImpl#getLocation()
+	 * @generated
+	 */
+	int LOCATION = 5;
+
+	/**
+	 * The meta object id for the '{@link trace.impl.LocationOnlyImpl <em>Location Only</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see trace.impl.LocationOnlyImpl
+	 * @see trace.impl.TracePackageImpl#getLocationOnly()
+	 * @generated
+	 */
+	int LOCATION_ONLY = 6;
+
+	/**
+	 * The meta object id for the '{@link trace.impl.TraceImpl <em>Trace</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see trace.impl.TraceImpl
+	 * @see trace.impl.TracePackageImpl#getTrace()
+	 * @generated
+	 */
+	int TRACE = 11;
+
+	/**
+	 * The meta object id for the '{@link trace.impl.ValueImpl <em>Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see trace.impl.ValueImpl
+	 * @see trace.impl.TracePackageImpl#getValue()
+	 * @generated
+	 */
+	int VALUE = 12;
+
+	/**
+	 * The number of structural features of the '<em>Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_FEATURE_COUNT = 0;
+
+	/**
+	 * The operation id for the '<em>Get Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE___GET_VALUE__STRING = 0;
+
+	/**
+	 * The operation id for the '<em>Get Children Count</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE___GET_CHILDREN_COUNT = 1;
+
+	/**
+	 * The operation id for the '<em>Get User Friendly Representation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN = 2;
+
+	/**
+	 * The operation id for the '<em>Compare</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE___COMPARE__STRING_VALUE = 3;
+
+	/**
+	 * The number of operations of the '<em>Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_OPERATION_COUNT = 4;
+
+	/**
+	 * The meta object id for the '{@link trace.impl.StructValueImpl <em>Struct Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see trace.impl.StructValueImpl
+	 * @see trace.impl.TracePackageImpl#getStructValue()
+	 * @generated
+	 */
+	int STRUCT_VALUE = 10;
+
+	/**
+	 * The meta object id for the '{@link trace.impl.ArrayValueImpl <em>Array Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see trace.impl.ArrayValueImpl
+	 * @see trace.impl.TracePackageImpl#getArrayValue()
+	 * @generated
+	 */
+	int ARRAY_VALUE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Values</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_VALUE__VALUES = VALUE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Array Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_VALUE___GET_VALUE__STRING = VALUE___GET_VALUE__STRING;
+
+	/**
+	 * The operation id for the '<em>Get Children Count</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_VALUE___GET_CHILDREN_COUNT = VALUE___GET_CHILDREN_COUNT;
+
+	/**
+	 * The operation id for the '<em>Get User Friendly Representation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN = VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN;
+
+	/**
+	 * The operation id for the '<em>Compare</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_VALUE___COMPARE__STRING_VALUE = VALUE___COMPARE__STRING_VALUE;
+
+	/**
+	 * The number of operations of the '<em>Array Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_VALUE_OPERATION_COUNT = VALUE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Number</b></em>' attribute.
@@ -122,16 +339,6 @@ public interface TracePackage extends EPackage {
 	int STEP_OPERATION_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link trace.impl.AssignmentImpl <em>Assignment</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see trace.impl.AssignmentImpl
-	 * @see trace.impl.TracePackageImpl#getAssignment()
-	 * @generated
-	 */
-	int ASSIGNMENT = 0;
-
-	/**
 	 * The feature id for the '<em><b>Number</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -186,7 +393,7 @@ public interface TracePackage extends EPackage {
 	int ASSIGNMENT__BASE_NAME = STEP_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -204,31 +411,13 @@ public interface TracePackage extends EPackage {
 	int ASSIGNMENT__TYPE = STEP_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Value Expression</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSIGNMENT__VALUE_EXPRESSION = STEP_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Parsed Value</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSIGNMENT__PARSED_VALUE = STEP_FEATURE_COUNT + 6;
-
-	/**
 	 * The feature id for the '<em><b>Parameter</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNMENT__PARAMETER = STEP_FEATURE_COUNT + 7;
+	int ASSIGNMENT__PARAMETER = STEP_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Assignment</em>' class.
@@ -237,7 +426,7 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNMENT_FEATURE_COUNT = STEP_FEATURE_COUNT + 8;
+	int ASSIGNMENT_FEATURE_COUNT = STEP_FEATURE_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Interpret</em>' operation.
@@ -258,23 +447,22 @@ public interface TracePackage extends EPackage {
 	int ASSIGNMENT___GET_VALUE__STRING = STEP_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Set Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNMENT___SET_VALUE__STRING = STEP_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Assignment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNMENT_OPERATION_COUNT = STEP_OPERATION_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link trace.impl.FailureImpl <em>Failure</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see trace.impl.FailureImpl
-	 * @see trace.impl.TracePackageImpl#getFailure()
-	 * @generated
-	 */
-	int FAILURE = 1;
+	int ASSIGNMENT_OPERATION_COUNT = STEP_OPERATION_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Number</b></em>' attribute.
@@ -340,16 +528,6 @@ public interface TracePackage extends EPackage {
 	int FAILURE_OPERATION_COUNT = STEP_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link trace.impl.FunctionCallImpl <em>Function Call</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see trace.impl.FunctionCallImpl
-	 * @see trace.impl.TracePackageImpl#getFunctionCall()
-	 * @generated
-	 */
-	int FUNCTION_CALL = 2;
-
-	/**
 	 * The feature id for the '<em><b>Number</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -395,22 +573,13 @@ public interface TracePackage extends EPackage {
 	int FUNCTION_CALL__DISPLAY_NAME = STEP_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Function Location</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTION_CALL__FUNCTION_LOCATION = STEP_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Function Call</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_CALL_FEATURE_COUNT = STEP_FEATURE_COUNT + 3;
+	int FUNCTION_CALL_FEATURE_COUNT = STEP_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Interpret</em>' operation.
@@ -429,16 +598,6 @@ public interface TracePackage extends EPackage {
 	 * @ordered
 	 */
 	int FUNCTION_CALL_OPERATION_COUNT = STEP_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link trace.impl.FunctionReturnImpl <em>Function Return</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see trace.impl.FunctionReturnImpl
-	 * @see trace.impl.TracePackageImpl#getFunctionReturn()
-	 * @generated
-	 */
-	int FUNCTION_RETURN = 3;
 
 	/**
 	 * The feature id for the '<em><b>Number</b></em>' attribute.
@@ -486,22 +645,13 @@ public interface TracePackage extends EPackage {
 	int FUNCTION_RETURN__DISPLAY_NAME = STEP_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Function Location</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTION_RETURN__FUNCTION_LOCATION = STEP_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Function Return</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_RETURN_FEATURE_COUNT = STEP_FEATURE_COUNT + 3;
+	int FUNCTION_RETURN_FEATURE_COUNT = STEP_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Interpret</em>' operation.
@@ -520,16 +670,6 @@ public interface TracePackage extends EPackage {
 	 * @ordered
 	 */
 	int FUNCTION_RETURN_OPERATION_COUNT = STEP_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link trace.impl.LocationImpl <em>Location</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see trace.impl.LocationImpl
-	 * @see trace.impl.TracePackageImpl#getLocation()
-	 * @generated
-	 */
-	int LOCATION = 4;
 
 	/**
 	 * The feature id for the '<em><b>File</b></em>' attribute.
@@ -575,16 +715,6 @@ public interface TracePackage extends EPackage {
 	 * @ordered
 	 */
 	int LOCATION_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link trace.impl.LocationOnlyImpl <em>Location Only</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see trace.impl.LocationOnlyImpl
-	 * @see trace.impl.TracePackageImpl#getLocationOnly()
-	 * @generated
-	 */
-	int LOCATION_ONLY = 5;
 
 	/**
 	 * The feature id for the '<em><b>Number</b></em>' attribute.
@@ -640,255 +770,6 @@ public interface TracePackage extends EPackage {
 	 */
 	int LOCATION_ONLY_OPERATION_COUNT = STEP_OPERATION_COUNT + 0;
 
-
-	/**
-	 * The meta object id for the '{@link trace.impl.TraceImpl <em>Trace</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see trace.impl.TraceImpl
-	 * @see trace.impl.TracePackageImpl#getTrace()
-	 * @generated
-	 */
-	int TRACE = 7;
-
-	/**
-	 * The feature id for the '<em><b>Steps</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRACE__STEPS = 0;
-
-	/**
-	 * The number of structural features of the '<em>Trace</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRACE_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Trace</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRACE_OPERATION_COUNT = 0;
-
-
-	/**
-	 * The meta object id for the '{@link trace.impl.ValueImpl <em>Value</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see trace.impl.ValueImpl
-	 * @see trace.impl.TracePackageImpl#getValue()
-	 * @generated
-	 */
-	int VALUE = 8;
-
-	/**
-	 * The number of structural features of the '<em>Value</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_FEATURE_COUNT = 0;
-
-	/**
-	 * The operation id for the '<em>Get Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE___GET_VALUE__STRING = 0;
-
-	/**
-	 * The operation id for the '<em>Get Children Count</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE___GET_CHILDREN_COUNT = 1;
-
-	/**
-	 * The operation id for the '<em>Get User Friendly Representation</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN = 2;
-
-	/**
-	 * The operation id for the '<em>Compare</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE___COMPARE__STRING_VALUE = 3;
-
-	/**
-	 * The number of operations of the '<em>Value</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_OPERATION_COUNT = 4;
-
-	/**
-	 * The meta object id for the '{@link trace.impl.StructValueImpl <em>Struct Value</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see trace.impl.StructValueImpl
-	 * @see trace.impl.TracePackageImpl#getStructValue()
-	 * @generated
-	 */
-	int STRUCT_VALUE = 9;
-
-	/**
-	 * The feature id for the '<em><b>Values</b></em>' map.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRUCT_VALUE__VALUES = VALUE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Struct Value</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRUCT_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Get Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRUCT_VALUE___GET_VALUE__STRING = VALUE___GET_VALUE__STRING;
-
-	/**
-	 * The operation id for the '<em>Get Children Count</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRUCT_VALUE___GET_CHILDREN_COUNT = VALUE___GET_CHILDREN_COUNT;
-
-	/**
-	 * The operation id for the '<em>Get User Friendly Representation</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRUCT_VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN = VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN;
-
-	/**
-	 * The operation id for the '<em>Compare</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRUCT_VALUE___COMPARE__STRING_VALUE = VALUE___COMPARE__STRING_VALUE;
-
-	/**
-	 * The number of operations of the '<em>Struct Value</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRUCT_VALUE_OPERATION_COUNT = VALUE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link trace.impl.ArrayValueImpl <em>Array Value</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see trace.impl.ArrayValueImpl
-	 * @see trace.impl.TracePackageImpl#getArrayValue()
-	 * @generated
-	 */
-	int ARRAY_VALUE = 10;
-
-	/**
-	 * The feature id for the '<em><b>Values</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARRAY_VALUE__VALUES = VALUE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Array Value</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARRAY_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Get Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARRAY_VALUE___GET_VALUE__STRING = VALUE___GET_VALUE__STRING;
-
-	/**
-	 * The operation id for the '<em>Get Children Count</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARRAY_VALUE___GET_CHILDREN_COUNT = VALUE___GET_CHILDREN_COUNT;
-
-	/**
-	 * The operation id for the '<em>Get User Friendly Representation</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARRAY_VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN = VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN;
-
-	/**
-	 * The operation id for the '<em>Compare</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARRAY_VALUE___COMPARE__STRING_VALUE = VALUE___COMPARE__STRING_VALUE;
-
-	/**
-	 * The number of operations of the '<em>Array Value</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ARRAY_VALUE_OPERATION_COUNT = VALUE_OPERATION_COUNT + 0;
-
 	/**
 	 * The meta object id for the '{@link trace.impl.SimpleValueImpl <em>Simple Value</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -897,7 +778,53 @@ public interface TracePackage extends EPackage {
 	 * @see trace.impl.TracePackageImpl#getSimpleValue()
 	 * @generated
 	 */
-	int SIMPLE_VALUE = 11;
+	int SIMPLE_VALUE = 8;
+
+	/**
+	 * The meta object id for the '{@link trace.impl.NameToValueMapImpl <em>Name To Value Map</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see trace.impl.NameToValueMapImpl
+	 * @see trace.impl.TracePackageImpl#getNameToValueMap()
+	 * @generated
+	 */
+	int NAME_TO_VALUE_MAP = 7;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_TO_VALUE_MAP__VALUE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Key</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_TO_VALUE_MAP__KEY = 1;
+
+	/**
+	 * The number of structural features of the '<em>Name To Value Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_TO_VALUE_MAP_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Name To Value Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_TO_VALUE_MAP_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -963,50 +890,94 @@ public interface TracePackage extends EPackage {
 	int SIMPLE_VALUE_OPERATION_COUNT = VALUE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link trace.impl.NameToValueMapImpl <em>Name To Value Map</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see trace.impl.NameToValueMapImpl
-	 * @see trace.impl.TracePackageImpl#getNameToValueMap()
-	 * @generated
-	 */
-	int NAME_TO_VALUE_MAP = 12;
-
-	/**
-	 * The feature id for the '<em><b>Key</b></em>' attribute.
+	 * The feature id for the '<em><b>Values</b></em>' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_TO_VALUE_MAP__KEY = 0;
+	int STRUCT_VALUE__VALUES = VALUE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' reference.
+	 * The number of structural features of the '<em>Struct Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_TO_VALUE_MAP__VALUE = 1;
+	int STRUCT_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Name To Value Map</em>' class.
+	 * The operation id for the '<em>Get Value</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_TO_VALUE_MAP_FEATURE_COUNT = 2;
+	int STRUCT_VALUE___GET_VALUE__STRING = VALUE___GET_VALUE__STRING;
 
 	/**
-	 * The number of operations of the '<em>Name To Value Map</em>' class.
+	 * The operation id for the '<em>Get Children Count</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_TO_VALUE_MAP_OPERATION_COUNT = 0;
+	int STRUCT_VALUE___GET_CHILDREN_COUNT = VALUE___GET_CHILDREN_COUNT;
+
+	/**
+	 * The operation id for the '<em>Get User Friendly Representation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCT_VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN = VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN;
+
+	/**
+	 * The operation id for the '<em>Compare</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCT_VALUE___COMPARE__STRING_VALUE = VALUE___COMPARE__STRING_VALUE;
+
+	/**
+	 * The number of operations of the '<em>Struct Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCT_VALUE_OPERATION_COUNT = VALUE_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Steps</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRACE__STEPS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Trace</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRACE_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Trace</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRACE_OPERATION_COUNT = 0;
 
 
 	/**
@@ -1053,15 +1024,15 @@ public interface TracePackage extends EPackage {
 	EAttribute getAssignment_BaseName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link trace.Assignment#getValue <em>Value</em>}'.
+	 * Returns the meta object for the containment reference '{@link trace.Assignment#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @return the meta object for the containment reference '<em>Value</em>'.
 	 * @see trace.Assignment#getValue()
 	 * @see #getAssignment()
 	 * @generated
 	 */
-	EAttribute getAssignment_Value();
+	EReference getAssignment_Value();
 
 	/**
 	 * Returns the meta object for the attribute '{@link trace.Assignment#getType <em>Type</em>}'.
@@ -1073,28 +1044,6 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAssignment_Type();
-
-	/**
-	 * Returns the meta object for the attribute '{@link trace.Assignment#getValueExpression <em>Value Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value Expression</em>'.
-	 * @see trace.Assignment#getValueExpression()
-	 * @see #getAssignment()
-	 * @generated
-	 */
-	EAttribute getAssignment_ValueExpression();
-
-	/**
-	 * Returns the meta object for the reference '{@link trace.Assignment#getParsedValue <em>Parsed Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Parsed Value</em>'.
-	 * @see trace.Assignment#getParsedValue()
-	 * @see #getAssignment()
-	 * @generated
-	 */
-	EReference getAssignment_ParsedValue();
 
 	/**
 	 * Returns the meta object for the attribute '{@link trace.Assignment#isParameter <em>Parameter</em>}'.
@@ -1116,6 +1065,16 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getAssignment__GetValue__String();
+
+	/**
+	 * Returns the meta object for the '{@link trace.Assignment#setValue(java.lang.String) <em>Set Value</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Set Value</em>' operation.
+	 * @see trace.Assignment#setValue(java.lang.String)
+	 * @generated
+	 */
+	EOperation getAssignment__SetValue__String();
 
 	/**
 	 * Returns the meta object for class '{@link trace.Failure <em>Failure</em>}'.
@@ -1171,17 +1130,6 @@ public interface TracePackage extends EPackage {
 	EAttribute getFunctionCall_DisplayName();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link trace.FunctionCall#getFunctionLocation <em>Function Location</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Function Location</em>'.
-	 * @see trace.FunctionCall#getFunctionLocation()
-	 * @see #getFunctionCall()
-	 * @generated
-	 */
-	EReference getFunctionCall_FunctionLocation();
-
-	/**
 	 * Returns the meta object for class '{@link trace.FunctionReturn <em>Function Return</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1212,17 +1160,6 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFunctionReturn_DisplayName();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link trace.FunctionReturn#getFunctionLocation <em>Function Location</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Function Location</em>'.
-	 * @see trace.FunctionReturn#getFunctionLocation()
-	 * @see #getFunctionReturn()
-	 * @generated
-	 */
-	EReference getFunctionReturn_FunctionLocation();
 
 	/**
 	 * Returns the meta object for class '{@link trace.Location <em>Location</em>}'.
@@ -1433,10 +1370,10 @@ public interface TracePackage extends EPackage {
 	EClass getArrayValue();
 
 	/**
-	 * Returns the meta object for the reference list '{@link trace.ArrayValue#getValues <em>Values</em>}'.
+	 * Returns the meta object for the containment reference list '{@link trace.ArrayValue#getValues <em>Values</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Values</em>'.
+	 * @return the meta object for the containment reference list '<em>Values</em>'.
 	 * @see trace.ArrayValue#getValues()
 	 * @see #getArrayValue()
 	 * @generated
@@ -1470,8 +1407,12 @@ public interface TracePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Name To Value Map</em>'.
 	 * @see java.util.Map.Entry
-	 * @model keyDataType="org.eclipse.emf.ecore.xml.type.String"
-	 *        valueType="trace.Value"
+	 * @model features="value key" 
+	 *        valueType="trace.Value" valueContainment="true" valueRequired="true"
+	 *        valueExtendedMetaData="kind='element' name='value'"
+	 *        keyDataType="org.eclipse.emf.ecore.xml.type.String" keyRequired="true"
+	 *        keyExtendedMetaData="kind='element' name='key'"
+	 *        extendedMetaData="name='NameToValueMap' kind='elementOnly'"
 	 * @generated
 	 */
 	EClass getNameToValueMap();
@@ -1488,10 +1429,10 @@ public interface TracePackage extends EPackage {
 	EAttribute getNameToValueMap_Key();
 
 	/**
-	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
+	 * Returns the meta object for the containment reference '{@link java.util.Map.Entry <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Value</em>'.
+	 * @return the meta object for the containment reference '<em>Value</em>'.
 	 * @see java.util.Map.Entry
 	 * @see #getNameToValueMap()
 	 * @generated
@@ -1556,12 +1497,12 @@ public interface TracePackage extends EPackage {
 		EAttribute ASSIGNMENT__BASE_NAME = eINSTANCE.getAssignment_BaseName();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ASSIGNMENT__VALUE = eINSTANCE.getAssignment_Value();
+		EReference ASSIGNMENT__VALUE = eINSTANCE.getAssignment_Value();
 
 		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
@@ -1570,22 +1511,6 @@ public interface TracePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ASSIGNMENT__TYPE = eINSTANCE.getAssignment_Type();
-
-		/**
-		 * The meta object literal for the '<em><b>Value Expression</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ASSIGNMENT__VALUE_EXPRESSION = eINSTANCE.getAssignment_ValueExpression();
-
-		/**
-		 * The meta object literal for the '<em><b>Parsed Value</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ASSIGNMENT__PARSED_VALUE = eINSTANCE.getAssignment_ParsedValue();
 
 		/**
 		 * The meta object literal for the '<em><b>Parameter</b></em>' attribute feature.
@@ -1602,6 +1527,14 @@ public interface TracePackage extends EPackage {
 		 * @generated
 		 */
 		EOperation ASSIGNMENT___GET_VALUE__STRING = eINSTANCE.getAssignment__GetValue__String();
+
+		/**
+		 * The meta object literal for the '<em><b>Set Value</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ASSIGNMENT___SET_VALUE__STRING = eINSTANCE.getAssignment__SetValue__String();
 
 		/**
 		 * The meta object literal for the '{@link trace.impl.FailureImpl <em>Failure</em>}' class.
@@ -1648,14 +1581,6 @@ public interface TracePackage extends EPackage {
 		EAttribute FUNCTION_CALL__DISPLAY_NAME = eINSTANCE.getFunctionCall_DisplayName();
 
 		/**
-		 * The meta object literal for the '<em><b>Function Location</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FUNCTION_CALL__FUNCTION_LOCATION = eINSTANCE.getFunctionCall_FunctionLocation();
-
-		/**
 		 * The meta object literal for the '{@link trace.impl.FunctionReturnImpl <em>Function Return</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1680,14 +1605,6 @@ public interface TracePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FUNCTION_RETURN__DISPLAY_NAME = eINSTANCE.getFunctionReturn_DisplayName();
-
-		/**
-		 * The meta object literal for the '<em><b>Function Location</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FUNCTION_RETURN__FUNCTION_LOCATION = eINSTANCE.getFunctionReturn_FunctionLocation();
 
 		/**
 		 * The meta object literal for the '{@link trace.impl.LocationImpl <em>Location</em>}' class.
@@ -1864,7 +1781,7 @@ public interface TracePackage extends EPackage {
 		EClass ARRAY_VALUE = eINSTANCE.getArrayValue();
 
 		/**
-		 * The meta object literal for the '<em><b>Values</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Values</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1908,7 +1825,7 @@ public interface TracePackage extends EPackage {
 		EAttribute NAME_TO_VALUE_MAP__KEY = eINSTANCE.getNameToValueMap_Key();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

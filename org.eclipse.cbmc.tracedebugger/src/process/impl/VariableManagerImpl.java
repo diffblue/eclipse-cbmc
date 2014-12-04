@@ -121,14 +121,14 @@ public class VariableManagerImpl extends MinimalEObjectImpl.Container implements
 		if (value == null)
 			throw new IllegalStateException("No value found matching expression: " + expression);
 		
-		if (current.getParsedValue() == value)
+		if (current.getValue() == value)
 			return current;
 		return createTemporaryAssignment(current, expression, value);
 	}
 
 	private Assignment createTemporaryAssignment(Assignment parent, String expression, Value value) {
 		Assignment result = TraceFactory.eINSTANCE.createAssignment();
-		result.setParsedValue(value);
+		result.setValue(value);
 		result.setValue(value.getUserFriendlyRepresentation(false));
 		result.setBaseName(expression);
 		result.setThread(parent.getThread());

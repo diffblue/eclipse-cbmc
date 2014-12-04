@@ -3,11 +3,8 @@
 package trace.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import process.Context;
 import process.FunctionExecution;
 import process.ProcessFactory;
@@ -15,7 +12,6 @@ import process.StepResult;
 import process.SteppingResult;
 import process.impl.FunctionExecutionImpl;
 import trace.FunctionReturn;
-import trace.Location;
 import trace.TracePackage;
 
 /**
@@ -26,7 +22,6 @@ import trace.TracePackage;
  * <ul>
  *   <li>{@link trace.impl.FunctionReturnImpl#getId <em>Id</em>}</li>
  *   <li>{@link trace.impl.FunctionReturnImpl#getDisplayName <em>Display Name</em>}</li>
- *   <li>{@link trace.impl.FunctionReturnImpl#getFunctionLocation <em>Function Location</em>}</li>
  * </ul>
  * </p>
  *
@@ -70,16 +65,6 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 	 * @ordered
 	 */
 	protected String displayName = DISPLAY_NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getFunctionLocation() <em>Function Location</em>}' containment reference.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * @see #getFunctionLocation()
-	 * @generated
-	 * @ordered
-	 */
-	protected Location functionLocation;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -140,59 +125,6 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Location getFunctionLocation() {
-		return functionLocation;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetFunctionLocation(Location newFunctionLocation, NotificationChain msgs) {
-		Location oldFunctionLocation = functionLocation;
-		functionLocation = newFunctionLocation;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TracePackage.FUNCTION_RETURN__FUNCTION_LOCATION, oldFunctionLocation, newFunctionLocation);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFunctionLocation(Location newFunctionLocation) {
-		if (newFunctionLocation != functionLocation) {
-			NotificationChain msgs = null;
-			if (functionLocation != null)
-				msgs = ((InternalEObject)functionLocation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TracePackage.FUNCTION_RETURN__FUNCTION_LOCATION, null, msgs);
-			if (newFunctionLocation != null)
-				msgs = ((InternalEObject)newFunctionLocation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TracePackage.FUNCTION_RETURN__FUNCTION_LOCATION, null, msgs);
-			msgs = basicSetFunctionLocation(newFunctionLocation, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.FUNCTION_RETURN__FUNCTION_LOCATION, newFunctionLocation, newFunctionLocation));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TracePackage.FUNCTION_RETURN__FUNCTION_LOCATION:
-				return basicSetFunctionLocation(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -200,8 +132,6 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 				return getId();
 			case TracePackage.FUNCTION_RETURN__DISPLAY_NAME:
 				return getDisplayName();
-			case TracePackage.FUNCTION_RETURN__FUNCTION_LOCATION:
-				return getFunctionLocation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -218,9 +148,6 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 				return;
 			case TracePackage.FUNCTION_RETURN__DISPLAY_NAME:
 				setDisplayName((String)newValue);
-				return;
-			case TracePackage.FUNCTION_RETURN__FUNCTION_LOCATION:
-				setFunctionLocation((Location)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -239,9 +166,6 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 			case TracePackage.FUNCTION_RETURN__DISPLAY_NAME:
 				setDisplayName(DISPLAY_NAME_EDEFAULT);
 				return;
-			case TracePackage.FUNCTION_RETURN__FUNCTION_LOCATION:
-				setFunctionLocation((Location)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -257,8 +181,6 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case TracePackage.FUNCTION_RETURN__DISPLAY_NAME:
 				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
-			case TracePackage.FUNCTION_RETURN__FUNCTION_LOCATION:
-				return functionLocation != null;
 		}
 		return super.eIsSet(featureID);
 	}
