@@ -36,7 +36,7 @@ public class CBMCDebugBackend extends GDBBackend {
 			return;
 		
 		marker = file.createMarker(IMarker.PROBLEM);
-		marker.setAttribute(IMarker.TRANSIENT, "true");
+		marker.setAttribute(IMarker.TRANSIENT, true);
 		marker.setAttribute(IMarker.LINE_NUMBER, launchConfig.getAttribute(CBMCDebug.LC_CBMC_LINE, 0));
 		marker.setAttribute(IMarker.MESSAGE, launchConfig.getAttribute(CBMCDebug.LC_CBMC_DESCRIPTION, "Failed property"));
 		marker.setAttribute(IMarker.PRIORITY, IMarker.PRIORITY_HIGH);
