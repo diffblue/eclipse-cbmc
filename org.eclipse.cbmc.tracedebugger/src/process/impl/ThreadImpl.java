@@ -492,6 +492,10 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 				stepResult.setStepDone(stepResult.getStepDone() | Context.NEXT_LINE);
 			}
 
+			if (!exitedExpectedFunction(stepResult)) {
+				stepResult.setStepDone(stepResult.getStepDone() & ~Context.FUNCTION_EXIT);
+			}
+			
 			if ((stepResult.getStepDone() & goal) == goal) {
 				StepResult result = ProcessFactory.eINSTANCE.createStepResult();
 				result.setCode(SteppingResult.STEP_COMPLETE);
@@ -499,6 +503,12 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 				return result;
 			}
 		}
+	}
+
+	private boolean exitedExpectedFunction(StepResult stepResult) {
+		if ((stepResult.getStepDone() & Context.FUNCTION_EXIT) != Context.FUNCTION_EXIT)
+			return false;
+		return sameFileAndFunction(location, stepResult.getLineExecuted());
 	}
 
 	private Step getLastStep() {
