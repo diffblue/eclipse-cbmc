@@ -50,8 +50,8 @@ public class PropertiesViewForm extends CbmcViewForm {
 
 	public void reset() {
 		hideMessage();
+		viewer.getTree().deselectAll();
 		viewer.setInput(null);
-
 	}
 
 	public void bind(Results results) {
