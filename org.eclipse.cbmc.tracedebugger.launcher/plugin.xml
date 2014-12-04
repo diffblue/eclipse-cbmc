@@ -23,5 +23,13 @@
             <launchMode mode="debug" perspective="org.eclipse.debug.ui.DebugPerspective"/>
       </launchConfigurationTabGroup>
    </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="org.eclipse.cbmc.debug.CBMCDebugLaunchConfiguration"
+            icon="icons/cbmc.png"
+            id="org.eclipse.cbmc.debug.CBMCDebugLaunchConfigurationImage">
+      </launchConfigurationTypeImage>
+   </extension>
    
 </plugin>
