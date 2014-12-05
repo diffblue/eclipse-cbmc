@@ -21,7 +21,7 @@
       <launchConfigurationTypeImage
             icon="icons/cbmc.png"
             configTypeID="org.eclipse.cbmc.launchConfiguration"
-            id="org.eclipse.jdt.junit.launchimage">
+            id="org.eclipse.cbmc.launchConfigurationImage">
       </launchConfigurationTypeImage>
    </extension>
    <extension
@@ -46,9 +46,5 @@
                mode="run">
          </launchMode>
       </launchConfigurationTabGroup>
-   </extension>
-   <extension
-         id="org.eclipse.cbmc"
-         point="org.eclipse.ui.menus">
    </extension>
 </plugin>
