@@ -257,11 +257,9 @@ public class StepImpl extends MinimalEObjectImpl.Container implements Step {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public StepResult interpret(Context context) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
