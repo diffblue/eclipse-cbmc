@@ -419,7 +419,7 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements process
 	 */
 	public StepResult start() {
 		//Init variables
-		processNumber = "123";	//TODO get the process number from the real java proces?
+		processNumber = "123";
 		started = true;
 		
 		//Start first thread
