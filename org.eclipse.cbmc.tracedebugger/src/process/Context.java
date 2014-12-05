@@ -30,7 +30,7 @@ public interface Context extends EObject {
 	public static int NEXT_LINE = 4;
 	public static int STEPPED = 8;
 	public static int CONTINUE = 16;
-	
+	public static int ENTER_OR_NEXT = FUNCTION_ENTER | NEXT_LINE; 	
 	/**
 	 * Returns the value of the '<em><b>Function</b></em>' reference.
 	 * <!-- begin-user-doc -->

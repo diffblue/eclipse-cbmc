@@ -23,7 +23,7 @@ public class ExecStep extends MICommand {
 	public MIOutput perform(Process process) {
 		//Step in the model
 		process.Thread thread = process.getThread(threadId);
-		StepResult stepResult = thread.step(Context.FUNCTION_ENTER);
+		StepResult stepResult = thread.step(Context.ENTER_OR_NEXT);
 		
 		//Build result
 		Frame currentFrame = new Frame(thread.getStack().getCurrentStep(), thread.getStack().getFunctionName());
