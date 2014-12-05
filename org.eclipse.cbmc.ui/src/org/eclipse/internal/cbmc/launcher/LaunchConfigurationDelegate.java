@@ -2,7 +2,8 @@ package org.eclipse.internal.cbmc.launcher;
 
 import org.eclipse.cbmc.util.CBMCCliHelper;
 import org.eclipse.core.runtime.*;
-import org.eclipse.debug.core.*;
+import org.eclipse.debug.core.ILaunch;
+import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.internal.cbmc.Activator;
 import org.eclipse.internal.cbmc.view.CbmcView;
 import org.eclipse.swt.widgets.Display;
@@ -22,13 +23,7 @@ public class LaunchConfigurationDelegate extends org.eclipse.debug.core.model.La
 					if (view == null) {
 						view = (CbmcView) page.showView(CbmcView.ID, null, IWorkbenchPage.VIEW_ACTIVATE);
 					}
-					try {
-						launch.terminate();
-					} catch (DebugException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					view.startVerification(CBMCCliHelper.create(configuration));
+					view.startVerification(CBMCCliHelper.create(configuration), launch);
 				} catch (PartInitException e) {
 					Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "CBMC View cannot be initialized", e)); //$NON-NLS-1$
 				}

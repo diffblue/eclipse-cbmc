@@ -1,10 +1,15 @@
 package org.eclipse.internal.cbmc.view;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.eclipse.cbmc.LoopResults;
 import org.eclipse.cbmc.Results;
 import org.eclipse.cbmc.util.CBMCCliHelper;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.JobChangeAdapter;
+import org.eclipse.debug.core.*;
+import org.eclipse.debug.core.model.IProcess;
+import org.eclipse.internal.cbmc.launcher.FakeIProcess;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.ControlEvent;
@@ -22,7 +27,6 @@ public class CbmcView extends ViewPart {
 	CheckAllPropertiesJob checkAllPropertiesJob;
 	CounterPanel counterPanel;
 	ProgressBar progressBar;
-	private GeneratePropertiesJob generatePropertiesJob;
 	GenerateLoopsJob generateLoopsJob;
 	Results results;
 	ViewToolbar toolbar;
@@ -83,12 +87,19 @@ public class CbmcView extends ViewPart {
 		return composite;
 	}
 
-	public void startVerification(final CBMCCliHelper cbmcHelper) {
+	public void startVerification(final CBMCCliHelper cbmcHelper, final ILaunch launch) {
 		reset();
-		generatePropertiesJob = new GeneratePropertiesJob(Messages.PropertiesView_jobGenerateAllProperties, cbmcHelper);
+		GeneratePropertiesJob generatePropertiesJob = new GeneratePropertiesJob(Messages.PropertiesView_jobGenerateAllProperties, cbmcHelper);
+		fillInLaunch(cbmcHelper, launch);
 		generatePropertiesJob.addJobChangeListener(new JobChangeAdapter() {
 			@Override
 			public void done(final IJobChangeEvent event) {
+				try {
+					//Mark the launch object has terminated
+					launch.terminate();
+				} catch (DebugException e) {
+					//Can't happen since the terminate is a no-op
+				}
 				if (!event.getResult().isOK())
 					return;
 				results = ((GeneratePropertiesJob) event.getJob()).getCBMCResults();
@@ -126,6 +137,17 @@ public class CbmcView extends ViewPart {
 			}
 		});
 		generatePropertiesJob.schedule();
+	}
+
+	private void fillInLaunch(CBMCCliHelper cliHelper, ILaunch launch) {
+		String[] cli = cliHelper.getCommandLineForAllProperties();
+		Map<String, String> attributes = new HashMap<String, String>();
+		attributes.put(DebugPlugin.ATTR_PATH, cli[0]);
+		attributes.put(DebugPlugin.ATTR_LAUNCH_TIMESTAMP, Long.toString(System.currentTimeMillis()));
+		attributes.put(IProcess.ATTR_PROCESS_TYPE, cli[0]);
+		attributes.put(DebugPlugin.ATTR_WORKING_DIRECTORY, cliHelper.getWorkingDirectory().getAbsolutePath());
+		attributes.put(IProcess.ATTR_CMDLINE, String.join(" ", cli)); //$NON-NLS-1$
+		launch.addProcess(new FakeIProcess(launch, cli[0], attributes));
 	}
 
 	private void reset() {
