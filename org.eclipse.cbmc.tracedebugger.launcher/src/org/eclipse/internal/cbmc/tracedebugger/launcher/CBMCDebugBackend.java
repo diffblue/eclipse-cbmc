@@ -2,8 +2,6 @@ package org.eclipse.internal.cbmc.tracedebugger.launcher;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.eclipse.cdt.debug.core.ICDTLaunchConfigurationConstants;
 import org.eclipse.cdt.dsf.concurrent.RequestMonitor;
@@ -20,7 +18,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.ILaunchConfiguration;
 
 public class CBMCDebugBackend extends GDBBackend {
-	private static final Logger logger = Logger.getLogger(CBMCDebugBackend.class.getName());
 	ILaunchConfiguration launchConfig;
 	IMarker marker;
 	
@@ -50,7 +47,7 @@ public class CBMCDebugBackend extends GDBBackend {
 		try {
 			marker.delete();
 		} catch (CoreException e) {
-			// TODO we could log
+			//Nothing to do
 		}
 	}
 	
@@ -76,7 +73,6 @@ public class CBMCDebugBackend extends GDBBackend {
 			//Can't happen
 		}
 		
-		logger.log(Level.INFO, "Backend CLI: " + cli);
 		return cli.toArray(new String[cli.size()]);
 	}
 	
