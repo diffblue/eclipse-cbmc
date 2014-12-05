@@ -25,10 +25,6 @@ public class ProcessHelper {
 		return new Object[] {result[0], result[2]};
 	}
 
-	public static int executeCommandWithRedirectOutput(String[] cli, File redirectOutput) {
-		return executeCommandWithRedirectOutput(cli, redirectOutput, null);
-	}
-
 	public static int executeCommandWithRedirectOutput(String[] cli, File redirectOutput, IProgressMonitor monitor) {
 		return (int) executeCommand(cli, false, redirectOutput, monitor)[1];
 	}

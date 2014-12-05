@@ -90,7 +90,7 @@ public class CbmcView extends ViewPart {
 	public void startVerification(final CBMCCliHelper cbmcHelper, final ILaunch launch) {
 		reset();
 		GeneratePropertiesJob generatePropertiesJob = new GeneratePropertiesJob(Messages.PropertiesView_jobGenerateAllProperties, cbmcHelper);
-		fillInLaunch(cbmcHelper, launch);
+		fillInLaunch(cbmcHelper, launch, generatePropertiesJob);
 		generatePropertiesJob.addJobChangeListener(new JobChangeAdapter() {
 			@Override
 			public void done(final IJobChangeEvent event) {
@@ -139,7 +139,7 @@ public class CbmcView extends ViewPart {
 		generatePropertiesJob.schedule();
 	}
 
-	private void fillInLaunch(CBMCCliHelper cliHelper, ILaunch launch) {
+	private void fillInLaunch(CBMCCliHelper cliHelper, ILaunch launch, GeneratePropertiesJob job) {
 		String[] cli = cliHelper.getCommandLineForAllProperties();
 		Map<String, String> attributes = new HashMap<String, String>();
 		attributes.put(DebugPlugin.ATTR_PATH, cli[0]);
@@ -147,7 +147,7 @@ public class CbmcView extends ViewPart {
 		attributes.put(IProcess.ATTR_PROCESS_TYPE, cli[0]);
 		attributes.put(DebugPlugin.ATTR_WORKING_DIRECTORY, cliHelper.getWorkingDirectory().getAbsolutePath());
 		attributes.put(IProcess.ATTR_CMDLINE, String.join(" ", cli)); //$NON-NLS-1$
-		launch.addProcess(new FakeIProcess(launch, cli[0], attributes));
+		launch.addProcess(new FakeIProcess(launch, cli[0], attributes, job));
 	}
 
 	private void reset() {

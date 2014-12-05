@@ -5,20 +5,13 @@ import java.util.Map.Entry;
 import org.eclipse.core.runtime.PlatformObject;
 import org.eclipse.debug.core.*;
 import org.eclipse.debug.core.model.*;
+import org.eclipse.internal.cbmc.view.GeneratePropertiesJob;
 
 /**
- * Standard implementation of an <code>IProcess</code> that wrappers a system
- * process (<code>java.lang.Process</code>).
- * <p>
- * Clients may subclass this class. Clients that need to replace the implementation
- * of a streams proxy associated with an <code>IProcess</code> should subclass this
- * class. Generally clients should not instantiate this class directly, but should
- * instead call <code>DebugPlugin.newProcess(...)</code>, which can delegate to an
- * <code>IProcessFactory</code> if one is referenced by the associated launch configuration.
- * </p>
- * @see org.eclipse.debug.core.model.IProcess
- * @see org.eclipse.debug.core.IProcessFactory
- * @since 3.0
+ * THIS IS A TRIMMED DOWN COPY OF THE CLASS org.eclipse.debug.core.model.RuntimeProcess.
+ * It is used in order to make sure that the debug view operates properly when CBMC is executed 
+ * (e.g. make sure that the process shows as terminated when it is) and also show the CBMC execution
+ * details in the property page.
  */
 public class FakeIProcess extends PlatformObject implements IProcess {
 
@@ -42,6 +35,8 @@ public class FakeIProcess extends PlatformObject implements IProcess {
 	 */
 	private Map<String, String> fAttributes;
 
+	private GeneratePropertiesJob job;
+
 	/**
 	 * Constructs a RuntimeProcess on the given system process
 	 * with the given name, adding this process to the given
@@ -52,12 +47,14 @@ public class FakeIProcess extends PlatformObject implements IProcess {
 	 * @param name the label used for this process
 	 * @param attributes map of attributes used to initialize the attributes
 	 *   of this process, or <code>null</code> if none
+	 * @param job 
 	 */
-	public FakeIProcess(ILaunch launch, String name, Map<String, String> attributes) {
+	public FakeIProcess(ILaunch launch, String name, Map<String, String> attributes, GeneratePropertiesJob job) {
 		setLaunch(launch);
 		initializeAttributes(attributes);
 		fName = name;
 		fTerminated = false;
+		this.job = job;
 		launch.addProcess(this);
 		fireCreationEvent();
 	}
@@ -121,6 +118,7 @@ public class FakeIProcess extends PlatformObject implements IProcess {
 	 */
 	@Override
 	public void terminate() {
+		job.cancel();
 		fTerminated = true;
 		fireTerminateEvent();
 	}
@@ -218,8 +216,8 @@ public class FakeIProcess extends PlatformObject implements IProcess {
 	 * @see IProcess#getExitValue()
 	 */
 	@Override
-	public synchronized int getExitValue() throws DebugException {
-		return 0;
+	public int getExitValue() {
+		return job.getExitCode();
 	}
 
 	@Override

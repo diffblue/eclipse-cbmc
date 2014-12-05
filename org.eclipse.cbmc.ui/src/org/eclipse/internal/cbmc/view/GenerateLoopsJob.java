@@ -36,7 +36,7 @@ public class GenerateLoopsJob extends Job {
 		try {
 			File inputfile = new File(cliHelper.getWorkingDirectory(), LOOPS_INPUT_XML);
 			File outputfile = new File(cliHelper.getWorkingDirectory(), LOOPS_OUTPUT_CBMC);
-			int exitValue = ProcessHelper.executeCommandWithRedirectOutput(cliHelper.getCommandLineForAllLoops(), inputfile);
+			int exitValue = ProcessHelper.executeCommandWithRedirectOutput(cliHelper.getCommandLineForAllLoops(), inputfile, new NullProgressMonitor());
 			if (exitValue == SUCCESS_EXITVALUE) {
 				//Transform CBMC XML output into something EMF can read
 				Source xmlInput = new StreamSource(inputfile);

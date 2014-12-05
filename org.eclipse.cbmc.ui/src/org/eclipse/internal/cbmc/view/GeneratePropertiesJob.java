@@ -25,9 +25,19 @@ public class GeneratePropertiesJob extends Job {
 
 	private Results results;
 
+	private int exitValue = 0;
+
 	public GeneratePropertiesJob(String name, CBMCCliHelper cliHelper) {
 		super(name);
 		this.cliHelper = cliHelper;
+	}
+
+	public synchronized int getExitCode() {
+		return exitValue;
+	}
+
+	public void setExitCode(int code) {
+		exitValue = code;
 	}
 
 	@Override
@@ -35,8 +45,8 @@ public class GeneratePropertiesJob extends Job {
 		try {
 			File inputfile = new File(cliHelper.getWorkingDirectory(), PROPERTIES_INPUT_XML);
 			File outputfile = new File(cliHelper.getWorkingDirectory(), PROPERTIES_OUTPUT_CBMC);
-			int exitValue = ProcessHelper.executeCommandWithRedirectOutput(cliHelper.getCommandLineForAllProperties(), inputfile);
-			if (exitValue != -1) {
+			setExitCode(ProcessHelper.executeCommandWithRedirectOutput(cliHelper.getCommandLineForAllProperties(), inputfile, monitor));
+			if (getExitCode() != -1) {
 				Source xmlInput = new StreamSource(inputfile);
 				Source xsl = new StreamSource(FileLocator.openStream(Platform.getBundle(Activator.PLUGIN_ID), new Path(TRANSFORM_XSL), false));
 				Result xmlOutput = new StreamResult(outputfile);
