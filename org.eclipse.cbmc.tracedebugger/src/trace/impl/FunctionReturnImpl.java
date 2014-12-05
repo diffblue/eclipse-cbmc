@@ -202,27 +202,29 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 		return result.toString();
 	}
 
+	private StepResult createResult() {
+		StepResult result = ProcessFactory.eINSTANCE.createStepResult();
+		result.setCode(SteppingResult.STEP_COMPLETE);
+		result.setStepDone(Context.FUNCTION_EXIT);
+		return result;
+	}
+	
 	@Override
 	public StepResult interpret(Context context) {
-		if (context.getContainingThread().getStack() == null)
-			return null;
+		if (context.getContainingThread().getStack() == null) {
+			return createResult();
+		}
 
 		FunctionExecution previousFunction = context.getFunction().getParent();
 		if (previousFunction == null) {
-			StepResult result = ProcessFactory.eINSTANCE.createStepResult();
-			result.setCode(SteppingResult.STEP_COMPLETE);
-			result.setStepDone(Context.FUNCTION_EXIT);
-			return result;
+			return createResult();
 		}
 		
 		context.getContainingThread().setStack(previousFunction);
 		previousFunction.setChild(null);
 		previousFunction.setStepIndexBeforeChild(FunctionExecutionImpl.STEP_INDEX_BEFORE_CHILD_EDEFAULT);
 		
-		StepResult result = ProcessFactory.eINSTANCE.createStepResult();
-		result.setCode(SteppingResult.STEP_COMPLETE);
-		result.setStepDone(Context.FUNCTION_EXIT);
-		return result;
+		return createResult();
 		
 	}
 } // FunctionReturnImpl
