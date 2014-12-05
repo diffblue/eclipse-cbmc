@@ -31,7 +31,6 @@
             id="org.eclipse.cbmc.launchConfiguration"
             modes="run"
             name="CBMC"
-            icon="icons/cbmc.png"
             category="org.eclipse.ui.externaltools"
             public="true">
       </launchConfigurationType>
