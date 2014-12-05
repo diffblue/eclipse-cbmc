@@ -21,8 +21,6 @@ public class ExecContinue extends MICommand {
 
 	@Override
 	public MIOutput perform(Process process) {
-		// TODO we don't deal with the last argument
-
 		// Step in the model
 		process.Thread thread = process.getThread(threadId);
 		StepResult stepResult = thread.step(Context.CONTINUE);
