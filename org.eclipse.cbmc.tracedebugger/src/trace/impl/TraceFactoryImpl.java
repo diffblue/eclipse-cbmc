@@ -70,6 +70,7 @@ public class TraceFactoryImpl extends EFactoryImpl implements TraceFactory {
 			case TracePackage.STRUCT_VALUE: return createStructValue();
 			case TracePackage.TRACE: return createTrace();
 			case TracePackage.VALUE: return createValue();
+			case TracePackage.UNION_VALUE: return createUnionValue();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -163,6 +164,16 @@ public class TraceFactoryImpl extends EFactoryImpl implements TraceFactory {
 	public Value createValue() {
 		ValueImpl value = new ValueImpl();
 		return value;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UnionValue createUnionValue() {
+		UnionValueImpl unionValue = new UnionValueImpl();
+		return unionValue;
 	}
 
 	/**

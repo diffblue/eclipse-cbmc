@@ -13,7 +13,9 @@ import process.Process;
 import results.data.Vars;
 import results.sync.Done;
 import results.sync.Error;
+import trace.ArrayValue;
 import trace.StructValue;
+import trace.UnionValue;
 import trace.Value;
 
 //var-list-children var2
@@ -23,24 +25,69 @@ public class VarListChildren extends MICommand {
 	@Override
 	public MIOutput perform(Process process) {
 		final String requestedExpression = arguments.get(0);
-		Value value = process.getVariableManager().getValue(requestedExpression);
-		
-		if (!(value instanceof StructValue)) {
+		Value value = process.getVariableManager().getAssignment(requestedExpression).getValue();
+
+		if (!(value instanceof StructValue || value instanceof ArrayValue)) {
 			return new Error(this, "Variable does not have children");
 		}
-		EMap<String, Value> structValues = ((StructValue) value).getValues();
+		
+		ArrayList<Vars> children = null;
+		if (value instanceof ArrayValue) {
+			children = listChildrenForArray(requestedExpression, (ArrayValue) value);
+		}
+		if (value instanceof StructValue) {
+			children = listChildrenForStruct(requestedExpression, (StructValue) value);
+		}
+		if (value instanceof UnionValue) {
+			children = listChildrenForUnion(requestedExpression, (UnionValue) value); 
+		}
+
+		return new Done(this, buildAnswer(String.valueOf(children.size()), "0",children));
+	}
+
+	private ArrayList<Vars> listChildrenForStruct(String requestedExpression, StructValue struct) {
+		EMap<String, Value> structValues = struct.getValues();
 		ArrayList<Vars> children = new ArrayList<Vars>();
 		for (Entry<String, Value> entry : structValues) {
 			Vars v = new Vars();
 			v.name = requestedExpression + '.' + entry.getKey();
 			v.exp = entry.getKey();
 			v.numchild = String.valueOf(entry.getValue().getChildrenCount());
-			v.type = "int"; //TODO FIXME
+			v.type = entry.getValue().getType();
 			children.add(v);
 		}
-		return new Done(this, buildAnswer(String.valueOf(structValues.size()), "0",children));
+		return children;
 	}
-
+	
+	private ArrayList<Vars> listChildrenForUnion(String requestedExpression, UnionValue union) {
+		EMap<String, Value> structValues = union.getValues();
+		ArrayList<Vars> children = new ArrayList<Vars>();
+		for (Entry<String, Value> entry : structValues) {
+			Vars v = new Vars();
+			v.name = requestedExpression + '.' + entry.getKey();
+			v.exp = entry.getKey();
+			v.numchild = String.valueOf(entry.getValue().getChildrenCount());
+			v.type = entry.getValue().getType();
+			children.add(v);
+		}
+		return children;
+	}
+	
+	private ArrayList<Vars> listChildrenForArray(String requestedExpression, ArrayValue array) {
+		ArrayList<Vars> children = new ArrayList<Vars>();
+		int i = 0;
+		for (Value value : array.getValues()) {
+			Vars v = new Vars();
+			v.name = requestedExpression + '[' + i + ']';
+			v.exp = "outArray[" + i + ']';
+			v.numchild = String.valueOf(value.getChildrenCount());
+			v.type = value.getType();
+			children.add(v);
+			i++;
+		}
+		return children;
+	}
+	
 	private String buildAnswer(String numchild, String has_more, List<Vars> children) {
 		return "numchild=\"" + numchild + "\",children=" +   Vars.serializeAsChildrenList(children) + ",has_more=\"" + has_more + "\"";
 	}

@@ -15,7 +15,7 @@ public class VarInfoPathExpression extends MICommand {
 		String expression = arguments.get(0);
 		String[] segments = VarHelpers.splitInTwo(expression);
 		Assignment assignment = process.getVariableManager().getAssignment(segments[0]);
-		return new Done(this, "path_expr", expression.replace(segments[0], "(" + assignment.getBaseName() + ")"));
+		return new Done(this, "path_expr", expression.replace(segments[0], assignment.getBaseName()));
 	}
 	
 	@Override

@@ -4,17 +4,23 @@
     modelName="Trace" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.xsd.ecore.importer" complianceLevel="5.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
-  <foreignModel>file:/Users/estelle/dev/Oxford/trace/trace.xsd</foreignModel>
+  <foreignModel>trace.xsd</foreignModel>
   <genPackages prefix="Trace" resource="XML" disposableProviderFactory="true" ecorePackage="trace.ecore#/">
+    <genClasses ecoreClass="trace.ecore#//ArrayValue">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference trace.ecore#//ArrayValue/values"/>
+    </genClasses>
     <genClasses ecoreClass="trace.ecore#//Assignment">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Assignment/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Assignment/displayName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Assignment/baseName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Assignment/value"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Assignment/fullLhs"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Assignment/fullLhsValue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference trace.ecore#//Assignment/value"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Assignment/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Assignment/valueExpression"/>
+      <genOperations ecoreOperation="trace.ecore#//Assignment/getValue">
+        <genParameters ecoreParameter="trace.ecore#//Assignment/getValue/expression"/>
+      </genOperations>
+      <genOperations ecoreOperation="trace.ecore#//Assignment/setValue">
+        <genParameters ecoreParameter="trace.ecore#//Assignment/setValue/userFriendlyRepresentation"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="trace.ecore#//Failure">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Failure/reason"/>
@@ -22,12 +28,10 @@
     <genClasses ecoreClass="trace.ecore#//FunctionCall">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//FunctionCall/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//FunctionCall/displayName"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference trace.ecore#//FunctionCall/functionLocation"/>
     </genClasses>
     <genClasses ecoreClass="trace.ecore#//FunctionReturn">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//FunctionReturn/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//FunctionReturn/displayName"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference trace.ecore#//FunctionReturn/functionLocation"/>
     </genClasses>
     <genClasses ecoreClass="trace.ecore#//Location">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Location/file"/>
@@ -35,13 +39,39 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Location/line"/>
     </genClasses>
     <genClasses ecoreClass="trace.ecore#//LocationOnly"/>
+    <genClasses ecoreClass="trace.ecore#//NameToValueMap">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference trace.ecore#//NameToValueMap/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//NameToValueMap/key"/>
+    </genClasses>
+    <genClasses ecoreClass="trace.ecore#//SimpleValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//SimpleValue/value"/>
+    </genClasses>
     <genClasses ecoreClass="trace.ecore#//Step">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Step/number"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference trace.ecore#//Step/location"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute trace.ecore#//Step/thread"/>
+      <genOperations ecoreOperation="trace.ecore#//Step/interpret">
+        <genParameters ecoreParameter="trace.ecore#//Step/interpret/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="trace.ecore#//StructValue">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference trace.ecore#//StructValue/values"/>
     </genClasses>
     <genClasses ecoreClass="trace.ecore#//Trace">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference trace.ecore#//Trace/steps"/>
+    </genClasses>
+    <genClasses ecoreClass="trace.ecore#//Value">
+      <genOperations ecoreOperation="trace.ecore#//Value/getValue">
+        <genParameters ecoreParameter="trace.ecore#//Value/getValue/expression"/>
+      </genOperations>
+      <genOperations ecoreOperation="trace.ecore#//Value/getChildrenCount"/>
+      <genOperations ecoreOperation="trace.ecore#//Value/getUserFriendlyRepresentation">
+        <genParameters ecoreParameter="trace.ecore#//Value/getUserFriendlyRepresentation/abridged"/>
+      </genOperations>
+      <genOperations ecoreOperation="trace.ecore#//Value/compare">
+        <genParameters ecoreParameter="trace.ecore#//Value/compare/parentPath"/>
+        <genParameters ecoreParameter="trace.ecore#//Value/compare/old"/>
+      </genOperations>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

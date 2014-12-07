@@ -129,12 +129,10 @@ public class VariableManagerImpl extends MinimalEObjectImpl.Container implements
 	private Assignment createTemporaryAssignment(Assignment parent, String expression, Value value) {
 		Assignment result = TraceFactory.eINSTANCE.createAssignment();
 		result.setValue(value);
-		result.setValue(value.getUserFriendlyRepresentation(false));
 		result.setBaseName(expression);
 		result.setThread(parent.getThread());
 		result.setLocation(parent.getLocation());
 		result.setNumber(parent.getNumber());
-		result.setType("int"); //TODO FIX ME
 		return result;
 	}
 

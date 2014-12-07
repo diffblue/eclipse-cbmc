@@ -74,12 +74,10 @@ public class VarHelpers {
 	private static Assignment createTemporaryAssignment(Assignment parent, String expression, Value value) {
 		Assignment result = TraceFactory.eINSTANCE.createAssignment();
 		result.setValue(value);
-		result.setValue(value.getUserFriendlyRepresentation(false));
 		result.setBaseName(expression);
 		result.setThread(parent.getThread());
 		result.setLocation(parent.getLocation());
 		result.setNumber(parent.getNumber());
-		result.setType("int"); //TODO FIX ME
 		return result;
 	}
 	
@@ -94,10 +92,8 @@ public class VarHelpers {
 		value.setValue("Address unknown");
 		Assignment result = TraceFactory.eINSTANCE.createAssignment();
 		result.setValue(value);
-		result.setValue(value.getUserFriendlyRepresentation(false));
 		result.setBaseName(expression);
 		result.setThread(threadId);
-		result.setType("pointer");
 		return result;
 	}
 }

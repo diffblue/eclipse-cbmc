@@ -103,6 +103,15 @@ public interface TraceFactory extends EFactory {
 	Value createValue();
 
 	/**
+	 * Returns a new object of class '<em>Union Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Union Value</em>'.
+	 * @generated
+	 */
+	UnionValue createUnionValue();
+
+	/**
 	 * Returns a new object of class '<em>Struct Value</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

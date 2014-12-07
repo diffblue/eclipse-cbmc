@@ -15,7 +15,6 @@ package trace;
  *   <li>{@link trace.Assignment#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link trace.Assignment#getBaseName <em>Base Name</em>}</li>
  *   <li>{@link trace.Assignment#getValue <em>Value</em>}</li>
- *   <li>{@link trace.Assignment#getType <em>Type</em>}</li>
  *   <li>{@link trace.Assignment#isParameter <em>Parameter</em>}</li>
  * </ul>
  * </p>
@@ -107,27 +106,27 @@ public interface Assignment extends Step {
 	void setBaseName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Value</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Value</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Value</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value</em>' containment reference.
+	 * @return the value of the '<em>Value</em>' reference.
 	 * @see #setValue(Value)
 	 * @see trace.TracePackage#getAssignment_Value()
-	 * @model containment="true" required="true"
+	 * @model resolveProxies="false" required="true"
 	 *        extendedMetaData="kind='element' name='value'"
 	 * @generated
 	 */
 	Value getValue();
 
 	/**
-	 * Sets the value of the '{@link trace.Assignment#getValue <em>Value</em>}' containment reference.
+	 * Sets the value of the '{@link trace.Assignment#getValue <em>Value</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value</em>' containment reference.
+	 * @param value the new value of the '<em>Value</em>' reference.
 	 * @see #getValue()
 	 * @generated
 	 */
@@ -135,38 +134,15 @@ public interface Assignment extends Step {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model userFriendlyRepresentationDataType="org.eclipse.emf.ecore.xml.type.String"
-	 * @generated
-	 */
-	void setValue(String userFriendlyRepresentation);
-
-	/**
-	 * Returns the value of the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' attribute.
-	 * @see #setType(String)
-	 * @see trace.TracePackage#getAssignment_Type()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
-	 *        extendedMetaData="kind='element' name='type'"
+	 * @model kind="operation" dataType="org.eclipse.emf.ecore.xml.type.String"
 	 * @generated
 	 */
 	String getType();
-
-	/**
-	 * Sets the value of the '{@link trace.Assignment#getType <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' attribute.
-	 * @see #getType()
-	 * @generated
-	 */
-	void setType(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Parameter</b></em>' attribute.

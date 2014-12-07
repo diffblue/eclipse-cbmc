@@ -1,13 +1,68 @@
 <xsl:stylesheet version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	extension-element-prefixes="exsl" xmlns:exsl="http://exslt.org/common">
+	extension-element-prefixes="exsl" xmlns:exsl="http://exslt.org/common"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:trace="http://www.eclipse.org/cbmc/debug/trace">
 	<xsl:output method="xml" indent="yes" />
+
+	<xsl:template name="getValueExpression">
+		<xsl:param name="node" select="." />
+		<xsl:param name="type" select="''" />
+		<xsl:choose>
+			<xsl:when test="$node/struct">
+				<value xsi:type="trace:StructValue" type="{$type}">
+					<xsl:for-each select="$node/struct/member">
+						<values>
+							<key>
+								<xsl:value-of select="./@name" />
+							</key>
+							<xsl:call-template name="getValueExpression">
+								<xsl:with-param name="node" select="." />
+							</xsl:call-template>
+						</values>
+					</xsl:for-each>
+				</value>
+			</xsl:when>
+			<xsl:when test="$node/union">
+				<value xsi:type="trace:UnionValue" type="{$type}">
+					<xsl:for-each select="$node/union/member">
+						<values>
+							<key>
+								<xsl:value-of select="./@name" />
+							</key>
+							<xsl:call-template name="getValueExpression">
+								<xsl:with-param name="node" select="." />
+							</xsl:call-template>
+						</values>
+					</xsl:for-each>
+				</value>
+			</xsl:when>
+			<xsl:when test="$node/array">
+				<value xsi:type="trace:ArrayValue" type="{$type}">
+					<xsl:for-each select="$node/array/element">
+						<xsl:call-template name="getValueExpression">
+							<xsl:with-param name="node" select="." />
+						</xsl:call-template>
+					</xsl:for-each>
+				</value>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:choose>
+					<xsl:when test="name($node) = 'element'">
+						<values xsi:type="trace:SimpleValue" value="{$node/*[1]}" type="{$node/*[1]/@c_type}"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<value xsi:type="trace:SimpleValue" value="{$node/*[1]}" type="{$node/*[1]/@c_type}"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
 	<xsl:template match="/">
-		<trace:Trace xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-			xmlns:trace="http://www.eclipse.org/cbmc/debug/trace">
+		<trace:Trace>
 			<xsl:for-each select="/cprover/goto_trace/*">
-			
-				<xsl:if test="name() = 'assignment' and not(contains(@base_name,'__CPROVER'))">
+				<xsl:if
+					test="name() = 'assignment' and not(contains(@base_name,'__CPROVER'))">
 					<steps xsi:type="trace:Assignment">
 						<number>
 							<xsl:value-of select="@step_nr" />
@@ -37,16 +92,25 @@
 						<displayName>
 							<xsl:value-of select="@display_name" />
 						</displayName>
-						<value>
-							<xsl:value-of select="value" />
-						</value>
-						<type>
-							<xsl:value-of select="type" />
-						</type>
-						
+						<xsl:choose>
+							<xsl:when
+								test="./value_expression/struct or ./value_expression/array or ./value_expression/union">
+
+								<xsl:call-template name="getValueExpression">
+									<xsl:with-param name="node" select="./value_expression" />
+									<xsl:with-param name="type" select="./type" />
+								</xsl:call-template>
+							</xsl:when>
+							<xsl:otherwise>
+								<value xsi:type="trace:SimpleValue" value="{./full_lhs_value}"
+									type="{./type}">
+								</value>
+							</xsl:otherwise>
+						</xsl:choose>
 					</steps>
 				</xsl:if>
-				<xsl:if test="name() = 'function_call' and not(contains(./function/@display_name,'__CPROVER'))">
+				<xsl:if
+					test="name() = 'function_call' and not(contains(./function/@display_name,'__CPROVER'))">
 					<steps xsi:type="trace:FunctionCall">
 						<thread>
 							<xsl:value-of select="@thread" />
@@ -54,7 +118,7 @@
 						<number>
 							<xsl:value-of select="@step_nr" />
 						</number>
-						
+
 						<xsl:if test="./location">
 							<location>
 								<file>
@@ -75,20 +139,11 @@
 							<displayName>
 								<xsl:value-of select="function/@display_name" />
 							</displayName>
-							<xsl:if test="./function/location">
-								<functionLocation>
-									<file>
-										<xsl:value-of select="function/location/@file" />
-								</file>
-									<line>
-										<xsl:value-of select="function/location/@line" />
-									</line>
-								</functionLocation>
-							</xsl:if>
 						</xsl:if>
 					</steps>
 				</xsl:if>
-				<xsl:if test="name() = 'function_return' and not(contains(./function/@display_name,'__CPROVER'))">
+				<xsl:if
+					test="name() = 'function_return' and not(contains(./function/@display_name,'__CPROVER'))">
 					<steps xsi:type="trace:FunctionReturn">
 						<thread>
 							<xsl:value-of select="@thread" />
@@ -104,27 +159,19 @@
 								<xsl:value-of select="function/@display_name" />
 							</displayName>
 							<xsl:if test="./function/location">
-								<functionLocation>
-									<file>
-										<xsl:value-of select="function/location/@file" />
-									</file>
-									<line>
-										<xsl:value-of select="function/location/@line" />
-									</line>
-								</functionLocation>
 							</xsl:if>
 						</xsl:if>
 						<xsl:if test="./location">
 							<location>
-									<file>
-										<xsl:value-of select="location/@file" />
-									</file>
-									<function>
-										<xsl:value-of select="location/@function" />
-									</function>
-									<line>
-										<xsl:value-of select="location/@line" />
-									</line>
+								<file>
+									<xsl:value-of select="location/@file" />
+								</file>
+								<function>
+									<xsl:value-of select="location/@function" />
+								</function>
+								<line>
+									<xsl:value-of select="location/@line" />
+								</line>
 							</location>
 						</xsl:if>
 					</steps>
@@ -168,12 +215,12 @@
 								<file>
 									<xsl:value-of select="location/@file" />
 								</file>
-								<line>
-									<xsl:value-of select="location/@line" />
-								</line>
 								<function>
 									<xsl:value-of select="location/@function" />
 								</function>
+								<line>
+									<xsl:value-of select="location/@line" />
+								</line>
 							</location>
 						</xsl:if>
 					</steps>

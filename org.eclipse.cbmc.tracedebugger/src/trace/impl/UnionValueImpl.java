@@ -4,8 +4,8 @@ package trace.impl;
 
 import infra.VarHelpers;
 
-import java.util.Map.Entry;
 import java.util.Set;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -19,22 +19,23 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import trace.StructValue;
 import trace.TracePackage;
+import trace.UnionValue;
 import trace.Value;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Struct Value</b></em>'.
+ * An implementation of the model object '<em><b>Union Value</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link trace.impl.StructValueImpl#getValues <em>Values</em>}</li>
+ *   <li>{@link trace.impl.UnionValueImpl#getValues <em>Values</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class StructValueImpl extends ValueImpl implements StructValue {
+public class UnionValueImpl extends ValueImpl implements UnionValue {
 	/**
 	 * The cached value of the '{@link #getValues() <em>Values</em>}' map.
 	 * <!-- begin-user-doc -->
@@ -50,7 +51,7 @@ public class StructValueImpl extends ValueImpl implements StructValue {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StructValueImpl() {
+	protected UnionValueImpl() {
 		super();
 	}
 
@@ -61,7 +62,7 @@ public class StructValueImpl extends ValueImpl implements StructValue {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return TracePackage.Literals.STRUCT_VALUE;
+		return TracePackage.Literals.UNION_VALUE;
 	}
 
 	/**
@@ -71,7 +72,7 @@ public class StructValueImpl extends ValueImpl implements StructValue {
 	 */
 	public EMap<String, Value> getValues() {
 		if (values == null) {
-			values = new EcoreEMap<String,Value>(TracePackage.Literals.NAME_TO_VALUE_MAP, NameToValueMapImpl.class, this, TracePackage.STRUCT_VALUE__VALUES);
+			values = new EcoreEMap<String,Value>(TracePackage.Literals.NAME_TO_VALUE_MAP, NameToValueMapImpl.class, this, TracePackage.UNION_VALUE__VALUES);
 		}
 		return values;
 	}
@@ -84,7 +85,7 @@ public class StructValueImpl extends ValueImpl implements StructValue {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TracePackage.STRUCT_VALUE__VALUES:
+			case TracePackage.UNION_VALUE__VALUES:
 				return ((InternalEList<?>)getValues()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -98,7 +99,7 @@ public class StructValueImpl extends ValueImpl implements StructValue {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TracePackage.STRUCT_VALUE__VALUES:
+			case TracePackage.UNION_VALUE__VALUES:
 				if (coreType) return getValues();
 				else return getValues().map();
 		}
@@ -110,11 +111,10 @@ public class StructValueImpl extends ValueImpl implements StructValue {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TracePackage.STRUCT_VALUE__VALUES:
+			case TracePackage.UNION_VALUE__VALUES:
 				((EStructuralFeature.Setting)getValues()).set(newValue);
 				return;
 		}
@@ -129,7 +129,7 @@ public class StructValueImpl extends ValueImpl implements StructValue {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TracePackage.STRUCT_VALUE__VALUES:
+			case TracePackage.UNION_VALUE__VALUES:
 				getValues().clear();
 				return;
 		}
@@ -144,7 +144,7 @@ public class StructValueImpl extends ValueImpl implements StructValue {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TracePackage.STRUCT_VALUE__VALUES:
+			case TracePackage.UNION_VALUE__VALUES:
 				return values != null && !values.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -197,9 +197,8 @@ public class StructValueImpl extends ValueImpl implements StructValue {
 	@Override
 	public String getType() {
 		if (type == null || type.trim().length() == 0)
-			return "struct {...}";
+			return "union {...}";
 		else
 			return type;
 	}
-	
-} //StructValueImpl
+} //UnionValueImpl

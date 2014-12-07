@@ -3,13 +3,15 @@
 package trace.impl;
 
 import infra.VarHelpers;
+
 import java.util.Collection;
-import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EObjectEList;
+
+import results.data.Vars;
 import trace.ArrayValue;
 import trace.TracePackage;
 import trace.Value;
@@ -29,7 +31,7 @@ import trace.Value;
  */
 public class ArrayValueImpl extends ValueImpl implements ArrayValue {
 	/**
-	 * The cached value of the '{@link #getValues() <em>Values</em>}' containment reference list.
+	 * The cached value of the '{@link #getValues() <em>Values</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getValues()
@@ -64,23 +66,9 @@ public class ArrayValueImpl extends ValueImpl implements ArrayValue {
 	 */
 	public EList<Value> getValues() {
 		if (values == null) {
-			values = new EObjectContainmentEList<Value>(Value.class, this, TracePackage.ARRAY_VALUE__VALUES);
+			values = new EObjectEList<Value>(Value.class, this, TracePackage.ARRAY_VALUE__VALUES);
 		}
 		return values;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TracePackage.ARRAY_VALUE__VALUES:
-				return ((InternalEList<?>)getValues()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -161,11 +149,48 @@ public class ArrayValueImpl extends ValueImpl implements ArrayValue {
 	}
 	
 	@Override
+	public EList<Object> compare(String parentPath, Value old) {
+		EList<Object>initialComparison = super.compare(parentPath, old);
+		if (initialComparison != null)
+			return initialComparison;
+		
+		ArrayValue oldArray = (ArrayValue) old;
+		if (oldArray.getValues().size() != values.size())
+			return createVar(parentPath);
+		
+		int i = 0;
+		for (Value v : values) {
+			if (v.compare(parentPath + '[' + i++ + ']', oldArray).size() != 0)
+				return createVar(parentPath);
+		}
+		return new BasicEList<Object>();
+	}
+	
+	private EList<Object> createVar(String parentPath) {
+		Vars v = new Vars();
+		v.name = parentPath;
+		v.value = getUserFriendlyRepresentation(false);
+		v.in_scope="true";
+		v.type_changed = "false";
+		v.has_more = "0";
+		EList<Object> res = new BasicEList<Object>();
+		res.add(v);
+		return res;
+	}
+	
+	@Override
 	public Value getValue(String expression) {
 		String[] segments = VarHelpers.splitInTwo(expression);
 		int i = Integer.parseInt(segments[0]);
 		if (segments.length == 1)
 			return getValues().get(i);
 		return getValues().get(i).getValue(segments[1]);
+	}
+	
+	@Override
+	public String getType() {
+		if (values.size() == 0)
+			return "unknown [0]";
+		return values.get(0).getType() + '[' + values.size() + ']';
 	}
 } //ArrayValueImpl

@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface ArrayValue extends Value {
 	/**
-	 * Returns the value of the '<em><b>Values</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Values</b></em>' reference list.
 	 * The list contents are of type {@link trace.Value}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -30,9 +30,9 @@ public interface ArrayValue extends Value {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Values</em>' containment reference list.
+	 * @return the value of the '<em>Values</em>' reference list.
 	 * @see trace.TracePackage#getArrayValue_Values()
-	 * @model containment="true"
+	 * @model resolveProxies="false"
 	 *        extendedMetaData="kind='element' name='values'"
 	 * @generated
 	 */

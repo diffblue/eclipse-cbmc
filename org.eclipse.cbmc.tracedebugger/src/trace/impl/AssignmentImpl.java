@@ -5,28 +5,17 @@ package trace.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
-import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.BaseErrorListener;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.RecognitionException;
-import org.antlr.v4.runtime.Recognizer;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import process.Context;
 import process.FunctionExecution;
 import process.ProcessFactory;
 import process.StepResult;
 import process.SteppingResult;
-import expressionparser.ValueExpressionLexer;
-import expressionparser.ValueExpressionParser;
 import java.lang.reflect.InvocationTargetException;
 import trace.Assignment;
-import trace.SimpleValue;
-import trace.TraceFactory;
 import trace.TracePackage;
 import trace.Value;
 
@@ -41,7 +30,6 @@ import trace.Value;
  *   <li>{@link trace.impl.AssignmentImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link trace.impl.AssignmentImpl#getBaseName <em>Base Name</em>}</li>
  *   <li>{@link trace.impl.AssignmentImpl#getValue <em>Value</em>}</li>
- *   <li>{@link trace.impl.AssignmentImpl#getType <em>Type</em>}</li>
  *   <li>{@link trace.impl.AssignmentImpl#isParameter <em>Parameter</em>}</li>
  * </ul>
  * </p>
@@ -110,7 +98,7 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	protected String baseName = BASE_NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getValue()
@@ -118,26 +106,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	 * @ordered
 	 */
 	protected Value value;
-
-	/**
-	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String TYPE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected String type = TYPE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isParameter() <em>Parameter</em>}' attribute.
@@ -255,47 +223,11 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetValue(Value newValue, NotificationChain msgs) {
+	public void setValue(Value newValue) {
 		Value oldValue = value;
 		value = newValue;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TracePackage.ASSIGNMENT__VALUE, oldValue, newValue);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setValue(Value newValue) {
-		if (newValue != value) {
-			NotificationChain msgs = null;
-			if (value != null)
-				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TracePackage.ASSIGNMENT__VALUE, null, msgs);
-			if (newValue != null)
-				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TracePackage.ASSIGNMENT__VALUE, null, msgs);
-			msgs = basicSetValue(newValue, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.ASSIGNMENT__VALUE, newValue, newValue));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TracePackage.ASSIGNMENT__VALUE:
-				return basicSetValue(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.ASSIGNMENT__VALUE, oldValue, value));
 	}
 
 	/**
@@ -304,19 +236,9 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	 * @generated
 	 */
 	public String getType() {
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setType(String newType) {
-		String oldType = type;
-		type = newType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.ASSIGNMENT__TYPE, oldType, type));
+		if (value == null)
+			return "unknonw";
+		return value.getType();
 	}
 
 	/**
@@ -359,17 +281,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValue(String userFriendlyRepresentation) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -381,8 +292,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 				return getBaseName();
 			case TracePackage.ASSIGNMENT__VALUE:
 				return getValue();
-			case TracePackage.ASSIGNMENT__TYPE:
-				return getType();
 			case TracePackage.ASSIGNMENT__PARAMETER:
 				return isParameter();
 		}
@@ -408,9 +317,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 				return;
 			case TracePackage.ASSIGNMENT__VALUE:
 				setValue((Value)newValue);
-				return;
-			case TracePackage.ASSIGNMENT__TYPE:
-				setType((String)newValue);
 				return;
 			case TracePackage.ASSIGNMENT__PARAMETER:
 				setParameter((Boolean)newValue);
@@ -439,9 +345,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 			case TracePackage.ASSIGNMENT__VALUE:
 				setValue((Value)null);
 				return;
-			case TracePackage.ASSIGNMENT__TYPE:
-				setType(TYPE_EDEFAULT);
-				return;
 			case TracePackage.ASSIGNMENT__PARAMETER:
 				setParameter(PARAMETER_EDEFAULT);
 				return;
@@ -465,8 +368,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 				return BASE_NAME_EDEFAULT == null ? baseName != null : !BASE_NAME_EDEFAULT.equals(baseName);
 			case TracePackage.ASSIGNMENT__VALUE:
 				return value != null;
-			case TracePackage.ASSIGNMENT__TYPE:
-				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 			case TracePackage.ASSIGNMENT__PARAMETER:
 				return parameter != PARAMETER_EDEFAULT;
 		}
@@ -483,9 +384,8 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 		switch (operationID) {
 			case TracePackage.ASSIGNMENT___GET_VALUE__STRING:
 				return getValue((String)arguments.get(0));
-			case TracePackage.ASSIGNMENT___SET_VALUE__STRING:
-				setValue((String)arguments.get(0));
-				return null;
+			case TracePackage.ASSIGNMENT___GET_TYPE:
+				return getType();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -506,8 +406,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 		result.append(displayName);
 		result.append(", baseName: ");
 		result.append(baseName);
-		result.append(", type: ");
-		result.append(type);
 		result.append(", parameter: ");
 		result.append(parameter);
 		result.append(')');
