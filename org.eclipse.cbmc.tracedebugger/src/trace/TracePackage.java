@@ -202,13 +202,22 @@ public interface TracePackage extends EPackage {
 	int VALUE___COMPARE__STRING_VALUE = 3;
 
 	/**
+	 * The operation id for the '<em>List Children</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE___LIST_CHILDREN__STRING = 4;
+
+	/**
 	 * The number of operations of the '<em>Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPERATION_COUNT = 4;
+	int VALUE_OPERATION_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link trace.impl.StructValueImpl <em>Struct Value</em>}' class.
@@ -292,6 +301,15 @@ public interface TracePackage extends EPackage {
 	 * @ordered
 	 */
 	int ARRAY_VALUE___COMPARE__STRING_VALUE = VALUE___COMPARE__STRING_VALUE;
+
+	/**
+	 * The operation id for the '<em>List Children</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_VALUE___LIST_CHILDREN__STRING = VALUE___LIST_CHILDREN__STRING;
 
 	/**
 	 * The number of operations of the '<em>Array Value</em>' class.
@@ -899,6 +917,15 @@ public interface TracePackage extends EPackage {
 	int SIMPLE_VALUE___COMPARE__STRING_VALUE = VALUE___COMPARE__STRING_VALUE;
 
 	/**
+	 * The operation id for the '<em>List Children</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_VALUE___LIST_CHILDREN__STRING = VALUE___LIST_CHILDREN__STRING;
+
+	/**
 	 * The number of operations of the '<em>Simple Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -971,6 +998,15 @@ public interface TracePackage extends EPackage {
 	int STRUCT_VALUE___COMPARE__STRING_VALUE = VALUE___COMPARE__STRING_VALUE;
 
 	/**
+	 * The operation id for the '<em>List Children</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCT_VALUE___LIST_CHILDREN__STRING = VALUE___LIST_CHILDREN__STRING;
+
+	/**
 	 * The number of operations of the '<em>Struct Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1024,7 +1060,7 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNION_VALUE__TYPE = VALUE__TYPE;
+	int UNION_VALUE__TYPE = STRUCT_VALUE__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Values</b></em>' map.
@@ -1033,7 +1069,7 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNION_VALUE__VALUES = VALUE_FEATURE_COUNT + 0;
+	int UNION_VALUE__VALUES = STRUCT_VALUE__VALUES;
 
 	/**
 	 * The number of structural features of the '<em>Union Value</em>' class.
@@ -1042,7 +1078,7 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNION_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
+	int UNION_VALUE_FEATURE_COUNT = STRUCT_VALUE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Value</em>' operation.
@@ -1051,7 +1087,7 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNION_VALUE___GET_VALUE__STRING = VALUE___GET_VALUE__STRING;
+	int UNION_VALUE___GET_VALUE__STRING = STRUCT_VALUE___GET_VALUE__STRING;
 
 	/**
 	 * The operation id for the '<em>Get Children Count</em>' operation.
@@ -1060,7 +1096,7 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNION_VALUE___GET_CHILDREN_COUNT = VALUE___GET_CHILDREN_COUNT;
+	int UNION_VALUE___GET_CHILDREN_COUNT = STRUCT_VALUE___GET_CHILDREN_COUNT;
 
 	/**
 	 * The operation id for the '<em>Get User Friendly Representation</em>' operation.
@@ -1069,7 +1105,7 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNION_VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN = VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN;
+	int UNION_VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN = STRUCT_VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Compare</em>' operation.
@@ -1078,7 +1114,16 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNION_VALUE___COMPARE__STRING_VALUE = VALUE___COMPARE__STRING_VALUE;
+	int UNION_VALUE___COMPARE__STRING_VALUE = STRUCT_VALUE___COMPARE__STRING_VALUE;
+
+	/**
+	 * The operation id for the '<em>List Children</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_VALUE___LIST_CHILDREN__STRING = STRUCT_VALUE___LIST_CHILDREN__STRING;
 
 	/**
 	 * The number of operations of the '<em>Union Value</em>' class.
@@ -1087,7 +1132,7 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNION_VALUE_OPERATION_COUNT = VALUE_OPERATION_COUNT + 0;
+	int UNION_VALUE_OPERATION_COUNT = STRUCT_VALUE_OPERATION_COUNT + 0;
 
 
 	/**
@@ -1449,6 +1494,16 @@ public interface TracePackage extends EPackage {
 	EOperation getValue__Compare__String_Value();
 
 	/**
+	 * Returns the meta object for the '{@link trace.Value#listChildren(java.lang.String) <em>List Children</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>List Children</em>' operation.
+	 * @see trace.Value#listChildren(java.lang.String)
+	 * @generated
+	 */
+	EOperation getValue__ListChildren__String();
+
+	/**
 	 * Returns the meta object for class '{@link trace.UnionValue <em>Union Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1457,17 +1512,6 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getUnionValue();
-
-	/**
-	 * Returns the meta object for the map '{@link trace.UnionValue#getValues <em>Values</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the map '<em>Values</em>'.
-	 * @see trace.UnionValue#getValues()
-	 * @see #getUnionValue()
-	 * @generated
-	 */
-	EReference getUnionValue_Values();
 
 	/**
 	 * Returns the meta object for class '{@link trace.StructValue <em>Struct Value</em>}'.
@@ -1884,6 +1928,14 @@ public interface TracePackage extends EPackage {
 		EOperation VALUE___COMPARE__STRING_VALUE = eINSTANCE.getValue__Compare__String_Value();
 
 		/**
+		 * The meta object literal for the '<em><b>List Children</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation VALUE___LIST_CHILDREN__STRING = eINSTANCE.getValue__ListChildren__String();
+
+		/**
 		 * The meta object literal for the '{@link trace.impl.UnionValueImpl <em>Union Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1892,14 +1944,6 @@ public interface TracePackage extends EPackage {
 		 * @generated
 		 */
 		EClass UNION_VALUE = eINSTANCE.getUnionValue();
-
-		/**
-		 * The meta object literal for the '<em><b>Values</b></em>' map feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference UNION_VALUE__VALUES = eINSTANCE.getUnionValue_Values();
 
 		/**
 		 * The meta object literal for the '{@link trace.impl.StructValueImpl <em>Struct Value</em>}' class.

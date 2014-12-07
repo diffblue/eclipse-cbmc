@@ -3,14 +3,11 @@
 package trace.impl;
 
 import infra.VarHelpers;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectEList;
-
 import results.data.Vars;
 import trace.ArrayValue;
 import trace.TracePackage;
@@ -192,5 +189,21 @@ public class ArrayValueImpl extends ValueImpl implements ArrayValue {
 		if (values.size() == 0)
 			return "unknown [0]";
 		return values.get(0).getType() + '[' + values.size() + ']';
+	}
+	
+	@Override
+	public EList<Object> listChildren(String requestedExpression) {
+		EList<Object> children = new BasicEList<Object>();
+		int i = 0;
+		for (Value value : values) {
+			Vars v = new Vars();
+			v.name = requestedExpression + '[' + i + ']';
+			v.exp = v.name;
+			v.numchild = String.valueOf(value.getChildrenCount());
+			v.type = value.getType();
+			children.add(v);
+			i++;
+		}
+		return children;
 	}
 } //ArrayValueImpl

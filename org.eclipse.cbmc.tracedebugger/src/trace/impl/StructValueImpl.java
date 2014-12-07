@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import results.data.Vars;
 import trace.StructValue;
 import trace.TracePackage;
 import trace.Value;
@@ -202,4 +203,17 @@ public class StructValueImpl extends ValueImpl implements StructValue {
 			return type;
 	}
 	
+	@Override
+	public EList<Object> listChildren(String requestedExpression) {
+		EList<Object> children = new BasicEList<Object>(values.size());
+		for (Entry<String, Value> entry : values) {
+			Vars v = new Vars();
+			v.name = requestedExpression + '.' + entry.getKey();
+			v.exp = entry.getKey();
+			v.numchild = String.valueOf(entry.getValue().getChildrenCount());
+			v.type = entry.getValue().getType();
+			children.add(v);
+		}
+		return children;
+	};
 } //StructValueImpl

@@ -156,6 +156,7 @@ public class TraceSwitch<T> extends Switch<T> {
 			case TracePackage.UNION_VALUE: {
 				UnionValue unionValue = (UnionValue)theEObject;
 				T result = caseUnionValue(unionValue);
+				if (result == null) result = caseStructValue(unionValue);
 				if (result == null) result = caseValue(unionValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

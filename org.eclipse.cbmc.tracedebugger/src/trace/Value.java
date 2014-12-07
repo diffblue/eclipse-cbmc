@@ -80,4 +80,12 @@ public interface Value extends EObject {
 	 */
 	EList<Object> compare(String parentPath, Value old);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model many="false" requestedExpressionDataType="org.eclipse.emf.ecore.xml.type.String"
+	 * @generated
+	 */
+	EList<Object> listChildren(String requestedExpression);
+
 } // Value

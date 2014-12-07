@@ -213,6 +213,8 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value {
 				return getUserFriendlyRepresentation((Boolean)arguments.get(0));
 			case TracePackage.VALUE___COMPARE__STRING_VALUE:
 				return compare((String)arguments.get(0), (Value)arguments.get(1));
+			case TracePackage.VALUE___LIST_CHILDREN__STRING:
+				return listChildren((String)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -232,4 +234,10 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value {
 		result.append(')');
 		return result.toString();
 	}
+
+	@Override
+	public EList<Object> listChildren(String requestedExpression) {
+		return null;
+	}
+	
 } //ValueImpl

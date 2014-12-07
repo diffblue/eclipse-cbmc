@@ -233,7 +233,7 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String getType() {
 		if (value == null)

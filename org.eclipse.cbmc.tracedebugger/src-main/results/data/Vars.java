@@ -1,6 +1,6 @@
 package results.data;
 
-import java.util.List;
+import org.eclipse.emf.common.util.EList;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
@@ -22,10 +22,10 @@ public class Vars {
 	
 	//This method exists because the serialization format of the children is not standard 
 	//[child={name="var2.x",exp="x",numchild="0",type="int",thread-id="1"},child={name="var2.y",exp="y",numchild="0",type="int",thread-id="1"},child={name="var2.z",exp=\"z",numchild="0",type="int",thread-id="1"}],has_more="0"
-	public static String serializeAsChildrenList(List<Vars> children) {
+	public static String serializeAsChildrenList(EList<Object> children) {
 		StringBuilder result = new StringBuilder(200);
 		result.append('[');
-		for (Vars child : children) {
+		for (Object child : children) {
 			result.append("child=");
 			result.append(new Gson().toJson(child));
 			result.append(',');

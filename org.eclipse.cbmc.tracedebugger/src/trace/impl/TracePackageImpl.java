@@ -514,8 +514,8 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getUnionValue() {
-		return unionValueEClass;
+	public EOperation getValue__ListChildren__String() {
+		return valueEClass.getEOperations().get(4);
 	}
 
 	/**
@@ -523,8 +523,8 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUnionValue_Values() {
-		return (EReference)unionValueEClass.getEStructuralFeatures().get(0);
+	public EClass getUnionValue() {
+		return unionValueEClass;
 	}
 
 	/**
@@ -691,9 +691,9 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		createEOperation(valueEClass, VALUE___GET_CHILDREN_COUNT);
 		createEOperation(valueEClass, VALUE___GET_USER_FRIENDLY_REPRESENTATION__BOOLEAN);
 		createEOperation(valueEClass, VALUE___COMPARE__STRING_VALUE);
+		createEOperation(valueEClass, VALUE___LIST_CHILDREN__STRING);
 
 		unionValueEClass = createEClass(UNION_VALUE);
-		createEReference(unionValueEClass, UNION_VALUE__VALUES);
 	}
 
 	/**
@@ -736,7 +736,7 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		locationOnlyEClass.getESuperTypes().add(this.getStep());
 		simpleValueEClass.getESuperTypes().add(this.getValue());
 		structValueEClass.getESuperTypes().add(this.getValue());
-		unionValueEClass.getESuperTypes().add(this.getValue());
+		unionValueEClass.getESuperTypes().add(this.getStructValue());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(arrayValueEClass, ArrayValue.class, "ArrayValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -812,8 +812,14 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
 
+		op = initEOperation(getValue__ListChildren__String(), null, "listChildren", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theXMLTypePackage.getString(), "requestedExpression", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEEList());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		initEOperation(op, g1);
+
 		initEClass(unionValueEClass, UnionValue.class, "UnionValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUnionValue_Values(), this.getNameToValueMap(), null, "values", null, 0, -1, UnionValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -1073,15 +1079,8 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		  (unionValueEClass, 
 		   source, 
 		   new String[] {
-			 "name", "StructValue",
+			 "name", "UnionValue",
 			 "kind", "elementOnly"
-		   });	
-		addAnnotation
-		  (getUnionValue_Values(), 
-		   source, 
-		   new String[] {
-			 "kind", "element",
-			 "name", "values"
 		   });
 	}
 

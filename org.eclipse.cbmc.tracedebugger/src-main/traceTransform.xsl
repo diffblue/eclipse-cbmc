@@ -27,7 +27,7 @@
 					<xsl:for-each select="$node/union/member">
 						<values>
 							<key>
-								<xsl:value-of select="./@name" />
+								<xsl:value-of select="./@member_name" />
 							</key>
 							<xsl:call-template name="getValueExpression">
 								<xsl:with-param name="node" select="." />
