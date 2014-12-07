@@ -125,6 +125,10 @@ public class TraceAdapterFactory extends AdapterFactoryImpl {
 				return createUnionValueAdapter();
 			}
 			@Override
+			public Adapter caseOutput(Output object) {
+				return createOutputAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -281,6 +285,20 @@ public class TraceAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUnionValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link trace.Output <em>Output</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see trace.Output
+	 * @generated
+	 */
+	public Adapter createOutputAdapter() {
 		return null;
 	}
 

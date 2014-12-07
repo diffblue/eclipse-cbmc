@@ -225,6 +225,32 @@
 						</xsl:if>
 					</steps>
 				</xsl:if>
+				<xsl:if test="name() = 'output'">
+					<steps xsi:type="trace:Output">
+						<thread>
+							<xsl:value-of select="@thread" />
+						</thread>
+						<number>
+							<xsl:value-of select="@step_nr" />
+						</number>
+						<text>
+							<xsl:value-of select="@text" />
+						</text>
+						<xsl:if test="./location">
+							<location>
+								<file>
+									<xsl:value-of select="location/@file" />
+								</file>
+								<function>
+									<xsl:value-of select="location/@function" />
+								</function>
+								<line>
+									<xsl:value-of select="location/@line" />
+								</line>
+							</location>
+						</xsl:if>
+					</steps>
+				</xsl:if>
 			</xsl:for-each>
 		</trace:Trace>
 	</xsl:template>

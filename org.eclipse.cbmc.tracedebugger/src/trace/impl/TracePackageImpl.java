@@ -20,6 +20,7 @@ import trace.FunctionCall;
 import trace.FunctionReturn;
 import trace.Location;
 import trace.LocationOnly;
+import trace.Output;
 import trace.SimpleValue;
 import trace.Step;
 import trace.StructValue;
@@ -105,6 +106,13 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * @generated
 	 */
 	private EClass unionValueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass outputEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -532,6 +540,24 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getOutput() {
+		return outputEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOutput_Text() {
+		return (EAttribute)outputEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getStructValue() {
 		return structValueEClass;
 	}
@@ -694,6 +720,9 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		createEOperation(valueEClass, VALUE___LIST_CHILDREN__STRING);
 
 		unionValueEClass = createEClass(UNION_VALUE);
+
+		outputEClass = createEClass(OUTPUT);
+		createEAttribute(outputEClass, OUTPUT__TEXT);
 	}
 
 	/**
@@ -737,6 +766,7 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		simpleValueEClass.getESuperTypes().add(this.getValue());
 		structValueEClass.getESuperTypes().add(this.getValue());
 		unionValueEClass.getESuperTypes().add(this.getStructValue());
+		outputEClass.getESuperTypes().add(this.getStep());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(arrayValueEClass, ArrayValue.class, "ArrayValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -820,6 +850,9 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		initEOperation(op, g1);
 
 		initEClass(unionValueEClass, UnionValue.class, "UnionValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(outputEClass, Output.class, "Output", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getOutput_Text(), theXMLTypePackage.getString(), "text", null, 0, 1, Output.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -1080,6 +1113,13 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		   source, 
 		   new String[] {
 			 "name", "UnionValue",
+			 "kind", "elementOnly"
+		   });	
+		addAnnotation
+		  (outputEClass, 
+		   source, 
+		   new String[] {
+			 "name", "Output",
 			 "kind", "elementOnly"
 		   });
 	}

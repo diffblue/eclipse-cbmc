@@ -1136,6 +1136,80 @@ public interface TracePackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link trace.impl.OutputImpl <em>Output</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see trace.impl.OutputImpl
+	 * @see trace.impl.TracePackageImpl#getOutput()
+	 * @generated
+	 */
+	int OUTPUT = 14;
+
+	/**
+	 * The feature id for the '<em><b>Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OUTPUT__NUMBER = STEP__NUMBER;
+
+	/**
+	 * The feature id for the '<em><b>Location</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OUTPUT__LOCATION = STEP__LOCATION;
+
+	/**
+	 * The feature id for the '<em><b>Thread</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OUTPUT__THREAD = STEP__THREAD;
+
+	/**
+	 * The feature id for the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OUTPUT__TEXT = STEP_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Output</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OUTPUT_FEATURE_COUNT = STEP_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Interpret</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OUTPUT___INTERPRET__CONTEXT = STEP___INTERPRET__CONTEXT;
+
+	/**
+	 * The number of operations of the '<em>Output</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OUTPUT_OPERATION_COUNT = STEP_OPERATION_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link trace.Assignment <em>Assignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1512,6 +1586,27 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getUnionValue();
+
+	/**
+	 * Returns the meta object for class '{@link trace.Output <em>Output</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Output</em>'.
+	 * @see trace.Output
+	 * @generated
+	 */
+	EClass getOutput();
+
+	/**
+	 * Returns the meta object for the attribute '{@link trace.Output#getText <em>Text</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Text</em>'.
+	 * @see trace.Output#getText()
+	 * @see #getOutput()
+	 * @generated
+	 */
+	EAttribute getOutput_Text();
 
 	/**
 	 * Returns the meta object for class '{@link trace.StructValue <em>Struct Value</em>}'.
@@ -1944,6 +2039,24 @@ public interface TracePackage extends EPackage {
 		 * @generated
 		 */
 		EClass UNION_VALUE = eINSTANCE.getUnionValue();
+
+		/**
+		 * The meta object literal for the '{@link trace.impl.OutputImpl <em>Output</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see trace.impl.OutputImpl
+		 * @see trace.impl.TracePackageImpl#getOutput()
+		 * @generated
+		 */
+		EClass OUTPUT = eINSTANCE.getOutput();
+
+		/**
+		 * The meta object literal for the '<em><b>Text</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OUTPUT__TEXT = eINSTANCE.getOutput_Text();
 
 		/**
 		 * The meta object literal for the '{@link trace.impl.StructValueImpl <em>Struct Value</em>}' class.
