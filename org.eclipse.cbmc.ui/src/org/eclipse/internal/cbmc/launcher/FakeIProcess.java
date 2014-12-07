@@ -222,7 +222,6 @@ public class FakeIProcess extends PlatformObject implements IProcess {
 
 	@Override
 	public IStreamsProxy getStreamsProxy() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }
