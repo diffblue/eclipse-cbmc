@@ -11,23 +11,26 @@ import org.eclipse.emf.common.util.EList;
 public class CheckAllPropertiesJob extends Job {
 
 	private Results results;
+	private PropertyCheckerHelper propertyChecker;
 
 	public CheckAllPropertiesJob(String name, Results results) {
 		super(name);
 		this.results = results;
+		propertyChecker = new PropertyCheckerHelper();
 	}
 
 	@Override
 	protected IStatus run(IProgressMonitor monitor) {
 		EList<Property> properties = results.getProperties();
-		return PropertyCheckerHelper.checkProperties(properties, monitor);
+		return propertyChecker.checkProperties(properties, monitor);
 	}
 
 	public void resetProperties() {
-		PropertyCheckerHelper.resetPropertyStatus(results);
+		propertyChecker.resetPropertyStatus(results);
 	}
 
-	public void stop() {
-		cancel();
+	@Override
+	protected void canceling() {
+		propertyChecker.cancelCurrentJob();
 	}
 }

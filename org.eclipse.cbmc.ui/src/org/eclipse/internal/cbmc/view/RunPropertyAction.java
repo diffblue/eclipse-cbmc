@@ -31,6 +31,6 @@ public class RunPropertyAction extends SelectionListenerAction {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void run() {
-		PropertyCheckerHelper.checkProperties(getStructuredSelection().toList(), null);
+		new PropertyCheckerHelper().checkProperties(getStructuredSelection().toList(), null);
 	}
 }
