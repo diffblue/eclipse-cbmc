@@ -33,8 +33,8 @@ public class CBMCCliHelper {
 	private File workingDirectory;
 	private List<String> baseCli = new ArrayList<String>();
 	private static final String PLUGIN_ID = "org.eclipse.cbmc"; //$NON-NLS-1$
-	private static final Object C_EXTENSION = "c";
-	private static final Object CPP_EXTENSION = "cpp";
+	private static final Object C_EXTENSION = "c"; //$NON-NLS-1$
+	private static final Object CPP_EXTENSION = "cpp"; //$NON-NLS-1$
 	private ILog logger = Platform.getPlugin(PLUGIN_ID).getLog();
 	private String lcCBMCFileToCheck;
 	private String lcCBMCExecutable;
