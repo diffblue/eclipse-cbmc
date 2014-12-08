@@ -438,22 +438,13 @@ public interface TracePackage extends EPackage {
 	int ASSIGNMENT__VALUE = STEP_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Parameter</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSIGNMENT__PARAMETER = STEP_FEATURE_COUNT + 4;
-
-	/**
 	 * The number of structural features of the '<em>Assignment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNMENT_FEATURE_COUNT = STEP_FEATURE_COUNT + 5;
+	int ASSIGNMENT_FEATURE_COUNT = STEP_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Interpret</em>' operation.
@@ -1264,17 +1255,6 @@ public interface TracePackage extends EPackage {
 	EReference getAssignment_Value();
 
 	/**
-	 * Returns the meta object for the attribute '{@link trace.Assignment#isParameter <em>Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Parameter</em>'.
-	 * @see trace.Assignment#isParameter()
-	 * @see #getAssignment()
-	 * @generated
-	 */
-	EAttribute getAssignment_Parameter();
-
-	/**
 	 * Returns the meta object for the '{@link trace.Assignment#getValue(java.lang.String) <em>Get Value</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1773,14 +1753,6 @@ public interface TracePackage extends EPackage {
 		 * @generated
 		 */
 		EReference ASSIGNMENT__VALUE = eINSTANCE.getAssignment_Value();
-
-		/**
-		 * The meta object literal for the '<em><b>Parameter</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ASSIGNMENT__PARAMETER = eINSTANCE.getAssignment_Parameter();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Value</b></em>' operation.

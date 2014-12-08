@@ -261,15 +261,6 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAssignment_Parameter() {
-		return (EAttribute)assignmentEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getAssignment__GetValue__String() {
 		return assignmentEClass.getEOperations().get(0);
 	}
@@ -670,7 +661,6 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		createEAttribute(assignmentEClass, ASSIGNMENT__DISPLAY_NAME);
 		createEAttribute(assignmentEClass, ASSIGNMENT__BASE_NAME);
 		createEReference(assignmentEClass, ASSIGNMENT__VALUE);
-		createEAttribute(assignmentEClass, ASSIGNMENT__PARAMETER);
 		createEOperation(assignmentEClass, ASSIGNMENT___GET_VALUE__STRING);
 		createEOperation(assignmentEClass, ASSIGNMENT___GET_TYPE);
 
@@ -777,7 +767,6 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		initEAttribute(getAssignment_DisplayName(), theXMLTypePackage.getString(), "displayName", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAssignment_BaseName(), theXMLTypePackage.getString(), "baseName", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAssignment_Value(), this.getValue(), null, "value", null, 1, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAssignment_Parameter(), theXMLTypePackage.getBoolean(), "parameter", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getAssignment__GetValue__String(), this.getValue(), "getValue", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theXMLTypePackage.getString(), "expression", 0, 1, IS_UNIQUE, IS_ORDERED);

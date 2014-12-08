@@ -50,7 +50,6 @@
         <details key="name" value="value"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameter" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Failure" eSuperTypes="#//Step">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">

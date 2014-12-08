@@ -30,7 +30,6 @@ import trace.Value;
  *   <li>{@link trace.impl.AssignmentImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link trace.impl.AssignmentImpl#getBaseName <em>Base Name</em>}</li>
  *   <li>{@link trace.impl.AssignmentImpl#getValue <em>Value</em>}</li>
- *   <li>{@link trace.impl.AssignmentImpl#isParameter <em>Parameter</em>}</li>
  * </ul>
  * </p>
  *
@@ -106,26 +105,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	 * @ordered
 	 */
 	protected Value value;
-
-	/**
-	 * The default value of the '{@link #isParameter() <em>Parameter</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isParameter()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean PARAMETER_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isParameter() <em>Parameter</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isParameter()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean parameter = PARAMETER_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -244,27 +223,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isParameter() {
-		return parameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setParameter(boolean newParameter) {
-		boolean oldParameter = parameter;
-		parameter = newParameter;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.ASSIGNMENT__PARAMETER, oldParameter, parameter));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Value getValue(String expression) {
@@ -292,8 +250,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 				return getBaseName();
 			case TracePackage.ASSIGNMENT__VALUE:
 				return getValue();
-			case TracePackage.ASSIGNMENT__PARAMETER:
-				return isParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -317,9 +273,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 				return;
 			case TracePackage.ASSIGNMENT__VALUE:
 				setValue((Value)newValue);
-				return;
-			case TracePackage.ASSIGNMENT__PARAMETER:
-				setParameter((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -345,9 +298,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 			case TracePackage.ASSIGNMENT__VALUE:
 				setValue((Value)null);
 				return;
-			case TracePackage.ASSIGNMENT__PARAMETER:
-				setParameter(PARAMETER_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -368,8 +318,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 				return BASE_NAME_EDEFAULT == null ? baseName != null : !BASE_NAME_EDEFAULT.equals(baseName);
 			case TracePackage.ASSIGNMENT__VALUE:
 				return value != null;
-			case TracePackage.ASSIGNMENT__PARAMETER:
-				return parameter != PARAMETER_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -406,8 +354,6 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 		result.append(displayName);
 		result.append(", baseName: ");
 		result.append(baseName);
-		result.append(", parameter: ");
-		result.append(parameter);
 		result.append(')');
 		return result.toString();
 	}

@@ -119,19 +119,19 @@
 							<xsl:value-of select="@step_nr" />
 						</number>
 
-						<xsl:if test="./location">
-							<location>
-								<file>
-									<xsl:value-of select="location/@file" />
-								</file>
-								<function>
-									<xsl:value-of select="location/@function" />
-								</function>
-								<line>
-									<xsl:value-of select="location/@line" />
-								</line>
-							</location>
-						</xsl:if>
+<!-- 						<xsl:if test="./location"> -->
+<!-- 							<location> -->
+<!-- 								<file> -->
+<!-- 									<xsl:value-of select="location/@file" /> -->
+<!-- 								</file> -->
+<!-- 								<function> -->
+<!-- 									<xsl:value-of select="location/@function" /> -->
+<!-- 								</function> -->
+<!-- 								<line> -->
+<!-- 									<xsl:value-of select="location/@line" /> -->
+<!-- 								</line> -->
+<!-- 							</location> -->
+<!-- 						</xsl:if> -->
 						<xsl:if test="./function">
 							<id>
 								<xsl:value-of select="function/@identifier" />
@@ -139,6 +139,19 @@
 							<displayName>
 								<xsl:value-of select="function/@display_name" />
 							</displayName>
+						</xsl:if>
+						<xsl:if test="./function/location">
+							<location>
+								<file>
+									<xsl:value-of select="function/location/@file" />
+								</file>
+								<line>
+									<xsl:value-of select="function/location/@line" />
+								</line>
+								<function>
+									<xsl:value-of select="function/@display_name" />
+								</function>
+							</location>
 						</xsl:if>
 					</steps>
 				</xsl:if>

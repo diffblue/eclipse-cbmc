@@ -357,13 +357,18 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 		return result;
 	}
 
-	// only consume the steps of type assignment that are parameters
+	// only consume the steps that represent parameters assignment
+	// these are identified by having as a location the file and function of the calling site.
+	//e.g. when foo() is invoked from main(), the assignments for the parameters of foo have as a location main.
 	private StepResult consumeParameters() {
 		StepResult lastResult = null;
 		while (stepToExecuteIdx < allSteps.size()) {
 			Step stepToExecute = getStepToExecute();
-			if (stepToExecute.eClass().getClassifierID() == TracePackage.ASSIGNMENT
-					&& ((Assignment) stepToExecute).isParameter()) {
+			if (stepToExecute.eClass().getClassifierID() == TracePackage.ASSIGNMENT 
+						//Deal with the case of the first function call in the trace, since the location is set to an awkward value
+					&& ((stack.getParent() == null && sameLineThanFunctionCallStep(stepToExecute.getLocation(), stack.getEntryStep().getLocation()))
+						//normal case
+						|| stack.getParent() != null && sameFileAndFunction(stepToExecute.getLocation(), stack.getParent().getEntryStep().getLocation()))) {
 				lastResult = executeNextInstruction();
 			} else {
 				return lastResult != null ? lastResult : getNothingDoneStep();
@@ -421,7 +426,19 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 		return false;
 	}
 	
+	private boolean sameLineThanFunctionCallStep(Location location1, Location location2) {
+		if (location1 == location2)
+			return true;
+		if (location1 == null || location2 == null)
+			return false;
+		return location1.getFile().equals(location2.getFile()) && location1.getLine() == location2.getLine();
+	}
+	
 	private boolean sameFileAndFunction(Location location1, Location location2) {
+		if (location1 == location2)
+			return true;
+		if (location1 == null || location2 == null)
+			return false;
 		return location1.getFile().equals(location2.getFile()) && location1.getFunction().equals(location2.getFunction());
 	}
 
@@ -753,7 +770,8 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (id: ");
