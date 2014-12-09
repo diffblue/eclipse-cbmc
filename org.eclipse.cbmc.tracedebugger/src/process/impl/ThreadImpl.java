@@ -421,7 +421,7 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 
 		if ((result.getStepDone() & Context.FUNCTION_RETURN) == Context.FUNCTION_RETURN) {
 			// Simple case
-			if (nextLocation.getFile().equals(location.getFile()) && nextLocation.getFunction().equals(location.getFunction()))
+			if (nextLocation.getFile().equals(location.getFile()) && nextLocation.getFunction().equals(location.getFunction()) && nextLocation.getLine() != location.getLine())
 				return true;
 
 			// I exited a function but it is only relevant to stop if the
@@ -431,7 +431,7 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 			FunctionExecution parent = getStack();
 			if (parent == null)
 				return true;
-			if (location.getFile().equals(parent.getFileName()) && location.getFunction().equals(parent.getFunctionName()))
+			if (location.getFile().equals(parent.getFileName()) && location.getFunction().equals(parent.getFunctionName()) && nextLocation.getLine() != location.getLine())
 				return true;
 
 			// If I just exited from the function from which I started stepping
