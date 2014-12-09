@@ -14,7 +14,7 @@ public class VarHelpers {
 	//Take an internal variable name (e.g. var1) and replace it by its real name
 	public static String resolveInternalVariableName(Assignment assignment, String expression) {
 		String[] segments = VarHelpers.splitInTwo(expression);
-		return expression.replaceFirst(segments[0], assignment.getBaseName());
+		return expression.replaceFirst(segments[0], java.util.regex.Matcher.quoteReplacement(assignment.getBaseName()));
 	}
 
 	public static String[] splitInTwo(String expression) {
