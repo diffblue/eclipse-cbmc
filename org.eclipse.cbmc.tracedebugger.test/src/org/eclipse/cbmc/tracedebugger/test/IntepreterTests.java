@@ -3,7 +3,7 @@ package org.eclipse.cbmc.tracedebugger.test;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
 
@@ -22,20 +22,42 @@ import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
-public class IntegrationTest {
-	 @Parameters
-	public static Collection<String[]> data() {
-        return Arrays.asList(new String[][] { { "simpleTest" } , { "struct" } , { "arrayOfStruct" }, { "functionWithParameters" } });
-    }
+public class IntepreterTests {
+	@Parameter(value=0)
+	public String chatterData;
 	
-	@Parameter
-	public String testData;
+	@Parameter(value=1)
+	public String counterExampleData;
+	
+	@Parameter(value=2)
+	public String inputFolder; //This is here to keep the JUnit happy and allow to present a nice name.
 	
 	@Rule
 	public TemporaryFolder folder = new TemporaryFolder();
 	
-	private File counterExample;
 	private Chatter chatter;
+	private File counterExample;
+
+	//To add a test, add the folder containing the test in this list
+	public static final String[] TEST_CASES = {
+		"arrayOfStruct", 
+		"executionAndBreakpoints", 
+		"functionCallOnFirstLine", 
+		"functionWithParameters", 
+		"recursion",
+		"simpleTest",
+		"struct",
+		"variables"
+		};
+	
+	@Parameters(name= "{2} -> {0}")
+	public static Collection<Object[]> getTestCases() throws IOException {
+		Collection<Object[]> result = new ArrayList<Object[]>();
+		for (String testCase : TEST_CASES) {
+			result.addAll(TestHelpers.extractTestCaseFrom(testCase));
+		}
+		return result;
+	}
 	
 	@Test
 	public void test() throws FileNotFoundException, IOException {
@@ -49,10 +71,9 @@ public class IntegrationTest {
 	@Before
 	public void setupInput() throws IOException {
 		counterExample = new File(folder.getRoot(), "counterexample.xml");
-		File chatterFile = new File(folder.getRoot(), "chatter.txt");
-		TestHelpers.copy("copy counterexample.xml",	TestHelpers.getTestData("getting counterexample.xml", "testData/" + testData + "/counterexample.xml"), counterExample);
-		TestHelpers.copy("copy chatter.txt", TestHelpers.getTestData("getting chatter.txt", "testData/" + testData + "/chatter.txt"), chatterFile);
-		chatter = new Chatter(chatterFile, counterExample.getAbsolutePath());
+		//We copy the counterexample because the tracedebugger writes in the same folder which would pollute
+		TestHelpers.copy("copy counterexample.xml",	new File(counterExampleData), counterExample);
+		chatter = new Chatter(new File(chatterData), counterExample.getAbsolutePath());
 	}
 	
 
