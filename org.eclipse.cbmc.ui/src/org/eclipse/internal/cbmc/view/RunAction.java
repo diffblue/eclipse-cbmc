@@ -3,7 +3,6 @@ package org.eclipse.internal.cbmc.view;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.jface.util.IPropertyChangeListener;
 
 public class RunAction extends JobAction {
 
@@ -19,12 +18,6 @@ public class RunAction extends JobAction {
 	@Override
 	public IPath getDisabledImagePath() {
 		return new Path("icons/run_disabled.gif"); //$NON-NLS-1$
-	}
-
-	@Override
-	public void addPropertyChangeListener(IPropertyChangeListener listener) {
-		// TODO Auto-generated method stub
-		super.addPropertyChangeListener(listener);
 	}
 
 	@Override
