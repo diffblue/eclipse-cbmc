@@ -243,17 +243,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProcess_Pid() {
-		return (EAttribute)processEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getProcess_VariableManager() {
-		return (EReference)processEClass.getEStructuralFeatures().get(6);
+		return (EReference)processEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -262,7 +253,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * @generated
 	 */
 	public EReference getProcess_BreakpointManager() {
-		return (EReference)processEClass.getEStructuralFeatures().get(7);
+		return (EReference)processEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -271,7 +262,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * @generated
 	 */
 	public EAttribute getProcess_ExecutableName() {
-		return (EAttribute)processEClass.getEStructuralFeatures().get(8);
+		return (EAttribute)processEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -821,7 +812,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 		createEAttribute(processEClass, PROCESS__GROUP_THREAD_ID);
 		createEAttribute(processEClass, PROCESS__PROCESS_NUMBER);
 		createEReference(processEClass, PROCESS__ACTIVE_THREADS);
-		createEAttribute(processEClass, PROCESS__PID);
 		createEReference(processEClass, PROCESS__VARIABLE_MANAGER);
 		createEReference(processEClass, PROCESS__BREAKPOINT_MANAGER);
 		createEAttribute(processEClass, PROCESS__EXECUTABLE_NAME);
@@ -935,7 +925,6 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 		initEAttribute(getProcess_GroupThreadId(), theXMLTypePackage.getString(), "groupThreadId", null, 0, 1, process.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProcess_ProcessNumber(), theXMLTypePackage.getString(), "processNumber", null, 0, 1, process.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProcess_ActiveThreads(), this.getThread(), null, "activeThreads", null, 0, -1, process.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getProcess_Pid(), theXMLTypePackage.getString(), "pid", null, 0, 1, process.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProcess_VariableManager(), this.getVariableManager(), null, "variableManager", null, 1, 1, process.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProcess_BreakpointManager(), this.getBreakpointManager(), null, "breakpointManager", null, 1, 1, process.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProcess_ExecutableName(), theXMLTypePackage.getString(), "executableName", null, 0, 1, process.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link process.Process#getGroupThreadId <em>Group Thread Id</em>}</li>
  *   <li>{@link process.Process#getProcessNumber <em>Process Number</em>}</li>
  *   <li>{@link process.Process#getActiveThreads <em>Active Threads</em>}</li>
- *   <li>{@link process.Process#getPid <em>Pid</em>}</li>
  *   <li>{@link process.Process#getVariableManager <em>Variable Manager</em>}</li>
  *   <li>{@link process.Process#getBreakpointManager <em>Breakpoint Manager</em>}</li>
  *   <li>{@link process.Process#getExecutableName <em>Executable Name</em>}</li>
@@ -138,32 +137,6 @@ public interface Process extends EObject {
 	 * @generated
 	 */
 	EList<process.Thread> getActiveThreads();
-
-	/**
-	 * Returns the value of the '<em><b>Pid</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Pid</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Pid</em>' attribute.
-	 * @see #setPid(String)
-	 * @see process.ProcessPackage#getProcess_Pid()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
-	 * @generated
-	 */
-	String getPid();
-
-	/**
-	 * Sets the value of the '{@link process.Process#getPid <em>Pid</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Pid</em>' attribute.
-	 * @see #getPid()
-	 * @generated
-	 */
-	void setPid(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Variable Manager</b></em>' reference.

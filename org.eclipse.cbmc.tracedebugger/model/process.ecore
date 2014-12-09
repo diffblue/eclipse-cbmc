@@ -14,7 +14,6 @@
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activeThreads" upperBound="-1"
         eType="#//Thread"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pid" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variableManager" lowerBound="1"
         eType="#//VariableManager"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="breakpointManager" lowerBound="1"

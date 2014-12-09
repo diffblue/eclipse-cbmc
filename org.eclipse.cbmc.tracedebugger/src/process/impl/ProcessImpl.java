@@ -5,7 +5,6 @@ package process.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Iterator;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -16,9 +15,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import process.BreakpointManager;
-import process.Context;
 import process.ProcessFactory;
 import process.ProcessPackage;
 import process.StepGoal;
@@ -38,7 +35,6 @@ import process.Thread;
  *   <li>{@link process.impl.ProcessImpl#getGroupThreadId <em>Group Thread Id</em>}</li>
  *   <li>{@link process.impl.ProcessImpl#getProcessNumber <em>Process Number</em>}</li>
  *   <li>{@link process.impl.ProcessImpl#getActiveThreads <em>Active Threads</em>}</li>
- *   <li>{@link process.impl.ProcessImpl#getPid <em>Pid</em>}</li>
  *   <li>{@link process.impl.ProcessImpl#getVariableManager <em>Variable Manager</em>}</li>
  *   <li>{@link process.impl.ProcessImpl#getBreakpointManager <em>Breakpoint Manager</em>}</li>
  *   <li>{@link process.impl.ProcessImpl#getExecutableName <em>Executable Name</em>}</li>
@@ -126,26 +122,6 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements process
 	 * @ordered
 	 */
 	protected EList<process.Thread> activeThreads;
-
-	/**
-	 * The default value of the '{@link #getPid() <em>Pid</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPid()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String PID_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getPid() <em>Pid</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPid()
-	 * @generated
-	 * @ordered
-	 */
-	protected String pid = PID_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getVariableManager() <em>Variable Manager</em>}' reference.
@@ -293,27 +269,6 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements process
 			activeThreads = new EObjectResolvingEList<process.Thread>(process.Thread.class, this, ProcessPackage.PROCESS__ACTIVE_THREADS);
 		}
 		return activeThreads;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getPid() {
-		return pid;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPid(String newPid) {
-		String oldPid = pid;
-		pid = newPid;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PROCESS__PID, oldPid, pid));
 	}
 
 	/**
@@ -491,8 +446,6 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements process
 				return getProcessNumber();
 			case ProcessPackage.PROCESS__ACTIVE_THREADS:
 				return getActiveThreads();
-			case ProcessPackage.PROCESS__PID:
-				return getPid();
 			case ProcessPackage.PROCESS__VARIABLE_MANAGER:
 				if (resolve) return getVariableManager();
 				return basicGetVariableManager();
@@ -531,9 +484,6 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements process
 				getActiveThreads().clear();
 				getActiveThreads().addAll((Collection<? extends process.Thread>)newValue);
 				return;
-			case ProcessPackage.PROCESS__PID:
-				setPid((String)newValue);
-				return;
 			case ProcessPackage.PROCESS__VARIABLE_MANAGER:
 				setVariableManager((VariableManager)newValue);
 				return;
@@ -570,9 +520,6 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements process
 			case ProcessPackage.PROCESS__ACTIVE_THREADS:
 				getActiveThreads().clear();
 				return;
-			case ProcessPackage.PROCESS__PID:
-				setPid(PID_EDEFAULT);
-				return;
 			case ProcessPackage.PROCESS__VARIABLE_MANAGER:
 				setVariableManager((VariableManager)null);
 				return;
@@ -604,8 +551,6 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements process
 				return PROCESS_NUMBER_EDEFAULT == null ? processNumber != null : !PROCESS_NUMBER_EDEFAULT.equals(processNumber);
 			case ProcessPackage.PROCESS__ACTIVE_THREADS:
 				return activeThreads != null && !activeThreads.isEmpty();
-			case ProcessPackage.PROCESS__PID:
-				return PID_EDEFAULT == null ? pid != null : !PID_EDEFAULT.equals(pid);
 			case ProcessPackage.PROCESS__VARIABLE_MANAGER:
 				return variableManager != null;
 			case ProcessPackage.PROCESS__BREAKPOINT_MANAGER:
@@ -648,8 +593,6 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements process
 		result.append(groupThreadId);
 		result.append(", processNumber: ");
 		result.append(processNumber);
-		result.append(", pid: ");
-		result.append(pid);
 		result.append(", executableName: ");
 		result.append(executableName);
 		result.append(')');

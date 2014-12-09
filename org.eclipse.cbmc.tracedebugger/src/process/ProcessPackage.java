@@ -114,22 +114,13 @@ public interface ProcessPackage extends EPackage {
 	int PROCESS__ACTIVE_THREADS = 4;
 
 	/**
-	 * The feature id for the '<em><b>Pid</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS__PID = 5;
-
-	/**
 	 * The feature id for the '<em><b>Variable Manager</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS__VARIABLE_MANAGER = 6;
+	int PROCESS__VARIABLE_MANAGER = 5;
 
 	/**
 	 * The feature id for the '<em><b>Breakpoint Manager</b></em>' reference.
@@ -138,7 +129,7 @@ public interface ProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS__BREAKPOINT_MANAGER = 7;
+	int PROCESS__BREAKPOINT_MANAGER = 6;
 
 	/**
 	 * The feature id for the '<em><b>Executable Name</b></em>' attribute.
@@ -147,7 +138,7 @@ public interface ProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS__EXECUTABLE_NAME = 8;
+	int PROCESS__EXECUTABLE_NAME = 7;
 
 	/**
 	 * The number of structural features of the '<em>Process</em>' class.
@@ -156,7 +147,7 @@ public interface ProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_FEATURE_COUNT = 9;
+	int PROCESS_FEATURE_COUNT = 8;
 
 	/**
 	 * The operation id for the '<em>Start</em>' operation.
@@ -921,17 +912,6 @@ public interface ProcessPackage extends EPackage {
 	EReference getProcess_ActiveThreads();
 
 	/**
-	 * Returns the meta object for the attribute '{@link process.Process#getPid <em>Pid</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Pid</em>'.
-	 * @see process.Process#getPid()
-	 * @see #getProcess()
-	 * @generated
-	 */
-	EAttribute getProcess_Pid();
-
-	/**
 	 * Returns the meta object for the reference '{@link process.Process#getVariableManager <em>Variable Manager</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1643,14 +1623,6 @@ public interface ProcessPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROCESS__ACTIVE_THREADS = eINSTANCE.getProcess_ActiveThreads();
-
-		/**
-		 * The meta object literal for the '<em><b>Pid</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PROCESS__PID = eINSTANCE.getProcess_Pid();
 
 		/**
 		 * The meta object literal for the '<em><b>Variable Manager</b></em>' reference feature.
