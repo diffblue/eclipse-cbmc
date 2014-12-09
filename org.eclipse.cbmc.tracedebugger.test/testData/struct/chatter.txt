@@ -10,7 +10,7 @@
 =thread-created,id="0",group-id="i1"
 25^running
 *running,thread-id="all"
-*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",line="12"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="main",file="struct.c",fullname="struct.c",line="12"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 26-list-thread-groups --available
 26^done,groups=[{id="i1",type="process",pid="123",executable="<<inputFile>>"}]
@@ -22,16 +22,16 @@
 28^done,groups=[{id="i1",type="process",pid="123",executable="<<inputFile>>"}]
 (gdb)
 29-list-thread-groups i1
-29^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",line="12"}}]
+29^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="struct.c",fullname="struct.c",line="12"}}]
 (gdb)
 30-stack-info-depth --thread 0 11
 30^done,depth="1"
 (gdb)
 31-thread-info 0
-31^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",line="12"}}]
+31^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="struct.c",fullname="struct.c",line="12"}}]
 (gdb)
 32-stack-list-frames --thread 0
-32^done,stack=[frame={level="0",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",line="12"}]
+32^done,stack=[frame={level="0",func="main",file="struct.c",fullname="struct.c",line="12"}]
 (gdb)
 33-stack-list-locals --thread 0 --frame 0 1
 33^done,locals=[]
@@ -39,10 +39,10 @@
 34-exec-next --thread 0 1
 34^running
 *running,thread-id="all"
-*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",line="13"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="main",file="struct.c",fullname="struct.c",line="13"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 35-stack-list-locals --thread 0 --frame 0 1
-35^done,locals=[{name="q",value="-2129657857"}]
+35^done,locals=[{name="q",value="-1073741825"}]
 (gdb)
 36-stack-info-depth --thread 0 11
 36^done,depth="1"
@@ -54,45 +54,45 @@
 38^done,groups=[{id="i1",type="process",pid="123",executable="<<inputFile>>"}]
 (gdb)
 39-thread-info 0
-39^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",line="13"}}]
+39^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="struct.c",fullname="struct.c",line="13"}}]
 (gdb)
 40-var-create --thread 0 --frame 0 - * q
-40^done,name="var1",value="-2129657857",type="int",numchild="0",thread-id="0",has_more="0"
+40^done,name="var1",value="-1073741825",type="int",numchild="0",thread-id="0",has_more="0"
 (gdb)
 41-data-evaluate-expression --thread 0 --frame 0 q
-41^done
+41^done,value="-1073741825"
 (gdb)
 42-var-set-format var1 octal
-42^done,value="-2129657857",format="octal"
+42^done,value="-1073741825",format="octal"
 (gdb)
 43-var-set-format var1 natural
-43^done,value="-2129657857",format="natural"
+43^done,value="-1073741825",format="natural"
 (gdb)
 44-var-set-format var1 decimal
-44^done,value="-2129657857",format="decimal"
+44^done,value="-1073741825",format="decimal"
 (gdb)
 45-var-set-format var1 natural
-45^done,value="-2129657857",format="natural"
+45^done,value="-1073741825",format="natural"
 (gdb)
 46-var-set-format var1 binary
-46^done,value="-2129657857",format="binary"
+46^done,value="-1073741825",format="binary"
 (gdb)
 47-var-set-format var1 natural
-47^done,value="-2129657857",format="natural"
+47^done,value="-1073741825",format="natural"
 (gdb)
 48-var-set-format var1 hexadecimal
-48^done,value="-2129657857",format="hexadecimal"
+48^done,value="-1073741825",format="hexadecimal"
 (gdb)
 49-var-set-format var1 natural
-49^done,value="-2129657857",format="natural"
+49^done,value="-1073741825",format="natural"
 (gdb)
 50-exec-next --thread 0 1
 50^running
 *running,thread-id="all"
-*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",line="15"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="main",file="struct.c",fullname="struct.c",line="15"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 51-stack-list-locals --thread 0 --frame 0 1
-51^done,locals=[{name="q",value="-2129657857"},{name="s",value="{x=0,y=0,z=0}"}]
+51^done,locals=[{name="q",value="-1073741825"},{name="s",value="{x=0,y=0,z=0}"}]
 (gdb)
 52-stack-info-depth --thread 0 11
 52^done,depth="1"
@@ -104,7 +104,7 @@
 54^done,groups=[{id="i1",type="process",pid="123",executable="<<inputFile>>"}]
 (gdb)
 55-thread-info 0
-55^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",line="15"}}]
+55^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="struct.c",fullname="struct.c",line="15"}}]
 (gdb)
 56-var-update 1 var1
 56^done,changelist=[]
@@ -113,19 +113,19 @@
 57^done,name="var2",value="{...}",type="struct str",numchild="3",thread-id="0",has_more="0"
 (gdb)
 58-data-evaluate-expression --thread 0 --frame 0 q
-58^done
+58^done,value="-1073741825"
 (gdb)
 59-var-list-children var2
 59^done,numchild="3",children=[child={name="var2.x",type="int",numchild="0",exp="x"},child={name="var2.y",type="int",numchild="0",exp="y"},child={name="var2.z",type="int",numchild="0",exp="z"}],has_more="0"
 (gdb)
 60-var-info-path-expression var2.x
-60^done,path_expr="(s).x"
+60^done,path_expr="s.x"
 (gdb)
 61-var-info-path-expression var2.y
-61^done,path_expr="(s).y"
+61^done,path_expr="s.y"
 (gdb)
 62-var-info-path-expression var2.z
-62^done,path_expr="(s).z"
+62^done,path_expr="s.z"
 (gdb)
 63-var-evaluate-expression var2.x
 63^done,value="0"
@@ -139,10 +139,10 @@
 66-exec-next --thread 0 1
 66^running
 *running,thread-id="all"
-*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",line="16"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="main",file="struct.c",fullname="struct.c",line="16"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 67-stack-list-locals --thread 0 --frame 0 1
-67^done,locals=[{name="q",value="-2129657857"},{name="s",value="{x=-2129657857,y=0,z=0}"}]
+67^done,locals=[{name="q",value="-1073741825"},{name="s",value="{x=-1073741825,y=0,z=0}"}]
 (gdb)
 68-stack-info-depth --thread 0 11
 68^done,depth="1"
@@ -154,24 +154,18 @@
 70^done,changelist=[]
 (gdb)
 71-var-update 1 var2
-71^done,changelist=[{name="var2.x",value="-2129657857",in_scope="true",type_changed="false",has_more="0"}]
+71^done,changelist=[{name="var2.x",value="-1073741825",in_scope="true",type_changed="false",has_more="0"}]
 (gdb)
 72-list-thread-groups
 72^done,groups=[{id="i1",type="process",pid="123",executable="<<inputFile>>"}]
 (gdb)
 73-thread-info 0
-73^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",line="16"}}]
-(gdb)
-74-data-evaluate-expression --thread 0 --frame 0 q
-74^done
+73^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="struct.c",fullname="struct.c",line="16"}}]
 (gdb)
 75-exec-next --thread 0 1
 75^running
 *running,thread-id="all"
-*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",line="17"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
-(gdb)
-76-stack-list-locals --thread 0 --frame 0 1
-76^done,locals=[{name="q",value="-2129657857"},{name="s",value="{x=-2129657857,y=-2129657856,z=0}"}]
+*stopped,frame={func="main",file="struct.c",fullname="struct.c",line="17"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 77-stack-info-depth --thread 0 11
 77^done,depth="1"
@@ -183,14 +177,12 @@
 79^done,changelist=[]
 (gdb)
 80-var-update 1 var2
-80^done,changelist=[{name="var2.y",value="-2129657856",in_scope="true",type_changed="false",has_more="0"}]
+80^done,changelist=[{name="var2.y",value="-1073741824",in_scope="true",type_changed="false",has_more="0"}]
 (gdb)
 81-list-thread-groups
 81^done,groups=[{id="i1",type="process",pid="123",executable="<<inputFile>>"}]
 (gdb)
 82-thread-info 0
-82^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c",line="17"}}]
+82^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="struct.c",fullname="struct.c",line="17"}}]
 (gdb)
-83-data-evaluate-expression --thread 0 --frame 0 q
-83^done
-(gdb)
+

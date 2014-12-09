@@ -6,7 +6,7 @@
 </message>
 
 <message type="STATUS-MESSAGE">
-  <text>Parsing /home/pascal/dev/runtime-New_configuration/AAAA/struct.c</text>
+  <text>Parsing struct.c</text>
 </message>
 
 <message type="STATUS-MESSAGE">
@@ -14,7 +14,7 @@
 </message>
 
 <message type="STATUS-MESSAGE">
-  <text>Type-checking struct</text>
+  <text>Type-checking functionCallOnFirstLine</text>
 </message>
 
 <message type="STATUS-MESSAGE">
@@ -70,7 +70,7 @@
 </message>
 
 <message type="STATUS-MESSAGE">
-  <text>327 variables, 825 clauses</text>
+  <text>296 variables, 825 clauses</text>
 </message>
 
 <message type="STATUS-MESSAGE">
@@ -78,7 +78,7 @@
 </message>
 
 <message type="STATUS-MESSAGE">
-  <text>Runtime decision procedure: 0.003s</text>
+  <text>Runtime decision procedure: 0.001s</text>
 </message>
 
 <message type="STATUS-MESSAGE">
@@ -98,7 +98,7 @@
     <full_lhs_value>0</full_lhs_value>
     <value>0</value>
     <value_expression>
-      <integer binary="00000000000000000000000000000000">0</integer>
+      <integer binary="00000000000000000000000000000000" c_type="unsigned int" width="32">0</integer>
     </value_expression>
   </assignment>
   <assignment base_name="__CPROVER_thread_id" display_name="__CPROVER_thread_id" identifier="c::__CPROVER_thread_id" mode="C" step_nr="4" thread="0">
@@ -108,7 +108,7 @@
     <full_lhs_value>0</full_lhs_value>
     <value>0</value>
     <value_expression>
-      <integer binary="0000000000000000000000000000000000000000000000000000000000000000">0</integer>
+      <integer binary="0000000000000000000000000000000000000000000000000000000000000000" c_type="unsigned long int" width="64">0</integer>
     </value_expression>
   </assignment>
   <assignment base_name="__CPROVER_threads_exited" display_name="__CPROVER_threads_exited" identifier="c::__CPROVER_threads_exited" mode="C" step_nr="5" thread="0">
@@ -128,7 +128,7 @@
     <full_lhs_value>0</full_lhs_value>
     <value>0</value>
     <value_expression>
-      <integer binary="0000000000000000000000000000000000000000000000000000000000000000">0</integer>
+      <integer binary="0000000000000000000000000000000000000000000000000000000000000000" c_type="unsigned long int" width="64">0</integer>
     </value_expression>
   </assignment>
   <assignment base_name="__CPROVER_rounding_mode" display_name="__CPROVER_rounding_mode" identifier="c::__CPROVER_rounding_mode" mode="C" step_nr="7" thread="0">
@@ -138,7 +138,7 @@
     <full_lhs_value>0</full_lhs_value>
     <value>0</value>
     <value_expression>
-      <integer binary="00000000000000000000000000000000">0</integer>
+      <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
     </value_expression>
   </assignment>
   <assignment base_name="__CPROVER_deallocated" display_name="__CPROVER_deallocated" identifier="c::__CPROVER_deallocated" mode="C" step_nr="8" thread="0">
@@ -178,7 +178,7 @@
     <full_lhs_value>0</full_lhs_value>
     <value>0</value>
     <value_expression>
-      <integer binary="0000000000000000000000000000000000000000000000000000000000000000">0</integer>
+      <integer binary="0000000000000000000000000000000000000000000000000000000000000000" c_type="unsigned long int" width="64">0</integer>
     </value_expression>
   </assignment>
   <assignment base_name="__CPROVER_malloc_is_new_array" display_name="__CPROVER_malloc_is_new_array" identifier="c::__CPROVER_malloc_is_new_array" mode="C" step_nr="12" thread="0">
@@ -207,109 +207,109 @@
     </function>
   </function_return>
   <location-only step_nr="15" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c" line="10"/>
+    <location file="struct.c" line="10"/>
   </location-only>
   <function_call step_nr="16" thread="0">
     <function display_name="main" identifier="c::main">
-      <location file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c" line="10"/>
+      <location file="struct.c" line="10"/>
     </function>
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c" line="10"/>
+    <location file="struct.c" line="10"/>
   </function_call>
   <assignment base_name="q" display_name="main::1::q" identifier="c::main::1::q" mode="C" step_nr="17" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c" function="main" line="12"/>
+    <location file="struct.c" function="main" line="12"/>
     <type>int</type>
     <full_lhs>q</full_lhs>
-    <full_lhs_value>-2129657857</full_lhs_value>
-    <value>-2129657857</value>
+    <full_lhs_value>-1073741825</full_lhs_value>
+    <value>-1073741825</value>
     <value_expression>
-      <integer binary="10000001000011111111111111111111">-2129657857</integer>
+      <integer binary="10111111111111111111111111111111" c_type="int" width="32">-1073741825</integer>
     </value_expression>
   </assignment>
   <assignment base_name="s" display_name="main::1::s" identifier="c::main::1::s" mode="C" step_nr="18" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c" function="main" line="13"/>
+    <location file="struct.c" function="main" line="13"/>
     <type>struct str</type>
     <full_lhs>s</full_lhs>
     <full_lhs_value>{ .x=0, .y=0, .z=0 }</full_lhs_value>
     <value>{ .x=0, .y=0, .z=0 }</value>
     <value_expression>
       <struct>
-        <member>
-          <integer binary="00000000000000000000000000000000">0</integer>
+        <member name="x">
+          <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
         </member>
-        <member>
-          <integer binary="00000000000000000000000000000000">0</integer>
+        <member name="y">
+          <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
         </member>
-        <member>
-          <integer binary="00000000000000000000000000000000">0</integer>
+        <member name="z">
+          <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
         </member>
       </struct>
     </value_expression>
   </assignment>
   <assignment base_name="s" display_name="main::1::s" identifier="c::main::1::s" mode="C" step_nr="19" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c" function="main" line="15"/>
+    <location file="struct.c" function="main" line="15"/>
     <type>struct str</type>
     <full_lhs>s.x</full_lhs>
-    <full_lhs_value>-2129657857</full_lhs_value>
-    <value>{ .x=-2129657857, .y=0, .z=0 }</value>
+    <full_lhs_value>-1073741825</full_lhs_value>
+    <value>{ .x=-1073741825, .y=0, .z=0 }</value>
     <value_expression>
       <struct>
-        <member>
-          <integer binary="10000001000011111111111111111111">-2129657857</integer>
+        <member name="x">
+          <integer binary="10111111111111111111111111111111" c_type="int" width="32">-1073741825</integer>
         </member>
-        <member>
-          <integer binary="00000000000000000000000000000000">0</integer>
+        <member name="y">
+          <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
         </member>
-        <member>
-          <integer binary="00000000000000000000000000000000">0</integer>
+        <member name="z">
+          <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
         </member>
       </struct>
     </value_expression>
   </assignment>
   <assignment base_name="s" display_name="main::1::s" identifier="c::main::1::s" mode="C" step_nr="20" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c" function="main" line="16"/>
+    <location file="struct.c" function="main" line="16"/>
     <type>struct str</type>
     <full_lhs>s.y</full_lhs>
-    <full_lhs_value>-2129657856</full_lhs_value>
-    <value>{ .x=-2129657857, .y=-2129657856, .z=0 }</value>
+    <full_lhs_value>-1073741824</full_lhs_value>
+    <value>{ .x=-1073741825, .y=-1073741824, .z=0 }</value>
     <value_expression>
       <struct>
-        <member>
-          <integer binary="10000001000011111111111111111111">-2129657857</integer>
+        <member name="x">
+          <integer binary="10111111111111111111111111111111" c_type="int" width="32">-1073741825</integer>
         </member>
-        <member>
-          <integer binary="10000001000100000000000000000000">-2129657856</integer>
+        <member name="y">
+          <integer binary="11000000000000000000000000000000" c_type="int" width="32">-1073741824</integer>
         </member>
-        <member>
-          <integer binary="00000000000000000000000000000000">0</integer>
+        <member name="z">
+          <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
         </member>
       </struct>
     </value_expression>
   </assignment>
   <assignment base_name="s" display_name="main::1::s" identifier="c::main::1::s" mode="C" step_nr="21" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c" function="main" line="17"/>
+    <location file="struct.c" function="main" line="17"/>
     <type>struct str</type>
     <full_lhs>s.z</full_lhs>
-    <full_lhs_value>35651583</full_lhs_value>
-    <value>{ .x=-2129657857, .y=-2129657856, .z=35651583 }</value>
+    <full_lhs_value>2147483647</full_lhs_value>
+    <value>{ .x=-1073741825, .y=-1073741824, .z=2147483647 }</value>
     <value_expression>
       <struct>
-        <member>
-          <integer binary="10000001000011111111111111111111">-2129657857</integer>
+        <member name="x">
+          <integer binary="10111111111111111111111111111111" c_type="int" width="32">-1073741825</integer>
         </member>
-        <member>
-          <integer binary="10000001000100000000000000000000">-2129657856</integer>
+        <member name="y">
+          <integer binary="11000000000000000000000000000000" c_type="int" width="32">-1073741824</integer>
         </member>
-        <member>
-          <integer binary="00000010000111111111111111111111">35651583</integer>
+        <member name="z">
+          <integer binary="01111111111111111111111111111111" c_type="int" width="32">2147483647</integer>
         </member>
       </struct>
     </value_expression>
   </assignment>
   <location-only step_nr="22" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c" function="main" line="19"/>
+    <location file="struct.c" function="main" line="19"/>
   </location-only>
   <failure property="main.assertion.1" reason="assertion q == s.z" step_nr="23" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/struct.c" function="main" line="19"/>
+    <location file="struct.c" function="main" line="19"/>
   </failure>
 </goto_trace>
 
