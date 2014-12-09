@@ -208,10 +208,10 @@ public interface Thread extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model goalDataType="org.eclipse.emf.ecore.xml.type.Int"
+	 * @model
 	 * @generated
 	 */
-	StepResult step(int goal);
+	StepResult step(StepGoal goal);
 
 	/**
 	 * <!-- begin-user-doc -->

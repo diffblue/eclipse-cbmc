@@ -19,16 +19,6 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum StepGoal implements Enumerator {
 	/**
-	 * The '<em><b>First Instruction</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FIRST_INSTRUCTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FIRST_INSTRUCTION(0, "FirstInstruction", "FirstInstruction"),
-
-	/**
 	 * The '<em><b>Function Enter</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,22 +46,23 @@ public enum StepGoal implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NEXT_LINE(3, "NextLine", "NextLine");
-
-	/**
-	 * The '<em><b>First Instruction</b></em>' literal value.
+	NEXT_LINE(4, "NextLine", "NextLine"), /**
+	 * The '<em><b>Continue</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>First Instruction</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FIRST_INSTRUCTION
-	 * @model name="FirstInstruction"
+	 * @see #CONTINUE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FIRST_INSTRUCTION_VALUE = 0;
+	CONTINUE(8, "Continue", "Continue"), /**
+	 * The '<em><b>Enter Or Next Line</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ENTER_OR_NEXT_LINE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ENTER_OR_NEXT_LINE(6, "EnterOrNextLine", "EnterOrNextLine");
 
 	/**
 	 * The '<em><b>Function Enter</b></em>' literal value.
@@ -116,7 +107,37 @@ public enum StepGoal implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NEXT_LINE_VALUE = 3;
+	public static final int NEXT_LINE_VALUE = 4;
+
+	/**
+	 * The '<em><b>Continue</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Continue</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CONTINUE
+	 * @model name="Continue"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CONTINUE_VALUE = 8;
+
+	/**
+	 * The '<em><b>Enter Or Next Line</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Enter Or Next Line</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ENTER_OR_NEXT_LINE
+	 * @model name="EnterOrNextLine"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ENTER_OR_NEXT_LINE_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Step Goal</b></em>' enumerators.
@@ -126,10 +147,11 @@ public enum StepGoal implements Enumerator {
 	 */
 	private static final StepGoal[] VALUES_ARRAY =
 		new StepGoal[] {
-			FIRST_INSTRUCTION,
 			FUNCTION_ENTER,
 			FUNCTION_EXIT,
 			NEXT_LINE,
+			CONTINUE,
+			ENTER_OR_NEXT_LINE,
 		};
 
 	/**
@@ -180,10 +202,11 @@ public enum StepGoal implements Enumerator {
 	 */
 	public static StepGoal get(int value) {
 		switch (value) {
-			case FIRST_INSTRUCTION_VALUE: return FIRST_INSTRUCTION;
 			case FUNCTION_ENTER_VALUE: return FUNCTION_ENTER;
 			case FUNCTION_EXIT_VALUE: return FUNCTION_EXIT;
 			case NEXT_LINE_VALUE: return NEXT_LINE;
+			case CONTINUE_VALUE: return CONTINUE;
+			case ENTER_OR_NEXT_LINE_VALUE: return ENTER_OR_NEXT_LINE;
 		}
 		return null;
 	}

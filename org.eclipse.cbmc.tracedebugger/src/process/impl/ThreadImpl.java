@@ -20,9 +20,9 @@ import process.Context;
 import process.FunctionExecution;
 import process.ProcessFactory;
 import process.ProcessPackage;
+import process.StepGoal;
 import process.StepResult;
 import process.SteppingResult;
-import trace.Assignment;
 import trace.Location;
 import trace.Step;
 import trace.TracePackage;
@@ -322,7 +322,7 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 	 * 
 	 * @generated NOT
 	 */
-	public StepResult step(int goal) {
+	public StepResult step(StepGoal goal) {
 		if (!started) {
 			initialize();
 			goToFirstFunctionCall();
@@ -358,38 +358,51 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 	}
 
 	// only consume the steps that represent parameters assignment
-	// these are identified by having as a location the file and function of the calling site.
-	//e.g. when foo() is invoked from main(), the assignments for the parameters of foo have as a location main.
+	// these are identified by having as a location the file and function of the
+	// calling site.
+	// e.g. when foo() is invoked from main(), the assignments for the
+	// parameters of foo have main as a location.
 	private StepResult consumeParameters() {
 		StepResult lastResult = null;
 		while (stepToExecuteIdx < allSteps.size()) {
 			Step stepToExecute = getStepToExecute();
-			if (stepToExecute.eClass().getClassifierID() == TracePackage.ASSIGNMENT 
-						//Deal with the case of the first function call in the trace, since the location is set to an awkward value
-					&& ((stack.getParent() == null && sameLineThanFunctionCallStep(stepToExecute.getLocation(), stack.getEntryStep().getLocation()))
-						//normal case
-						|| stack.getParent() != null && sameFileAndFunction(stepToExecute.getLocation(), stack.getParent().getEntryStep().getLocation()))) {
+			if (stepToExecute.eClass().getClassifierID() == TracePackage.ASSIGNMENT
+					&& (isFirstFunctionCall(stepToExecute) || isOther(stepToExecute))) {
 				lastResult = executeNextInstruction();
 			} else {
 				return lastResult != null ? lastResult : getNothingDoneStep();
 			}
 		}
-		return createEndOfTraceResult(Context.FUNCTION_ENTER);
+		return createEndOfTraceResult();
 	}
 
-	// TODO be careful to what goes in
-	private StepResult createEndOfTraceResult(int requestedGoal) {
+	// Deal with the case of the first function call in the trace, since the
+	// location is set to be the location of the function itself
+	public boolean isFirstFunctionCall(Step stepToExecute) {
+		return stack.getParent() == null && sameLine(stepToExecute.getLocation(), stack.getEntryStep().getLocation());
+	}
+
+	public boolean isOther(Step stepToExecute) {
+		if (stack.getParent() == null)
+			return false;
+		//Deal with the case where the function is called recursively
+		if ( sameFileAndFunction(stack.getEntryStep().getLocation(), stack.getParent().getEntryStep().getLocation()) ) {
+				return sameFileAndFunction(stepToExecute.getLocation(), stack.getParent().getEntryStep().getLocation()) && onDifferentLine(stepToExecute.getLocation(), stack.getEntryStep().getLocation());
+		} else {
+			return sameFileAndFunction(stepToExecute.getLocation(), stack.getParent().getEntryStep().getLocation());
+		}
+	}
+
+	private StepResult createEndOfTraceResult() {
 		StepResult result = ProcessFactory.eINSTANCE.createStepResult();
 		result.setCode(SteppingResult.STEP_COMPLETE);
-		result.setStepDone(requestedGoal);
 		return result;
 	}
 
-	private StepResult createBreakpointResult(Breakpoint bkpt, int stepPerformed) {
+	private StepResult createBreakpointResult(Breakpoint bkpt) {
 		StepResult result = ProcessFactory.eINSTANCE.createStepResult();
 		result.setCode(SteppingResult.BREAKPOINT_HIT);
 		result.setBreakpoint(bkpt);
-		result.setStepDone(stepPerformed);
 		return result;
 	}
 
@@ -405,35 +418,37 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 		Location nextLocation = nextStep.getLocation();
 		if (onDifferentLine(nextLocation, location))
 			return true;
-		
-		if ((result.getStepDone() & Context.FUNCTION_EXIT) == Context.FUNCTION_EXIT) {
-			//Simple case
+
+		if ((result.getStepDone() & Context.FUNCTION_RETURN) == Context.FUNCTION_RETURN) {
+			// Simple case
 			if (nextLocation.getFile().equals(location.getFile()) && nextLocation.getFunction().equals(location.getFunction()))
 				return true;
-			
-			//I exited a function but it is only relevant to stop if the function I'm returning to (what is now on the stack)
-			//is the function I started from. This handles the case where stepping will execute other functions.
+
+			// I exited a function but it is only relevant to stop if the
+			// function I'm returning to (what is now on the stack)
+			// is the function I started from. This handles the case where
+			// stepping will execute other functions.
 			FunctionExecution parent = getStack();
 			if (parent == null)
 				return true;
 			if (location.getFile().equals(parent.getFileName()) && location.getFunction().equals(parent.getFunctionName()))
 				return true;
-			
-			//If I just exited from the function from which I started stepping
-			if (sameFileAndFunction(result.getLineExecuted(), location)) 
+
+			// If I just exited from the function from which I started stepping
+			if (sameFileAndFunction(result.getLineExecuted(), location))
 				return true;
 		}
 		return false;
 	}
-	
-	private boolean sameLineThanFunctionCallStep(Location location1, Location location2) {
+
+	private boolean sameLine(Location location1, Location location2) {
 		if (location1 == location2)
 			return true;
 		if (location1 == null || location2 == null)
 			return false;
 		return location1.getFile().equals(location2.getFile()) && location1.getLine() == location2.getLine();
 	}
-	
+
 	private boolean sameFileAndFunction(Location location1, Location location2) {
 		if (location1 == location2)
 			return true;
@@ -452,10 +467,10 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 	// Execute steps until the goal is reached or a breakpoint is hit.
 	// stepToExecuteIdx points at the step TO execute
 	//
-	private StepResult step(int goal, boolean breakpoint) {
+	private StepResult step(StepGoal goal, boolean breakpoint) {
 		while (true) {
 			if (stepToExecuteIdx >= allSteps.size()) {
-				return createEndOfTraceResult(goal);
+				return createEndOfTraceResult();
 			}
 
 			// Execute the next instruction
@@ -465,22 +480,31 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 			Breakpoint bkpt = breakpoint ? isOnBreakpoint() : null;
 
 			// Consume additional steps from the function call.
-			if (stepResult.getStepDone() == Context.FUNCTION_ENTER) {
+			if (stepResult.getStepDone() == Context.FUNCTION_CALL) {
 				consumeParameters();
+				if (bkpt == null)
+					bkpt = breakpoint ? isOnBreakpoint() : null;
+			}
+			
+			if (StepGoal.ENTER_OR_NEXT_LINE == goal && stepResult.getStepDone() == Context.ASSIGNMENT) {
+				if (stepToExecuteIdx < allSteps.size()) {
+					if (getStepToExecute().eClass().getClassifierID() == TracePackage.FUNCTION_CALL)
+						continue;
+				}
 			}
 
 			// Now return the breakpoint
 			if (bkpt != null)
-				return createBreakpointResult(bkpt, goal);
+				return createBreakpointResult(bkpt);
 
 			if (reachedNextLine(stepResult)) {
 				stepResult.setStepDone(stepResult.getStepDone() | Context.NEXT_LINE);
 			}
 
 			if (!exitedExpectedFunction(stepResult)) {
-				stepResult.setStepDone(stepResult.getStepDone() & ~Context.FUNCTION_EXIT);
+				stepResult.setStepDone(stepResult.getStepDone() & ~Context.FUNCTION_RETURN);
 			}
-			
+
 			if (goalReached(goal, stepResult)) {
 				StepResult result = ProcessFactory.eINSTANCE.createStepResult();
 				result.setCode(SteppingResult.STEP_COMPLETE);
@@ -490,19 +514,27 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 		}
 	}
 
-	public boolean goalReached(int goal, StepResult stepResult) {
-		if ((stepResult.getStepDone() & goal) == goal)
-			return true;
-		
-		//Deal with the case of the composite goal used in ExecStep
-		if (goal != Context.ENTER_OR_NEXT)
+	public boolean goalReached(StepGoal goal, StepResult stepResult) {
+		//For continue, we expect to be have returned from the regular flow because of a breakpoint
+		if (goal.equals(StepGoal.CONTINUE))
 			return false;
 		
-		return ((stepResult.getStepDone() & Context.FUNCTION_ENTER) == Context.FUNCTION_ENTER) || ((stepResult.getStepDone() & Context.NEXT_LINE) == Context.NEXT_LINE);
+		if ((goal.equals(StepGoal.FUNCTION_ENTER) || goal.equals(StepGoal.ENTER_OR_NEXT_LINE)) && isEnabled(stepResult,Context.FUNCTION_CALL))
+			return true;
+		if (goal.equals(StepGoal.FUNCTION_EXIT) && isEnabled(stepResult,Context.FUNCTION_RETURN))
+			return true;
+		if ((goal.equals(StepGoal.NEXT_LINE) || goal.equals(StepGoal.ENTER_OR_NEXT_LINE)) && isEnabled(stepResult,Context.NEXT_LINE))
+			return true;
+		
+		return false;
 	}
 
+	private boolean isEnabled(StepResult stepResult, int goal) {
+		return (stepResult.getStepDone() & goal) == goal;
+	}
+	
 	private boolean exitedExpectedFunction(StepResult stepResult) {
-		if ((stepResult.getStepDone() & Context.FUNCTION_EXIT) != Context.FUNCTION_EXIT)
+		if ((stepResult.getStepDone() & Context.FUNCTION_RETURN) != Context.FUNCTION_RETURN)
 			return false;
 		return sameFileAndFunction(location, stepResult.getLineExecuted());
 	}
@@ -752,8 +784,8 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case ProcessPackage.THREAD___STEP__INT:
-				return step((Integer)arguments.get(0));
+			case ProcessPackage.THREAD___STEP__STEPGOAL:
+				return step((StepGoal)arguments.get(0));
 			case ProcessPackage.THREAD___GET_STACK_DEPTH:
 				return getStackDepth();
 			case ProcessPackage.THREAD___GET_FRAME__INT:
@@ -770,8 +802,7 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (id: ");

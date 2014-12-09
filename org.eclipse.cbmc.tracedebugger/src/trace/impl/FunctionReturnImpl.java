@@ -205,7 +205,7 @@ public class FunctionReturnImpl extends StepImpl implements FunctionReturn {
 	private StepResult createResult() {
 		StepResult result = ProcessFactory.eINSTANCE.createStepResult();
 		result.setCode(SteppingResult.STEP_COMPLETE);
-		result.setStepDone(Context.FUNCTION_EXIT);
+		result.setStepDone(Context.FUNCTION_RETURN);
 		return result;
 	}
 	

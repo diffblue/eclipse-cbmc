@@ -23,14 +23,18 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Context extends EObject {
-	
-	
-	public static int FUNCTION_EXIT = 1;
-	public static int FUNCTION_ENTER = 2;
-	public static int NEXT_LINE = 4;
-	public static int STEPPED = 8;
-	public static int CONTINUE = 16;
-	public static int ENTER_OR_NEXT = FUNCTION_ENTER | NEXT_LINE; 	
+
+	//These code represent the exit value from the intepretation of each step.
+	//These values are for the internal behaviour of the stepping logic and are not expected to be referenced in the commands. 
+	//These are different from the StepGoal that represent the desired goal when an exec-* command is performed.
+	//The mapping between the goal to reach and the internal context is done in the ThreadImpl#reachedGoal().
+	public static final int ASSIGNMENT = 1;
+	public static final int FAILURE = 2;
+	public static final int FUNCTION_CALL = 4;
+	public static final int FUNCTION_RETURN = 8;
+	public static final int LOCATION_ONLY = 16;
+	public static final int OUTPUT = 32;
+	public static final int NEXT_LINE = 64;
 	/**
 	 * Returns the value of the '<em><b>Function</b></em>' reference.
 	 * <!-- begin-user-doc -->

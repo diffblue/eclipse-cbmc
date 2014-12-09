@@ -6,8 +6,8 @@ import infra.MIOutput;
 
 import org.kohsuke.args4j.Option;
 
-import process.Context;
 import process.Process;
+import process.StepGoal;
 import process.StepResult;
 import process.SteppingResult;
 import results.async.BreakpointHit;
@@ -23,7 +23,7 @@ public class ExecStep extends MICommand {
 	public MIOutput perform(Process process) {
 		//Step in the model
 		process.Thread thread = process.getThread(threadId);
-		StepResult stepResult = thread.step(Context.ENTER_OR_NEXT);
+		StepResult stepResult = thread.step(StepGoal.ENTER_OR_NEXT_LINE);
 		
 		//Build result
 		Frame currentFrame = new Frame(thread.getStack().getCurrentStep(), thread.getStack().getFunctionName());

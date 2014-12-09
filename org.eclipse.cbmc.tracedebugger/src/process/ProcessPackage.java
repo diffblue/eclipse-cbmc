@@ -274,7 +274,7 @@ public interface ProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int THREAD___STEP__INT = 0;
+	int THREAD___STEP__STEPGOAL = 0;
 
 	/**
 	 * The operation id for the '<em>Get Stack Depth</em>' operation.
@@ -1072,14 +1072,14 @@ public interface ProcessPackage extends EPackage {
 	EAttribute getThread_StepToExecuteIdx();
 
 	/**
-	 * Returns the meta object for the '{@link process.Thread#step(int) <em>Step</em>}' operation.
+	 * Returns the meta object for the '{@link process.Thread#step(process.StepGoal) <em>Step</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Step</em>' operation.
-	 * @see process.Thread#step(int)
+	 * @see process.Thread#step(process.StepGoal)
 	 * @generated
 	 */
-	EOperation getThread__Step__int();
+	EOperation getThread__Step__StepGoal();
 
 	/**
 	 * Returns the meta object for the '{@link process.Thread#getStackDepth() <em>Get Stack Depth</em>}' operation.
@@ -1764,7 +1764,7 @@ public interface ProcessPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation THREAD___STEP__INT = eINSTANCE.getThread__Step__int();
+		EOperation THREAD___STEP__STEPGOAL = eINSTANCE.getThread__Step__StepGoal();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Stack Depth</b></em>' operation.

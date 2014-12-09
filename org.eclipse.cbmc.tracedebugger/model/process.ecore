@@ -23,7 +23,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Thread">
     <eOperations name="step" eType="#//StepResult">
-      <eParameters name="goal" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+      <eParameters name="goal" eType="#//StepGoal"/>
     </eOperations>
     <eOperations name="getStackDepth" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
     <eOperations name="getFrame" eType="#//FunctionExecution">
@@ -97,10 +97,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="functionName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="StepGoal">
-    <eLiterals name="FirstInstruction"/>
     <eLiterals name="FunctionEnter" value="1"/>
     <eLiterals name="FunctionExit" value="2"/>
-    <eLiterals name="NextLine" value="3"/>
+    <eLiterals name="NextLine" value="4"/>
+    <eLiterals name="Continue" value="8" literal="Continue"/>
+    <eLiterals name="EnterOrNextLine" value="6" literal="EnterOrNextLine"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SteppingResult">
     <eLiterals name="BreakpointHit"/>

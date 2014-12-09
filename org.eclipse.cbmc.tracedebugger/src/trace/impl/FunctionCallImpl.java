@@ -222,7 +222,7 @@ public class FunctionCallImpl extends StepImpl implements FunctionCall {
 
 		StepResult result = ProcessFactory.eINSTANCE.createStepResult();
 		result.setCode(SteppingResult.STEP_COMPLETE);
-		result.setStepDone(Context.FUNCTION_ENTER);
+		result.setStepDone(Context.FUNCTION_CALL);
 		return result;
 	}
 	

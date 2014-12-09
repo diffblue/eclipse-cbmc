@@ -376,7 +376,7 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 		
 		StepResult result = ProcessFactory.eINSTANCE.createStepResult();
 		result.setCode(SteppingResult.STEP_COMPLETE);
-		result.setStepDone(Context.STEPPED);
+		result.setStepDone(Context.ASSIGNMENT);
 		return result;
 	}
 } //AssignmentImpl

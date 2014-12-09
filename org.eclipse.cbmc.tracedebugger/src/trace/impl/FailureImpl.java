@@ -165,7 +165,7 @@ public class FailureImpl extends StepImpl implements Failure {
 	public StepResult interpret(Context context) {
 		StepResult result = ProcessFactory.eINSTANCE.createStepResult();
 		result.setCode(SteppingResult.STEP_COMPLETE);
-		result.setStepDone(Context.STEPPED);
+		result.setStepDone(Context.FAILURE);
 		return result;
 	}
 } //FailureImpl

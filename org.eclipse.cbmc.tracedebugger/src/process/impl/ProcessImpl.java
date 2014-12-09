@@ -21,6 +21,7 @@ import process.BreakpointManager;
 import process.Context;
 import process.ProcessFactory;
 import process.ProcessPackage;
+import process.StepGoal;
 import process.StepResult;
 import process.VariableManager;
 import process.Thread;
@@ -424,7 +425,7 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements process
 		
 		//Start first thread
 		Thread threadToStart = getThreads().get(0);
-		StepResult result = threadToStart.step(Context.FUNCTION_ENTER);
+		StepResult result = threadToStart.step(StepGoal.FUNCTION_ENTER);
 		getActiveThreads().add(threadToStart);
 		return result;
 	}

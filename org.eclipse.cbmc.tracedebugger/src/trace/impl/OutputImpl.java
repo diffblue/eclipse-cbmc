@@ -165,7 +165,7 @@ public class OutputImpl extends StepImpl implements Output {
 	public StepResult interpret(Context context) {
 		StepResult result = ProcessFactory.eINSTANCE.createStepResult();
 		result.setCode(SteppingResult.STEP_COMPLETE);
-		result.setStepDone(Context.STEPPED);
+		result.setStepDone(Context.OUTPUT);
 		return result;
 	}
 } //OutputImpl

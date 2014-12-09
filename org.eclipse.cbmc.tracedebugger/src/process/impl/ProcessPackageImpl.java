@@ -369,7 +369,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getThread__Step__int() {
+	public EOperation getThread__Step__StepGoal() {
 		return threadEClass.getEOperations().get(0);
 	}
 
@@ -836,7 +836,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 		createEAttribute(threadEClass, THREAD__RUNNING);
 		createEReference(threadEClass, THREAD__PROCESS);
 		createEAttribute(threadEClass, THREAD__STEP_TO_EXECUTE_IDX);
-		createEOperation(threadEClass, THREAD___STEP__INT);
+		createEOperation(threadEClass, THREAD___STEP__STEPGOAL);
 		createEOperation(threadEClass, THREAD___GET_STACK_DEPTH);
 		createEOperation(threadEClass, THREAD___GET_FRAME__INT);
 		createEOperation(threadEClass, THREAD___GET_STEP_TO_EXECUTE_OR_LAST_ONE);
@@ -954,8 +954,8 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 		initEReference(getThread_Process(), this.getProcess(), this.getProcess_Threads(), "process", null, 0, 1, process.Thread.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getThread_StepToExecuteIdx(), theXMLTypePackage.getInt(), "stepToExecuteIdx", null, 0, 1, process.Thread.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getThread__Step__int(), this.getStepResult(), "step", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theXMLTypePackage.getInt(), "goal", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getThread__Step__StepGoal(), this.getStepResult(), "step", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getStepGoal(), "goal", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getThread__GetStackDepth(), theXMLTypePackage.getInt(), "getStackDepth", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -1028,10 +1028,11 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 
 		// Initialize enums and add enum literals
 		initEEnum(stepGoalEEnum, StepGoal.class, "StepGoal");
-		addEEnumLiteral(stepGoalEEnum, StepGoal.FIRST_INSTRUCTION);
 		addEEnumLiteral(stepGoalEEnum, StepGoal.FUNCTION_ENTER);
 		addEEnumLiteral(stepGoalEEnum, StepGoal.FUNCTION_EXIT);
 		addEEnumLiteral(stepGoalEEnum, StepGoal.NEXT_LINE);
+		addEEnumLiteral(stepGoalEEnum, StepGoal.CONTINUE);
+		addEEnumLiteral(stepGoalEEnum, StepGoal.ENTER_OR_NEXT_LINE);
 
 		initEEnum(steppingResultEEnum, SteppingResult.class, "SteppingResult");
 		addEEnumLiteral(steppingResultEEnum, SteppingResult.BREAKPOINT_HIT);
