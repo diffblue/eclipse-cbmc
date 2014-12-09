@@ -35,6 +35,5 @@ public class StopAction extends JobAction {
 		Job job = getJob();
 		if (job != null)
 			job.cancel();
-		//TODO Need to reinitialize all the properties
 	}
 }
