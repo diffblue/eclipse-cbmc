@@ -16,6 +16,7 @@
 		<module>org.eclipse.cbmc.site</module>
 		<module>org.eclipse.cbmc.tracedebugger</module>
 		<module>org.eclipse.cbmc.tracedebugger.launcher</module>
+		<module>org.eclipse.cbmc.targetplatform</module>
 	</modules>
 
 	<properties>
@@ -68,6 +69,13 @@
 							<arch>sparc</arch>
 						</environment>
 					</environments>
+					<target>
+						<artifact>
+							<groupId>org.eclipse.cbmc</groupId>
+							<artifactId>targetplatform</artifactId>
+							<version>${version}</version>
+						</artifact>
+					</target>
 				</configuration>
 			</plugin>
 			<plugin>
