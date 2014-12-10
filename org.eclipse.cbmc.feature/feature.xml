@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.cbmc.feature"
-      label="CBMC Feature"
+      label="CBMC Integration"
       version="1.0.0.qualifier"
       provider-name="http://www.cprover.org/cbmc/"
       license-feature="org.eclipse.license"
       license-feature-version="1.0.0.qualifier">
-
-   <copyright url="http://www.example.com/copyright">
-      Copyright Oxford University
-   </copyright>
 
    <plugin
          id="org.eclipse.cbmc"
