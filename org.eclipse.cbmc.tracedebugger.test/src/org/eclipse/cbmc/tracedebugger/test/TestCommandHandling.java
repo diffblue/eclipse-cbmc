@@ -9,9 +9,10 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import results.sync.Error;
+
 import commands.VarEvaluateExpression;
 
-public class CommandHandling {
+public class TestCommandHandling {
 	
 	@Test
 	public void tooManyParameters() {

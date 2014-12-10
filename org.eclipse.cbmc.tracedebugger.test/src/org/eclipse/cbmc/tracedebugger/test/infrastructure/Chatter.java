@@ -19,7 +19,7 @@ public class Chatter {
 
 	File input;
 	FileWriter outputStream;
-	Map<String, List<String>> responses = new HashMap<>();
+	Map<String, List<String>> responses = new HashMap<String, List<String>>();
 
 	String commandId = "";
 	String counterExamplePath;
