@@ -1,24 +1,88 @@
 16-file-exec-and-symbols --thread-group i1 <<inputFile>>
 16^done
 (gdb)
-24-break-insert -f /home/pascal/dev/runtime-New_configuration/AAAA/function.c:31
-24^done,bkpt={number="1",type="breakpoint",enabled="y",line="31",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c"}
+23-break-insert -t -f main
+23^done,bkpt={number="1",type="breakpoint",enabled="y",func="main"}
 (gdb)
-27-exec-run --thread-group i1
+24-break-insert -f vars.c:18
+24^done,bkpt={number="2",type="breakpoint",enabled="y",line="18",file="vars.c",fullname="vars.c"}
+(gdb)
+25-exec-run --thread-group i1
 =thread-group-started,id="i1",pid="123"
 =thread-created,id="0",group-id="i1"
-27^running
+25^running
 *running,thread-id="all"
-*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="21"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="main",file="vars.c",fullname="vars.c",line="12"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 36-exec-continue --thread 0
 36^running
 *running,thread-id="all"
-*stopped,disp="del",bkptno="1",frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="24"},reason="breakpoint-hit",thread-id="0",stopped-threads="all"
+*stopped,disp="del",bkptno="2",frame={func="main",file="vars.c",fullname="vars.c",line="18"},reason="breakpoint-hit",thread-id="0",stopped-threads="all"
 (gdb)
-70-var-create --thread 0 --frame 0 - * arri[0]
-70^done,name="var1",value="1",type="int",numchild="0",thread-id="0",has_more="0"
+38-var-create --thread 0 --frame 0 - * i
+38^done,name="var1",value="2",type="int",numchild="0",thread-id="0",has_more="0"
 (gdb)
-71-var-create --thread 0 --frame 0 - * arri[1]
-71^done,name="var2",value="2",type="int",numchild="0",thread-id="0",has_more="0"
+49-stack-list-locals --thread 0 --frame 0 1
+49^done,locals=[{name="i",value="2"},{name="myStruct",value="{i=2,b={innerArray={0,0},g=3}}"}]
+(gdb)
+52-var-update 1 var1
+52^done,changelist=[]
+(gdb)
+53-var-create --thread 0 --frame 0 - * myStruct
+53^done,name="var2",value="{...}",type="struct sss",numchild="2",thread-id="0",has_more="0"
+(gdb)
+56-exec-next --thread 0 1
+56^running
+*running,thread-id="all"
+*stopped,frame={func="main",file="vars.c",fullname="vars.c",line="19"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+(gdb)
+57-stack-list-locals --thread 0 --frame 0 1
+57^done,locals=[{name="i",value="2"},{name="myStruct",value="{i=2,b={innerArray={7,0},g=3}}"}]
+(gdb)
+60-var-update 1 var1
+60^done,changelist=[]
+(gdb)
+64-exec-next --thread 0 1
+64^running
+*running,thread-id="all"
+*stopped,frame={func="main",file="vars.c",fullname="vars.c",line="21"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+(gdb)
+65-stack-list-locals --thread 0 --frame 0 1
+65^done,locals=[{name="i",value="2"},{name="myStruct",value="{i=2,b={innerArray={7,7},g=3}}"}]
+(gdb)
+68-var-update 1 var1
+68^done,changelist=[]
+(gdb)
+72-var-list-children var2
+72^done,numchild="2",children=[child={name="var2.i",type="int",numchild="0",exp="i"},child={name="var2.b",type="struct {...}",numchild="2",exp="b"}],has_more="0"
+(gdb)
+73-var-info-path-expression var2.i
+73^done,path_expr="myStruct.i"
+(gdb)
+74-var-info-path-expression var2.b
+74^done,path_expr="myStruct.b"
+(gdb)
+75-var-evaluate-expression var2.i
+75^done,value="2"
+(gdb)
+76-var-list-children var2.b
+76^done,numchild="2",children=[child={name="var2.b.g",type="int",numchild="0",exp="g"},child={name="var2.b.innerArray",type="int[2]",numchild="2",exp="innerArray"}],has_more="0"
+(gdb)
+77-var-info-path-expression var2.b.g
+77^done,path_expr="myStruct.b.g"
+(gdb)
+78-var-info-path-expression var2.b.innerArray
+78^done,path_expr="myStruct.b.innerArray"
+(gdb)
+79-var-evaluate-expression var2.b.g
+79^done,value="3"
+(gdb)
+80-var-create --thread 0 --frame 0 - * &(myStruct.b.innerArray)
+80^done,name="var3",value="Address unknown",numchild="0",thread-id="0",has_more="0"
+(gdb)
+81-var-create --thread 0 --frame 0 - * myStruct.b.innerArray[0]
+81^done,name="var4",value="7",type="int",numchild="0",thread-id="0",has_more="0"
+(gdb)
+82-var-create --thread 0 --frame 0 - * myStruct.b.innerArray[1]
+82^done,name="var5",value="7",type="int",numchild="0",thread-id="0",has_more="0"
 (gdb)

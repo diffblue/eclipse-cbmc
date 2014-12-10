@@ -6,7 +6,7 @@
 </message>
 
 <message type="STATUS-MESSAGE">
-  <text>Parsing /home/pascal/dev/runtime-New_configuration/AAAA/function.c</text>
+  <text>Parsing vars.c</text>
 </message>
 
 <message type="STATUS-MESSAGE">
@@ -14,7 +14,7 @@
 </message>
 
 <message type="STATUS-MESSAGE">
-  <text>Type-checking function</text>
+  <text>Type-checking vars</text>
 </message>
 
 <message type="STATUS-MESSAGE">
@@ -42,7 +42,7 @@
 </message>
 
 <message type="STATUS-MESSAGE">
-  <text>size of program expression: 44 steps</text>
+  <text>size of program expression: 39 steps</text>
 </message>
 
 <message type="STATUS-MESSAGE">
@@ -70,7 +70,7 @@
 </message>
 
 <message type="STATUS-MESSAGE">
-  <text>490 variables, 11 clauses</text>
+  <text>169 variables, 11 clauses</text>
 </message>
 
 <message type="STATUS-MESSAGE">
@@ -91,27 +91,7 @@
       <location file="&lt;built-in-additions&gt;" line="14"/>
     </function>
   </function_call>
-  <assignment base_name="__CPROVER_deallocated" display_name="__CPROVER_deallocated" identifier="c::__CPROVER_deallocated" mode="C" step_nr="3" thread="0">
-    <location file="&lt;built-in-additions&gt;" line="30"/>
-    <type>void *</type>
-    <full_lhs>__CPROVER_deallocated</full_lhs>
-    <full_lhs_value>NULL</full_lhs_value>
-    <value>NULL</value>
-    <value_expression>
-      <pointer binary="0000000000000000000000000000000000000000000000000000000000000000"/>
-    </value_expression>
-  </assignment>
-  <assignment base_name="__CPROVER_dead_object" display_name="__CPROVER_dead_object" identifier="c::__CPROVER_dead_object" mode="C" step_nr="4" thread="0">
-    <location file="&lt;built-in-additions&gt;" line="31"/>
-    <type>void *</type>
-    <full_lhs>__CPROVER_dead_object</full_lhs>
-    <full_lhs_value>NULL</full_lhs_value>
-    <value>NULL</value>
-    <value_expression>
-      <pointer binary="0000000000000000000000000000000000000000000000000000000000000000"/>
-    </value_expression>
-  </assignment>
-  <assignment base_name="__CPROVER_malloc_object" display_name="__CPROVER_malloc_object" identifier="c::__CPROVER_malloc_object" mode="C" step_nr="5" thread="0">
+  <assignment base_name="__CPROVER_malloc_object" display_name="__CPROVER_malloc_object" identifier="c::__CPROVER_malloc_object" mode="C" step_nr="3" thread="0">
     <location file="&lt;built-in-additions&gt;" line="32"/>
     <type>void *</type>
     <full_lhs>__CPROVER_malloc_object</full_lhs>
@@ -121,7 +101,7 @@
       <pointer binary="0000000000000000000000000000000000000000000000000000000000000000"/>
     </value_expression>
   </assignment>
-  <assignment base_name="__CPROVER_malloc_size" display_name="__CPROVER_malloc_size" identifier="c::__CPROVER_malloc_size" mode="C" step_nr="6" thread="0">
+  <assignment base_name="__CPROVER_malloc_size" display_name="__CPROVER_malloc_size" identifier="c::__CPROVER_malloc_size" mode="C" step_nr="4" thread="0">
     <location file="&lt;built-in-additions&gt;" line="33"/>
     <type>unsigned long int</type>
     <full_lhs>__CPROVER_malloc_size</full_lhs>
@@ -131,7 +111,7 @@
       <integer binary="0000000000000000000000000000000000000000000000000000000000000000" c_type="unsigned long int" width="64">0</integer>
     </value_expression>
   </assignment>
-  <assignment base_name="__CPROVER_malloc_is_new_array" display_name="__CPROVER_malloc_is_new_array" identifier="c::__CPROVER_malloc_is_new_array" mode="C" step_nr="7" thread="0">
+  <assignment base_name="__CPROVER_malloc_is_new_array" display_name="__CPROVER_malloc_is_new_array" identifier="c::__CPROVER_malloc_is_new_array" mode="C" step_nr="5" thread="0">
     <location file="&lt;built-in-additions&gt;" line="34"/>
     <type>_Bool</type>
     <full_lhs>__CPROVER_malloc_is_new_array</full_lhs>
@@ -141,7 +121,7 @@
       <boolean binary="0">FALSE</boolean>
     </value_expression>
   </assignment>
-  <assignment base_name="__CPROVER_memory_leak" display_name="__CPROVER_memory_leak" identifier="c::__CPROVER_memory_leak" mode="C" step_nr="8" thread="0">
+  <assignment base_name="__CPROVER_memory_leak" display_name="__CPROVER_memory_leak" identifier="c::__CPROVER_memory_leak" mode="C" step_nr="6" thread="0">
     <location file="&lt;built-in-additions&gt;" line="35"/>
     <type>void *</type>
     <full_lhs>__CPROVER_memory_leak</full_lhs>
@@ -151,7 +131,7 @@
       <pointer binary="0000000000000000000000000000000000000000000000000000000000000000"/>
     </value_expression>
   </assignment>
-  <assignment base_name="__CPROVER_pipe_count" display_name="__CPROVER_pipe_count" identifier="c::__CPROVER_pipe_count" mode="C" step_nr="9" thread="0">
+  <assignment base_name="__CPROVER_pipe_count" display_name="__CPROVER_pipe_count" identifier="c::__CPROVER_pipe_count" mode="C" step_nr="7" thread="0">
     <location file="&lt;built-in-additions&gt;" line="78"/>
     <type>unsigned int</type>
     <full_lhs>__CPROVER_pipe_count</full_lhs>
@@ -161,7 +141,7 @@
       <integer binary="00000000000000000000000000000000" c_type="unsigned int" width="32">0</integer>
     </value_expression>
   </assignment>
-  <assignment base_name="__CPROVER_thread_id" display_name="__CPROVER_thread_id" identifier="c::__CPROVER_thread_id" mode="C" step_nr="10" thread="0">
+  <assignment base_name="__CPROVER_thread_id" display_name="__CPROVER_thread_id" identifier="c::__CPROVER_thread_id" mode="C" step_nr="8" thread="0">
     <location file="&lt;built-in-additions&gt;" line="21"/>
     <type>unsigned long int</type>
     <full_lhs>__CPROVER_thread_id</full_lhs>
@@ -171,7 +151,7 @@
       <integer binary="0000000000000000000000000000000000000000000000000000000000000000" c_type="unsigned long int" width="64">0</integer>
     </value_expression>
   </assignment>
-  <assignment base_name="__CPROVER_threads_exited" display_name="__CPROVER_threads_exited" identifier="c::__CPROVER_threads_exited" mode="C" step_nr="11" thread="0">
+  <assignment base_name="__CPROVER_threads_exited" display_name="__CPROVER_threads_exited" identifier="c::__CPROVER_threads_exited" mode="C" step_nr="9" thread="0">
     <location file="&lt;built-in-additions&gt;" line="22"/>
     <type>_Bool [INFINITY()]</type>
     <full_lhs>__CPROVER_threads_exited</full_lhs>
@@ -181,7 +161,7 @@
       <unknown/>
     </value_expression>
   </assignment>
-  <assignment base_name="__CPROVER_next_thread_id" display_name="__CPROVER_next_thread_id" identifier="c::__CPROVER_next_thread_id" mode="C" step_nr="12" thread="0">
+  <assignment base_name="__CPROVER_next_thread_id" display_name="__CPROVER_next_thread_id" identifier="c::__CPROVER_next_thread_id" mode="C" step_nr="10" thread="0">
     <location file="&lt;built-in-additions&gt;" line="23"/>
     <type>unsigned long int</type>
     <full_lhs>__CPROVER_next_thread_id</full_lhs>
@@ -191,7 +171,7 @@
       <integer binary="0000000000000000000000000000000000000000000000000000000000000000" c_type="unsigned long int" width="64">0</integer>
     </value_expression>
   </assignment>
-  <assignment base_name="__CPROVER_rounding_mode" display_name="__CPROVER_rounding_mode" identifier="c::__CPROVER_rounding_mode" mode="C" step_nr="13" thread="0">
+  <assignment base_name="__CPROVER_rounding_mode" display_name="__CPROVER_rounding_mode" identifier="c::__CPROVER_rounding_mode" mode="C" step_nr="11" thread="0">
     <location file="&lt;built-in-additions&gt;" line="57"/>
     <type>int</type>
     <full_lhs>__CPROVER_rounding_mode</full_lhs>
@@ -201,22 +181,42 @@
       <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
     </value_expression>
   </assignment>
+  <assignment base_name="__CPROVER_deallocated" display_name="__CPROVER_deallocated" identifier="c::__CPROVER_deallocated" mode="C" step_nr="12" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="30"/>
+    <type>void *</type>
+    <full_lhs>__CPROVER_deallocated</full_lhs>
+    <full_lhs_value>NULL</full_lhs_value>
+    <value>NULL</value>
+    <value_expression>
+      <pointer binary="0000000000000000000000000000000000000000000000000000000000000000"/>
+    </value_expression>
+  </assignment>
+  <assignment base_name="__CPROVER_dead_object" display_name="__CPROVER_dead_object" identifier="c::__CPROVER_dead_object" mode="C" step_nr="13" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="31"/>
+    <type>void *</type>
+    <full_lhs>__CPROVER_dead_object</full_lhs>
+    <full_lhs_value>NULL</full_lhs_value>
+    <value>NULL</value>
+    <value_expression>
+      <pointer binary="0000000000000000000000000000000000000000000000000000000000000000"/>
+    </value_expression>
+  </assignment>
   <function_return step_nr="14" thread="0">
     <function display_name="__CPROVER_initialize" identifier="c::__CPROVER_initialize">
       <location file="&lt;built-in-additions&gt;" line="14"/>
     </function>
   </function_return>
   <location-only step_nr="15" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c" line="11"/>
+    <location file="vars.c" line="11"/>
   </location-only>
   <function_call step_nr="16" thread="0">
     <function display_name="main" identifier="c::main">
-      <location file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c" line="11"/>
+      <location file="vars.c" line="11"/>
     </function>
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c" line="11"/>
+    <location file="vars.c" line="11"/>
   </function_call>
   <assignment base_name="i" display_name="main::1::i" identifier="c::main::1::i" mode="C" step_nr="17" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c" function="main" line="12"/>
+    <location file="vars.c" function="main" line="12"/>
     <type>int</type>
     <full_lhs>i</full_lhs>
     <full_lhs_value>0</full_lhs_value>
@@ -226,7 +226,7 @@
     </value_expression>
   </assignment>
   <assignment base_name="i" display_name="main::1::i" identifier="c::main::1::i" mode="C" step_nr="18" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c" function="main" line="12"/>
+    <location file="vars.c" function="main" line="12"/>
     <type>int</type>
     <full_lhs>i</full_lhs>
     <full_lhs_value>1</full_lhs_value>
@@ -236,7 +236,7 @@
     </value_expression>
   </assignment>
   <assignment base_name="i" display_name="main::1::i" identifier="c::main::1::i" mode="C" step_nr="19" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c" function="main" line="13"/>
+    <location file="vars.c" function="main" line="13"/>
     <type>int</type>
     <full_lhs>i</full_lhs>
     <full_lhs_value>2</full_lhs_value>
@@ -245,63 +245,12 @@
       <integer binary="00000000000000000000000000000010" c_type="int" width="32">2</integer>
     </value_expression>
   </assignment>
-  <assignment base_name="arri" display_name="main::1::arri" identifier="c::main::1::arri" mode="C" step_nr="20" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c" function="main" line="15"/>
-    <type>int [2]</type>
-    <full_lhs>arri</full_lhs>
-    <full_lhs_value>{ 0, 0 }</full_lhs_value>
-    <value>{ 0, 0 }</value>
-    <value_expression>
-      <array>
-        <element index="0">
-          <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-        </element>
-        <element index="1">
-          <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-        </element>
-      </array>
-    </value_expression>
-  </assignment>
-  <assignment base_name="arri" display_name="main::1::arri" identifier="c::main::1::arri" mode="C" step_nr="21" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c" function="main" line="16"/>
-    <type>int [2]</type>
-    <full_lhs>arri[0]</full_lhs>
-    <full_lhs_value>1</full_lhs_value>
-    <value>{ 1, 0 }</value>
-    <value_expression>
-      <array>
-        <element index="0">
-          <integer binary="00000000000000000000000000000001" c_type="int" width="32">1</integer>
-        </element>
-        <element index="1">
-          <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-        </element>
-      </array>
-    </value_expression>
-  </assignment>
-  <assignment base_name="arri" display_name="main::1::arri" identifier="c::main::1::arri" mode="C" step_nr="22" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c" function="main" line="17"/>
-    <type>int [2]</type>
-    <full_lhs>arri[1]</full_lhs>
-    <full_lhs_value>2</full_lhs_value>
-    <value>{ 1, 2 }</value>
-    <value_expression>
-      <array>
-        <element index="0">
-          <integer binary="00000000000000000000000000000001" c_type="int" width="32">1</integer>
-        </element>
-        <element index="1">
-          <integer binary="00000000000000000000000000000010" c_type="int" width="32">2</integer>
-        </element>
-      </array>
-    </value_expression>
-  </assignment>
-  <assignment base_name="myStruct" display_name="main::1::myStruct" identifier="c::main::1::myStruct" mode="C" step_nr="23" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c" function="main" line="19"/>
+  <assignment base_name="myStruct" display_name="main::1::myStruct" identifier="c::main::1::myStruct" mode="C" step_nr="20" thread="0">
+    <location file="vars.c" function="main" line="15"/>
     <type>struct sss</type>
     <full_lhs>myStruct</full_lhs>
-    <full_lhs_value>{ .i=0, .b={ .g=0, .innerArray={ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } } }</full_lhs_value>
-    <value>{ .i=0, .b={ .g=0, .innerArray={ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } } }</value>
+    <full_lhs_value>{ .i=0, .b={ .g=0, .innerArray={ 0, 0 } } }</full_lhs_value>
+    <value>{ .i=0, .b={ .g=0, .innerArray={ 0, 0 } } }</value>
     <value_expression>
       <struct>
         <member name="i">
@@ -320,28 +269,97 @@
                 <element index="1">
                   <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
                 </element>
-                <element index="2">
+              </array>
+            </member>
+          </struct>
+        </member>
+      </struct>
+    </value_expression>
+  </assignment>
+  <assignment base_name="myStruct" display_name="main::1::myStruct" identifier="c::main::1::myStruct" mode="C" step_nr="21" thread="0">
+    <location file="vars.c" function="main" line="16"/>
+    <type>struct sss</type>
+    <full_lhs>myStruct.i</full_lhs>
+    <full_lhs_value>2</full_lhs_value>
+    <value>{ .i=2, .b={ .g=0, .innerArray={ 0, 0 } } }</value>
+    <value_expression>
+      <struct>
+        <member name="i">
+          <integer binary="00000000000000000000000000000010" c_type="int" width="32">2</integer>
+        </member>
+        <member name="b">
+          <struct>
+            <member name="g">
+              <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
+            </member>
+            <member name="innerArray">
+              <array>
+                <element index="0">
                   <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
                 </element>
-                <element index="3">
+                <element index="1">
                   <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
                 </element>
-                <element index="4">
+              </array>
+            </member>
+          </struct>
+        </member>
+      </struct>
+    </value_expression>
+  </assignment>
+  <assignment base_name="myStruct" display_name="main::1::myStruct" identifier="c::main::1::myStruct" mode="C" step_nr="22" thread="0">
+    <location file="vars.c" function="main" line="17"/>
+    <type>struct sss</type>
+    <full_lhs>myStruct.b.g</full_lhs>
+    <full_lhs_value>3</full_lhs_value>
+    <value>{ .i=2, .b={ .g=3, .innerArray={ 0, 0 } } }</value>
+    <value_expression>
+      <struct>
+        <member name="i">
+          <integer binary="00000000000000000000000000000010" c_type="int" width="32">2</integer>
+        </member>
+        <member name="b">
+          <struct>
+            <member name="g">
+              <integer binary="00000000000000000000000000000011" c_type="int" width="32">3</integer>
+            </member>
+            <member name="innerArray">
+              <array>
+                <element index="0">
                   <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
                 </element>
-                <element index="5">
+                <element index="1">
                   <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
                 </element>
-                <element index="6">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
+              </array>
+            </member>
+          </struct>
+        </member>
+      </struct>
+    </value_expression>
+  </assignment>
+  <assignment base_name="myStruct" display_name="main::1::myStruct" identifier="c::main::1::myStruct" mode="C" step_nr="23" thread="0">
+    <location file="vars.c" function="main" line="18"/>
+    <type>struct sss</type>
+    <full_lhs>myStruct.b.innerArray[0]</full_lhs>
+    <full_lhs_value>7</full_lhs_value>
+    <value>{ .i=2, .b={ .g=3, .innerArray={ 7, 0 } } }</value>
+    <value_expression>
+      <struct>
+        <member name="i">
+          <integer binary="00000000000000000000000000000010" c_type="int" width="32">2</integer>
+        </member>
+        <member name="b">
+          <struct>
+            <member name="g">
+              <integer binary="00000000000000000000000000000011" c_type="int" width="32">3</integer>
+            </member>
+            <member name="innerArray">
+              <array>
+                <element index="0">
+                  <integer binary="00000000000000000000000000000111" c_type="int" width="32">7</integer>
                 </element>
-                <element index="7">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="8">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="9">
+                <element index="1">
                   <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
                 </element>
               </array>
@@ -352,176 +370,11 @@
     </value_expression>
   </assignment>
   <assignment base_name="myStruct" display_name="main::1::myStruct" identifier="c::main::1::myStruct" mode="C" step_nr="24" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c" function="main" line="20"/>
-    <type>struct sss</type>
-    <full_lhs>myStruct.i</full_lhs>
-    <full_lhs_value>2</full_lhs_value>
-    <value>{ .i=2, .b={ .g=0, .innerArray={ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } } }</value>
-    <value_expression>
-      <struct>
-        <member name="i">
-          <integer binary="00000000000000000000000000000010" c_type="int" width="32">2</integer>
-        </member>
-        <member name="b">
-          <struct>
-            <member name="g">
-              <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-            </member>
-            <member name="innerArray">
-              <array>
-                <element index="0">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="1">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="2">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="3">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="4">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="5">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="6">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="7">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="8">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="9">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-              </array>
-            </member>
-          </struct>
-        </member>
-      </struct>
-    </value_expression>
-  </assignment>
-  <assignment base_name="myStruct" display_name="main::1::myStruct" identifier="c::main::1::myStruct" mode="C" step_nr="25" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c" function="main" line="21"/>
-    <type>struct sss</type>
-    <full_lhs>myStruct.b.g</full_lhs>
-    <full_lhs_value>3</full_lhs_value>
-    <value>{ .i=2, .b={ .g=3, .innerArray={ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } } }</value>
-    <value_expression>
-      <struct>
-        <member name="i">
-          <integer binary="00000000000000000000000000000010" c_type="int" width="32">2</integer>
-        </member>
-        <member name="b">
-          <struct>
-            <member name="g">
-              <integer binary="00000000000000000000000000000011" c_type="int" width="32">3</integer>
-            </member>
-            <member name="innerArray">
-              <array>
-                <element index="0">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="1">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="2">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="3">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="4">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="5">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="6">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="7">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="8">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="9">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-              </array>
-            </member>
-          </struct>
-        </member>
-      </struct>
-    </value_expression>
-  </assignment>
-  <assignment base_name="myStruct" display_name="main::1::myStruct" identifier="c::main::1::myStruct" mode="C" step_nr="26" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c" function="main" line="22"/>
-    <type>struct sss</type>
-    <full_lhs>myStruct.b.innerArray[0]</full_lhs>
-    <full_lhs_value>7</full_lhs_value>
-    <value>{ .i=2, .b={ .g=3, .innerArray={ 7, 0, 0, 0, 0, 0, 0, 0, 0, 0 } } }</value>
-    <value_expression>
-      <struct>
-        <member name="i">
-          <integer binary="00000000000000000000000000000010" c_type="int" width="32">2</integer>
-        </member>
-        <member name="b">
-          <struct>
-            <member name="g">
-              <integer binary="00000000000000000000000000000011" c_type="int" width="32">3</integer>
-            </member>
-            <member name="innerArray">
-              <array>
-                <element index="0">
-                  <integer binary="00000000000000000000000000000111" c_type="int" width="32">7</integer>
-                </element>
-                <element index="1">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="2">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="3">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="4">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="5">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="6">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="7">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="8">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="9">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-              </array>
-            </member>
-          </struct>
-        </member>
-      </struct>
-    </value_expression>
-  </assignment>
-  <assignment base_name="myStruct" display_name="main::1::myStruct" identifier="c::main::1::myStruct" mode="C" step_nr="27" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c" function="main" line="23"/>
+    <location file="vars.c" function="main" line="19"/>
     <type>struct sss</type>
     <full_lhs>myStruct.b.innerArray[1]</full_lhs>
     <full_lhs_value>7</full_lhs_value>
-    <value>{ .i=2, .b={ .g=3, .innerArray={ 7, 7, 0, 0, 0, 0, 0, 0, 0, 0 } } }</value>
+    <value>{ .i=2, .b={ .g=3, .innerArray={ 7, 7 } } }</value>
     <value_expression>
       <struct>
         <member name="i">
@@ -540,30 +393,6 @@
                 <element index="1">
                   <integer binary="00000000000000000000000000000111" c_type="int" width="32">7</integer>
                 </element>
-                <element index="2">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="3">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="4">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="5">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="6">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="7">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="8">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
-                <element index="9">
-                  <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
-                </element>
               </array>
             </member>
           </struct>
@@ -571,11 +400,11 @@
       </struct>
     </value_expression>
   </assignment>
-  <location-only step_nr="28" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c" function="main" line="25"/>
+  <location-only step_nr="25" thread="0">
+    <location file="vars.c" function="main" line="21"/>
   </location-only>
-  <failure property="main.assertion.1" reason="assertion arri[1] == 1" step_nr="29" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c" function="main" line="25"/>
+  <failure property="main.assertion.1" reason="assertion 0" step_nr="26" thread="0">
+    <location file="vars.c" function="main" line="21"/>
   </failure>
 </goto_trace>
 
