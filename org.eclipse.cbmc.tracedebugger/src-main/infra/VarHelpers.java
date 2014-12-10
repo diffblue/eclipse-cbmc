@@ -37,6 +37,8 @@ public class VarHelpers {
 			return new String[] {expression.substring(0,dotIdx), expression.substring(dotIdx)};	
 	}
 
+	//for an expression [3].g, return 3 and ".g"
+	//for an expression [3], return 3
 	public static String[] extractFromBracket(String expression) {
 		int finalBracketIdx = expression.indexOf(']');
 		if (finalBracketIdx < 0)
@@ -44,7 +46,7 @@ public class VarHelpers {
 		if (finalBracketIdx == expression.length() - 1)
 			return new String[] { expression.substring(1, finalBracketIdx) };
 		else
-			return new String[] { expression.substring(1, finalBracketIdx) , expression.substring(finalBracketIdx) };
+			return new String[] { expression.substring(1, finalBracketIdx) , expression.substring(finalBracketIdx + 1) };
 	}
 
 	public static String[] splitAsBracket(String expression) {

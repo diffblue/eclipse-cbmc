@@ -40,6 +40,7 @@ public class IntepreterTests {
 
 	//To add a test, add the folder containing the test in this list
 	public static final String[] TEST_CASES = {
+		"array",
 		"arrayOfStruct", 
 		"executionAndBreakpoints", 
 		"functionCallOnFirstLine", 

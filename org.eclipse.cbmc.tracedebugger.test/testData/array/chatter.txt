@@ -1,0 +1,84 @@
+16-file-exec-and-symbols --thread-group i1 <<inputFile>>
+16^done
+23-break-insert -t -f main
+23^done,bkpt={number="1",type="breakpoint",enabled="y",func="main"}
+(gdb)
+25-exec-run --thread-group i1
+=thread-group-started,id="i1",pid="123"
+=thread-created,id="0",group-id="i1"
+25^running
+*running,thread-id="all"
+*stopped,frame={func="main",file="array.c",fullname="array.c",line="6"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+(gdb)
+32-stack-list-locals --thread 0 --frame 0 1
+32^done,locals=[]
+(gdb)
+34-exec-next --thread 0 1
+34^running
+*running,thread-id="all"
+*stopped,frame={func="main",file="array.c",fullname="array.c",line="7"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+(gdb)
+35-stack-list-locals --thread 0 --frame 0 1
+35^done,locals=[{name="arr",value="{0,0}"}]
+(gdb)
+38-var-create --thread 0 --frame 0 - * arr
+38^done,name="var1",value="[...]",type="int[2]",numchild="2",thread-id="0",has_more="0"
+(gdb)
+39-var-create --thread 0 --frame 0 - * &(arr)
+39^done,name="var2",value="Address unknown",numchild="0",thread-id="0",has_more="0"
+(gdb)
+42-exec-next --thread 0 1
+42^running
+*running,thread-id="all"
+*stopped,frame={func="main",file="array.c",fullname="array.c",line="8"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+(gdb)
+43-stack-list-locals --thread 0 --frame 0 1
+43^done,locals=[{name="arr",value="{33,0}"}]
+(gdb)
+46-var-update 1 var1
+46^done,changelist=[{name="var1",value="{33,0}",in_scope="true",type_changed="false",has_more="0"}]
+(gdb)
+47-var-update 1 var2
+47^done,changelist=[]
+(gdb)
+50-var-create --thread 0 --frame 0 - * arr[0]
+50^done,name="var3",value="33",type="int",numchild="0",thread-id="0",has_more="0"
+(gdb)
+51-var-create --thread 0 --frame 0 - * arr[1]
+51^done,name="var4",value="0",type="int",numchild="0",thread-id="0",has_more="0"
+(gdb)
+52-exec-next --thread 0 1
+52^running
+*running,thread-id="all"
+*stopped,frame={func="main",file="array.c",fullname="array.c",line="10"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+(gdb)
+53-stack-list-locals --thread 0 --frame 0 1
+53^done,locals=[{name="arr",value="{33,44}"}]
+(gdb)
+54-stack-info-depth --thread 0 11
+54^done,depth="1"
+(gdb)
+55-stack-info-depth --thread 0
+55^done,depth="1"
+(gdb)
+56-var-update 1 var1
+56^done,changelist=[{name="var1",value="{33,44}",in_scope="true",type_changed="false",has_more="0"}]
+(gdb)
+57-var-update 1 var2
+57^done,changelist=[]
+(gdb)
+58-list-thread-groups
+58^done,groups=[{id="i1",type="process",pid="123",executable="<<inputFile>>"}]
+(gdb)
+59-thread-info 0
+59^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="array.c",fullname="array.c",line="10"}}]
+(gdb)
+60-var-update 1 var3
+60^done,changelist=[]
+(gdb)
+61-var-update 1 var4
+61^done,changelist=[{name="var4",value="44",in_scope="true",type_changed="false",has_more="0"}]
+(gdb)
+62-gdb-exit
+62^done
+(gdb)
