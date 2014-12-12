@@ -16,7 +16,7 @@ public class LaunchConfigurationTab extends AbstractLaunchConfigurationTabGroup 
 
 	@Override
 	public void createTabs(ILaunchConfigurationDialog dialog, String mode) {
-		ILaunchConfigurationTab[] tabs = new ILaunchConfigurationTab[] {new MainLaunchingTab()};
+		ILaunchConfigurationTab[] tabs = new ILaunchConfigurationTab[] {new MainLaunchingTab(), new CommonTab()};
 		setTabs(tabs);
 	}
 }
