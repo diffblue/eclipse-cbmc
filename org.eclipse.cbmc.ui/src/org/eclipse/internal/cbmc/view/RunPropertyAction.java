@@ -10,10 +10,12 @@
  *******************************************************************************/
 package org.eclipse.internal.cbmc.view;
 
+import java.util.List;
 import org.eclipse.cbmc.Property;
 import org.eclipse.cbmc.PropertyStatus;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.actions.SelectionListenerAction;
@@ -41,6 +43,12 @@ public class RunPropertyAction extends SelectionListenerAction {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void run() {
-		new PropertyCheckerHelper().checkProperties(getStructuredSelection().toList(), null);
+		List<Object> selection = getStructuredSelection().toList();
+		if (selection.size() == 0)
+			return;
+		Property toValidate = (Property) selection.get(0);
+		Job checkJob = new CheckPropertyJob(toValidate.getNumber(), toValidate);
+		toValidate.setJob(checkJob);
+		checkJob.schedule();
 	}
 }
