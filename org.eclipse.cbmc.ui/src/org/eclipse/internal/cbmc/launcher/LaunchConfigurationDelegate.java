@@ -21,7 +21,7 @@ import org.eclipse.ui.*;
 
 public class LaunchConfigurationDelegate extends org.eclipse.debug.core.model.LaunchConfigurationDelegate {
 
-	public void launch(final ILaunchConfiguration configuration, String mode, ILaunch launch, IProgressMonitor monitor) {
+	public void launch(final ILaunchConfiguration configuration, String mode, final ILaunch launch, IProgressMonitor monitor) {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {

@@ -18,7 +18,10 @@ import java.nio.file.attribute.FileAttribute;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import org.eclipse.cbmc.*;
-import org.eclipse.core.resources.*;
+import org.eclipse.cdt.core.CCorePlugin;
+import org.eclipse.cdt.core.model.*;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.*;
 import org.eclipse.debug.core.ILaunchConfiguration;
 
@@ -34,19 +37,25 @@ public class CBMCCliHelper {
 
 	public static final String LC_CBMC_OPTIONPREFIX = "cbmc."; //$NON-NLS-1$
 	public static final String LC_CBMC_FUNCTION = "cbmc.function"; //$NON-NLS-1$
-	public static final String LC_CBMC_FILE = "cbmc.file"; //$NON-NLS-1$
+	public static final String LC_CBMC_RESOURCES = "cbmc.resources"; //$NON-NLS-1$
+	public static final String LC_CBMC_RESOURCE_TYPE = "cbmc.resourcetype";//$NON-NLS-1$
+
 	public static final String LC_CBMC_EXECUTABLE = "cbmc.executable"; //$NON-NLS-1$
 	public static final String LC_CBMC_AUTORUN = "cbmc.autorun"; //$NON-NLS-1$
 	public static final String LC_CBMC_SHOW_LOOPS = "cbmc.show-loops"; //$NON-NLS-1$
 	public static final String LC_CBMC_UNWIND = "cbmc.unwind"; //$NON-NLS-1$
 
+	public static final int LC_PROJECTS_TO_CHECK = 0;
+	public static final int LC_SOURCES_TO_CHECK = 1;
+	public static final int LC_BINARY_TO_CHECK = 2;
+
 	private File workingDirectory;
 	private List<String> baseCli = new ArrayList<String>();
 	private static final String PLUGIN_ID = "org.eclipse.cbmc"; //$NON-NLS-1$
-	private static final Object C_EXTENSION = "c"; //$NON-NLS-1$
-	private static final Object CPP_EXTENSION = "cpp"; //$NON-NLS-1$
+
 	private ILog logger = Platform.getPlugin(PLUGIN_ID).getLog();
-	private String lcCBMCFileToCheck;
+	private int lcCBMCResourceToCheckType;
+	private List<String> lcCBMCResourcesToCheck;
 	private String lcCBMCExecutable;
 	private String lcCBMCFunction;
 	private boolean lcCBMCShowLoops;
@@ -90,7 +99,8 @@ public class CBMCCliHelper {
 	private CBMCCliHelper(ILaunchConfiguration config) {
 		try {
 			lcCBMCExecutable = config.getAttribute(LC_CBMC_EXECUTABLE, NO_VALUE);
-			lcCBMCFileToCheck = config.getAttribute(LC_CBMC_FILE, NO_VALUE);
+			lcCBMCResourcesToCheck = config.getAttribute(LC_CBMC_RESOURCES, new ArrayList<String>());
+			lcCBMCResourceToCheckType = config.getAttribute(LC_CBMC_RESOURCE_TYPE, 1);
 			lcCBMCFunction = config.getAttribute(LC_CBMC_FUNCTION, NO_VALUE);
 			lcCBMCShowLoops = config.getAttribute(LC_CBMC_SHOW_LOOPS, true);
 			lcCBMCUnwind = config.getAttribute(LC_CBMC_UNWIND, NO_VALUE);
@@ -117,7 +127,7 @@ public class CBMCCliHelper {
 
 	private void initializeBaseCommandLine() {
 		baseCli.add(lcCBMCExecutable);
-		filesToCheck = computeFilesToCheck();
+		filesToCheck = computeResourcesToCheck();
 		baseCli.addAll(filesToCheck);
 		if (lcCBMCFunction.length() > 0) {
 			baseCli.add(CBMC_ARG_FUNCTION);
@@ -127,48 +137,61 @@ public class CBMCCliHelper {
 		baseCli = Collections.unmodifiableList(baseCli);
 	}
 
-	private Collection<String> computeFilesToCheck() {
-		ArrayList<String> files = new ArrayList<String>();
-		if (isFileToCheckASourceFile()) {
-			IProject currentProject = getCurrentProject();
-			if (currentProject != null && currentProject.isOpen() && currentProject.exists()) {
-				recursiveFindInProject(files, currentProject.getLocation(), ResourcesPlugin.getWorkspace().getRoot());
-			}
-		} else
-			files.add(lcCBMCFileToCheck);
-		return files;
+	private Collection<String> computeResourcesToCheck() {
+		switch (lcCBMCResourceToCheckType) {
+			case LC_SOURCES_TO_CHECK :
+				return lcCBMCResourcesToCheck;
+			case LC_BINARY_TO_CHECK :
+				return lcCBMCResourcesToCheck;
+			case LC_PROJECTS_TO_CHECK :
+				return computeProjectsToCheck();
+		}
+		return new ArrayList<String>();
 	}
 
-	private boolean isFileToCheckASourceFile() {
-		return lcCBMCFileToCheck.endsWith("." + C_EXTENSION) || lcCBMCFileToCheck.endsWith("." + CPP_EXTENSION); //$NON-NLS-1$//$NON-NLS-2$
-	}
-
-	private IProject getCurrentProject() {
-		org.eclipse.core.runtime.Path path = new org.eclipse.core.runtime.Path(lcCBMCFileToCheck);
-		IFile file = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(path);
-		if (file != null)
-			return file.getProject();
-		return null;
-	}
-
-	private void recursiveFindInProject(Collection<String> files, IPath path, IWorkspaceRoot workspaceRoot) {
-		IContainer container = workspaceRoot.getContainerForLocation(path);
+	private void computeFilesToCheck(List<String> results, ICContainer rootElement) {
 		try {
-			IResource[] iResources;
-			iResources = container.members();
-			for (IResource resource : iResources) {
-				String extension = resource.getFileExtension();
-				if (extension != null && (extension.equals(C_EXTENSION) || extension.equals(CPP_EXTENSION)))
-					files.add(resource.getRawLocation().makeAbsolute().toString());
-				if (resource.getType() == IResource.FOLDER) {
-					IPath tempPath = resource.getLocation();
-					recursiveFindInProject(files, tempPath, workspaceRoot);
+			ICElement[] children = rootElement.getChildren();
+			for (int i = 0; i < children.length; i++) {
+				ICElement element = children[i];
+				if (element instanceof ICContainer) {
+					computeFilesToCheck(results, (ICContainer) element);
+				} else if (element instanceof ITranslationUnit) {
+					String contentType = ((ITranslationUnit) element).getContentTypeId();
+					if (!contentType.equals(CCorePlugin.CONTENT_TYPE_CHEADER) && !contentType.equals(CCorePlugin.CONTENT_TYPE_BINARYFILE))
+						results.add(element.getUnderlyingResource().getLocation().toString());
 				}
 			}
-		} catch (CoreException e) {
+		} catch (CModelException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+	}
+
+	private Collection<String> computeProjectsToCheck() {
+		List<String> files = new ArrayList<String>();
+		IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
+		for (int i = 0; i < projects.length; i++) {
+			IProject project = projects[i];
+			if (lcCBMCResourcesToCheck.contains(project.getLocation().toString())) {
+				ICProject cProject = CoreModel.getDefault().create(project);
+				if (cProject != null) {
+					try {
+						ISourceRoot[] sourceRoots = cProject.getSourceRoots();
+						for (int j = 0; j < sourceRoots.length; j++) {
+							ISourceRoot sourceRoot = sourceRoots[j];
+							computeFilesToCheck(files, sourceRoot);
+						}
+					} catch (CModelException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
+			}
+		}
+		return files;
 	}
 
 	public static CBMCCliHelper create(ILaunchConfiguration config) {

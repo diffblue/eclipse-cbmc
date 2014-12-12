@@ -36,11 +36,17 @@ public class Messages extends NLS {
 	public static String MainLaunchingTab_labelOptions;
 	public static String MainLaunchingTab_labelLoops;
 	public static String MainLaunchingTab_labelBrowse;
+	public static String MainLaunchingTab_projectsBrowse;
+	public static String MainLaunchingTab_sourcesBrowse;
+	public static String MainLaunchingTab_binaryBrowse;
 	public static String MainLaunchingTab_labelUnwind;
 	public static String MainLaunchingTab_dialogCbmc;
-	public static String MainLaunchingTab_dialogFileTitle;
-	public static String MainLaunchingTab_dialogFileMesssage;
-
+	public static String MainLaunchingTab_dialogProjectsTitle;
+	public static String MainLaunchingTab_dialogProjectsMessage;
+	public static String MainLaunchingTab_dialogSourcesTitle;
+	public static String MainLaunchingTab_dialogSourcesMessage;
+	public static String MainLaunchingTab_dialogBinaryTitle;
+	public static String MainLaunchingTab_dialogBinaryMessage;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

@@ -15,11 +15,15 @@ import java.util.*;
 import java.util.List;
 import org.eclipse.cbmc.util.CBMCCliHelper;
 import org.eclipse.cbmc.util.CBMCCliHelper.CheckAllPropertiesOption;
+import org.eclipse.cdt.core.model.CoreModel;
+import org.eclipse.cdt.core.model.ICProject;
 import org.eclipse.core.resources.*;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.ui.AbstractLaunchConfigurationTab;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.*;
@@ -27,66 +31,72 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.*;
-import org.eclipse.ui.dialogs.ResourceListSelectionDialog;
+import org.eclipse.ui.dialogs.*;
+import org.eclipse.ui.model.BaseWorkbenchContentProvider;
+import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.osgi.framework.Version;
 
 public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 
-	private static final String FILE_EXTENSIONS[] = {".c", ".cpp"}; //$NON-NLS-1$//$NON-NLS-2$
 	private static final String CBMC_GOTO_INSTRUMENT = "goto-instrument"; //$NON-NLS-1$
 	private static final String CBMC_ARG_VERSION = "--version"; //$NON-NLS-1$
 	private static final String CBMC_ARG_TEST_PREPROCESSOR = "--test-preprocessor"; //$NON-NLS-1$
 	private static final String MINIMAL_VERSION_NUMBER = "4.9"; //$NON-NLS-1$
 
 	final String NO_VALUE = ""; //$NON-NLS-1$
+	final String NEW_LINE = "\n"; //$NON-NLS-1$
 	private List<Button> optionButtons;
 	private Text executableText;
 	private Button executableButton;
-	private Text fileText;
+	private Text resourcesText;
 	private Text functionText;
-	private Button fileButton;
 	private Button autorunBtn;
 	private Button showLoopsBtn;
 	private Text unwindText;
 
+	private int resourceToCheckType;
+
 	@Override
 	public boolean canSave() {
-		return isValidCBMC() && isValidFileToCheck() && isValidUnwind();
+		return checkCBMC() && checkResources() && checkUnwind();
 	}
 
 	@Override
 	public boolean isValid(ILaunchConfiguration launchConfig) {
 		setMessage(null);
 		setErrorMessage(null);
-		return isValidCBMC() && isValidFileToCheck() && isValidUnwind();
+		return checkCBMC() && checkResources() && checkUnwind();
 	}
 
-	private boolean isValidCBMC() {
+	private boolean checkCBMC() {
 		String executable = executableText.getText().trim();
-		return isValidLength(executable, Messages.MainLaunchingTab_error_cbmc_isEmpty) && isValidFile(executable, Messages.MainLaunchingTab_error_cbmc_notExist) && isValidCompiler(executable) && isValidVersion(executable);
+		return checkTextNotEmpty(executable, Messages.MainLaunchingTab_error_cbmc_isEmpty) && checkFileExists(executable, Messages.MainLaunchingTab_error_cbmc_notExist) && checkCompiler(executable) && checkCBMCVersion(executable);
 	}
 
-	private boolean isValidFileToCheck() {
-		String file = fileText.getText().trim();
-		return isValidLength(file, Messages.MainLaunchingTab_error_file_isEmpty) && isValidFile(file, Messages.MainLaunchingTab_error_file_notExists) && (isValidSourceFile(file) || isValidBinaryFile(file));
-	}
-
-	private boolean isValidSourceFile(String file) {
-		String extension = file.substring(file.lastIndexOf("."), file.length()); //$NON-NLS-1$
-		for (int i = 0; i < FILE_EXTENSIONS.length; i++) {
-			if (extension.equals(FILE_EXTENSIONS[i]))
-				return true;
+	private boolean checkResources() {
+		String resources = resourcesText.getText().trim();
+		if (!checkTextNotEmpty(resources, Messages.MainLaunchingTab_error_file_isEmpty))
+			return false;
+		String[] resourcesSplitter = resources.split(NEW_LINE);
+		for (int i = 0; i < resourcesSplitter.length; i++) {
+			String resource = resourcesSplitter[i];
+			if (!checkFileExists(resource, Messages.format(Messages.MainLaunchingTab_error_file_notExists, new String[] {resource})))
+				return false;
 		}
-		return false;
+		if (resourceToCheckType == CBMCCliHelper.LC_BINARY_TO_CHECK) {
+			if (!checkBinary(resources))
+				return false;
+		}
+		return true;
 	}
 
-	private boolean isValidBinaryFile(String file) {
+	private boolean checkBinary(String resource) {
 		String cbmcCommand = executableText.getText().trim();
 		String gotoCommand = cbmcCommand.substring(0, cbmcCommand.lastIndexOf("/") + 1) + CBMC_GOTO_INSTRUMENT; //$NON-NLS-1$
-		return isValidGotoCommand(gotoCommand) && isValidGotoFile(gotoCommand, file);
+		return isValidGotoCommand(gotoCommand) && isValidGotoFile(gotoCommand, resource);
 	}
 
-	private boolean isValidLength(String str, String errorMessage) {
+	private boolean checkTextNotEmpty(String str, String errorMessage) {
 		int len = str.length();
 		if (len == 0) {
 			setErrorMessage(errorMessage);
@@ -95,7 +105,7 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 		return true;
 	}
 
-	private boolean isValidFile(String str, String errorMessage) {
+	private boolean checkFileExists(String str, String errorMessage) {
 		File f = new File(str);
 		if (!f.exists()) {
 			setErrorMessage(errorMessage);
@@ -104,7 +114,7 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 		return true;
 	}
 
-	private boolean isValidCompiler(String executable) {
+	private boolean checkCompiler(String executable) {
 		Object[] result = ProcessHelper.executeCommandWithSuccessFlagAndOutput(executable, CBMC_ARG_TEST_PREPROCESSOR);
 		if (!(boolean) result[0]) {
 			setErrorMessage(Messages.format(Messages.MainLaunchingTab_error_cbmc_compilerNotFound, new String[] {(String) result[1]}));
@@ -113,7 +123,7 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 		return true;
 	}
 
-	private boolean isValidVersion(String executable) {
+	private boolean checkCBMCVersion(String executable) {
 		String currentVersionNumber = ProcessHelper.executeCommandWithOutput(executable, CBMC_ARG_VERSION);
 		if (currentVersionNumber == null) {
 			setErrorMessage(Messages.MainLaunchingTab_error_cbmc_versionNotFound);
@@ -129,7 +139,7 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 	}
 
 	private boolean isValidGotoCommand(String gotoCommand) {
-		return isValidFile(gotoCommand, Messages.format(Messages.MainLaunchingTab_error_file_gotoNotFound, new String[] {gotoCommand}));
+		return checkFileExists(gotoCommand, Messages.format(Messages.MainLaunchingTab_error_file_gotoNotFound, new String[] {gotoCommand}));
 	}
 
 	private boolean isValidGotoFile(String gotoCommand, String file) {
@@ -141,7 +151,7 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 		return true;
 	}
 
-	private boolean isValidUnwind() {
+	private boolean checkUnwind() {
 		String unwind = unwindText.getText().trim();
 		try {
 			if (unwind.isEmpty() || Integer.parseInt(unwind) >= 0) {
@@ -177,19 +187,48 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 		}
 	}
 
-	void handleCFileButtonSelected() {
-		ResourceListSelectionDialog dialog = new ResourceListSelectionDialog(getShell(), ResourcesPlugin.getWorkspace().getRoot(), IResource.FILE);
-		dialog.setTitle(Messages.MainLaunchingTab_dialogFileTitle);
-		dialog.setMessage(Messages.MainLaunchingTab_dialogFileMesssage);
+	void handleProjectsButtonSelected() {
+		ListSelectionDialog dialog = new ListSelectionDialog(getShell(), ResourcesPlugin.getWorkspace().getRoot(), new BaseWorkbenchContentProvider(), new WorkbenchLabelProvider(), "Select the Project:");
+		dialog.setTitle(Messages.MainLaunchingTab_dialogProjectsTitle);
+		dialog.setMessage(Messages.MainLaunchingTab_dialogProjectsMessage);
 		if (dialog.open() == Window.OK) {
-			Object[] files = dialog.getResult();
-			IFile file = (IFile) files[0];
-			if (!fileText.getText().equals(file.getRawLocation().makeAbsolute().toString())) {
-				fileText.setText(file.getRawLocation().makeAbsolute().toString());
-				//fileFieldStatus = FieldStatus.PENDING;
-
-			}
+			resourcesText.setText(serializeResources(dialog.getResult(), IResource.PROJECT));
+			resourceToCheckType = CBMCCliHelper.LC_PROJECTS_TO_CHECK;
 		}
+	}
+
+	void handleSourcesButtonSelected() {
+		CheckedTreeSelectionDialog dialog = new CheckedTreeSelectionDialog(getShell(), new WorkbenchLabelProvider(), new BaseWorkbenchContentProvider());
+		dialog.setContainerMode(true);
+		dialog.setTitle(Messages.MainLaunchingTab_dialogSourcesTitle);
+		dialog.setMessage(Messages.MainLaunchingTab_dialogSourcesMessage);
+		dialog.setInput(ResourcesPlugin.getWorkspace().getRoot());
+
+		ViewerFilter filter = new ViewerFilter() {
+			private CoreModel coreModel = CoreModel.getDefault();
+
+			@Override
+			public boolean select(Viewer viewer, Object parentElement, Object element) {
+				return (element != null && coreModel.create((IResource) element) != null);
+			}
+		};
+		dialog.addFilter(filter);
+		if (dialog.open() == Window.OK) {
+			resourcesText.setText(serializeResources(dialog.getResult(), IResource.FILE));
+			resourceToCheckType = CBMCCliHelper.LC_SOURCES_TO_CHECK;
+		}
+	}
+
+	void handleBinaryButtonSelected() {
+		ResourceListSelectionDialog dialog;
+		dialog = new ResourceListSelectionDialog(getShell(), ResourcesPlugin.getWorkspace().getRoot(), IResource.FILE);
+		dialog.setTitle(Messages.MainLaunchingTab_dialogBinaryTitle);
+		dialog.setMessage(Messages.MainLaunchingTab_dialogBinaryMessage);
+		if (dialog.open() == Window.OK) {
+			resourcesText.setText(serializeResources(dialog.getResult(), IResource.FILE));
+			resourceToCheckType = CBMCCliHelper.LC_BINARY_TO_CHECK;
+		}
+
 	}
 
 	@Override
@@ -220,19 +259,48 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 		});
 
 		new Label(comp, SWT.NONE).setText(Messages.MainLaunchingTab_labelFile);
-		fileText = new Text(comp, SWT.SINGLE | SWT.BORDER);
-		fileText.setLayoutData(gridData);
-		fileText.setFont(font);
-		fileText.addModifyListener(modifyListener);
-		fileButton = createPushButton(comp, Messages.MainLaunchingTab_labelBrowse, null);
-		fileButton.addSelectionListener(new SelectionAdapter() {
+		resourcesText = new Text(comp, SWT.SINGLE | SWT.BORDER);
+		gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gridData.horizontalSpan = 2;
+		resourcesText.setLayoutData(gridData);
+		resourcesText.setFont(font);
+		resourcesText.addModifyListener(modifyListener);
+
+		Composite buttons = new Composite(comp, SWT.NONE);
+		gridData = new GridData(GridData.FILL_HORIZONTAL);
+		gridData.horizontalSpan = 3;
+		buttons.setLayoutData(gridData);
+
+		GridLayout buttonLayout = new GridLayout(4, false);
+		buttonLayout.marginHeight = buttonLayout.marginWidth = 0;
+		buttons.setLayout(buttonLayout);
+
+		Label tempLbl = new Label(buttons, SWT.NONE);
+		tempLbl.setLayoutData(new GridData(SWT.END, SWT.CENTER, true, false));
+
+		Button projectsButton = createPushButton(buttons, Messages.MainLaunchingTab_projectsBrowse, null);
+		projectsButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				handleCFileButtonSelected();
+				handleProjectsButtonSelected();
 			}
 		});
+		projectsButton.setLayoutData(new GridData(SWT.END, SWT.CENTER, false, false));
+		Button sourcesButton = createPushButton(buttons, Messages.MainLaunchingTab_sourcesBrowse, null);
+		sourcesButton.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+				handleSourcesButtonSelected();
+			}
+		});
+		sourcesButton.setLayoutData(new GridData(SWT.END, SWT.CENTER, false, false));
+		Button binaryButton = createPushButton(buttons, Messages.MainLaunchingTab_binaryBrowse, null);
+		binaryButton.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+				handleBinaryButtonSelected();
+			}
+		});
+		binaryButton.setLayoutData(new GridData(SWT.END, SWT.CENTER, false, false));
 
 		new Label(comp, SWT.NONE).setText(Messages.MainLaunchingTab_labelFunction);
-
 		functionText = new Text(comp, SWT.SINGLE | SWT.BORDER);
 		gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
 		gridData.horizontalSpan = 2;
@@ -297,15 +365,18 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 	@Override
 	public void initializeFrom(ILaunchConfiguration configuration) {
 		try {
-			String exec = configuration.getAttribute(CBMCCliHelper.LC_CBMC_EXECUTABLE, NO_VALUE);
-			executableText.setText(exec);
+			executableText.setText(configuration.getAttribute(CBMCCliHelper.LC_CBMC_EXECUTABLE, NO_VALUE));
+			resourceToCheckType = configuration.getAttribute(CBMCCliHelper.LC_CBMC_RESOURCE_TYPE, CBMCCliHelper.LC_BINARY_TO_CHECK);
 
-			String file = configuration.getAttribute(CBMCCliHelper.LC_CBMC_FILE, NO_VALUE);
-			fileText.setText(file);
+			List<String> resources = configuration.getAttribute(CBMCCliHelper.LC_CBMC_RESOURCES, new ArrayList<String>());
+			String resourcesStr = NO_VALUE;
+			for (Iterator<String> iterator = resources.iterator(); iterator.hasNext();) {
+				String resource = iterator.next();
+				resourcesStr += (resourcesStr == NO_VALUE ? NO_VALUE : NEW_LINE) + resource;
 
-			String function = configuration.getAttribute(CBMCCliHelper.LC_CBMC_FUNCTION, NO_VALUE);
-			functionText.setText(function);
-
+			}
+			resourcesText.setText(resourcesStr);
+			functionText.setText(configuration.getAttribute(CBMCCliHelper.LC_CBMC_FUNCTION, NO_VALUE));
 			String unwind = configuration.getAttribute(CBMCCliHelper.LC_CBMC_UNWIND, NO_VALUE);
 			if (!unwind.isEmpty())
 				unwindText.setText(unwind);
@@ -339,8 +410,9 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 			configuration.setAttribute(CBMCCliHelper.LC_CBMC_SHOW_LOOPS, showLoopsBtn.getSelection());
 			String exec = executableText.getText().trim();
 			configuration.setAttribute(CBMCCliHelper.LC_CBMC_EXECUTABLE, exec.length() == 0 ? null : exec);
-			String file = fileText.getText().trim();
-			configuration.setAttribute(CBMCCliHelper.LC_CBMC_FILE, file.length() == 0 ? null : file);
+			configuration.setAttribute(CBMCCliHelper.LC_CBMC_RESOURCES, Arrays.asList(resourcesText.getText().trim().split(NEW_LINE)));
+			configuration.setAttribute(CBMCCliHelper.LC_CBMC_RESOURCE_TYPE, resourceToCheckType);
+
 			String function = functionText.getText().trim();
 			configuration.setAttribute(CBMCCliHelper.LC_CBMC_FUNCTION, function.length() == 0 ? null : function);
 			String unwind = unwindText.getText().trim();
@@ -363,5 +435,21 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 	@Override
 	public String getName() {
 		return Messages.MainLaunchingTab_name;
+	}
+
+	private String serializeResources(Object[] resources, int type) {
+		String serializedResources = NO_VALUE;
+		for (int i = 0; i < resources.length; i++) {
+			IResource resource = (IResource) resources[i];
+			if (resource.getType() == type) {
+				if (resource instanceof IProject) {
+					if (resources[i] instanceof ICProject)
+						System.out.println("oui!!");
+					serializedResources += (serializedResources.equals(NO_VALUE) ? NO_VALUE : NEW_LINE) + ((IProject) resource).getLocation().toString();
+				} else if (resource instanceof IFile)
+					serializedResources += (serializedResources.equals(NO_VALUE) ? NO_VALUE : NEW_LINE) + ((IFile) resource).getLocation().toOSString();
+			}
+		}
+		return serializedResources;
 	}
 }
