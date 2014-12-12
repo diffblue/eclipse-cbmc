@@ -53,7 +53,7 @@ public class ProcessHelper {
 			if (monitor != null) {
 				while (!process.waitFor(1, TimeUnit.SECONDS)) {
 					if (monitor.isCanceled()) {
-						process.destroy();
+						process.destroyForcibly();
 					}
 				}
 			} else {
