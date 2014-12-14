@@ -358,13 +358,22 @@ public interface TracePackage extends EPackage {
 	int STEP__THREAD = 2;
 
 	/**
+	 * The feature id for the '<em><b>Hidden</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__HIDDEN = 3;
+
+	/**
 	 * The number of structural features of the '<em>Step</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEP_FEATURE_COUNT = 3;
+	int STEP_FEATURE_COUNT = 4;
 
 	/**
 	 * The operation id for the '<em>Interpret</em>' operation.
@@ -410,6 +419,15 @@ public interface TracePackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSIGNMENT__THREAD = STEP__THREAD;
+
+	/**
+	 * The feature id for the '<em><b>Hidden</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNMENT__HIDDEN = STEP__HIDDEN;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -520,6 +538,15 @@ public interface TracePackage extends EPackage {
 	int FAILURE__THREAD = STEP__THREAD;
 
 	/**
+	 * The feature id for the '<em><b>Hidden</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FAILURE__HIDDEN = STEP__HIDDEN;
+
+	/**
 	 * The feature id for the '<em><b>Reason</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -581,6 +608,15 @@ public interface TracePackage extends EPackage {
 	 * @ordered
 	 */
 	int FUNCTION_CALL__THREAD = STEP__THREAD;
+
+	/**
+	 * The feature id for the '<em><b>Hidden</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL__HIDDEN = STEP__HIDDEN;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -653,6 +689,15 @@ public interface TracePackage extends EPackage {
 	 * @ordered
 	 */
 	int FUNCTION_RETURN__THREAD = STEP__THREAD;
+
+	/**
+	 * The feature id for the '<em><b>Hidden</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_RETURN__HIDDEN = STEP__HIDDEN;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -770,6 +815,15 @@ public interface TracePackage extends EPackage {
 	 * @ordered
 	 */
 	int LOCATION_ONLY__THREAD = STEP__THREAD;
+
+	/**
+	 * The feature id for the '<em><b>Hidden</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCATION_ONLY__HIDDEN = STEP__HIDDEN;
 
 	/**
 	 * The number of structural features of the '<em>Location Only</em>' class.
@@ -1174,6 +1228,15 @@ public interface TracePackage extends EPackage {
 	int OUTPUT__THREAD = STEP__THREAD;
 
 	/**
+	 * The feature id for the '<em><b>Hidden</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OUTPUT__HIDDEN = STEP__HIDDEN;
+
+	/**
 	 * The feature id for the '<em><b>Text</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1464,6 +1527,17 @@ public interface TracePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getStep_Thread();
+
+	/**
+	 * Returns the meta object for the attribute '{@link trace.Step#isHidden <em>Hidden</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Hidden</em>'.
+	 * @see trace.Step#isHidden()
+	 * @see #getStep()
+	 * @generated
+	 */
+	EAttribute getStep_Hidden();
 
 	/**
 	 * Returns the meta object for the '{@link trace.Step#interpret(process.Context) <em>Interpret</em>}' operation.
@@ -1927,6 +2001,14 @@ public interface TracePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute STEP__THREAD = eINSTANCE.getStep_Thread();
+
+		/**
+		 * The meta object literal for the '<em><b>Hidden</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STEP__HIDDEN = eINSTANCE.getStep_Hidden();
 
 		/**
 		 * The meta object literal for the '<em><b>Interpret</b></em>' operation.

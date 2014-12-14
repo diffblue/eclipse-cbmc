@@ -442,6 +442,15 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getStep_Hidden() {
+		return (EAttribute)stepEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getStep__Interpret__Context() {
 		return stepEClass.getEOperations().get(0);
 	}
@@ -703,6 +712,7 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		createEAttribute(stepEClass, STEP__NUMBER);
 		createEReference(stepEClass, STEP__LOCATION);
 		createEAttribute(stepEClass, STEP__THREAD);
+		createEAttribute(stepEClass, STEP__HIDDEN);
 		createEOperation(stepEClass, STEP___INTERPRET__CONTEXT);
 
 		structValueEClass = createEClass(STRUCT_VALUE);
@@ -812,6 +822,7 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		initEAttribute(getStep_Number(), theXMLTypePackage.getInt(), "number", null, 1, 1, Step.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getStep_Location(), this.getLocation(), null, "location", null, 1, 1, Step.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStep_Thread(), theXMLTypePackage.getInt(), "thread", null, 1, 1, Step.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStep_Hidden(), theXMLTypePackage.getBoolean(), "hidden", null, 1, 1, Step.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getStep__Interpret__Context(), theProcessPackage.getStepResult(), "interpret", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theProcessPackage.getContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1071,6 +1082,13 @@ public class TracePackageImpl extends EPackageImpl implements TracePackage {
 		   new String[] {
 			 "kind", "element",
 			 "name", "thread"
+		   });	
+		addAnnotation
+		  (getStep_Hidden(), 
+		   source, 
+		   new String[] {
+			 "kind", "element",
+			 "name", "hidden"
 		   });	
 		addAnnotation
 		  (structValueEClass, 

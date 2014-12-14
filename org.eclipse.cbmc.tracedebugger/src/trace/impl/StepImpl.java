@@ -36,6 +36,7 @@ import trace.TracePackage;
  *   <li>{@link trace.impl.StepImpl#getNumber <em>Number</em>}</li>
  *   <li>{@link trace.impl.StepImpl#getLocation <em>Location</em>}</li>
  *   <li>{@link trace.impl.StepImpl#getThread <em>Thread</em>}</li>
+ *   <li>{@link trace.impl.StepImpl#isHidden <em>Hidden</em>}</li>
  * </ul>
  * </p>
  *
@@ -109,6 +110,35 @@ public class StepImpl extends MinimalEObjectImpl.Container implements Step {
 	 * @ordered
 	 */
 	protected boolean threadESet;
+
+	/**
+	 * The default value of the '{@link #isHidden() <em>Hidden</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isHidden()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean HIDDEN_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isHidden() <em>Hidden</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isHidden()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean hidden = HIDDEN_EDEFAULT;
+
+	/**
+	 * This is true if the Hidden attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean hiddenESet;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -267,6 +297,52 @@ public class StepImpl extends MinimalEObjectImpl.Container implements Step {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isHidden() {
+		return hidden;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHidden(boolean newHidden) {
+		boolean oldHidden = hidden;
+		hidden = newHidden;
+		boolean oldHiddenESet = hiddenESet;
+		hiddenESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.STEP__HIDDEN, oldHidden, hidden, !oldHiddenESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetHidden() {
+		boolean oldHidden = hidden;
+		boolean oldHiddenESet = hiddenESet;
+		hidden = HIDDEN_EDEFAULT;
+		hiddenESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, TracePackage.STEP__HIDDEN, oldHidden, HIDDEN_EDEFAULT, oldHiddenESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHidden() {
+		return hiddenESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public StepResult interpret(Context context) {
@@ -310,6 +386,8 @@ public class StepImpl extends MinimalEObjectImpl.Container implements Step {
 				return getLocation();
 			case TracePackage.STEP__THREAD:
 				return getThread();
+			case TracePackage.STEP__HIDDEN:
+				return isHidden();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -330,6 +408,9 @@ public class StepImpl extends MinimalEObjectImpl.Container implements Step {
 				return;
 			case TracePackage.STEP__THREAD:
 				setThread((Integer)newValue);
+				return;
+			case TracePackage.STEP__HIDDEN:
+				setHidden((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -352,6 +433,9 @@ public class StepImpl extends MinimalEObjectImpl.Container implements Step {
 			case TracePackage.STEP__THREAD:
 				unsetThread();
 				return;
+			case TracePackage.STEP__HIDDEN:
+				unsetHidden();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -370,6 +454,8 @@ public class StepImpl extends MinimalEObjectImpl.Container implements Step {
 				return location != null;
 			case TracePackage.STEP__THREAD:
 				return isSetThread();
+			case TracePackage.STEP__HIDDEN:
+				return isSetHidden();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -402,6 +488,8 @@ public class StepImpl extends MinimalEObjectImpl.Container implements Step {
 		if (numberESet) result.append(number); else result.append("<unset>");
 		result.append(", thread: ");
 		if (threadESet) result.append(thread); else result.append("<unset>");
+		result.append(", hidden: ");
+		if (hiddenESet) result.append(hidden); else result.append("<unset>");
 		result.append(')');
 		return result.toString();
 	}

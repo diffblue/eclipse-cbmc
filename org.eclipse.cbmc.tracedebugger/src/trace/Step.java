@@ -27,6 +27,7 @@ import process.StepResult;
  *   <li>{@link trace.Step#getNumber <em>Number</em>}</li>
  *   <li>{@link trace.Step#getLocation <em>Location</em>}</li>
  *   <li>{@link trace.Step#getThread <em>Thread</em>}</li>
+ *   <li>{@link trace.Step#isHidden <em>Hidden</em>}</li>
  * </ul>
  * </p>
  *
@@ -169,6 +170,60 @@ public interface Step extends EObject {
 	 * @generated
 	 */
 	boolean isSetThread();
+
+	/**
+	 * Returns the value of the '<em><b>Hidden</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Hidden</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Hidden</em>' attribute.
+	 * @see #isSetHidden()
+	 * @see #unsetHidden()
+	 * @see #setHidden(boolean)
+	 * @see trace.TracePackage#getStep_Hidden()
+	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean" required="true"
+	 *        extendedMetaData="kind='element' name='hidden'"
+	 * @generated
+	 */
+	boolean isHidden();
+
+	/**
+	 * Sets the value of the '{@link trace.Step#isHidden <em>Hidden</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Hidden</em>' attribute.
+	 * @see #isSetHidden()
+	 * @see #unsetHidden()
+	 * @see #isHidden()
+	 * @generated
+	 */
+	void setHidden(boolean value);
+
+	/**
+	 * Unsets the value of the '{@link trace.Step#isHidden <em>Hidden</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHidden()
+	 * @see #isHidden()
+	 * @see #setHidden(boolean)
+	 * @generated
+	 */
+	void unsetHidden();
+
+	/**
+	 * Returns whether the value of the '{@link trace.Step#isHidden <em>Hidden</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Hidden</em>' attribute is set.
+	 * @see #unsetHidden()
+	 * @see #isHidden()
+	 * @see #setHidden(boolean)
+	 * @generated
+	 */
+	boolean isSetHidden();
 
 	/**
 	 * <!-- begin-user-doc -->

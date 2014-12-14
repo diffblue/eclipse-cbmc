@@ -119,6 +119,9 @@
 						<number>
 							<xsl:value-of select="@step_nr" />
 						</number>
+						<hidden>
+							<xsl:value-of select="@hidden"/>
+						</hidden>
 						<xsl:call-template name="getLocation">
 							<xsl:with-param name="node" select="." />
 						</xsl:call-template>
@@ -132,7 +135,7 @@
 							<xsl:value-of select="@base_name" />
 						</baseName>
 						<displayName>
-							<xsl:value-of select="@display_name" />
+							<xsl:value-of select="@displayassignment_name" />
 						</displayName>
 						<xsl:choose>
 							<xsl:when
@@ -161,6 +164,9 @@
 						<number>
 							<xsl:value-of select="@step_nr" />
 						</number>
+						<hidden>
+							<xsl:value-of select="@hidden"/>
+						</hidden>						
 						<xsl:if test="./function">
 							<id>
 								<xsl:value-of select="function/@identifier" />
@@ -194,6 +200,9 @@
 						<number>
 							<xsl:value-of select="@step_nr" />
 						</number>
+						<hidden>
+							<xsl:value-of select="@hidden"/>
+						</hidden>						
 						<xsl:if test="./function">
 							<id>
 								<xsl:value-of select="function/@identifier" />
@@ -217,6 +226,9 @@
 						<number>
 							<xsl:value-of select="@step_nr" />
 						</number>
+						<hidden>
+							<xsl:value-of select="@hidden"/>
+						</hidden>						
 						<reason>
 							<xsl:value-of select="@reason" />
 						</reason>
@@ -233,6 +245,9 @@
 						<number>
 							<xsl:value-of select="@step_nr" />
 						</number>
+						<hidden>
+							<xsl:value-of select="@hidden"/>
+						</hidden>
 						<xsl:call-template name="getLocation">
 							<xsl:with-param name="node" select="." />
 						</xsl:call-template>
@@ -243,6 +258,9 @@
 						<thread>
 							<xsl:value-of select="@thread" />
 						</thread>
+						<hidden>
+							<xsl:value-of select="@hidden"/>
+						</hidden>
 						<number>
 							<xsl:value-of select="@step_nr" />
 						</number>
