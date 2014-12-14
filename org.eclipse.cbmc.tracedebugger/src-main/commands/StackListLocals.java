@@ -13,6 +13,9 @@ package commands;
 import infra.MICommand;
 import infra.MIOutput;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.kohsuke.args4j.Option;
 
@@ -33,13 +36,14 @@ public class StackListLocals extends MICommand {
 	@Override
 	public MIOutput perform(Process process) {		
 		EList<Assignment> localVariables = process.getThread(threadId).getFrame(frameId).getVariables();
-		Vars[] results = new Vars[localVariables.size()];
-		int i = 0;
+		List<Vars> results = new ArrayList<Vars>(localVariables.size());
 		for (Assignment assignment : localVariables) {
-			results[i] = new Vars();
-			results[i].name = assignment.getBaseName();
-			results[i].value = assignment.getValue(assignment.getBaseName()).getUserFriendlyRepresentation(false);
-			i++;
+			if (assignment.isHidden())
+				continue;
+			Vars tmp = new Vars();
+			tmp.name = assignment.getBaseName();
+			tmp.value = assignment.getValue(assignment.getBaseName()).getUserFriendlyRepresentation(false);
+			results.add(tmp);
 		}
 		return new Done(this, "locals", results);
 	}
