@@ -80,7 +80,6 @@ public class CBMCCliHelper {
 		NO_UNWINDING_ASSERTIONS("--no-unwinding-assertions", "ignore unwinding assertions");//$NON-NLS-1$//$NON-NLS-2$
 		private String name;
 		private String description;
-		List<Loop> loops;
 
 		private CheckAllPropertiesOption(String name, String description) {
 			this.name = name;
@@ -208,9 +207,7 @@ public class CBMCCliHelper {
 	}
 
 	public String[] getCommandLineForAllLoops() {
-		ArrayList<String> result = new ArrayList<String>();
-		result.add(lcCBMCExecutable);
-		result.addAll(filesToCheck);
+		ArrayList<String> result = new ArrayList<String>(baseCli);
 		result.add(CBMC_ARG_SHOW_LOOPS);
 		result.add(CBMC_ARG_XML_UI);
 		return result.toArray(new String[result.size()]);
