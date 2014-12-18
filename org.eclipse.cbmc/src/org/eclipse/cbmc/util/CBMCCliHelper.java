@@ -77,7 +77,7 @@ public class CBMCCliHelper {
 		MEMORY_LEAK_CHECK("--memory-leak-check", "enable memory leak checks"), //$NON-NLS-1$//$NON-NLS-2$
 		FLOAT_OVERFLOW_CHECK("--float-overflow-check", "check floating-point for +/-Inf"), //$NON-NLS-1$//$NON-NLS-2$
 		COVER_ASSERTIONS("--cover-assertions", "check which assertions are reachable"), //$NON-NLS-1$//$NON-NLS-2$
-		NO_UNWINDING_ASSERTIONS("--no-unwinding-assertions", "ignore unwuinding assertions");//$NON-NLS-1$//$NON-NLS-2$
+		NO_UNWINDING_ASSERTIONS("--no-unwinding-assertions", "ignore unwinding assertions");//$NON-NLS-1$//$NON-NLS-2$
 		private String name;
 		private String description;
 		List<Loop> loops;
