@@ -58,40 +58,41 @@
 				</xsl:for-each>
 			</errorMessage>
 			<xsl:for-each select="/cprover/property">
-				<xsl:variable name="category" select="@class" />
-				<xsl:variable name="file" select="./location/@file" />
-				<properties>
-					<xsl:for-each select="exsl:node-set($categories)/*">
-						<xsl:if test=".=$category">
-							<category>
-								<xsl:value-of select="concat('#//@categories.', position()-1)" />
-							</category>
-						</xsl:if>
-					</xsl:for-each>
-					<description>
-						<xsl:value-of select="description" />
-					</description>
-					<xsl:for-each select="exsl:node-set($files)/*">
-						<xsl:if test=".=$file">
-							<file>
-								<xsl:value-of select="concat('#//@files.', position()-1)" />
-							</file>
-						</xsl:if>
-					</xsl:for-each>
-					<function>
-						<xsl:value-of select="location/@function" />
-					</function>
-					<line>
-						<xsl:value-of select="location/@line" />
-					</line>
-					<number>
-						<xsl:value-of select="@name" />
-					</number>
-					<detailsFile></detailsFile>
-					<status>pending</status>
-				</properties>
+				<xsl:if test="location/@line" >
+					<xsl:variable name="category" select="@class" />
+					<xsl:variable name="file" select="./location/@file" />
+					<properties>
+						<xsl:for-each select="exsl:node-set($categories)/*">
+							<xsl:if test=".=$category">
+								<category>
+									<xsl:value-of select="concat('#//@categories.', position()-1)" />
+								</category>
+							</xsl:if>
+						</xsl:for-each>
+						<description>
+							<xsl:value-of select="description" />
+						</description>
+						<xsl:for-each select="exsl:node-set($files)/*">
+							<xsl:if test=".=$file">
+								<file>
+									<xsl:value-of select="concat('#//@files.', position()-1)" />
+								</file>
+							</xsl:if>
+						</xsl:for-each>
+						<function>
+							<xsl:value-of select="location/@function" />
+						</function>
+						<line>
+							<xsl:value-of select="location/@line" />
+						</line>
+						<number>
+							<xsl:value-of select="@name" />
+						</number>
+						<detailsFile></detailsFile>
+						<status>pending</status>
+					</properties>
+				</xsl:if>
 			</xsl:for-each>
-
 		</cbmc:Results>
 	</xsl:template>
 
