@@ -73,7 +73,6 @@ public class CBMCCliHelper {
 		UNSIGNED_OVERFLOW_CHECK("--unsigned-overflow-check", "enable arithmetic over- and underflow checks"), //$NON-NLS-1$//$NON-NLS-2$
 		NAN_CHECK("--nan-check", "check floating-point for NaN"), //$NON-NLS-1$//$NON-NLS-2$
 		BOUNDS_CHECK("--bounds-check", "enable array bounds checks"), //$NON-NLS-1$//$NON-NLS-2$
-		UNDEFINED_SHIFT_CHECK("--undefined-shift-check", ""), //$NON-NLS-1$//$NON-NLS-2$
 		MEMORY_LEAK_CHECK("--memory-leak-check", "enable memory leak checks"), //$NON-NLS-1$//$NON-NLS-2$
 		FLOAT_OVERFLOW_CHECK("--float-overflow-check", "check floating-point for +/-Inf"), //$NON-NLS-1$//$NON-NLS-2$
 		COVER_ASSERTIONS("--cover-assertions", "check which assertions are reachable"), //$NON-NLS-1$//$NON-NLS-2$
