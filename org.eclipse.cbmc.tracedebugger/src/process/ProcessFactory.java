@@ -104,6 +104,15 @@ public interface ProcessFactory extends EFactory {
 	Context createContext();
 
 	/**
+	 * Returns a new object of class '<em>Memory</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Memory</em>'.
+	 * @generated
+	 */
+	Memory createMemory();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

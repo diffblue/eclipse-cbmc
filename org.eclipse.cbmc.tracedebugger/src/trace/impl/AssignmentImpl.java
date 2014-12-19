@@ -12,19 +12,18 @@
  */
 package trace.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
+import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import process.Context;
 import process.FunctionExecution;
 import process.ProcessFactory;
 import process.StepResult;
 import process.SteppingResult;
-import java.lang.reflect.InvocationTargetException;
 import trace.Assignment;
 import trace.TracePackage;
 import trace.Value;
@@ -370,19 +369,17 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 
 	@Override
 	public StepResult interpret(Context context) {
+		context.getContainingThread().getProcess().getMemory().getCells().put(getId(), this);
 		FunctionExecution function = context.getFunction();
 		if (function == null)
 			return null;
 		
-		ListIterator<Assignment> iter = function.getVariables().listIterator();
-		List<Assignment> assignementToRemove = new ArrayList<Assignment>();
-		while(iter.hasNext()){
-			Assignment currentAssignment = iter.next();
-			if(currentAssignment.getBaseName().equals(getBaseName()))
-				assignementToRemove.add(currentAssignment);
-		}
-		function.getVariables().removeAll(assignementToRemove);
-		function.getVariables().add(this);
+		//We only add to the function the local variables.
+		//Local variables are identified to be those whose name include the name of the function in their id.
+		//This is useful to deal with pointers since CBMC produces an assignment updating the real variable being pointed at.
+		//However we don't want to present this variable local to the function is the pointer, not the original variable.
+		if (getId().contains(function.getFunctionName()))
+			function.getLocalNameToMemory().put(getBaseName(), getId());
 		
 		StepResult result = ProcessFactory.eINSTANCE.createStepResult();
 		result.setCode(SteppingResult.STEP_COMPLETE);

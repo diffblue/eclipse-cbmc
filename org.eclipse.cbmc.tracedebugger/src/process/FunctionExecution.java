@@ -13,6 +13,7 @@
 package process;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
 import trace.Assignment;
 import trace.FunctionCall;
@@ -30,8 +31,8 @@ import trace.Step;
  *   <li>{@link process.FunctionExecution#getChild <em>Child</em>}</li>
  *   <li>{@link process.FunctionExecution#getEntryStep <em>Entry Step</em>}</li>
  *   <li>{@link process.FunctionExecution#getContainingThread <em>Containing Thread</em>}</li>
- *   <li>{@link process.FunctionExecution#getVariables <em>Variables</em>}</li>
  *   <li>{@link process.FunctionExecution#getStepIndexBeforeChild <em>Step Index Before Child</em>}</li>
+ *   <li>{@link process.FunctionExecution#getLocalNameToMemory <em>Local Name To Memory</em>}</li>
  * </ul>
  * </p>
  *
@@ -97,22 +98,6 @@ public interface FunctionExecution extends EObject {
 	void setParent(FunctionExecution value);
 
 	/**
-	 * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
-	 * The list contents are of type {@link trace.Assignment}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Variables</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Variables</em>' containment reference list.
-	 * @see process.ProcessPackage#getFunctionExecution_Variables()
-	 * @model containment="true" keys="baseName" ordered="false"
-	 * @generated
-	 */
-	EList<Assignment> getVariables();
-
-	/**
 	 * Returns the value of the '<em><b>Step Index Before Child</b></em>' attribute.
 	 * The default value is <code>"-1"</code>.
 	 * <!-- begin-user-doc -->
@@ -138,6 +123,23 @@ public interface FunctionExecution extends EObject {
 	 * @generated
 	 */
 	void setStepIndexBeforeChild(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Local Name To Memory</b></em>' map.
+	 * The key is of type {@link java.lang.String},
+	 * and the value is of type {@link java.lang.String},
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Local Name To Memory</em>' map isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Local Name To Memory</em>' map.
+	 * @see process.ProcessPackage#getFunctionExecution_LocalNameToMemory()
+	 * @model mapType="process.StringToStringEntry<org.eclipse.emf.ecore.xml.type.String, org.eclipse.emf.ecore.xml.type.String>"
+	 * @generated
+	 */
+	EMap<String, String> getLocalNameToMemory();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -170,6 +172,14 @@ public interface FunctionExecution extends EObject {
 	 * @generated
 	 */
 	Step getCurrentStep();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" many="false"
+	 * @generated
+	 */
+	EList<Assignment> getAllVariables();
 
 	/**
 	 * Returns the value of the '<em><b>Entry Step</b></em>' reference.

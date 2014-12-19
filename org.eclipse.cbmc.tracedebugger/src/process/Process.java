@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link process.Process#getVariableManager <em>Variable Manager</em>}</li>
  *   <li>{@link process.Process#getBreakpointManager <em>Breakpoint Manager</em>}</li>
  *   <li>{@link process.Process#getExecutableName <em>Executable Name</em>}</li>
+ *   <li>{@link process.Process#getMemory <em>Memory</em>}</li>
  * </ul>
  * </p>
  *
@@ -225,6 +226,32 @@ public interface Process extends EObject {
 	 * @generated
 	 */
 	void setExecutableName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Memory</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Memory</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Memory</em>' reference.
+	 * @see #setMemory(Memory)
+	 * @see process.ProcessPackage#getProcess_Memory()
+	 * @model required="true"
+	 * @generated
+	 */
+	Memory getMemory();
+
+	/**
+	 * Sets the value of the '{@link process.Process#getMemory <em>Memory</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Memory</em>' reference.
+	 * @see #getMemory()
+	 * @generated
+	 */
+	void setMemory(Memory value);
 
 	/**
 	 * <!-- begin-user-doc -->

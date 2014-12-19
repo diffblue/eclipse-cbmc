@@ -35,7 +35,7 @@ public class StackListLocals extends MICommand {
 	
 	@Override
 	public MIOutput perform(Process process) {		
-		EList<Assignment> localVariables = process.getThread(threadId).getFrame(frameId).getVariables();
+		EList<Assignment> localVariables = process.getThread(threadId).getFrame(frameId).getAllVariables();
 		List<Vars> results = new ArrayList<Vars>(localVariables.size());
 		for (Assignment assignment : localVariables) {
 			if (assignment.isHidden())

@@ -17,12 +17,15 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import process.FunctionExecution;
@@ -42,8 +45,8 @@ import trace.Step;
  *   <li>{@link process.impl.FunctionExecutionImpl#getChild <em>Child</em>}</li>
  *   <li>{@link process.impl.FunctionExecutionImpl#getEntryStep <em>Entry Step</em>}</li>
  *   <li>{@link process.impl.FunctionExecutionImpl#getContainingThread <em>Containing Thread</em>}</li>
- *   <li>{@link process.impl.FunctionExecutionImpl#getVariables <em>Variables</em>}</li>
  *   <li>{@link process.impl.FunctionExecutionImpl#getStepIndexBeforeChild <em>Step Index Before Child</em>}</li>
+ *   <li>{@link process.impl.FunctionExecutionImpl#getLocalNameToMemory <em>Local Name To Memory</em>}</li>
  * </ul>
  * </p>
  *
@@ -93,16 +96,6 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 	protected process.Thread containingThread;
 
 	/**
-	 * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getVariables()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Assignment> variables;
-
-	/**
 	 * The default value of the '{@link #getStepIndexBeforeChild() <em>Step Index Before Child</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -121,6 +114,16 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 	 * @ordered
 	 */
 	protected int stepIndexBeforeChild = STEP_INDEX_BEFORE_CHILD_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getLocalNameToMemory() <em>Local Name To Memory</em>}' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLocalNameToMemory()
+	 * @generated
+	 * @ordered
+	 */
+	protected EMap<String, String> localNameToMemory;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -266,18 +269,6 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Assignment> getVariables() {
-		if (variables == null) {
-			variables = new EObjectContainmentEList<Assignment>(Assignment.class, this, ProcessPackage.FUNCTION_EXECUTION__VARIABLES);
-		}
-		return variables;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public int getStepIndexBeforeChild() {
 		return stepIndexBeforeChild;
 	}
@@ -297,6 +288,18 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EMap<String, String> getLocalNameToMemory() {
+		if (localNameToMemory == null) {
+			localNameToMemory = new EcoreEMap<String,String>(ProcessPackage.Literals.STRING_TO_STRING_ENTRY, StringToStringEntryImpl.class, this, ProcessPackage.FUNCTION_EXECUTION__LOCAL_NAME_TO_MEMORY);
+		}
+		return localNameToMemory;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Step getCurrentStep() {
@@ -311,12 +314,27 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Assignment getVariable(String name) {
-		for (Assignment assignment : variables) {
-			if (assignment.getBaseName().equals(name))
-				return assignment;
+	public EList<Assignment> getAllVariables() {
+		EList<Assignment> result = new BasicEList<Assignment>();
+		
+		Collection<String> assignmentIds = localNameToMemory.values();
+		for (String id : assignmentIds) {
+			result.add(getContainingThread().getProcess().getMemory().getCells().get(id));
 		}
-		throw new RuntimeException("Requested variable name does not exist");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Assignment getVariable(String name) {
+		String memoryId = getLocalNameToMemory().get(name);
+		if (memoryId == null)
+			throw new RuntimeException("Requested variable name does not exist");
+		
+		return containingThread.getProcess().getMemory().getCells().get(memoryId);
 	}
 
 	/**
@@ -371,8 +389,8 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 				return basicSetParent(null, msgs);
 			case ProcessPackage.FUNCTION_EXECUTION__CHILD:
 				return basicSetChild(null, msgs);
-			case ProcessPackage.FUNCTION_EXECUTION__VARIABLES:
-				return ((InternalEList<?>)getVariables()).basicRemove(otherEnd, msgs);
+			case ProcessPackage.FUNCTION_EXECUTION__LOCAL_NAME_TO_MEMORY:
+				return ((InternalEList<?>)getLocalNameToMemory()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -473,10 +491,11 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 			case ProcessPackage.FUNCTION_EXECUTION__CONTAINING_THREAD:
 				if (resolve) return getContainingThread();
 				return basicGetContainingThread();
-			case ProcessPackage.FUNCTION_EXECUTION__VARIABLES:
-				return getVariables();
 			case ProcessPackage.FUNCTION_EXECUTION__STEP_INDEX_BEFORE_CHILD:
 				return getStepIndexBeforeChild();
+			case ProcessPackage.FUNCTION_EXECUTION__LOCAL_NAME_TO_MEMORY:
+				if (coreType) return getLocalNameToMemory();
+				else return getLocalNameToMemory().map();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -502,12 +521,11 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 			case ProcessPackage.FUNCTION_EXECUTION__CONTAINING_THREAD:
 				setContainingThread((process.Thread)newValue);
 				return;
-			case ProcessPackage.FUNCTION_EXECUTION__VARIABLES:
-				getVariables().clear();
-				getVariables().addAll((Collection<? extends Assignment>)newValue);
-				return;
 			case ProcessPackage.FUNCTION_EXECUTION__STEP_INDEX_BEFORE_CHILD:
 				setStepIndexBeforeChild((Integer)newValue);
+				return;
+			case ProcessPackage.FUNCTION_EXECUTION__LOCAL_NAME_TO_MEMORY:
+				((EStructuralFeature.Setting)getLocalNameToMemory()).set(newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -533,11 +551,11 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 			case ProcessPackage.FUNCTION_EXECUTION__CONTAINING_THREAD:
 				setContainingThread((process.Thread)null);
 				return;
-			case ProcessPackage.FUNCTION_EXECUTION__VARIABLES:
-				getVariables().clear();
-				return;
 			case ProcessPackage.FUNCTION_EXECUTION__STEP_INDEX_BEFORE_CHILD:
 				setStepIndexBeforeChild(STEP_INDEX_BEFORE_CHILD_EDEFAULT);
+				return;
+			case ProcessPackage.FUNCTION_EXECUTION__LOCAL_NAME_TO_MEMORY:
+				getLocalNameToMemory().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -559,10 +577,10 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 				return entryStep != null;
 			case ProcessPackage.FUNCTION_EXECUTION__CONTAINING_THREAD:
 				return containingThread != null;
-			case ProcessPackage.FUNCTION_EXECUTION__VARIABLES:
-				return variables != null && !variables.isEmpty();
 			case ProcessPackage.FUNCTION_EXECUTION__STEP_INDEX_BEFORE_CHILD:
 				return stepIndexBeforeChild != STEP_INDEX_BEFORE_CHILD_EDEFAULT;
+			case ProcessPackage.FUNCTION_EXECUTION__LOCAL_NAME_TO_MEMORY:
+				return localNameToMemory != null && !localNameToMemory.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -583,6 +601,8 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 				return getFileName();
 			case ProcessPackage.FUNCTION_EXECUTION___GET_CURRENT_STEP:
 				return getCurrentStep();
+			case ProcessPackage.FUNCTION_EXECUTION___GET_ALL_VARIABLES:
+				return getAllVariables();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

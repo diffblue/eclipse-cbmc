@@ -19,6 +19,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="breakpointManager" lowerBound="1"
         eType="#//BreakpointManager"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="executableName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="memory" lowerBound="1"
+        eType="#//Memory"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Thread">
     <eOperations name="step" eType="#//StepResult">
@@ -46,17 +48,21 @@
     <eOperations name="getFunctionName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
     <eOperations name="getFileName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
     <eOperations name="getCurrentStep" eType="ecore:EClass trace.ecore#//Step"/>
+    <eOperations name="getAllVariables">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+        <eTypeArguments eClassifier="ecore:EClass trace.ecore#//Assignment"/>
+      </eGenericType>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//FunctionExecution"
         eOpposite="#//FunctionExecution/child"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="child" eType="#//FunctionExecution"
         eOpposite="#//FunctionExecution/parent"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entryStep" eType="ecore:EClass trace.ecore#//FunctionCall"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="containingThread" eType="#//Thread"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" ordered="false"
-        upperBound="-1" eType="ecore:EClass trace.ecore#//Assignment" containment="true"
-        eKeys="trace.ecore#//Assignment/baseName"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stepIndexBeforeChild" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"
         defaultValueLiteral="-1"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="localNameToMemory" upperBound="-1"
+        eType="#//StringToStringEntry" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableManager">
     <eOperations name="getAssignment" eType="ecore:EClass trace.ecore#//Assignment">
@@ -116,5 +122,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="#//FunctionExecution"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="containingThread" eType="#//Thread"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stepBeingExecutedIdx" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Memory">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cells" upperBound="-1"
+        eType="#//StringToAssignmentEntry" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringToStringEntry" instanceClassName="java.util.Map$Entry">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
   </eClassifiers>
 </ecore:EPackage>

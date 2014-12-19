@@ -23,6 +23,7 @@ import process.Breakpoint;
 import process.BreakpointManager;
 import process.Context;
 import process.FunctionExecution;
+import process.Memory;
 import process.ProcessFactory;
 import process.ProcessPackage;
 import process.StepGoal;
@@ -85,6 +86,8 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory {
 			case ProcessPackage.BREAKPOINT: return createBreakpoint();
 			case ProcessPackage.STEP_RESULT: return createStepResult();
 			case ProcessPackage.CONTEXT: return createContext();
+			case ProcessPackage.MEMORY: return createMemory();
+			case ProcessPackage.STRING_TO_STRING_ENTRY: return (EObject)createStringToStringEntry();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -222,6 +225,26 @@ public class ProcessFactoryImpl extends EFactoryImpl implements ProcessFactory {
 	public Context createContext() {
 		ContextImpl context = new ContextImpl();
 		return context;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Memory createMemory() {
+		MemoryImpl memory = new MemoryImpl();
+		return memory;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Map.Entry<String, String> createStringToStringEntry() {
+		StringToStringEntryImpl stringToStringEntry = new StringToStringEntryImpl();
+		return stringToStringEntry;
 	}
 
 	/**

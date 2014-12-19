@@ -20,6 +20,7 @@ import process.Breakpoint;
 import process.BreakpointManager;
 import process.Context;
 import process.FunctionExecution;
+import process.Memory;
 import process.ProcessPackage;
 import process.StepResult;
 import process.VariableManager;
@@ -139,6 +140,18 @@ public class ProcessSwitch<T> extends Switch<T> {
 			case ProcessPackage.CONTEXT: {
 				Context context = (Context)theEObject;
 				T result = caseContext(context);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ProcessPackage.MEMORY: {
+				Memory memory = (Memory)theEObject;
+				T result = caseMemory(memory);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ProcessPackage.STRING_TO_STRING_ENTRY: {
+				@SuppressWarnings("unchecked") Map.Entry<String, String> stringToStringEntry = (Map.Entry<String, String>)theEObject;
+				T result = caseStringToStringEntry(stringToStringEntry);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -293,6 +306,36 @@ public class ProcessSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseContext(Context object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Memory</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Memory</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMemory(Memory object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>String To String Entry</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>String To String Entry</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStringToStringEntry(Map.Entry<String, String> object) {
 		return null;
 	}
 

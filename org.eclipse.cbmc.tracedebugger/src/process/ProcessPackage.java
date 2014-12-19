@@ -151,13 +151,22 @@ public interface ProcessPackage extends EPackage {
 	int PROCESS__EXECUTABLE_NAME = 7;
 
 	/**
+	 * The feature id for the '<em><b>Memory</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS__MEMORY = 8;
+
+	/**
 	 * The number of structural features of the '<em>Process</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_FEATURE_COUNT = 8;
+	int PROCESS_FEATURE_COUNT = 9;
 
 	/**
 	 * The operation id for the '<em>Start</em>' operation.
@@ -361,22 +370,22 @@ public interface ProcessPackage extends EPackage {
 	int FUNCTION_EXECUTION__CONTAINING_THREAD = 3;
 
 	/**
-	 * The feature id for the '<em><b>Variables</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTION_EXECUTION__VARIABLES = 4;
-
-	/**
 	 * The feature id for the '<em><b>Step Index Before Child</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_EXECUTION__STEP_INDEX_BEFORE_CHILD = 5;
+	int FUNCTION_EXECUTION__STEP_INDEX_BEFORE_CHILD = 4;
+
+	/**
+	 * The feature id for the '<em><b>Local Name To Memory</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_EXECUTION__LOCAL_NAME_TO_MEMORY = 5;
 
 	/**
 	 * The number of structural features of the '<em>Function Execution</em>' class.
@@ -424,13 +433,22 @@ public interface ProcessPackage extends EPackage {
 	int FUNCTION_EXECUTION___GET_CURRENT_STEP = 3;
 
 	/**
+	 * The operation id for the '<em>Get All Variables</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_EXECUTION___GET_ALL_VARIABLES = 4;
+
+	/**
 	 * The number of operations of the '<em>Function Execution</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_EXECUTION_OPERATION_COUNT = 4;
+	int FUNCTION_EXECUTION_OPERATION_COUNT = 5;
 
 
 	/**
@@ -837,6 +855,89 @@ public interface ProcessPackage extends EPackage {
 	int CONTEXT_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link process.impl.MemoryImpl <em>Memory</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see process.impl.MemoryImpl
+	 * @see process.impl.ProcessPackageImpl#getMemory()
+	 * @generated
+	 */
+	int MEMORY = 10;
+
+	/**
+	 * The feature id for the '<em><b>Cells</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMORY__CELLS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Memory</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMORY_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Memory</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMORY_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link process.impl.StringToStringEntryImpl <em>String To String Entry</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see process.impl.StringToStringEntryImpl
+	 * @see process.impl.ProcessPackageImpl#getStringToStringEntry()
+	 * @generated
+	 */
+	int STRING_TO_STRING_ENTRY = 11;
+
+	/**
+	 * The feature id for the '<em><b>Key</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_TO_STRING_ENTRY__KEY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_TO_STRING_ENTRY__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>String To String Entry</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_TO_STRING_ENTRY_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>String To String Entry</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_TO_STRING_ENTRY_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link process.StepGoal <em>Step Goal</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -844,7 +945,7 @@ public interface ProcessPackage extends EPackage {
 	 * @see process.impl.ProcessPackageImpl#getStepGoal()
 	 * @generated
 	 */
-	int STEP_GOAL = 10;
+	int STEP_GOAL = 12;
 
 	/**
 	 * The meta object id for the '{@link process.SteppingResult <em>Stepping Result</em>}' enum.
@@ -854,7 +955,7 @@ public interface ProcessPackage extends EPackage {
 	 * @see process.impl.ProcessPackageImpl#getSteppingResult()
 	 * @generated
 	 */
-	int STEPPING_RESULT = 11;
+	int STEPPING_RESULT = 13;
 
 	/**
 	 * Returns the meta object for class '{@link process.Process <em>Process</em>}'.
@@ -953,6 +1054,17 @@ public interface ProcessPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getProcess_ExecutableName();
+
+	/**
+	 * Returns the meta object for the reference '{@link process.Process#getMemory <em>Memory</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Memory</em>'.
+	 * @see process.Process#getMemory()
+	 * @see #getProcess()
+	 * @generated
+	 */
+	EReference getProcess_Memory();
 
 	/**
 	 * Returns the meta object for the '{@link process.Process#start() <em>Start</em>}' operation.
@@ -1134,17 +1246,6 @@ public interface ProcessPackage extends EPackage {
 	EReference getFunctionExecution_Parent();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link process.FunctionExecution#getVariables <em>Variables</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Variables</em>'.
-	 * @see process.FunctionExecution#getVariables()
-	 * @see #getFunctionExecution()
-	 * @generated
-	 */
-	EReference getFunctionExecution_Variables();
-
-	/**
 	 * Returns the meta object for the attribute '{@link process.FunctionExecution#getStepIndexBeforeChild <em>Step Index Before Child</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1154,6 +1255,17 @@ public interface ProcessPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFunctionExecution_StepIndexBeforeChild();
+
+	/**
+	 * Returns the meta object for the map '{@link process.FunctionExecution#getLocalNameToMemory <em>Local Name To Memory</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the map '<em>Local Name To Memory</em>'.
+	 * @see process.FunctionExecution#getLocalNameToMemory()
+	 * @see #getFunctionExecution()
+	 * @generated
+	 */
+	EReference getFunctionExecution_LocalNameToMemory();
 
 	/**
 	 * Returns the meta object for the '{@link process.FunctionExecution#getVariable(java.lang.String) <em>Get Variable</em>}' operation.
@@ -1194,6 +1306,16 @@ public interface ProcessPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getFunctionExecution__GetCurrentStep();
+
+	/**
+	 * Returns the meta object for the '{@link process.FunctionExecution#getAllVariables() <em>Get All Variables</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get All Variables</em>' operation.
+	 * @see process.FunctionExecution#getAllVariables()
+	 * @generated
+	 */
+	EOperation getFunctionExecution__GetAllVariables();
 
 	/**
 	 * Returns the meta object for class '{@link process.VariableManager <em>Variable Manager</em>}'.
@@ -1520,6 +1642,61 @@ public interface ProcessPackage extends EPackage {
 	EAttribute getContext_StepBeingExecutedIdx();
 
 	/**
+	 * Returns the meta object for class '{@link process.Memory <em>Memory</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Memory</em>'.
+	 * @see process.Memory
+	 * @generated
+	 */
+	EClass getMemory();
+
+	/**
+	 * Returns the meta object for the map '{@link process.Memory#getCells <em>Cells</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the map '<em>Cells</em>'.
+	 * @see process.Memory#getCells()
+	 * @see #getMemory()
+	 * @generated
+	 */
+	EReference getMemory_Cells();
+
+	/**
+	 * Returns the meta object for class '{@link java.util.Map.Entry <em>String To String Entry</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>String To String Entry</em>'.
+	 * @see java.util.Map.Entry
+	 * @model keyDataType="org.eclipse.emf.ecore.xml.type.String"
+	 *        valueDataType="org.eclipse.emf.ecore.xml.type.String"
+	 * @generated
+	 */
+	EClass getStringToStringEntry();
+
+	/**
+	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Key</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getStringToStringEntry()
+	 * @generated
+	 */
+	EAttribute getStringToStringEntry_Key();
+
+	/**
+	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getStringToStringEntry()
+	 * @generated
+	 */
+	EAttribute getStringToStringEntry_Value();
+
+	/**
 	 * Returns the meta object for enum '{@link process.StepGoal <em>Step Goal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1657,6 +1834,14 @@ public interface ProcessPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PROCESS__EXECUTABLE_NAME = eINSTANCE.getProcess_ExecutableName();
+
+		/**
+		 * The meta object literal for the '<em><b>Memory</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROCESS__MEMORY = eINSTANCE.getProcess_Memory();
 
 		/**
 		 * The meta object literal for the '<em><b>Start</b></em>' operation.
@@ -1799,20 +1984,20 @@ public interface ProcessPackage extends EPackage {
 		EReference FUNCTION_EXECUTION__PARENT = eINSTANCE.getFunctionExecution_Parent();
 
 		/**
-		 * The meta object literal for the '<em><b>Variables</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FUNCTION_EXECUTION__VARIABLES = eINSTANCE.getFunctionExecution_Variables();
-
-		/**
 		 * The meta object literal for the '<em><b>Step Index Before Child</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute FUNCTION_EXECUTION__STEP_INDEX_BEFORE_CHILD = eINSTANCE.getFunctionExecution_StepIndexBeforeChild();
+
+		/**
+		 * The meta object literal for the '<em><b>Local Name To Memory</b></em>' map feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCTION_EXECUTION__LOCAL_NAME_TO_MEMORY = eINSTANCE.getFunctionExecution_LocalNameToMemory();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Variable</b></em>' operation.
@@ -1845,6 +2030,14 @@ public interface ProcessPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation FUNCTION_EXECUTION___GET_CURRENT_STEP = eINSTANCE.getFunctionExecution__GetCurrentStep();
+
+		/**
+		 * The meta object literal for the '<em><b>Get All Variables</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation FUNCTION_EXECUTION___GET_ALL_VARIABLES = eINSTANCE.getFunctionExecution__GetAllVariables();
 
 		/**
 		 * The meta object literal for the '{@link process.impl.VariableManagerImpl <em>Variable Manager</em>}' class.
@@ -2099,6 +2292,50 @@ public interface ProcessPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CONTEXT__STEP_BEING_EXECUTED_IDX = eINSTANCE.getContext_StepBeingExecutedIdx();
+
+		/**
+		 * The meta object literal for the '{@link process.impl.MemoryImpl <em>Memory</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see process.impl.MemoryImpl
+		 * @see process.impl.ProcessPackageImpl#getMemory()
+		 * @generated
+		 */
+		EClass MEMORY = eINSTANCE.getMemory();
+
+		/**
+		 * The meta object literal for the '<em><b>Cells</b></em>' map feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MEMORY__CELLS = eINSTANCE.getMemory_Cells();
+
+		/**
+		 * The meta object literal for the '{@link process.impl.StringToStringEntryImpl <em>String To String Entry</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see process.impl.StringToStringEntryImpl
+		 * @see process.impl.ProcessPackageImpl#getStringToStringEntry()
+		 * @generated
+		 */
+		EClass STRING_TO_STRING_ENTRY = eINSTANCE.getStringToStringEntry();
+
+		/**
+		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STRING_TO_STRING_ENTRY__KEY = eINSTANCE.getStringToStringEntry_Key();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STRING_TO_STRING_ENTRY__VALUE = eINSTANCE.getStringToStringEntry_Value();
 
 		/**
 		 * The meta object literal for the '{@link process.StepGoal <em>Step Goal</em>}' enum.

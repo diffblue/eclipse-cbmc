@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import process.BreakpointManager;
+import process.Memory;
 import process.ProcessFactory;
 import process.ProcessPackage;
 import process.StepGoal;
@@ -48,6 +49,7 @@ import process.Thread;
  *   <li>{@link process.impl.ProcessImpl#getVariableManager <em>Variable Manager</em>}</li>
  *   <li>{@link process.impl.ProcessImpl#getBreakpointManager <em>Breakpoint Manager</em>}</li>
  *   <li>{@link process.impl.ProcessImpl#getExecutableName <em>Executable Name</em>}</li>
+ *   <li>{@link process.impl.ProcessImpl#getMemory <em>Memory</em>}</li>
  * </ul>
  * </p>
  *
@@ -174,12 +176,23 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements process
 	protected String executableName = EXECUTABLE_NAME_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getMemory() <em>Memory</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMemory()
+	 * @generated
+	 * @ordered
+	 */
+	protected Memory memory;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	protected ProcessImpl() {
 		super();
+		setMemory(ProcessFactory.eINSTANCE.createMemory());
 		setVariableManager(ProcessFactory.eINSTANCE.createVariableManager());
 		setBreakpointManager(ProcessFactory.eINSTANCE.createBreakpointManager());
 	}
@@ -381,6 +394,44 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements process
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Memory getMemory() {
+		if (memory != null && memory.eIsProxy()) {
+			InternalEObject oldMemory = (InternalEObject)memory;
+			memory = (Memory)eResolveProxy(oldMemory);
+			if (memory != oldMemory) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessPackage.PROCESS__MEMORY, oldMemory, memory));
+			}
+		}
+		return memory;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Memory basicGetMemory() {
+		return memory;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMemory(Memory newMemory) {
+		Memory oldMemory = memory;
+		memory = newMemory;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessPackage.PROCESS__MEMORY, oldMemory, memory));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public StepResult start() {
@@ -464,6 +515,9 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements process
 				return basicGetBreakpointManager();
 			case ProcessPackage.PROCESS__EXECUTABLE_NAME:
 				return getExecutableName();
+			case ProcessPackage.PROCESS__MEMORY:
+				if (resolve) return getMemory();
+				return basicGetMemory();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -503,6 +557,9 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements process
 			case ProcessPackage.PROCESS__EXECUTABLE_NAME:
 				setExecutableName((String)newValue);
 				return;
+			case ProcessPackage.PROCESS__MEMORY:
+				setMemory((Memory)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -539,6 +596,9 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements process
 			case ProcessPackage.PROCESS__EXECUTABLE_NAME:
 				setExecutableName(EXECUTABLE_NAME_EDEFAULT);
 				return;
+			case ProcessPackage.PROCESS__MEMORY:
+				setMemory((Memory)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -567,6 +627,8 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements process
 				return breakpointManager != null;
 			case ProcessPackage.PROCESS__EXECUTABLE_NAME:
 				return EXECUTABLE_NAME_EDEFAULT == null ? executableName != null : !EXECUTABLE_NAME_EDEFAULT.equals(executableName);
+			case ProcessPackage.PROCESS__MEMORY:
+				return memory != null;
 		}
 		return super.eIsSet(featureID);
 	}
