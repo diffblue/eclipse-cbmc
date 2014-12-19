@@ -70,7 +70,7 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 
 	private boolean checkCBMC() {
 		String executable = executableText.getText().trim();
-		return checkTextNotEmpty(executable, Messages.MainLaunchingTab_error_cbmc_isEmpty) && checkFileExists(executable, Messages.MainLaunchingTab_error_cbmc_notExist) && checkCompiler(executable) && checkCBMCVersion(executable);
+		return checkTextNotEmpty(executable, Messages.MainLaunchingTab_error_cbmc_isEmpty) && checkFileExists(executable, Messages.MainLaunchingTab_error_cbmc_notExist) && checkCBMCVersion(executable) && checkCompiler(executable);
 	}
 
 	private boolean checkResources() {
