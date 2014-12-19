@@ -221,7 +221,7 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 
 	void handleBinaryButtonSelected() {
 		ResourceListSelectionDialog dialog;
-		dialog = new ResourceListSelectionDialog(getShell(), ResourcesPlugin.getWorkspace().getRoot(), IResource.FILE);
+		dialog = new ForceHiddenResourceResourceListSelectionDialog(getShell(), ResourcesPlugin.getWorkspace().getRoot(), IResource.FILE);
 		dialog.setTitle(Messages.MainLaunchingTab_dialogBinaryTitle);
 		dialog.setMessage(Messages.MainLaunchingTab_dialogBinaryMessage);
 		if (dialog.open() == Window.OK) {
@@ -229,6 +229,15 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 			resourceToCheckType = CBMCCliHelper.LC_BINARY_TO_CHECK;
 		}
 
+	}
+
+	//We have to create this class just so we can force the dialog to show the derived resources up front
+	//The setAllowUserToToggleDerived just allows one to have a check box at the bottom of the dialog but not to control the initial state of this box
+	static class ForceHiddenResourceResourceListSelectionDialog extends ResourceListSelectionDialog {
+		public ForceHiddenResourceResourceListSelectionDialog(Shell parentShell, IContainer container, int typeMask) {
+			super(parentShell, container, typeMask);
+			setShowDerived(true);
+		}
 	}
 
 	@Override
