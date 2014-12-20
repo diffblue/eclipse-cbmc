@@ -137,6 +137,9 @@
 						<displayName>
 							<xsl:value-of select="@displayassignment_name" />
 						</displayName>
+						<assignmentType>
+							<xsl:value-of select="@assignment_type" />
+						</assignmentType>			
 						<xsl:choose>
 							<xsl:when
 								test="./value_expression/struct or ./value_expression/array or ./value_expression/union">

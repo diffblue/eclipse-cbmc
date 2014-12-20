@@ -9,25 +9,25 @@
 =thread-created,id="0",group-id="i1"
 27^running
 *running,thread-id="all"
-*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="14"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="main",file="functions.c",fullname="functions.c",line="14"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 60-exec-continue --thread 0
 60^running
 *running,thread-id="all"
-*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="17"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="main",file="functions.c",fullname="functions.c",line="17"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 61-exec-continue --thread 0
 61^running
 *running,thread-id="all"
-*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="17"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="main",file="functions.c",fullname="functions.c",line="17"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 62-exec-next --thread 0
 62^running
 *running,thread-id="all"
-*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="17"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="main",file="functions.c",fullname="functions.c",line="17"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 63-exec-step --thread 0
 63^running
 *running,thread-id="all"
-*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="17"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="main",file="functions.c",fullname="functions.c",line="17"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)

@@ -9,55 +9,55 @@
 =thread-created,id="0",group-id="i1"
 27^running
 *running,thread-id="all"
-*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="14"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="main",file="functions.c",fullname="functions.c",line="14"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 34-exec-next --thread 0 1
 34^running
 *running,thread-id="all"
-*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="15"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="main",file="functions.c",fullname="functions.c",line="15"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 41-exec-step --thread 0 1
 41^running
 *running,thread-id="all"
-*stopped,frame={func="foo",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="7"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="foo",file="functions.c",fullname="functions.c",line="7"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 49-exec-next --thread 0 1
 49^running
 *running,thread-id="all"
-*stopped,frame={func="foo",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="8"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="foo",file="functions.c",fullname="functions.c",line="8"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 52-stack-info-depth --thread 0
 52^done,depth="2"
 (gdb)
 54-thread-info 0
-54^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="foo",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="8"}}]
+54^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="foo",file="functions.c",fullname="functions.c",line="8"}}]
 (gdb)
 55-list-thread-groups
 55^done,groups=[{id="i1",type="process",pid="123",executable="<<inputFile>>"}]
 (gdb)
 56-stack-list-frames --thread 0 0 1
-56^done,stack=[frame={level="0",func="foo",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="8"},frame={level="1",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="15"}]
+56^done,stack=[frame={level="0",func="foo",file="functions.c",fullname="functions.c",line="8"},frame={level="1",func="main",file="functions.c",fullname="functions.c",line="15"}]
 (gdb)
 57-stack-list-frames --thread 0
-57^done,stack=[frame={level="0",func="foo",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="8"},frame={level="1",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="15"}]
+57^done,stack=[frame={level="0",func="foo",file="functions.c",fullname="functions.c",line="8"},frame={level="1",func="main",file="functions.c",fullname="functions.c",line="15"}]
 (gdb)
 58-exec-next --thread 0 1
 58^running
 *running,thread-id="all"
-*stopped,frame={func="foo",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="9"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="foo",file="functions.c",fullname="functions.c",line="9"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 66-stack-list-frames --thread 0
-66^done,stack=[frame={level="0",func="foo",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="9"},frame={level="1",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="15"}]
+66^done,stack=[frame={level="0",func="foo",file="functions.c",fullname="functions.c",line="9"},frame={level="1",func="main",file="functions.c",fullname="functions.c",line="15"}]
 (gdb)
 67-exec-next --thread 0 1
 67^running
 *running,thread-id="all"
-*stopped,frame={func="foo",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="10"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="foo",file="functions.c",fullname="functions.c",line="10"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 76-exec-next --thread 0 1
 76^running
 *running,thread-id="all"
-*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="16"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="main",file="functions.c",fullname="functions.c",line="16"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 79-stack-info-depth --thread 0
 79^done,depth="1"

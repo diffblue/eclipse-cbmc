@@ -55,7 +55,7 @@ public class TestInterpreter {
 		"executionAndBreakpoints", 
 		"functionCallOnFirstLine", 
 		"functionWithParameters", 
-//		"recursion",
+		"recursion",
 		"simpleTest",
 		"struct",
 		"variables"

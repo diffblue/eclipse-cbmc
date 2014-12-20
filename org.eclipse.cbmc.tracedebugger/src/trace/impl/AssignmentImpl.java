@@ -39,6 +39,7 @@ import trace.Value;
  *   <li>{@link trace.impl.AssignmentImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link trace.impl.AssignmentImpl#getBaseName <em>Base Name</em>}</li>
  *   <li>{@link trace.impl.AssignmentImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link trace.impl.AssignmentImpl#getAssignmentType <em>Assignment Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -114,6 +115,26 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	 * @ordered
 	 */
 	protected Value value;
+
+	/**
+	 * The default value of the '{@link #getAssignmentType() <em>Assignment Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssignmentType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ASSIGNMENT_TYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getAssignmentType() <em>Assignment Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssignmentType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String assignmentType = ASSIGNMENT_TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -221,6 +242,27 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getAssignmentType() {
+		return assignmentType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAssignmentType(String newAssignmentType) {
+		String oldAssignmentType = assignmentType;
+		assignmentType = newAssignmentType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TracePackage.ASSIGNMENT__ASSIGNMENT_TYPE, oldAssignmentType, assignmentType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public String getType() {
@@ -259,6 +301,8 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 				return getBaseName();
 			case TracePackage.ASSIGNMENT__VALUE:
 				return getValue();
+			case TracePackage.ASSIGNMENT__ASSIGNMENT_TYPE:
+				return getAssignmentType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -282,6 +326,9 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 				return;
 			case TracePackage.ASSIGNMENT__VALUE:
 				setValue((Value)newValue);
+				return;
+			case TracePackage.ASSIGNMENT__ASSIGNMENT_TYPE:
+				setAssignmentType((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -307,6 +354,9 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 			case TracePackage.ASSIGNMENT__VALUE:
 				setValue((Value)null);
 				return;
+			case TracePackage.ASSIGNMENT__ASSIGNMENT_TYPE:
+				setAssignmentType(ASSIGNMENT_TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -327,6 +377,8 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 				return BASE_NAME_EDEFAULT == null ? baseName != null : !BASE_NAME_EDEFAULT.equals(baseName);
 			case TracePackage.ASSIGNMENT__VALUE:
 				return value != null;
+			case TracePackage.ASSIGNMENT__ASSIGNMENT_TYPE:
+				return ASSIGNMENT_TYPE_EDEFAULT == null ? assignmentType != null : !ASSIGNMENT_TYPE_EDEFAULT.equals(assignmentType);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -363,6 +415,8 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 		result.append(displayName);
 		result.append(", baseName: ");
 		result.append(baseName);
+		result.append(", assignmentType: ");
+		result.append(assignmentType);
 		result.append(')');
 		return result.toString();
 	}

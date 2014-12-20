@@ -13,8 +13,8 @@
 16-file-exec-and-symbols --thread-group i1 <<inputFile>>
 16^done
 (gdb)
-24-break-insert -f /home/pascal/dev/runtime-New_configuration/AAAA/function.c:4
-24^done,bkpt={number="1",type="breakpoint",enabled="y",line="4",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c"}
+24-break-insert -f functions.c:4
+24^done,bkpt={number="1",type="breakpoint",enabled="y",line="4",file="functions.c",fullname="functions.c"}
 (gdb)
 25-break-insert -t -f main
 25^done,bkpt={number="2",type="breakpoint",enabled="y",func="main"}
@@ -24,47 +24,47 @@
 =thread-created,id="0",group-id="i1"
 27^running
 *running,thread-id="all"
-*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="14"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="main",file="functions.c",fullname="functions.c",line="14"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 36-exec-continue --thread 0
 36^running
 *running,thread-id="all"
-*stopped,disp="del",bkptno="1",frame={func="bar",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="4"},reason="breakpoint-hit",thread-id="0",stopped-threads="all"
+*stopped,disp="del",bkptno="1",frame={func="bar",file="functions.c",fullname="functions.c",line="4"},reason="breakpoint-hit",thread-id="0",stopped-threads="all"
 (gdb)
 54-stack-list-frames --thread 0 2 2
-54^done,stack=[frame={level="2",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="15"}]
+54^done,stack=[frame={level="2",func="main",file="functions.c",fullname="functions.c",line="15"}]
 (gdb)
 55-stack-list-frames --thread 0
-55^done,stack=[frame={level="0",func="bar",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="4"},frame={level="1",func="foo",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="8"},frame={level="2",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="15"}]
+55^done,stack=[frame={level="0",func="bar",file="functions.c",fullname="functions.c",line="4"},frame={level="1",func="foo",file="functions.c",fullname="functions.c",line="8"},frame={level="2",func="main",file="functions.c",fullname="functions.c",line="15"}]
 (gdb)
 56-stack-list-frames --thread 0 0 2
-56^done,stack=[frame={level="0",func="bar",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="4"},frame={level="1",func="foo",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="8"},frame={level="2",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="15"}]
+56^done,stack=[frame={level="0",func="bar",file="functions.c",fullname="functions.c",line="4"},frame={level="1",func="foo",file="functions.c",fullname="functions.c",line="8"},frame={level="2",func="main",file="functions.c",fullname="functions.c",line="15"}]
 (gdb)
 57-exec-next --thread 0 1
 57^running
 *running,thread-id="all"
-*stopped,frame={func="bar",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="5"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="bar",file="functions.c",fullname="functions.c",line="5"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 63-exec-next --thread 0 1
 63^running
 *running,thread-id="all"
-*stopped,frame={func="foo",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="9"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="foo",file="functions.c",fullname="functions.c",line="9"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 64-stack-info-depth --thread 0 11
 64^done,depth="2"
 (gdb)
 68-stack-list-frames --thread 0
-68^done,stack=[frame={level="0",func="foo",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="9"},frame={level="1",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="15"}]
+68^done,stack=[frame={level="0",func="foo",file="functions.c",fullname="functions.c",line="9"},frame={level="1",func="main",file="functions.c",fullname="functions.c",line="15"}]
 (gdb)
 69-exec-next --thread 0 1
 69^running
 *running,thread-id="all"
-*stopped,frame={func="foo",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="10"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="foo",file="functions.c",fullname="functions.c",line="10"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 75-exec-next --thread 0 1
 75^running
 *running,thread-id="all"
-*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/function.c",line="16"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="main",file="functions.c",fullname="functions.c",line="16"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 76-stack-info-depth --thread 0 11
 76^done,depth="1"

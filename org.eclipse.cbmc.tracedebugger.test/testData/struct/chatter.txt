@@ -92,7 +92,7 @@
 *stopped,frame={func="main",file="struct.c",fullname="struct.c",line="15"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 51-stack-list-locals --thread 0 --frame 0 1
-51^done,locals=[{name="q",value="-1073741825"},{name="s",value="{x=0,y=0,z=0}"}]
+51^done,locals=[{name="s",value="{x=0,y=0,z=0}"},{name="q",value="-1073741825"}]
 (gdb)
 52-stack-info-depth --thread 0 11
 52^done,depth="1"
@@ -142,7 +142,7 @@
 *stopped,frame={func="main",file="struct.c",fullname="struct.c",line="16"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 67-stack-list-locals --thread 0 --frame 0 1
-67^done,locals=[{name="q",value="-1073741825"},{name="s",value="{x=-1073741825,y=0,z=0}"}]
+67^done,locals=[{name="s",value="{x=-1073741825,y=0,z=0}"},{name="q",value="-1073741825"}]
 (gdb)
 68-stack-info-depth --thread 0 11
 68^done,depth="1"

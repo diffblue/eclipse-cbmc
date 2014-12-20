@@ -317,7 +317,7 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 	public EList<Assignment> getAllVariables() {
 		EList<Assignment> result = new BasicEList<Assignment>();
 		
-		Collection<String> assignmentIds = localNameToMemory.values();
+		Collection<String> assignmentIds = getLocalNameToMemory().values();
 		for (String id : assignmentIds) {
 			result.add(getContainingThread().getProcess().getMemory().getCells().get(id));
 		}

@@ -8,7 +8,7 @@
 =thread-created,id="0",group-id="i1"
 25^running
 *running,thread-id="all"
-*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/main.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/main.c",line="6"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="main",file="test1.c",fullname="test1.c",line="6"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 26-list-thread-groups --available
 26^done,groups=[{id="i1",type="process",pid="123",executable="<<inputFile>>"}]
@@ -20,27 +20,27 @@
 28^done,groups=[{id="i1",type="process",pid="123",executable="<<inputFile>>"}]
 (gdb)
 29-list-thread-groups i1
-29^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/main.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/main.c",line="6"}}]
+29^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="test1.c",fullname="test1.c",line="6"}}]
 (gdb)
 30-stack-info-depth --thread 0 11
 30^done,depth="1"
 (gdb)
 31-thread-info 0
-31^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/main.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/main.c",line="6"}}]
+31^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="test1.c",fullname="test1.c",line="6"}}]
 (gdb)
 32-stack-list-frames --thread 0
-32^done,stack=[frame={level="0",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/main.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/main.c",line="6"}]
+32^done,stack=[frame={level="0",func="main",file="test1.c",fullname="test1.c",line="6"}]
 (gdb)
 33-exec-next --thread 0 1
 33^running
 *running,thread-id="all"
-*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/main.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/main.c",line="7"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="main",file="test1.c",fullname="test1.c",line="7"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 34-stack-info-depth --thread 0 11
 34^done,depth="1"
 (gdb)
 35-thread-info 0
-35^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/main.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/main.c",line="7"}}]
+35^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="test1.c",fullname="test1.c",line="7"}}]
 (gdb)
 36-list-thread-groups
 36^done,groups=[{id="i1",type="process",pid="123",executable="<<inputFile>>"}]
@@ -48,13 +48,13 @@
 37-exec-next --thread 0 1
 37^running
 *running,thread-id="all"
-*stopped,frame={func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/main.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/main.c",line="9"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
+*stopped,frame={func="main",file="test1.c",fullname="test1.c",line="9"},reason="end-stepping-range",thread-id="0",stopped-threads="all"
 (gdb)
 38-stack-info-depth --thread 0 11
 38^done,depth="1"
 (gdb)
 39-thread-info 0
-39^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="/home/pascal/dev/runtime-New_configuration/AAAA/main.c",fullname="/home/pascal/dev/runtime-New_configuration/AAAA/main.c",line="9"}}]
+39^done,threads=[{id="0",target-id="0",state="stopped",frame={level="0",func="main",file="test1.c",fullname="test1.c",line="9"}}]
 (gdb)
 40-list-thread-groups
 40^done,groups=[{id="i1",type="process",pid="123",executable="<<inputFile>>"}]

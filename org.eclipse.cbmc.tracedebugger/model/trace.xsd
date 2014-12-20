@@ -105,6 +105,7 @@
 					<xsd:element name="value" type="lib:Value" />
 					<xsd:element name="type" type="xsd:string" />
 					<xsd:element name="parameter" type="xsd:boolean" />
+					<xsd:element name="assignmentType" type="xsd:string" />
 				</xsd:sequence>
 			</xsd:extension>
 		</xsd:complexContent>

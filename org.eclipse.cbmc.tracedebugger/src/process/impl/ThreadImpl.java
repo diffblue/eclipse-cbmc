@@ -33,6 +33,7 @@ import process.ProcessPackage;
 import process.StepGoal;
 import process.StepResult;
 import process.SteppingResult;
+import trace.Assignment;
 import trace.Location;
 import trace.Step;
 import trace.TracePackage;
@@ -376,31 +377,14 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 		StepResult lastResult = null;
 		while (stepToExecuteIdx < allSteps.size()) {
 			Step stepToExecute = getStepToExecute();
-			if (stepToExecute.eClass().getClassifierID() == TracePackage.ASSIGNMENT
-					&& (isFirstFunctionCall(stepToExecute) || isOther(stepToExecute))) {
+			if ((stepToExecute.eClass().getClassifierID() == TracePackage.ASSIGNMENT) && 
+					((Assignment)stepToExecute).getAssignmentType().equals("actual_parameter")) {
 				lastResult = executeNextInstruction();
 			} else {
 				return lastResult != null ? lastResult : getNothingDoneStep();
 			}
 		}
 		return createEndOfTraceResult();
-	}
-
-	// Deal with the case of the first function call in the trace, since the
-	// location is set to be the location of the function itself
-	public boolean isFirstFunctionCall(Step stepToExecute) {
-		return stack.getParent() == null && sameLine(stepToExecute.getLocation(), stack.getEntryStep().getLocation());
-	}
-
-	public boolean isOther(Step stepToExecute) {
-		if (stack.getParent() == null)
-			return false;
-		//Deal with the case where the function is called recursively
-		if ( sameFileAndFunction(stack.getEntryStep().getLocation(), stack.getParent().getEntryStep().getLocation()) ) {
-				return sameFileAndFunction(stepToExecute.getLocation(), stack.getParent().getEntryStep().getLocation()) && onDifferentLine(stepToExecute.getLocation(), stack.getEntryStep().getLocation());
-		} else {
-			return sameFileAndFunction(stepToExecute.getLocation(), stack.getParent().getEntryStep().getLocation());
-		}
 	}
 
 	private StepResult createEndOfTraceResult() {
@@ -425,6 +409,9 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 		if (nextStep == null)
 			return true;
 
+		if ((result.getStepDone() == Context.LOCATION_ONLY) && (nextStep.eClass().getClassifierID() == TracePackage.FUNCTION_CALL))
+			return false;
+		
 		Location nextLocation = nextStep.getLocation();
 		if (onDifferentLine(nextLocation, location))
 			return true;
@@ -449,14 +436,6 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 				return true;
 		}
 		return false;
-	}
-
-	private boolean sameLine(Location location1, Location location2) {
-		if (location1 == location2)
-			return true;
-		if (location1 == null || location2 == null)
-			return false;
-		return location1.getFile().equals(location2.getFile()) && location1.getLine() == location2.getLine();
 	}
 
 	private boolean sameFileAndFunction(Location location1, Location location2) {

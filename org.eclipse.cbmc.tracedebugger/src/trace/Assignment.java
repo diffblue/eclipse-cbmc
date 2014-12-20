@@ -25,6 +25,7 @@ package trace;
  *   <li>{@link trace.Assignment#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link trace.Assignment#getBaseName <em>Base Name</em>}</li>
  *   <li>{@link trace.Assignment#getValue <em>Value</em>}</li>
+ *   <li>{@link trace.Assignment#getAssignmentType <em>Assignment Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -140,6 +141,33 @@ public interface Assignment extends Step {
 	 * @generated
 	 */
 	void setValue(Value value);
+
+	/**
+	 * Returns the value of the '<em><b>Assignment Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Assignment Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Assignment Type</em>' attribute.
+	 * @see #setAssignmentType(String)
+	 * @see trace.TracePackage#getAssignment_AssignmentType()
+	 * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+	 *        extendedMetaData="kind='element' name='assignment_type'"
+	 * @generated
+	 */
+	String getAssignmentType();
+
+	/**
+	 * Sets the value of the '{@link trace.Assignment#getAssignmentType <em>Assignment Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Assignment Type</em>' attribute.
+	 * @see #getAssignmentType()
+	 * @generated
+	 */
+	void setAssignmentType(String value);
 
 	/**
 	 * <!-- begin-user-doc -->

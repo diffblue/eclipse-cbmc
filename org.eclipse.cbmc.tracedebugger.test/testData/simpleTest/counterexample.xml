@@ -1,15 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-    Copyright (c) 2014 Rapicorp, Inc and others.
-    All rights reserved. This program and the accompanying materials
-    are made available under the terms of the Eclipse Public License v1.0
-    which accompanies this distribution, and is available at
-    http://www.eclipse.org/legal/epl-v10.html
-   
-    Contributors:
-        Rapicorp, Inc - initial API and implementation
- -->
-
 <cprover>
 <program>CBMC 4.9</program>
 <message type="STATUS-MESSAGE">
@@ -17,7 +6,7 @@
 </message>
 
 <message type="STATUS-MESSAGE">
-  <text>Parsing /home/pascal/dev/runtime-New_configuration/AAAA/main.c</text>
+  <text>Parsing test1.c</text>
 </message>
 
 <message type="STATUS-MESSAGE">
@@ -25,7 +14,7 @@
 </message>
 
 <message type="STATUS-MESSAGE">
-  <text>Type-checking main</text>
+  <text>Type-checking test1</text>
 </message>
 
 <message type="STATUS-MESSAGE">
@@ -89,7 +78,7 @@
 </message>
 
 <message type="STATUS-MESSAGE">
-  <text>Runtime decision procedure: 0.001s</text>
+  <text>Runtime decision procedure: 0s</text>
 </message>
 
 <message type="STATUS-MESSAGE">
@@ -97,32 +86,32 @@
 </message>
 
 <goto_trace>
-  <function_call step_nr="2" thread="0">
+  <function_call hidden="false" step_nr="2" thread="0">
     <function display_name="__CPROVER_initialize" identifier="c::__CPROVER_initialize">
       <location file="&lt;built-in-additions&gt;" line="14"/>
     </function>
   </function_call>
-  <assignment base_name="__CPROVER_pipe_count" display_name="__CPROVER_pipe_count" identifier="c::__CPROVER_pipe_count" mode="C" step_nr="3" thread="0">
+  <assignment assignment_type="state" base_name="__CPROVER_pipe_count" display_name="__CPROVER_pipe_count" hidden="true" identifier="c::__CPROVER_pipe_count" mode="C" step_nr="3" thread="0">
     <location file="&lt;built-in-additions&gt;" line="78"/>
     <type>unsigned int</type>
     <full_lhs>__CPROVER_pipe_count</full_lhs>
     <full_lhs_value>0</full_lhs_value>
     <value>0</value>
     <value_expression>
-      <integer binary="00000000000000000000000000000000">0</integer>
+      <integer binary="00000000000000000000000000000000" c_type="unsigned int" width="32">0</integer>
     </value_expression>
   </assignment>
-  <assignment base_name="__CPROVER_thread_id" display_name="__CPROVER_thread_id" identifier="c::__CPROVER_thread_id" mode="C" step_nr="4" thread="0">
+  <assignment assignment_type="state" base_name="__CPROVER_thread_id" display_name="__CPROVER_thread_id" hidden="true" identifier="c::__CPROVER_thread_id" mode="C" step_nr="4" thread="0">
     <location file="&lt;built-in-additions&gt;" line="21"/>
     <type>unsigned long int</type>
     <full_lhs>__CPROVER_thread_id</full_lhs>
     <full_lhs_value>0</full_lhs_value>
     <value>0</value>
     <value_expression>
-      <integer binary="0000000000000000000000000000000000000000000000000000000000000000">0</integer>
+      <integer binary="0000000000000000000000000000000000000000000000000000000000000000" c_type="unsigned long int" width="64">0</integer>
     </value_expression>
   </assignment>
-  <assignment base_name="__CPROVER_threads_exited" display_name="__CPROVER_threads_exited" identifier="c::__CPROVER_threads_exited" mode="C" step_nr="5" thread="0">
+  <assignment assignment_type="state" base_name="__CPROVER_threads_exited" display_name="__CPROVER_threads_exited" hidden="true" identifier="c::__CPROVER_threads_exited" mode="C" step_nr="5" thread="0">
     <location file="&lt;built-in-additions&gt;" line="22"/>
     <type>_Bool [INFINITY()]</type>
     <full_lhs>__CPROVER_threads_exited</full_lhs>
@@ -132,27 +121,27 @@
       <unknown/>
     </value_expression>
   </assignment>
-  <assignment base_name="__CPROVER_next_thread_id" display_name="__CPROVER_next_thread_id" identifier="c::__CPROVER_next_thread_id" mode="C" step_nr="6" thread="0">
+  <assignment assignment_type="state" base_name="__CPROVER_next_thread_id" display_name="__CPROVER_next_thread_id" hidden="true" identifier="c::__CPROVER_next_thread_id" mode="C" step_nr="6" thread="0">
     <location file="&lt;built-in-additions&gt;" line="23"/>
     <type>unsigned long int</type>
     <full_lhs>__CPROVER_next_thread_id</full_lhs>
     <full_lhs_value>0</full_lhs_value>
     <value>0</value>
     <value_expression>
-      <integer binary="0000000000000000000000000000000000000000000000000000000000000000">0</integer>
+      <integer binary="0000000000000000000000000000000000000000000000000000000000000000" c_type="unsigned long int" width="64">0</integer>
     </value_expression>
   </assignment>
-  <assignment base_name="__CPROVER_rounding_mode" display_name="__CPROVER_rounding_mode" identifier="c::__CPROVER_rounding_mode" mode="C" step_nr="7" thread="0">
+  <assignment assignment_type="state" base_name="__CPROVER_rounding_mode" display_name="__CPROVER_rounding_mode" hidden="true" identifier="c::__CPROVER_rounding_mode" mode="C" step_nr="7" thread="0">
     <location file="&lt;built-in-additions&gt;" line="57"/>
     <type>int</type>
     <full_lhs>__CPROVER_rounding_mode</full_lhs>
     <full_lhs_value>0</full_lhs_value>
     <value>0</value>
     <value_expression>
-      <integer binary="00000000000000000000000000000000">0</integer>
+      <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
     </value_expression>
   </assignment>
-  <assignment base_name="__CPROVER_deallocated" display_name="__CPROVER_deallocated" identifier="c::__CPROVER_deallocated" mode="C" step_nr="8" thread="0">
+  <assignment assignment_type="state" base_name="__CPROVER_deallocated" display_name="__CPROVER_deallocated" hidden="true" identifier="c::__CPROVER_deallocated" mode="C" step_nr="8" thread="0">
     <location file="&lt;built-in-additions&gt;" line="30"/>
     <type>void *</type>
     <full_lhs>__CPROVER_deallocated</full_lhs>
@@ -162,7 +151,7 @@
       <pointer binary="0000000000000000000000000000000000000000000000000000000000000000"/>
     </value_expression>
   </assignment>
-  <assignment base_name="__CPROVER_dead_object" display_name="__CPROVER_dead_object" identifier="c::__CPROVER_dead_object" mode="C" step_nr="9" thread="0">
+  <assignment assignment_type="state" base_name="__CPROVER_dead_object" display_name="__CPROVER_dead_object" hidden="true" identifier="c::__CPROVER_dead_object" mode="C" step_nr="9" thread="0">
     <location file="&lt;built-in-additions&gt;" line="31"/>
     <type>void *</type>
     <full_lhs>__CPROVER_dead_object</full_lhs>
@@ -172,7 +161,7 @@
       <pointer binary="0000000000000000000000000000000000000000000000000000000000000000"/>
     </value_expression>
   </assignment>
-  <assignment base_name="__CPROVER_malloc_object" display_name="__CPROVER_malloc_object" identifier="c::__CPROVER_malloc_object" mode="C" step_nr="10" thread="0">
+  <assignment assignment_type="state" base_name="__CPROVER_malloc_object" display_name="__CPROVER_malloc_object" hidden="true" identifier="c::__CPROVER_malloc_object" mode="C" step_nr="10" thread="0">
     <location file="&lt;built-in-additions&gt;" line="32"/>
     <type>void *</type>
     <full_lhs>__CPROVER_malloc_object</full_lhs>
@@ -182,17 +171,17 @@
       <pointer binary="0000000000000000000000000000000000000000000000000000000000000000"/>
     </value_expression>
   </assignment>
-  <assignment base_name="__CPROVER_malloc_size" display_name="__CPROVER_malloc_size" identifier="c::__CPROVER_malloc_size" mode="C" step_nr="11" thread="0">
+  <assignment assignment_type="state" base_name="__CPROVER_malloc_size" display_name="__CPROVER_malloc_size" hidden="true" identifier="c::__CPROVER_malloc_size" mode="C" step_nr="11" thread="0">
     <location file="&lt;built-in-additions&gt;" line="33"/>
     <type>unsigned long int</type>
     <full_lhs>__CPROVER_malloc_size</full_lhs>
     <full_lhs_value>0</full_lhs_value>
     <value>0</value>
     <value_expression>
-      <integer binary="0000000000000000000000000000000000000000000000000000000000000000">0</integer>
+      <integer binary="0000000000000000000000000000000000000000000000000000000000000000" c_type="unsigned long int" width="64">0</integer>
     </value_expression>
   </assignment>
-  <assignment base_name="__CPROVER_malloc_is_new_array" display_name="__CPROVER_malloc_is_new_array" identifier="c::__CPROVER_malloc_is_new_array" mode="C" step_nr="12" thread="0">
+  <assignment assignment_type="state" base_name="__CPROVER_malloc_is_new_array" display_name="__CPROVER_malloc_is_new_array" hidden="true" identifier="c::__CPROVER_malloc_is_new_array" mode="C" step_nr="12" thread="0">
     <location file="&lt;built-in-additions&gt;" line="34"/>
     <type>_Bool</type>
     <full_lhs>__CPROVER_malloc_is_new_array</full_lhs>
@@ -202,7 +191,7 @@
       <boolean binary="0">FALSE</boolean>
     </value_expression>
   </assignment>
-  <assignment base_name="__CPROVER_memory_leak" display_name="__CPROVER_memory_leak" identifier="c::__CPROVER_memory_leak" mode="C" step_nr="13" thread="0">
+  <assignment assignment_type="state" base_name="__CPROVER_memory_leak" display_name="__CPROVER_memory_leak" hidden="true" identifier="c::__CPROVER_memory_leak" mode="C" step_nr="13" thread="0">
     <location file="&lt;built-in-additions&gt;" line="35"/>
     <type>void *</type>
     <full_lhs>__CPROVER_memory_leak</full_lhs>
@@ -212,45 +201,45 @@
       <pointer binary="0000000000000000000000000000000000000000000000000000000000000000"/>
     </value_expression>
   </assignment>
-  <function_return step_nr="14" thread="0">
+  <function_return hidden="false" step_nr="14" thread="0">
     <function display_name="__CPROVER_initialize" identifier="c::__CPROVER_initialize">
       <location file="&lt;built-in-additions&gt;" line="14"/>
     </function>
   </function_return>
-  <location-only step_nr="15" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/main.c" line="4"/>
+  <location-only hidden="false" step_nr="15" thread="0">
+    <location file="test1.c" line="4"/>
   </location-only>
-  <function_call step_nr="16" thread="0">
+  <function_call hidden="false" step_nr="16" thread="0">
     <function display_name="main" identifier="c::main">
-      <location file="/home/pascal/dev/runtime-New_configuration/AAAA/main.c" line="4"/>
+      <location file="test1.c" line="4"/>
     </function>
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/main.c" line="4"/>
+    <location file="test1.c" line="4"/>
   </function_call>
-  <assignment base_name="i" display_name="main::1::i" identifier="c::main::1::i" mode="C" step_nr="17" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/main.c" function="main" line="6"/>
+  <assignment assignment_type="state" base_name="i" display_name="main::1::i" hidden="false" identifier="c::main::1::i" mode="C" step_nr="17" thread="0">
+    <location file="test1.c" function="main" line="6"/>
     <type>int</type>
     <full_lhs>i</full_lhs>
     <full_lhs_value>0</full_lhs_value>
     <value>0</value>
     <value_expression>
-      <integer binary="00000000000000000000000000000000">0</integer>
+      <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
     </value_expression>
   </assignment>
-  <assignment base_name="i" display_name="main::1::i" identifier="c::main::1::i" mode="C" step_nr="18" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/main.c" function="main" line="7"/>
+  <assignment assignment_type="state" base_name="i" display_name="main::1::i" hidden="false" identifier="c::main::1::i" mode="C" step_nr="18" thread="0">
+    <location file="test1.c" function="main" line="7"/>
     <type>int</type>
     <full_lhs>i</full_lhs>
     <full_lhs_value>2</full_lhs_value>
     <value>2</value>
     <value_expression>
-      <integer binary="00000000000000000000000000000010">2</integer>
+      <integer binary="00000000000000000000000000000010" c_type="int" width="32">2</integer>
     </value_expression>
   </assignment>
-  <location-only step_nr="19" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/main.c" function="main" line="9"/>
+  <location-only hidden="false" step_nr="19" thread="0">
+    <location file="test1.c" function="main" line="9"/>
   </location-only>
-  <failure property="main.assertion.1" reason="assertion i == 3" step_nr="20" thread="0">
-    <location file="/home/pascal/dev/runtime-New_configuration/AAAA/main.c" function="main" line="9"/>
+  <failure hidden="false" property="main.assertion.1" reason="assertion i == 3" step_nr="20" thread="0">
+    <location file="test1.c" function="main" line="9"/>
   </failure>
 </goto_trace>
 
