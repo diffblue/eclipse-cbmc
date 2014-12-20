@@ -37,6 +37,7 @@ public class CBMCCliHelper {
 
 	public static final String LC_CBMC_OPTIONPREFIX = "cbmc."; //$NON-NLS-1$
 	public static final String LC_CBMC_FUNCTION = "cbmc.function"; //$NON-NLS-1$
+	public static final String LC_CBMC_EXTRA_ARGS = "cbmc.extra-args"; //$NON-NLS-1$
 	public static final String LC_CBMC_RESOURCES = "cbmc.resources"; //$NON-NLS-1$
 	public static final String LC_CBMC_RESOURCE_TYPE = "cbmc.resourcetype";//$NON-NLS-1$
 
@@ -58,6 +59,7 @@ public class CBMCCliHelper {
 	private List<String> lcCBMCResourcesToCheck;
 	private String lcCBMCExecutable;
 	private String lcCBMCFunction;
+	private String lcCBMCExtraArgs;
 	private boolean lcCBMCShowLoops;
 	private List<String> lcCBMCOptions;
 	private String lcCBMCUnwind;
@@ -100,6 +102,7 @@ public class CBMCCliHelper {
 			lcCBMCResourcesToCheck = config.getAttribute(LC_CBMC_RESOURCES, new ArrayList<String>());
 			lcCBMCResourceToCheckType = config.getAttribute(LC_CBMC_RESOURCE_TYPE, 1);
 			lcCBMCFunction = config.getAttribute(LC_CBMC_FUNCTION, NO_VALUE);
+			lcCBMCExtraArgs = config.getAttribute(LC_CBMC_EXTRA_ARGS, NO_VALUE);
 			lcCBMCShowLoops = config.getAttribute(LC_CBMC_SHOW_LOOPS, true);
 			lcCBMCUnwind = config.getAttribute(LC_CBMC_UNWIND, NO_VALUE);
 			lcCBMCAutoRun = config.getAttribute(LC_CBMC_AUTORUN, true);
@@ -127,9 +130,13 @@ public class CBMCCliHelper {
 		baseCli.add(lcCBMCExecutable);
 		filesToCheck = computeResourcesToCheck();
 		baseCli.addAll(filesToCheck);
+
 		if (lcCBMCFunction.length() > 0) {
 			baseCli.add(CBMC_ARG_FUNCTION);
 			baseCli.add(lcCBMCFunction);
+		}
+		if (lcCBMCExtraArgs.length() > 0) {
+			baseCli.add(lcCBMCExtraArgs);
 		}
 		baseCli.addAll(lcCBMCOptions);
 		baseCli = Collections.unmodifiableList(baseCli);

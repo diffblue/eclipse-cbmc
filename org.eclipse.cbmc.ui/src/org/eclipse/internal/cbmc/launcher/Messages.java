@@ -31,6 +31,7 @@ public class Messages extends NLS {
 	public static String MainLaunchingTab_labelCBMC;
 	public static String MainLaunchingTab_labelFile;
 	public static String MainLaunchingTab_showloops;
+	public static String MainLaunchingTab_labelExtraArgs;
 	public static String MainLaunchingTab_labelAutorun;
 	public static String MainLaunchingTab_labelFunction;
 	public static String MainLaunchingTab_labelOptions;

@@ -50,6 +50,7 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 	private Button executableButton;
 	private Text resourcesText;
 	private Text functionText;
+	private Text extraArgsText;
 	private Button autorunBtn;
 	private Button showLoopsBtn;
 	private Text unwindText;
@@ -317,6 +318,14 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 		functionText.setFont(font);
 		functionText.addModifyListener(modifyListener);
 
+		new Label(comp, SWT.NONE).setText(Messages.MainLaunchingTab_labelExtraArgs);
+		extraArgsText = new Text(comp, SWT.SINGLE | SWT.BORDER);
+		gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
+		gridData.horizontalSpan = 2;
+		extraArgsText.setLayoutData(gridData);
+		extraArgsText.setFont(font);
+		extraArgsText.addModifyListener(modifyListener);
+
 		new Label(comp, SWT.NONE).setText(Messages.MainLaunchingTab_showloops);
 		showLoopsBtn = new Button(comp, SWT.CHECK);
 		showLoopsBtn.setData("--show-loops"); //$NON-NLS-1$
@@ -386,6 +395,7 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 			}
 			resourcesText.setText(resourcesStr);
 			functionText.setText(configuration.getAttribute(CBMCCliHelper.LC_CBMC_FUNCTION, NO_VALUE));
+			extraArgsText.setText(configuration.getAttribute(CBMCCliHelper.LC_CBMC_EXTRA_ARGS, NO_VALUE));
 			String unwind = configuration.getAttribute(CBMCCliHelper.LC_CBMC_UNWIND, NO_VALUE);
 			if (!unwind.isEmpty())
 				unwindText.setText(unwind);
@@ -424,6 +434,8 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 
 			String function = functionText.getText().trim();
 			configuration.setAttribute(CBMCCliHelper.LC_CBMC_FUNCTION, function.length() == 0 ? null : function);
+			String extraArgs = extraArgsText.getText().trim();
+			configuration.setAttribute(CBMCCliHelper.LC_CBMC_EXTRA_ARGS, extraArgs.length() == 0 ? null : extraArgs);
 			String unwind = unwindText.getText().trim();
 			configuration.setAttribute(CBMCCliHelper.LC_CBMC_UNWIND, unwind);
 			CheckAllPropertiesOption[] options = CheckAllPropertiesOption.values();
