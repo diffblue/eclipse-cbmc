@@ -56,7 +56,7 @@ public class GeneratePropertiesJob extends Job {
 			File inputfile = new File(cliHelper.getWorkingDirectory(), PROPERTIES_INPUT_XML);
 			File outputfile = new File(cliHelper.getWorkingDirectory(), PROPERTIES_OUTPUT_CBMC);
 			setExitCode(ProcessHelper.executeCommandWithRedirectOutput(cliHelper.getCommandLineForAllProperties(), inputfile, monitor));
-			if (getExitCode() == 0) {
+			if (getExitCode() != -1) {
 				Source xmlInput = new StreamSource(inputfile);
 				Source xsl = new StreamSource(FileLocator.openStream(Platform.getBundle(Activator.PLUGIN_ID), new Path(TRANSFORM_XSL), false));
 				Result xmlOutput = new StreamResult(outputfile);
@@ -69,10 +69,8 @@ public class GeneratePropertiesJob extends Job {
 				results = (Results) resource.getContents().get(0);
 				results.setCBMCHelper(cliHelper);
 				if (!results.getErrorMessage().isEmpty()) {
-					Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error while getting properties. Reason: " + results.getErrorMessage(), null)); //$NON-NLS-1$
+					Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error while getting properties. Reason: " + results.getErrorMessage(), null));
 				}
-			} else {
-				return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "An error occurred while retrieving the properties. Please make sure the launch configuration validates and that the code to analyze does not have any compile error."); //$NON-NLS-1$
 			}
 		} catch (TransformerException e) {
 			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Cannot transform the CBMC properties into the ecore model", e); //$NON-NLS-1$
