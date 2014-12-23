@@ -41,7 +41,7 @@ public class MainLaunchingTab extends AbstractLaunchConfigurationTab {
 	private static final String CBMC_GOTO_INSTRUMENT = "goto-instrument"; //$NON-NLS-1$
 	private static final String CBMC_ARG_VERSION = "--version"; //$NON-NLS-1$
 	private static final String CBMC_ARG_TEST_PREPROCESSOR = "--test-preprocessor"; //$NON-NLS-1$
-	private static final String MINIMAL_VERSION_NUMBER = "4.9"; //$NON-NLS-1$
+	private static final String MINIMAL_VERSION_NUMBER = "5.0"; //$NON-NLS-1$
 
 	final String NO_VALUE = ""; //$NON-NLS-1$
 	final String NEW_LINE = "\n"; //$NON-NLS-1$
