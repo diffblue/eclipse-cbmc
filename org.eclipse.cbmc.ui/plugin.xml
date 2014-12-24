@@ -44,7 +44,7 @@
          point="org.eclipse.debug.ui.launchConfigurationTabGroups">
       <launchConfigurationTabGroup
             class="org.eclipse.internal.cbmc.launcher.LaunchConfigurationTab"
-            description="execute CBMC"
+            description="Execute CBMC"
             id="org.eclipse.cbmc.launching.configurationTab"
             type="org.eclipse.cbmc.launchConfiguration">
             <launchMode
