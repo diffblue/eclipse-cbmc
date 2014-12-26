@@ -12,5 +12,5 @@
   <artifactId>org.eclipse.cbmc.site</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>eclipse-repository</packaging>
-
+  <name>Eclipse CBMC integration</name>
 </project>
