@@ -425,8 +425,11 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 	public StepResult interpret(Context context) {
 		context.getContainingThread().getProcess().getMemory().getCells().put(getId(), this);
 		FunctionExecution function = context.getFunction();
-		if (function == null)
-			return null;
+		if (function == null) {
+			//We are in the presence of a global variable
+			context.getContainingThread().getProcess().getMemory().getGlobalVariables().put(getBaseName(), getId());
+			return createResult();
+		}
 		
 		//We only add to the function the local variables.
 		//Local variables are identified to be those whose name include the name of the function in their id.
@@ -435,6 +438,10 @@ public class AssignmentImpl extends StepImpl implements Assignment {
 		if (getId().contains(function.getFunctionName()))
 			function.getLocalNameToMemory().put(getBaseName(), getId());
 		
+		return createResult();
+	}
+	
+	private StepResult createResult() {
 		StepResult result = ProcessFactory.eINSTANCE.createStepResult();
 		result.setCode(SteppingResult.STEP_COMPLETE);
 		result.setStepDone(Context.ASSIGNMENT);

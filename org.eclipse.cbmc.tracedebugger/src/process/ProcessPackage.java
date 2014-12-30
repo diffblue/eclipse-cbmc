@@ -874,13 +874,22 @@ public interface ProcessPackage extends EPackage {
 	int MEMORY__CELLS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Global Variables</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMORY__GLOBAL_VARIABLES = 1;
+
+	/**
 	 * The number of structural features of the '<em>Memory</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MEMORY_FEATURE_COUNT = 1;
+	int MEMORY_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Memory</em>' class.
@@ -1663,6 +1672,17 @@ public interface ProcessPackage extends EPackage {
 	EReference getMemory_Cells();
 
 	/**
+	 * Returns the meta object for the map '{@link process.Memory#getGlobalVariables <em>Global Variables</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the map '<em>Global Variables</em>'.
+	 * @see process.Memory#getGlobalVariables()
+	 * @see #getMemory()
+	 * @generated
+	 */
+	EReference getMemory_GlobalVariables();
+
+	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>String To String Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2310,6 +2330,14 @@ public interface ProcessPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MEMORY__CELLS = eINSTANCE.getMemory_Cells();
+
+		/**
+		 * The meta object literal for the '<em><b>Global Variables</b></em>' map feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MEMORY__GLOBAL_VARIABLES = eINSTANCE.getMemory_GlobalVariables();
 
 		/**
 		 * The meta object literal for the '{@link process.impl.StringToStringEntryImpl <em>String To String Entry</em>}' class.

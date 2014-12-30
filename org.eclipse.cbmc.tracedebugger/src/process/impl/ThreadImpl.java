@@ -357,6 +357,10 @@ public class ThreadImpl extends MinimalEObjectImpl.Container implements process.
 			if (stepToExecute.eClass().getClassifierID() == TracePackage.FUNCTION_CALL) {
 				return;
 			}
+			if (stepToExecute.eClass().getClassifierID() == TracePackage.ASSIGNMENT) {
+				executeNextInstruction();
+				continue; //We short cut w/o incrementing because the executeNextInstruction increment the stepToExecuteIdx already
+			}
 			stepToExecuteIdx++;
 		}
 	}

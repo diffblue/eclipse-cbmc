@@ -809,6 +809,15 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getMemory_GlobalVariables() {
+		return (EReference)memoryEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getStringToStringEntry() {
 		return stringToStringEntryEClass;
 	}
@@ -973,6 +982,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 
 		memoryEClass = createEClass(MEMORY);
 		createEReference(memoryEClass, MEMORY__CELLS);
+		createEReference(memoryEClass, MEMORY__GLOBAL_VARIABLES);
 
 		stringToStringEntryEClass = createEClass(STRING_TO_STRING_ENTRY);
 		createEAttribute(stringToStringEntryEClass, STRING_TO_STRING_ENTRY__KEY);
@@ -1121,6 +1131,7 @@ public class ProcessPackageImpl extends EPackageImpl implements ProcessPackage {
 
 		initEClass(memoryEClass, Memory.class, "Memory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMemory_Cells(), this.getStringToAssignmentEntry(), null, "cells", null, 0, -1, Memory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMemory_GlobalVariables(), this.getStringToStringEntry(), null, "globalVariables", null, 0, -1, Memory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stringToStringEntryEClass, Map.Entry.class, "StringToStringEntry", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStringToStringEntry_Key(), theXMLTypePackage.getString(), "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

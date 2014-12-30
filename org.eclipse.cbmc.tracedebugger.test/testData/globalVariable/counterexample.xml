@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cprover>
+<program>CBMC 5.0</program>
+<message type="STATUS-MESSAGE">
+  <text>CBMC version 5.0 64-bit linux</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Parsing global.c</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Converting</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Type-checking global</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Generating GOTO Program</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Adding CPROVER library</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Function Pointer Removal</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Partial Inlining</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Generic Property Instrumentation</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Starting Bounded Model Checking</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>size of program expression: 41 steps</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>simple slicing removed 4 assignments</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Generated 1 VCC(s), 1 remaining after simplification</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Passing problem to propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Running propositional reduction</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Post-processing</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Solving with MiniSAT 2.2.0 with simplifier</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>9 variables, 11 clauses</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>SAT checker: negated claim is SATISFIABLE, i.e., does not hold</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Runtime decision procedure: 0s</text>
+</message>
+
+<message type="STATUS-MESSAGE">
+  <text>Building error trace</text>
+</message>
+
+<goto_trace>
+  <function_call hidden="false" step_nr="2" thread="0">
+    <function display_name="__CPROVER_initialize" identifier="c::__CPROVER_initialize">
+      <location file="&lt;built-in-additions&gt;" line="14"/>
+    </function>
+  </function_call>
+  <assignment assignment_type="state" base_name="global" display_name="global" hidden="true" identifier="c::global" mode="C" step_nr="3" thread="0">
+    <location file="global.c" line="3"/>
+    <type>int</type>
+    <full_lhs>global</full_lhs>
+    <full_lhs_value>0</full_lhs_value>
+    <value>0</value>
+    <value_expression>
+      <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
+    </value_expression>
+  </assignment>
+  <assignment assignment_type="state" base_name="__CPROVER_pipe_count" display_name="__CPROVER_pipe_count" hidden="true" identifier="c::__CPROVER_pipe_count" mode="C" step_nr="4" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="78"/>
+    <type>unsigned int</type>
+    <full_lhs>__CPROVER_pipe_count</full_lhs>
+    <full_lhs_value>0</full_lhs_value>
+    <value>0</value>
+    <value_expression>
+      <integer binary="00000000000000000000000000000000" c_type="unsigned int" width="32">0</integer>
+    </value_expression>
+  </assignment>
+  <assignment assignment_type="state" base_name="__CPROVER_thread_id" display_name="__CPROVER_thread_id" hidden="true" identifier="c::__CPROVER_thread_id" mode="C" step_nr="5" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="21"/>
+    <type>unsigned long int</type>
+    <full_lhs>__CPROVER_thread_id</full_lhs>
+    <full_lhs_value>0</full_lhs_value>
+    <value>0</value>
+    <value_expression>
+      <integer binary="0000000000000000000000000000000000000000000000000000000000000000" c_type="unsigned long int" width="64">0</integer>
+    </value_expression>
+  </assignment>
+  <assignment assignment_type="state" base_name="__CPROVER_threads_exited" display_name="__CPROVER_threads_exited" hidden="true" identifier="c::__CPROVER_threads_exited" mode="C" step_nr="6" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="22"/>
+    <type>_Bool [INFINITY()]</type>
+    <full_lhs>__CPROVER_threads_exited</full_lhs>
+    <full_lhs_value>__CPROVER_threads_exited#1</full_lhs_value>
+    <value>__CPROVER_threads_exited#1</value>
+    <value_expression>
+      <unknown/>
+    </value_expression>
+  </assignment>
+  <assignment assignment_type="state" base_name="__CPROVER_next_thread_id" display_name="__CPROVER_next_thread_id" hidden="true" identifier="c::__CPROVER_next_thread_id" mode="C" step_nr="7" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="23"/>
+    <type>unsigned long int</type>
+    <full_lhs>__CPROVER_next_thread_id</full_lhs>
+    <full_lhs_value>0</full_lhs_value>
+    <value>0</value>
+    <value_expression>
+      <integer binary="0000000000000000000000000000000000000000000000000000000000000000" c_type="unsigned long int" width="64">0</integer>
+    </value_expression>
+  </assignment>
+  <assignment assignment_type="state" base_name="__CPROVER_rounding_mode" display_name="__CPROVER_rounding_mode" hidden="true" identifier="c::__CPROVER_rounding_mode" mode="C" step_nr="8" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="57"/>
+    <type>int</type>
+    <full_lhs>__CPROVER_rounding_mode</full_lhs>
+    <full_lhs_value>0</full_lhs_value>
+    <value>0</value>
+    <value_expression>
+      <integer binary="00000000000000000000000000000000" c_type="int" width="32">0</integer>
+    </value_expression>
+  </assignment>
+  <assignment assignment_type="state" base_name="__CPROVER_deallocated" display_name="__CPROVER_deallocated" hidden="true" identifier="c::__CPROVER_deallocated" mode="C" step_nr="9" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="30"/>
+    <type>void *</type>
+    <full_lhs>__CPROVER_deallocated</full_lhs>
+    <full_lhs_value>NULL</full_lhs_value>
+    <value>NULL</value>
+    <value_expression>
+      <pointer binary="0000000000000000000000000000000000000000000000000000000000000000"/>
+    </value_expression>
+  </assignment>
+  <assignment assignment_type="state" base_name="__CPROVER_dead_object" display_name="__CPROVER_dead_object" hidden="true" identifier="c::__CPROVER_dead_object" mode="C" step_nr="10" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="31"/>
+    <type>void *</type>
+    <full_lhs>__CPROVER_dead_object</full_lhs>
+    <full_lhs_value>NULL</full_lhs_value>
+    <value>NULL</value>
+    <value_expression>
+      <pointer binary="0000000000000000000000000000000000000000000000000000000000000000"/>
+    </value_expression>
+  </assignment>
+  <assignment assignment_type="state" base_name="__CPROVER_malloc_object" display_name="__CPROVER_malloc_object" hidden="true" identifier="c::__CPROVER_malloc_object" mode="C" step_nr="11" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="32"/>
+    <type>void *</type>
+    <full_lhs>__CPROVER_malloc_object</full_lhs>
+    <full_lhs_value>NULL</full_lhs_value>
+    <value>NULL</value>
+    <value_expression>
+      <pointer binary="0000000000000000000000000000000000000000000000000000000000000000"/>
+    </value_expression>
+  </assignment>
+  <assignment assignment_type="state" base_name="__CPROVER_malloc_size" display_name="__CPROVER_malloc_size" hidden="true" identifier="c::__CPROVER_malloc_size" mode="C" step_nr="12" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="33"/>
+    <type>unsigned long int</type>
+    <full_lhs>__CPROVER_malloc_size</full_lhs>
+    <full_lhs_value>0</full_lhs_value>
+    <value>0</value>
+    <value_expression>
+      <integer binary="0000000000000000000000000000000000000000000000000000000000000000" c_type="unsigned long int" width="64">0</integer>
+    </value_expression>
+  </assignment>
+  <assignment assignment_type="state" base_name="__CPROVER_malloc_is_new_array" display_name="__CPROVER_malloc_is_new_array" hidden="true" identifier="c::__CPROVER_malloc_is_new_array" mode="C" step_nr="13" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="34"/>
+    <type>_Bool</type>
+    <full_lhs>__CPROVER_malloc_is_new_array</full_lhs>
+    <full_lhs_value>FALSE</full_lhs_value>
+    <value>FALSE</value>
+    <value_expression>
+      <boolean binary="0">FALSE</boolean>
+    </value_expression>
+  </assignment>
+  <assignment assignment_type="state" base_name="__CPROVER_memory_leak" display_name="__CPROVER_memory_leak" hidden="true" identifier="c::__CPROVER_memory_leak" mode="C" step_nr="14" thread="0">
+    <location file="&lt;built-in-additions&gt;" line="35"/>
+    <type>void *</type>
+    <full_lhs>__CPROVER_memory_leak</full_lhs>
+    <full_lhs_value>NULL</full_lhs_value>
+    <value>NULL</value>
+    <value_expression>
+      <pointer binary="0000000000000000000000000000000000000000000000000000000000000000"/>
+    </value_expression>
+  </assignment>
+  <function_return hidden="false" step_nr="15" thread="0">
+    <function display_name="__CPROVER_initialize" identifier="c::__CPROVER_initialize">
+      <location file="&lt;built-in-additions&gt;" line="14"/>
+    </function>
+  </function_return>
+  <location-only hidden="false" step_nr="16" thread="0">
+    <location file="global.c" line="8"/>
+  </location-only>
+  <function_call hidden="false" step_nr="17" thread="0">
+    <function display_name="main" identifier="c::main">
+      <location file="global.c" line="8"/>
+    </function>
+    <location file="global.c" line="8"/>
+  </function_call>
+  <location-only hidden="false" step_nr="18" thread="0">
+    <location file="global.c" function="main" line="9"/>
+  </location-only>
+  <assignment assignment_type="state" base_name="global" display_name="global" hidden="false" identifier="c::global" mode="C" step_nr="19" thread="0">
+    <location file="global.c" function="main" line="10"/>
+    <type>int</type>
+    <full_lhs>global</full_lhs>
+    <full_lhs_value>1</full_lhs_value>
+    <value>1</value>
+    <value_expression>
+      <integer binary="00000000000000000000000000000001" c_type="int" width="32">1</integer>
+    </value_expression>
+  </assignment>
+  <location-only hidden="false" step_nr="20" thread="0">
+    <location file="global.c" function="main" line="11"/>
+  </location-only>
+  <function_call hidden="false" step_nr="21" thread="0">
+    <function display_name="some_func" identifier="c::some_func">
+      <location file="global.c" line="4"/>
+    </function>
+    <location file="global.c" function="main" line="11"/>
+  </function_call>
+  <assignment assignment_type="actual_parameter" base_name="arg" display_name="c::some_func::arg" hidden="false" identifier="c::some_func::arg" mode="C" step_nr="22" thread="0">
+    <location file="global.c" function="main" line="11"/>
+    <type>int</type>
+    <full_lhs>arg</full_lhs>
+    <full_lhs_value>1</full_lhs_value>
+    <value>1</value>
+    <value_expression>
+      <integer binary="00000000000000000000000000000001" c_type="int" width="32">1</integer>
+    </value_expression>
+  </assignment>
+  <assignment assignment_type="state" base_name="arg" display_name="c::some_func::arg" hidden="false" identifier="c::some_func::arg" mode="C" step_nr="23" thread="0">
+    <location file="global.c" function="some_func" line="5"/>
+    <type>int</type>
+    <full_lhs>arg</full_lhs>
+    <full_lhs_value>2</full_lhs_value>
+    <value>2</value>
+    <value_expression>
+      <integer binary="00000000000000000000000000000010" c_type="int" width="32">2</integer>
+    </value_expression>
+  </assignment>
+  <function_return hidden="false" step_nr="24" thread="0">
+    <function display_name="some_func" identifier="c::some_func">
+      <location file="global.c" line="4"/>
+    </function>
+    <location file="global.c" function="some_func" line="6"/>
+  </function_return>
+  <location-only hidden="false" step_nr="25" thread="0">
+    <location file="global.c" function="main" line="12"/>
+  </location-only>
+  <failure hidden="false" property="main.assertion.2" reason="assertion global == 2" step_nr="26" thread="0">
+    <location file="global.c" function="main" line="12"/>
+  </failure>
+</goto_trace>
+
+<message type="STATUS-MESSAGE">
+  <text>VERIFICATION FAILED</text>
+</message>
+
+<cprover-status>FAILURE</cprover-status>
+
+</cprover>

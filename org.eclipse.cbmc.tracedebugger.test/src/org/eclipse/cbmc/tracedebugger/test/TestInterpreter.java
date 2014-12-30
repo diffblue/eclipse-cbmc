@@ -58,7 +58,8 @@ public class TestInterpreter {
 		"recursion",
 		"simpleTest",
 		"struct",
-		"variables"
+		"variables",
+		"globalVariable"
 		};
 	
 	@Parameters(name= "{2} -> {0}")

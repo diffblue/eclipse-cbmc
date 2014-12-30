@@ -17,6 +17,7 @@ import trace.Assignment;
  * The following features are supported:
  * <ul>
  *   <li>{@link process.Memory#getCells <em>Cells</em>}</li>
+ *   <li>{@link process.Memory#getGlobalVariables <em>Global Variables</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,5 +42,22 @@ public interface Memory extends EObject {
 	 * @generated
 	 */
 	EMap<String, Assignment> getCells();
+
+	/**
+	 * Returns the value of the '<em><b>Global Variables</b></em>' map.
+	 * The key is of type {@link java.lang.String},
+	 * and the value is of type {@link java.lang.String},
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Global Variables</em>' map isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Global Variables</em>' map.
+	 * @see process.ProcessPackage#getMemory_GlobalVariables()
+	 * @model mapType="process.StringToStringEntry<org.eclipse.emf.ecore.xml.type.String, org.eclipse.emf.ecore.xml.type.String>"
+	 * @generated
+	 */
+	EMap<String, String> getGlobalVariables();
 
 } // Memory

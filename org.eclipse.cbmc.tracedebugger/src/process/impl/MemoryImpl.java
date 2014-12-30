@@ -28,6 +28,7 @@ import trace.Assignment;
  * The following features are implemented:
  * <ul>
  *   <li>{@link process.impl.MemoryImpl#getCells <em>Cells</em>}</li>
+ *   <li>{@link process.impl.MemoryImpl#getGlobalVariables <em>Global Variables</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,6 +44,15 @@ public class MemoryImpl extends MinimalEObjectImpl.Container implements Memory {
 	 * @ordered
 	 */
 	protected EMap<String, Assignment> cells;
+	/**
+	 * The cached value of the '{@link #getGlobalVariables() <em>Global Variables</em>}' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGlobalVariables()
+	 * @generated
+	 * @ordered
+	 */
+	protected EMap<String, String> globalVariables;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -79,11 +89,25 @@ public class MemoryImpl extends MinimalEObjectImpl.Container implements Memory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EMap<String, String> getGlobalVariables() {
+		if (globalVariables == null) {
+			globalVariables = new EcoreEMap<String,String>(ProcessPackage.Literals.STRING_TO_STRING_ENTRY, StringToStringEntryImpl.class, this, ProcessPackage.MEMORY__GLOBAL_VARIABLES);
+		}
+		return globalVariables;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ProcessPackage.MEMORY__CELLS:
 				return ((InternalEList<?>)getCells()).basicRemove(otherEnd, msgs);
+			case ProcessPackage.MEMORY__GLOBAL_VARIABLES:
+				return ((InternalEList<?>)getGlobalVariables()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -99,6 +123,9 @@ public class MemoryImpl extends MinimalEObjectImpl.Container implements Memory {
 			case ProcessPackage.MEMORY__CELLS:
 				if (coreType) return getCells();
 				else return getCells().map();
+			case ProcessPackage.MEMORY__GLOBAL_VARIABLES:
+				if (coreType) return getGlobalVariables();
+				else return getGlobalVariables().map();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -113,6 +140,9 @@ public class MemoryImpl extends MinimalEObjectImpl.Container implements Memory {
 		switch (featureID) {
 			case ProcessPackage.MEMORY__CELLS:
 				((EStructuralFeature.Setting)getCells()).set(newValue);
+				return;
+			case ProcessPackage.MEMORY__GLOBAL_VARIABLES:
+				((EStructuralFeature.Setting)getGlobalVariables()).set(newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -129,6 +159,9 @@ public class MemoryImpl extends MinimalEObjectImpl.Container implements Memory {
 			case ProcessPackage.MEMORY__CELLS:
 				getCells().clear();
 				return;
+			case ProcessPackage.MEMORY__GLOBAL_VARIABLES:
+				getGlobalVariables().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -143,6 +176,8 @@ public class MemoryImpl extends MinimalEObjectImpl.Container implements Memory {
 		switch (featureID) {
 			case ProcessPackage.MEMORY__CELLS:
 				return cells != null && !cells.isEmpty();
+			case ProcessPackage.MEMORY__GLOBAL_VARIABLES:
+				return globalVariables != null && !globalVariables.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

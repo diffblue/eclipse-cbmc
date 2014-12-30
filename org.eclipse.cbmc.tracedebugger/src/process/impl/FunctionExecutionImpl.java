@@ -331,6 +331,9 @@ public class FunctionExecutionImpl extends MinimalEObjectImpl.Container implemen
 	 */
 	public Assignment getVariable(String name) {
 		String memoryId = getLocalNameToMemory().get(name);
+		if (memoryId == null) {
+			memoryId = containingThread.getProcess().getMemory().getGlobalVariables().get(name);
+		}
 		if (memoryId == null)
 			throw new RuntimeException("Requested variable name does not exist");
 		
